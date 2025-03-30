@@ -3,23 +3,43 @@ package EJERCICIO1;
 public class Principal {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		Empleado[] Empleados = new Empleado[5];
-		Empleados[0] = new Empleado();
-		Empleados[1] = new Empleado();
-		Empleados[2] = new Empleado();
-		Empleados[3] = new Empleado("Oriana Manrique", 26);
-		Empleados[4] = new Empleado("Rodrigo Brichetto", 27);
 		
-		for (Empleado empleado : Empleados) {
+		
+		// FORMA SIMPLE 
+		
+		/*
+		Empleado empleado1 = new Empleado();		
+		Empleado empleado2 = new Empleado();
+		Empleado empleado3 = new Empleado();
+		Empleado empleado4 = new Empleado("Carlos" , 23);
+		Empleado empleado5 = new Empleado("Carlita" , 23);	
+		*/
+		
+		/*
+		System.out.println(empleado1.toString());
+		System.out.println(empleado2.toString());
+		System.out.println(empleado3.toString());
+		System.out.println(empleado4.toString());
+		System.out.println(empleado5.toString());
+		*/
+		
+		
+		// FORMA CON ARRAY
+		
+		Empleado ListaEmpleados[] = new Empleado[5];
+		ListaEmpleados[0] = new Empleado();
+		ListaEmpleados[1] = new Empleado();
+		ListaEmpleados[2] = new Empleado();
+		ListaEmpleados[3] = new Empleado("Carlos", 23);
+		ListaEmpleados[4] = new Empleado("Carlita", 23);
+		
+		for (Empleado empleado : ListaEmpleados) {		
 			
-			System.out.println(empleado);
+			System.out.println(empleado.toString());
 		}
 		
-		System.out.println("El próximo ID de empleado será el " +Empleado.devuelveProximoID());
-		
-		
+		System.out.println("El próximo ID será el " + Empleado.devuelveProximoID());
+		System.out.println("Ultimo ID utilizado: " + Empleado.getIdBase());
 	}
 
 }
