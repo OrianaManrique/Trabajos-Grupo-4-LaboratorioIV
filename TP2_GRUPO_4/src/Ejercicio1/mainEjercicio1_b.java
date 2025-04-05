@@ -1,0 +1,22 @@
+package Ejercicio1;
+
+import java.util.Iterator;
+import java.util.TreeSet;
+
+public class mainEjercicio1_b {
+
+	public static void main(String[] args) {
+		TreeSet<Profesor> profesores = new TreeSet<>();
+
+        profesores.add(new Profesor("Samira", 40, "Titular", 15));
+        profesores.add(new Profesor("Lucas", 35, "Adjunto", 10));
+        profesores.add(new Profesor("Dante", 50, "Jefe de Cátedra", 25));
+        profesores.add(new Profesor("Lady", 29, "Ayudante", 3));
+        profesores.add(new Profesor("Juan", 45, "Adjunto", 18));
+
+        Iterator<Profesor> it = profesores.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+	}
+}

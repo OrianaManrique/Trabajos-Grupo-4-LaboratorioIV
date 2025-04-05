@@ -4,7 +4,7 @@ public class Empleado {
 
 	//ATRIBUTOS
 	
-		private final  int  id;
+		private final int  id;
 		private String nombre;
 		private int edad;
 		
