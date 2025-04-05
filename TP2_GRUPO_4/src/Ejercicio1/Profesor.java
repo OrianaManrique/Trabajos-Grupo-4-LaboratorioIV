@@ -5,11 +5,14 @@ public class Profesor extends Empleado {
 	private String cargo;
 	private int antiguedadDocente;
 	
+	//CONSTRUCTORES
+	
 	public Profesor() 
 	{
 		super();
 	}
 	
+
 	public Profesor(String Cargo , int AntiguedadDocente , String Nombre , int Edad) 
 	{   
 		super(Nombre, Edad);
@@ -17,6 +20,8 @@ public class Profesor extends Empleado {
 		this.antiguedadDocente = AntiguedadDocente;
 	}
 
+	//GETTERS Y SETTERS
+	
 	public String getCargo() {
 		return cargo;
 	}
@@ -33,4 +38,10 @@ public class Profesor extends Empleado {
 		this.antiguedadDocente = antiguedadDocente;
 	}
 
+	@Override
+	public String toString() {
+		return "ID: " + super.getId() + " Nombre: " + super.getNombre() + " Edad: " 
+				+ super.getEdad() + " Cargo: " + getCargo() + " Antiguedad: " + getAntiguedadDocente();
+		}
+	
 }
