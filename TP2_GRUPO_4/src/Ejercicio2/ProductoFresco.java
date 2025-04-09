@@ -21,6 +21,7 @@ public class ProductoFresco extends Producto {
 	public ProductoFresco() {		
 		super();
 	    this.paisDeOrigen = "Sin Pais";
+	    this.fechaDeEnvasado = "0/0/0";
 	}
 	
 	public ProductoFresco(String fechaCaducidad , int NumeroLote , String fechadeEnvasado, String PaisOrigen) {		
