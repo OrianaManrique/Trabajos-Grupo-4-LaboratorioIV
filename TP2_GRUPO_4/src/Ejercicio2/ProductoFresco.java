@@ -2,8 +2,8 @@ package Ejercicio2;
 
 public class ProductoFresco extends Producto {
   
-	String fechaDeEnvasado;
-	String paisDeOrigen;
+	private String fechaDeEnvasado;
+	private String paisDeOrigen;
 	
 	public String getFechaEnvasado() {
 		return fechaDeEnvasado;
@@ -32,7 +32,10 @@ public class ProductoFresco extends Producto {
 	
 	@Override
 	public String toString() {
-		return "Producto Fresco | Fecha de caducidad: " + getFechaCaducidad() + " | Número de lote: " + getNumeroLote() + " | Fecha de envasado: " + fechaDeEnvasado + "| País de origen: " + paisDeOrigen;
+		return "Producto Fresco | Fecha de caducidad: " + getFechaCaducidad() + 
+				" | Número de lote: " + getNumeroLote() + 
+				" | Fecha de envasado: " + fechaDeEnvasado + 
+				"| País de origen: " + paisDeOrigen;
 	}
 
 }
