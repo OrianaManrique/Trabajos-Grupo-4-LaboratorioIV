@@ -1,3 +1,5 @@
+package Ejercicio1;
+
 public class Persona {
     private String nombre;
     private String apellido;
@@ -10,7 +12,7 @@ public class Persona {
         this.dni = dni;
     }
 
-    // Getter  para nombre 
+    // Getter para nombre 
     public String getNombre() {
         return nombre;
     }
