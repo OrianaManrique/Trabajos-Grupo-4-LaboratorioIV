@@ -44,12 +44,28 @@ public class Persona implements Comparable<Persona>{
     }
     
 	@Override
-	public int compareTo(Persona otraPersona) {
-		return this.apellido.compareTo(otraPersona.getApellido());
+	public int compareTo(Persona o) {
+		return this.dni.compareTo(o.dni);   			
 	}
 	
 	@Override
 	public String toString() {
 		return nombre + " " + apellido + " " + dni;
 	}
+	
+    public static boolean  verificarDniInvalido(String Dniaux) throws DniInvalido {   	
+    	if(ValidarNumeros(Dniaux)==false){    		
+    		throw new DniInvalido();   		
+    	}else {				
+    		return true;  		
+    	}
+     }
+     
+    public static boolean ValidarNumeros(String Numeros) {   	
+    	if(Numeros.matches("[0-9]*")){
+    	  return true;
+    	}else {
+    	   return false;
+    	}	   	
+    }
 }

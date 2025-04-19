@@ -1,57 +1,42 @@
 package Ejercicio1;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.Iterator;
 import java.util.TreeSet;
+
 
 public class Principal {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws DniInvalido  {
 		
-		TreeSet<Persona> listaPersonas = new TreeSet<Persona>();
+		Archivo archivoPersonas = new Archivo();
+		archivoPersonas.setRuta("Personas.txt");
+				
+		if(archivoPersonas.existe())
+		{		
+			TreeSet<Persona> listaPersonas = new TreeSet<Persona>();
 		
-		Archivo archivo = new Archivo();
-		
-		archivo.setRuta("Personas.txt");
-		
-		if(!archivo.existe()) {
-			System.out.println("El archivo no existe.");
-			return;
-		}
-		
-		try {
-			FileReader entrada = new FileReader("Personas.txt");
-			BufferedReader miBuffer = new BufferedReader(entrada);
+	    try {
+		    listaPersonas = Archivo.GuardarArchivoenTreeSet(listaPersonas , "Personas.txt");		   	    	
 
-			String linea = miBuffer.readLine();
-			while (linea != null) {
-				String[] parte = linea.split("-");
-				if (parte.length >= 3) {
-					if(validarDNI(parte[2])) {
-						listaPersonas.add(new Persona(parte[0], parte[1], parte[2]));
-					}
-		        }
-				linea = miBuffer.readLine();
-			}
-			miBuffer.close();
-			entrada.close();
-		} catch (IOException e) {
-			System.out.println("No se encontró el archivo");
-		}
+                        System.out.println("LISTADO DE PERSONAS\n");		    	
+					    Iterator<Persona> it = listaPersonas.iterator();
+					    while (it.hasNext()) {
+						   Persona persona = it.next();			   
+						   System.out.println(persona.toString());		
+						   			   
+					        }			    	    		    	        	    	   	    				  
 		
-		for (Persona persona : listaPersonas) {
-			System.out.println(persona.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("ERROR - NO SE PUDO GUARDAR EL ARRAYLIST");
 		}
-	}
-	
-	public static boolean validarDNI(String dni) {
-		try {
-			DniInvalido.verificarDniInvalido(dni);
-			return true;
-		} catch (InvalidDniException e) {
-			return false;			
+				
 		}
+		else
+		{
+			System.out.println("No existe archivo el archivo");
+			archivoPersonas.creaArchivo();
+		}	
+		 
 	}
-	
+
 }

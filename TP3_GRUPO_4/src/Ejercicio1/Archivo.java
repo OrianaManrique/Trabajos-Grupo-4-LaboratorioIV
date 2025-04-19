@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.TreeSet;
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
 
@@ -34,13 +35,6 @@ public class Archivo {
 			
 	}
 	
-	public String getRuta() {
-		return ruta;
-	}
-
-	public void setRuta(String ruta) {
-		this.ruta = ruta;
-	}
 	
 	public void escribir_lineas (String frase) {
 		try {
@@ -72,5 +66,47 @@ public class Archivo {
 		} catch (IOException e) {
 			System.out.println("No se encontró el archivo");
 		}
+	}
+	
+	public String getRuta() {
+		return ruta;
+	}
+
+	public void setRuta(String ruta) {
+		this.ruta = ruta;
+	}
+	
+	public static TreeSet<Persona> GuardarArchivoenTreeSet (TreeSet<Persona>ListaAuxiliar, String ruta) throws ArrayIndexOutOfBoundsException{		
+		
+		FileReader entrada;
+		try {
+			entrada = new FileReader(ruta);
+			BufferedReader miBuffer = new BufferedReader(entrada);
+			
+		   String linea = "";
+			while (linea != null) {						
+				linea = miBuffer.readLine();
+				if(linea!=null) {
+					String[] partes = linea.split("-");			
+					if (partes.length == 3) {
+						if(Persona.ValidarNumeros(partes[2])){
+							String NombreAux = partes[0];
+						    String ApellidoAux = partes[1];
+						    String DniAux = partes[2];
+						    Persona auxPersona = new Persona(NombreAux, ApellidoAux, DniAux);
+						    ListaAuxiliar.add(auxPersona);					
+						   }
+					}
+				}
+				
+			}
+			miBuffer.close();
+			entrada.close();
+
+		 }catch (IOException e) {
+			System.out.println("No se encontro el archivo");
+		}
+		
+		return ListaAuxiliar;
 	}
 }
