@@ -1,6 +1,6 @@
 package Ejercicio1;
 
-public class Persona {
+public class Persona implements Comparable<Persona>{
     private String nombre;
     private String apellido;
     private String dni;
@@ -37,8 +37,19 @@ public class Persona {
         return dni;
     }
 
-    // Setter para dni
+
+	// Setter para dni
     public void setDni(String dni) {
         this.dni = dni;
     }
+    
+	@Override
+	public int compareTo(Persona otraPersona) {
+		return this.apellido.compareTo(otraPersona.getApellido());
+	}
+	
+	@Override
+	public String toString() {
+		return nombre + " " + apellido + " " + dni;
+	}
 }
