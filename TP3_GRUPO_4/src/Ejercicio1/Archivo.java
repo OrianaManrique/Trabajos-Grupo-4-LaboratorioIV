@@ -32,7 +32,18 @@ public class Archivo {
 		return false;
 
 	}
-
+     
+	
+	public boolean borrarArchivo()
+	{   
+		File archivo = new File(ruta);
+		if (archivo.delete()) {
+			return true;
+		} else {
+			return false;
+		}	
+	}
+	
 	public void escribir_lineas(String frase) {
 		try {
 			FileWriter entrada = new FileWriter(ruta, true);

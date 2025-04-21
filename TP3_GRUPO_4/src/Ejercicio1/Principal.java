@@ -9,6 +9,9 @@ public class Principal {
 		
 		Archivo archivoPersonas = new Archivo();
 		archivoPersonas.setRuta("Personas.txt");
+		
+		Archivo archivoResultado = new Archivo();
+		archivoResultado.setRuta("Resultado.txt");
 				
 		if(archivoPersonas.existe())
 		{		
@@ -21,8 +24,7 @@ public class Principal {
 					    Iterator<Persona> it = listaPersonas.iterator();
 					    while (it.hasNext()) {
 						   Persona persona = it.next();			   
-						   System.out.println(persona.toString());		
-						   			   
+						   System.out.println(persona.toString());								   			   
 					        }			    	    		    	        	    	   	    				  
 		
 		} catch (Exception e) {
