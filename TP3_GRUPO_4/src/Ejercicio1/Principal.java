@@ -33,7 +33,7 @@ public class Principal {
 		}
 		else
 		{
-			System.out.println("No existe archivo el archivo");
+			System.out.println("No existe el archivo");
 			archivoPersonas.creaArchivo();
 		}	
 		 

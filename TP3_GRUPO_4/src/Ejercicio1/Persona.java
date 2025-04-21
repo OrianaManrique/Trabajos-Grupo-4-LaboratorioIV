@@ -42,30 +42,21 @@ public class Persona implements Comparable<Persona>{
     public void setDni(String dni) {
         this.dni = dni;
     }
-    
-	@Override
-	public int compareTo(Persona o) {
-		return this.dni.compareTo(o.dni);   			
+	
+	public int compareTo(Persona otra) {
+	    return this.apellido.compareToIgnoreCase(otra.getApellido());
 	}
 	
 	@Override
 	public String toString() {
-		return nombre + " " + apellido + " " + dni;
+		return nombre + " " + apellido + " " + dni + "\n";
 	}
 	
     public static boolean  verificarDniInvalido(String Dniaux) throws DniInvalido {   	
-    	if(ValidarNumeros(Dniaux)==false){    		
-    		throw new DniInvalido();   		
-    	}else {				
-    		return true;  		
+    	if(Dniaux.matches("[0-9]+")) {    		
+    		return true; 	
+    	}else {	
+    		throw new DniInvalido(); 
     	}
      }
-     
-    public static boolean ValidarNumeros(String Numeros) {   	
-    	if(Numeros.matches("[0-9]*")){
-    	  return true;
-    	}else {
-    	   return false;
-    	}	   	
-    }
-}
+} 

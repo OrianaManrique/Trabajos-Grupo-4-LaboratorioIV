@@ -1,4 +1,5 @@
 package Ejercicio1;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
@@ -7,21 +8,18 @@ import java.util.TreeSet;
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
 
-
 public class Archivo {
-	
+
 	private String ruta;
-	
-	public boolean existe()
-	{
-		File archivo = new File(ruta); 
-		if(archivo.exists())
-		      return true;
+
+	public boolean existe() {
+		File archivo = new File(ruta);
+		if (archivo.exists())
+			return true;
 		return false;
 	}
-	
-	public boolean creaArchivo()
-	{
+
+	public boolean creaArchivo() {
 		FileWriter escritura;
 		try {
 			escritura = new FileWriter(ruta, true);
@@ -32,11 +30,10 @@ public class Archivo {
 			e.printStackTrace();
 		}
 		return false;
-			
+
 	}
-	
-	
-	public void escribir_lineas (String frase) {
+
+	public void escribir_lineas(String frase) {
 		try {
 			FileWriter entrada = new FileWriter(ruta, true);
 			BufferedWriter miBuffer = new BufferedWriter(entrada);
@@ -54,12 +51,12 @@ public class Archivo {
 			entrada = new FileReader(ruta);
 			BufferedReader miBuffer = new BufferedReader(entrada);
 
-		String linea = "";
+			String linea = "";
 			while (linea != null) {
-			System.out.println(linea);
-			linea = miBuffer.readLine();
+				System.out.println(linea);
+				linea = miBuffer.readLine();
 			}
-			
+
 			miBuffer.close();
 			entrada.close();
 
@@ -67,7 +64,7 @@ public class Archivo {
 			System.out.println("No se encontró el archivo");
 		}
 	}
-	
+
 	public String getRuta() {
 		return ruta;
 	}
@@ -75,38 +72,43 @@ public class Archivo {
 	public void setRuta(String ruta) {
 		this.ruta = ruta;
 	}
-	
-	public static TreeSet<Persona> GuardarArchivoenTreeSet (TreeSet<Persona>ListaAuxiliar, String ruta) throws ArrayIndexOutOfBoundsException{		
-		
+
+	public static TreeSet<Persona> GuardarArchivoenTreeSet(TreeSet<Persona> ListaAuxiliar, String ruta)
+			throws ArrayIndexOutOfBoundsException {
+
 		FileReader entrada;
 		try {
 			entrada = new FileReader(ruta);
 			BufferedReader miBuffer = new BufferedReader(entrada);
-			
-		   String linea = "";
-			while (linea != null) {						
+
+			String linea = "";
+			while (linea != null) {
 				linea = miBuffer.readLine();
-				if(linea!=null) {
-					String[] partes = linea.split("-");			
+				if (linea != null) {
+					String[] partes = linea.split("-");
 					if (partes.length == 3) {
-						if(Persona.ValidarNumeros(partes[2])){
-							String NombreAux = partes[0];
-						    String ApellidoAux = partes[1];
-						    String DniAux = partes[2];
-						    Persona auxPersona = new Persona(NombreAux, ApellidoAux, DniAux);
-						    ListaAuxiliar.add(auxPersona);					
-						   }
+						try {
+							if (Persona.verificarDniInvalido(partes[2])) {
+								String NombreAux = partes[0];
+								String ApellidoAux = partes[1];
+								String DniAux = partes[2];
+								Persona auxPersona = new Persona(NombreAux, ApellidoAux, DniAux);
+								ListaAuxiliar.add(auxPersona);
+							}
+						} catch (IOException e) {
+
+						}
 					}
 				}
-				
 			}
+
 			miBuffer.close();
 			entrada.close();
 
-		 }catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println("No se encontro el archivo");
 		}
-		
+
 		return ListaAuxiliar;
 	}
 }
