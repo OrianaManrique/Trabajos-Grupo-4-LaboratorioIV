@@ -1,5 +1,8 @@
 package Ejercicio1;
 
+import java.util.Iterator;
+import java.util.TreeSet;
+
 public class Persona implements Comparable<Persona>{
     private String nombre;
     private String apellido;
@@ -59,4 +62,16 @@ public class Persona implements Comparable<Persona>{
     		throw new DniInvalido(); 
     	}
      }
+    
+    public static void Mostrar(TreeSet<Persona> lista){
+
+		System.out.println("LISTADO DE PERSONAS\n");
+			Iterator<Persona> it = lista.iterator();
+			while (it.hasNext()) {
+				Persona persona = it.next();
+				System.out.println(persona.toString());
+
+			}
+    }
+    
 } 
