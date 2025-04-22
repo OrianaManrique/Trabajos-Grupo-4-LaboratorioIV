@@ -1,6 +1,4 @@
 package Ejercicio1;
-
-import java.util.Iterator;
 import java.util.TreeSet;
 
 public class Principal {
