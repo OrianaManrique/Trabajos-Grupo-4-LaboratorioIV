@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.TreeSet;
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
@@ -54,6 +55,29 @@ public class Archivo {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void sobreEscribir_lineas(TreeSet<Persona> NuevaLista, String ruta) {
+		try {
+			FileWriter entrada = new FileWriter(ruta, false);
+			BufferedWriter miBuffer = new BufferedWriter(entrada);
+			
+			 System.out.println("LISTADO DE PERSONAS\n");		    	
+			    Iterator<Persona> it = NuevaLista.iterator();
+			    while (it.hasNext()) {
+				   Persona persona = it.next();		
+				    miBuffer.write(persona.toString());					
+				   System.out.println(persona.toString());					  
+			        }
+			
+			    miBuffer.close();
+				entrada.close();
+				
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 	public void leer_lineas() {

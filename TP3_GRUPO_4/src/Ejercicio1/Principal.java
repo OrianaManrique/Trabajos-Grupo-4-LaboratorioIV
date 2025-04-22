@@ -1,5 +1,4 @@
 package Ejercicio1;
-import java.util.Iterator;
 import java.util.TreeSet;
 
 
@@ -18,14 +17,10 @@ public class Principal {
 			TreeSet<Persona> listaPersonas = new TreeSet<Persona>();
 		
 	    try {
-		    listaPersonas = Archivo.GuardarArchivoenTreeSet(listaPersonas , "Personas.txt");		   	    	
-
-                        System.out.println("LISTADO DE PERSONAS\n");		    	
-					    Iterator<Persona> it = listaPersonas.iterator();
-					    while (it.hasNext()) {
-						   Persona persona = it.next();			   
-						   System.out.println(persona.toString());								   			   
-					        }			    	    		    	        	    	   	    				  
+		    listaPersonas = Archivo.GuardarArchivoenTreeSet(listaPersonas , "Personas.txt");
+		    archivoResultado.creaArchivo();
+		    Archivo.sobreEscribir_lineas(listaPersonas , "Resultado.txt");
+			    	    		    	        	    	   	    				  
 		
 		} catch (Exception e) {
 			e.printStackTrace();
