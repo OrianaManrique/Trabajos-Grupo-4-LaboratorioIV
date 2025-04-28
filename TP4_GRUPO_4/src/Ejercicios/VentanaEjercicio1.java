@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTextField;
+import java.awt.Color;
 
 public class VentanaEjercicio1 extends JFrame {
 
@@ -42,6 +43,7 @@ public class VentanaEjercicio1 extends JFrame {
 		setDefaultCloseOperation(VentanaEjercicio1.DISPOSE_ON_CLOSE);
 		setBounds(150, 150, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(213, 224, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setTitle("Contactos");
 

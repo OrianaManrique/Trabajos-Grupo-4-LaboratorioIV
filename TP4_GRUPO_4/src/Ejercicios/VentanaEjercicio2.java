@@ -5,19 +5,25 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JComboBox;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Color;
 
 public class VentanaEjercicio2 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField txtnota3;
+	private JTextField txtnota2;
+	private JTextField txtnota1;
+	private JTextField txtPromedio;
+	private JTextField txtCondicion;
 
 	/**
 	 * Launch the application.
@@ -40,58 +46,105 @@ public class VentanaEjercicio2 extends JFrame {
 	 */
 	public VentanaEjercicio2() {
 		setDefaultCloseOperation(VentanaEjercicio2.DISPOSE_ON_CLOSE);
-		setBounds(200, 200, 450, 300);
+		setBounds(200, 200, 531, 469);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(213, 224, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setTitle("Promedio");
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNotas = new JLabel("Notas del estudiante");
-		lblNotas.setFont(new Font("Calibri", Font.BOLD, 14));
-		lblNotas.setBounds(35, 26, 123, 14);
-		contentPane.add(lblNotas);
+		JPanel JPanelNotas1 = new JPanel();
+		JPanelNotas1.setBounds(33, 38, 326, 212);
+		JPanelNotas1.setBackground(new Color(213, 224, 255));
+		contentPane.add(JPanelNotas1);
+		TitledBorder bordeNotas1 = BorderFactory.createTitledBorder("Notas del estudiante");
+		JPanelNotas1.setBorder(bordeNotas1);
+		JPanelNotas1.setLayout(null);
+		
+		txtnota1 = new JTextField();
+		txtnota1.setBounds(112, 31, 161, 20);
+		JPanelNotas1.add(txtnota1);
+		txtnota1.setColumns(10);
 		
 		JLabel lblNota1 = new JLabel("Nota 1:");
+		lblNota1.setBounds(39, 36, 46, 14);
+		JPanelNotas1.add(lblNota1);
 		lblNota1.setFont(new Font("Calibri", Font.BOLD, 14));
-		lblNota1.setBounds(35, 51, 46, 14);
-		contentPane.add(lblNota1);
 		
 		JLabel lblNota2 = new JLabel("Nota 2:");
+		lblNota2.setBounds(39, 77, 46, 14);
+		JPanelNotas1.add(lblNota2);
 		lblNota2.setFont(new Font("Calibri", Font.BOLD, 14));
-		lblNota2.setBounds(35, 76, 46, 14);
-		contentPane.add(lblNota2);
+		
+		txtnota2 = new JTextField();
+		txtnota2.setBounds(112, 72, 161, 20);
+		JPanelNotas1.add(txtnota2);
+		txtnota2.setColumns(10);
+		
+		txtnota3 = new JTextField();
+		txtnota3.setBounds(112, 114, 161, 20);
+		JPanelNotas1.add(txtnota3);
+		txtnota3.setColumns(10);
 		
 		JLabel lblNota3 = new JLabel("Nota 3:");
+		lblNota3.setBounds(39, 119, 46, 14);
+		JPanelNotas1.add(lblNota3);
 		lblNota3.setFont(new Font("Calibri", Font.BOLD, 14));
-		lblNota3.setBounds(35, 101, 46, 14);
-		contentPane.add(lblNota3);
-		
-		JLabel lblTPS = new JLabel("TPS");
-		lblTPS.setFont(new Font("Calibri", Font.BOLD, 14));
-		lblTPS.setBounds(35, 126, 46, 14);
-		contentPane.add(lblTPS);
 		
 		JComboBox cbCondicion = new JComboBox();
+		cbCondicion.setBounds(112, 159, 161, 22);
+		JPanelNotas1.add(cbCondicion);
 		cbCondicion.setModel(new DefaultComboBoxModel(new String[] {"Libre", "Promociona", "Regular"}));
 		cbCondicion.setFont(new Font("Calibri", Font.BOLD, 14));
-		cbCondicion.setBounds(137, 122, 115, 22);
-		contentPane.add(cbCondicion);
 		
-		textField = new JTextField();
-		textField.setBounds(137, 96, 115, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		JLabel lblTPS = new JLabel("TPS");
+		lblTPS.setBounds(39, 163, 46, 14);
+		JPanelNotas1.add(lblTPS);
+		lblTPS.setFont(new Font("Calibri", Font.BOLD, 14));
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(137, 71, 115, 20);
-		contentPane.add(textField_1);
+		JPanel JPanelNotas2 = new JPanel();
+		JPanelNotas2.setBackground(new Color(213, 224, 255));
+		TitledBorder bordeNotas2 = BorderFactory.createTitledBorder("Notas del estudiante");
+		JPanelNotas2.setBorder(bordeNotas2);
+		JPanelNotas2.setBounds(33, 273, 326, 130);
+		contentPane.add(JPanelNotas2);
+		JPanelNotas2.setLayout(null);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(137, 46, 115, 20);
-		contentPane.add(textField_2);
+		JLabel lblPromedio = new JLabel("Promedio:");
+		lblPromedio.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblPromedio.setBounds(26, 40, 74, 14);
+		JPanelNotas2.add(lblPromedio);
+		
+		JLabel lblCondicion = new JLabel("Condición");
+		lblCondicion.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblCondicion.setBounds(26, 82, 74, 14);
+		JPanelNotas2.add(lblCondicion);
+		
+		txtPromedio = new JTextField();
+		txtPromedio.setColumns(10);
+		txtPromedio.setBounds(110, 35, 165, 20);
+		JPanelNotas2.add(txtPromedio);
+		
+		txtCondicion = new JTextField();
+		txtCondicion.setColumns(10);
+		txtCondicion.setBounds(110, 77, 165, 20);
+		JPanelNotas2.add(txtCondicion);
+		
+		JButton btnSalir = new JButton("SALIR");
+		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnSalir.setBounds(369, 308, 122, 44);
+		contentPane.add(btnSalir);
+		
+		JButton btnNewButton_2_1 = new JButton("NUEVO");
+		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_2_1.setBounds(369, 131, 122, 44);
+		contentPane.add(btnNewButton_2_1);
+		
+		JButton btnNewButton_2_2 = new JButton("CALCULAR");
+		btnNewButton_2_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_2_2.setBounds(369, 59, 122, 44);
+		contentPane.add(btnNewButton_2_2);
 	}
 }
