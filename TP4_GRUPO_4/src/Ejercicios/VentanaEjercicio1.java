@@ -10,7 +10,9 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Color;
-
+import javax.swing.JOptionPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 public class VentanaEjercicio1 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -99,5 +101,14 @@ public class VentanaEjercicio1 extends JFrame {
 		JButton btnMostrar = new JButton("Mostrar");
 		btnMostrar.setBounds(300, 88, 102, 24);
 		contentPane.add(btnMostrar);
+		
+		btnMostrar.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        JOptionPane.showMessageDialog(null, "¡datos cargados !");
+		    }
+		});
+		
+		
+		
 	}
 }
