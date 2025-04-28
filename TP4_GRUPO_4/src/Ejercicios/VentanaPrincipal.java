@@ -61,6 +61,15 @@ public static void main(String[] args) {
 		contentPane.add(btnEjercicio1);
 		
 		JButton btnEjercicio2 = new JButton("Ejercicio 2");
+		btnEjercicio2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				VentanaEjercicio2 ejer1 = new VentanaEjercicio2();
+				ejer1.setVisible(true);
+		                
+				
+			}
+		});
 		btnEjercicio2.setBounds(234, 110, 144, 36);
 		contentPane.add(btnEjercicio2);
 		
