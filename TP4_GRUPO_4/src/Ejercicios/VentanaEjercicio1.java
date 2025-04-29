@@ -72,9 +72,9 @@ public class VentanaEjercicio1 extends JFrame {
 		lblFechaNac.setBounds(36, 134, 60, 14);
 		contentPane.add(lblFechaNac);
 		
-		JLabel lblDatosIngresados = new JLabel("Los datos ingresados fueron:");
+		JLabel lblDatosIngresados = new JLabel("Los datos ingresados fueron: ");
 		lblDatosIngresados.setFont(new Font("Calibri", Font.BOLD, 11));
-		lblDatosIngresados.setBounds(10, 236, 179, 14);
+		lblDatosIngresados.setBounds(10, 236, 350, 14);
 		lblDatosIngresados.setVisible(false);
 		contentPane.add(lblDatosIngresados);
 		
@@ -104,7 +104,35 @@ public class VentanaEjercicio1 extends JFrame {
 		
 		btnMostrar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        JOptionPane.showMessageDialog(null, "¡datos cargados !");
+		    	Boolean vacio = false;
+		    	//JOptionPane.showMessageDialog(null, "a");
+		        if(txtNombre.getText().isEmpty()) {
+		        	txtNombre.setBackground(Color.RED);
+		        	vacio = true;
+		        }
+		        if(txtApellido.getText().isEmpty()) {
+		        	txtApellido.setBackground(Color.RED);
+		        	vacio = true;
+		        }
+		        if(txtTelefono.getText().isEmpty()) {
+		        	txtTelefono.setBackground(Color.RED);
+		        	vacio = true;
+		        }
+		        if(txtFechaNac.getText().isEmpty()) {
+		        	txtFechaNac.setBackground(Color.RED);
+		        	vacio = true;
+		        }
+		        
+		        if(!vacio) {
+		        	lblDatosIngresados.setText(lblDatosIngresados.getText() + txtNombre.getText() + ", " + txtApellido.getText()
+		        								+ ", " + txtTelefono.getText() + ", " + txtFechaNac.getText());
+		        	txtNombre.setText("");
+		        	txtApellido.setText("");
+		        	txtTelefono.setText("");
+		        	txtFechaNac.setText("");
+		        	lblDatosIngresados.setVisible(true);
+		        }
+		        
 		    }
 		});
 		
