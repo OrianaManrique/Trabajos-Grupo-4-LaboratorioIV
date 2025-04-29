@@ -104,6 +104,8 @@ public class VentanaEjercicio1 extends JFrame {
 		
 		btnMostrar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
+		    	
+		    
 		    	Boolean vacio = false;
 		    	
 		        if(txtNombre.getText().isEmpty()) {
@@ -140,6 +142,8 @@ public class VentanaEjercicio1 extends JFrame {
 		        }
 		        
 		        if(!vacio) {
+		   	        
+		        	lblDatosIngresados.setText("Los datos ingresados fueron: ");
 		        	lblDatosIngresados.setText(lblDatosIngresados.getText() + txtNombre.getText() + ", " + txtApellido.getText()
 		        								+ ", " + txtTelefono.getText() + ", " + txtFechaNac.getText());
 		        	txtNombre.setText("");
@@ -155,6 +159,10 @@ public class VentanaEjercicio1 extends JFrame {
 		        	txtFechaNac.setBackground(Color.white);	
 		        }else {
 		        	JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+		        	txtNombre.setBackground(Color.white);
+		        	txtApellido.setBackground(Color.white);
+		        	txtTelefono.setBackground(Color.white);
+		        	txtFechaNac.setBackground(Color.white);	
 		        }
 		        
 		    }
