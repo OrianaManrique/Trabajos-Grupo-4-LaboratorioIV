@@ -99,7 +99,7 @@ public class VentanaEjercicio2 extends JFrame {
 		cbCondicion.setBounds(112, 159, 161, 22);
 		JPanelNotas1.add(cbCondicion);
 		cbCondicion.setModel(new DefaultComboBoxModel(new String[] {"Libre", "Promociona", "Regular"}));
-		cbCondicion.setFont(new Font("Calibri", Font.BOLD, 14));
+		cbCondicion.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		JLabel lblTPS = new JLabel("TPS");
 		lblTPS.setBounds(39, 163, 46, 14);
@@ -139,8 +139,8 @@ public class VentanaEjercicio2 extends JFrame {
 		btnSalir.setBounds(369, 308, 122, 44);
 		contentPane.add(btnSalir);
 		
-		JButton btnNewButton_2_1 = new JButton("NUEVO");
-		btnNewButton_2_1.addActionListener(new ActionListener() {
+		JButton btnNuevo = new JButton("NUEVO");
+		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				txtnota1.setText("");
@@ -151,13 +151,13 @@ public class VentanaEjercicio2 extends JFrame {
 				
 			}
 		});
-		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_2_1.setBounds(369, 131, 122, 44);
-		contentPane.add(btnNewButton_2_1);
+		btnNuevo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNuevo.setBounds(369, 131, 122, 44);
+		contentPane.add(btnNuevo);
 		
-		JButton btnNewButton_2_2 = new JButton("CALCULAR");
-		btnNewButton_2_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_2_2.setBounds(369, 59, 122, 44);
-		contentPane.add(btnNewButton_2_2);
+		JButton btnCalcular = new JButton("CALCULAR");
+		btnCalcular.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCalcular.setBounds(369, 59, 122, 44);
+		contentPane.add(btnCalcular);
 	}
 }
