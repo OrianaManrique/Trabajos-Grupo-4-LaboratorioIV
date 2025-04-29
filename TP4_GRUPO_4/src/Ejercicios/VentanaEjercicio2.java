@@ -98,8 +98,8 @@ public class VentanaEjercicio2 extends JFrame {
 		JComboBox cbCondicion = new JComboBox();
 		cbCondicion.setBounds(112, 159, 161, 22);
 		JPanelNotas1.add(cbCondicion);
-		cbCondicion.setModel(new DefaultComboBoxModel(new String[] {"Libre", "Promociona", "Regular"}));
-		cbCondicion.setFont(new Font("Tahoma", Font.BOLD, 12));
+		cbCondicion.setModel(new DefaultComboBoxModel(new String[] {"Aprobado", "Desaprobado"}));
+		cbCondicion.setFont(cbCondicion.getFont().deriveFont(14f));
 		
 		JLabel lblTPS = new JLabel("TPS");
 		lblTPS.setBounds(39, 163, 46, 14);
@@ -135,7 +135,15 @@ public class VentanaEjercicio2 extends JFrame {
 		JPanelNotas2.add(txtCondicion);
 		
 		JButton btnSalir = new JButton("SALIR");
-		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+				
+			}
+		});
+	
+		btnSalir.setFont(new Font("Calibri", Font.BOLD, 11));
 		btnSalir.setBounds(369, 308, 122, 44);
 		contentPane.add(btnSalir);
 		
@@ -151,12 +159,24 @@ public class VentanaEjercicio2 extends JFrame {
 				
 			}
 		});
-		btnNuevo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNuevo.setFont(new Font("Calibri", Font.BOLD, 11));
 		btnNuevo.setBounds(369, 131, 122, 44);
 		contentPane.add(btnNuevo);
 		
 		JButton btnCalcular = new JButton("CALCULAR");
-		btnCalcular.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCalcular.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				float nota1 = Integer.parseInt(txtnota1.getText());
+				float nota2 = Integer.parseInt(txtnota2.getText());
+				float nota3 = Integer.parseInt(txtnota3.getText());
+				
+				float promedio = (nota1+nota2+nota3)/3;
+				
+				txtPromedio.setText(String.valueOf(promedio));
+			}
+		});
+		btnCalcular.setFont(new Font("Calibri", Font.BOLD, 11));
 		btnCalcular.setBounds(369, 59, 122, 44);
 		contentPane.add(btnCalcular);
 	}
