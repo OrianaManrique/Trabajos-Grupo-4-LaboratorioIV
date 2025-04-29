@@ -131,6 +131,14 @@ public class VentanaEjercicio1 extends JFrame {
 		        	txtTelefono.setText("");
 		        	txtFechaNac.setText("");
 		        	lblDatosIngresados.setVisible(true);
+		        	
+		        	// vuelvo a poner el texbox en blanco 
+		        	txtNombre.setBackground(Color.white);
+		        	txtApellido.setBackground(Color.white);
+		        	txtTelefono.setBackground(Color.white);
+		        	txtFechaNac.setBackground(Color.white);	
+		        }else {
+		        	JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
 		        }
 		        
 		    }
