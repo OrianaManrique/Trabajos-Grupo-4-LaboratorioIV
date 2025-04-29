@@ -14,6 +14,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaEjercicio2 extends JFrame {
 
@@ -138,6 +140,17 @@ public class VentanaEjercicio2 extends JFrame {
 		contentPane.add(btnSalir);
 		
 		JButton btnNewButton_2_1 = new JButton("NUEVO");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				txtnota1.setText("");
+				txtnota2.setText("");
+				txtnota3.setText("");
+				txtPromedio.setText("");
+				txtCondicion.setText("");
+				
+			}
+		});
 		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_2_1.setBounds(369, 131, 122, 44);
 		contentPane.add(btnNewButton_2_1);
