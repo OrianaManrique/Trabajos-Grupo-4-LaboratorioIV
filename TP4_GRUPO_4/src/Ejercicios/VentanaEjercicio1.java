@@ -105,22 +105,38 @@ public class VentanaEjercicio1 extends JFrame {
 		btnMostrar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	Boolean vacio = false;
-		    	//JOptionPane.showMessageDialog(null, "a");
+		    	
 		        if(txtNombre.getText().isEmpty()) {
 		        	txtNombre.setBackground(Color.RED);
 		        	vacio = true;
+		        }else {
+		        
+		        	txtNombre.setBackground(Color.WHITE);
+		        	vacio = false;
 		        }
 		        if(txtApellido.getText().isEmpty()) {
 		        	txtApellido.setBackground(Color.RED);
 		        	vacio = true;
+		        }else {
+		        
+		        	txtApellido.setBackground(Color.WHITE);
+		        	vacio = false;
 		        }
 		        if(txtTelefono.getText().isEmpty()) {
 		        	txtTelefono.setBackground(Color.RED);
 		        	vacio = true;
+		        }else {
+		        
+		        	txtTelefono.setBackground(Color.WHITE);
+		        	vacio = false;
 		        }
 		        if(txtFechaNac.getText().isEmpty()) {
 		        	txtFechaNac.setBackground(Color.RED);
 		        	vacio = true;
+		        }else {
+		        
+		        	txtFechaNac.setBackground(Color.WHITE);
+		        	vacio = false;
 		        }
 		        
 		        if(!vacio) {
@@ -143,8 +159,6 @@ public class VentanaEjercicio1 extends JFrame {
 		        
 		    }
 		});
-		
-		
 		
 	}
 }
