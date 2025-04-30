@@ -11,11 +11,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class VentanaEjercicio3 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField txtHoras;
 
 	/**
 	 * Launch the application.
@@ -100,5 +103,19 @@ public class VentanaEjercicio3 extends JFrame {
 		chckbxDiseñoGrafico.setFont(new Font("Calibri", Font.BOLD, 12));
 		chckbxDiseñoGrafico.setBounds(218, 61, 108, 23);
 		panel2.add(chckbxDiseñoGrafico);
+		
+		JLabel lblMensaje = new JLabel("Cantidad de horas en el computador:");
+		lblMensaje.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblMensaje.setBounds(27, 202, 224, 18);
+		contentPane.add(lblMensaje);
+		
+		txtHoras = new JTextField();
+		txtHoras.setBounds(261, 199, 86, 20);
+		contentPane.add(txtHoras);
+		txtHoras.setColumns(10);
+		
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBounds(315, 230, 89, 23);
+		contentPane.add(btnAceptar);
 	}
 }

@@ -194,7 +194,18 @@ public class VentanaEjercicio2 extends JFrame {
 					if(nota1 < 1 || nota2 < 1 || nota3 < 1 ){
 						
 						JOptionPane.showMessageDialog(null, "Las notas deben ser mayores a cero", "No se puede calcular", JOptionPane.ERROR_MESSAGE);			
-					}else {
+					}
+					
+					
+					else if(nota1 >10 || nota2 >10 || nota3 >10) {
+						JOptionPane.showMessageDialog(null,"Debe ingresar valores menores a 10","Error",JOptionPane.ERROR_MESSAGE);
+						
+						txtnota1.setText("");
+						txtnota2.setText("");
+						txtnota3.setText("");					
+					}
+					
+					else {
 						
 						float promedio = (nota1+nota2+nota3)/3;
 						
