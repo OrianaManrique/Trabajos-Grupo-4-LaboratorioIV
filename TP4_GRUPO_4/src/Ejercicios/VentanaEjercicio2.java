@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.BorderFactory;
@@ -125,11 +127,13 @@ public class VentanaEjercicio2 extends JFrame {
 		JPanelNotas2.add(lblCondicion);
 		
 		txtPromedio = new JTextField();
+		txtPromedio.setEditable(false);
 		txtPromedio.setColumns(10);
 		txtPromedio.setBounds(110, 35, 165, 20);
 		JPanelNotas2.add(txtPromedio);
 		
 		txtCondicion = new JTextField();
+		txtCondicion.setEditable(false);
 		txtCondicion.setColumns(10);
 		txtCondicion.setBounds(110, 77, 165, 20);
 		JPanelNotas2.add(txtCondicion);
@@ -164,36 +168,68 @@ public class VentanaEjercicio2 extends JFrame {
 		contentPane.add(btnNuevo);
 		
 		JButton btnCalcular = new JButton("CALCULAR");
-		btnCalcular.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		
+		btnCalcular.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {				
 				
-				float nota1 = Integer.parseInt(txtnota1.getText());
-				float nota2 = Integer.parseInt(txtnota2.getText());
-				float nota3 = Integer.parseInt(txtnota3.getText());
+				if(txtnota1.getText().isEmpty() || txtnota2.getText().isEmpty() || txtnota3.getText().isEmpty()){
+					
+					JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "No se puede calcular", JOptionPane.ERROR_MESSAGE);        			        	
+					
+				}else {
+					
+					try {
+										
+					if(txtnota1.getText().matches(".*[a-zA-Z].*") || txtnota2.getText().matches(".*[a-zA-Z].*") ||
+							txtnota3.getText().matches(".*[a-zA-Z].*")) {
+						
+						JOptionPane.showMessageDialog(null, "Las notas deben ser numéricas", "No se puede calcular", JOptionPane.ERROR_MESSAGE);
+		        		
+		        	}else {
+								
+					float nota1 = Float.parseFloat(txtnota1.getText());
+					float nota2 = Float.parseFloat(txtnota2.getText());
+					float nota3 = Float.parseFloat(txtnota3.getText());
+					
+					if(nota1 < 1 || nota2 < 1 || nota3 < 1 ){
+						
+						JOptionPane.showMessageDialog(null, "Las notas deben ser mayores a cero", "No se puede calcular", JOptionPane.ERROR_MESSAGE);			
+					}else {
+						
+						float promedio = (nota1+nota2+nota3)/3;
+						
+						txtPromedio.setText(String.valueOf(promedio));
+						if(cbCondicion.getSelectedIndex() == 1) {
+							txtCondicion.setText("Libre");
+							return;
+						}
+						if(nota1 < 6 || nota2 < 6 || nota3 < 6) {
+							txtCondicion.setText("Libre");
+							return;
+						}
+						if(promedio >= 8 && cbCondicion.getSelectedIndex() == 0) {
+							txtCondicion.setText("Promociona");
+							return;
+						}
+						if(promedio <= 8 && cbCondicion.getSelectedIndex() == 0) {
+							txtCondicion.setText("Regular");
+							return;
+						}
+						 
+					   }
+									
+		        	}
 				
-				float promedio = (nota1+nota2+nota3)/3;
-				
-				txtPromedio.setText(String.valueOf(promedio));
-				if(cbCondicion.getSelectedIndex() == 1) {
-					txtCondicion.setText("Libre");
-					return;
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Los datos son incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);			
+					
 				}
-				if(nota1 < 6 || nota2 < 6 || nota3 < 6) {
-					txtCondicion.setText("Libre");
-					return;
-				}
-				if(promedio >= 8 && cbCondicion.getSelectedIndex() == 0) {
-					txtCondicion.setText("Promociona");
-					return;
-				}
-				if(promedio <= 8 && cbCondicion.getSelectedIndex() == 0) {
-					txtCondicion.setText("Regular");
-					return;
-				}
+			}
 			}
 		});
 		btnCalcular.setFont(new Font("Calibri", Font.BOLD, 11));
 		btnCalcular.setBounds(369, 59, 122, 44);
 		contentPane.add(btnCalcular);
 	}
+	
 }

@@ -3,6 +3,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -64,9 +66,10 @@ public static void main(String[] args) {
 		btnEjercicio2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				VentanaEjercicio2 ejer1 = new VentanaEjercicio2();
-				ejer1.setVisible(true);
-		                
+				VentanaEjercicio2 ejer2 = new VentanaEjercicio2();
+				ejer2.setVisible(true);
+				JOptionPane.showMessageDialog(null, "Utilizar '.' para números decimales, no utilizar ','", "Aclaración", JOptionPane.ERROR_MESSAGE);
+        		
 				
 			}
 		});

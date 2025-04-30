@@ -104,8 +104,7 @@ public class VentanaEjercicio1 extends JFrame {
 		
 		btnMostrar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		    	
-		    
+		    		    
 		    	Boolean vacio = false;
 		    	
 		        if(txtNombre.getText().isEmpty()) {
@@ -172,8 +171,7 @@ public class VentanaEjercicio1 extends JFrame {
 		        	txtApellido.setBackground(Color.white);
 		        	txtTelefono.setBackground(Color.white);
 		        	txtFechaNac.setBackground(Color.white);	
-		        }
-		        
+		        }		        
 		    }
 		});
 		
