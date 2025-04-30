@@ -142,6 +142,15 @@ public class VentanaEjercicio1 extends JFrame {
 		        }
 		        
 		        if(!vacio) {
+		        	if(txtNombre.getText().matches(".*\\d.*") || txtApellido.getText().matches(".*\\d.*")) {
+		        		txtNombre.setBackground(Color.RED);
+		        		txtApellido.setBackground(Color.RED);
+		        		JOptionPane.showMessageDialog(null, "Los campos 'Nombre' y 'Apellido' no deben contener numeros", "Error", 
+		        										JOptionPane.ERROR_MESSAGE);
+		        		txtNombre.setBackground(Color.WHITE);
+			        	txtApellido.setBackground(Color.WHITE);
+			        	return;
+		        	}
 		   	        
 		        	lblDatosIngresados.setText("Los datos ingresados fueron: ");
 		        	lblDatosIngresados.setText(lblDatosIngresados.getText() + txtNombre.getText() + ", " + txtApellido.getText()

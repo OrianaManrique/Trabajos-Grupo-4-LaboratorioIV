@@ -174,6 +174,22 @@ public class VentanaEjercicio2 extends JFrame {
 				float promedio = (nota1+nota2+nota3)/3;
 				
 				txtPromedio.setText(String.valueOf(promedio));
+				if(cbCondicion.getSelectedIndex() == 1) {
+					txtCondicion.setText("Libre");
+					return;
+				}
+				if(nota1 < 6 || nota2 < 6 || nota3 < 6) {
+					txtCondicion.setText("Libre");
+					return;
+				}
+				if(promedio >= 8 && cbCondicion.getSelectedIndex() == 0) {
+					txtCondicion.setText("Promociona");
+					return;
+				}
+				if(promedio <= 8 && cbCondicion.getSelectedIndex() == 0) {
+					txtCondicion.setText("Regular");
+					return;
+				}
 			}
 		});
 		btnCalcular.setFont(new Font("Calibri", Font.BOLD, 11));
