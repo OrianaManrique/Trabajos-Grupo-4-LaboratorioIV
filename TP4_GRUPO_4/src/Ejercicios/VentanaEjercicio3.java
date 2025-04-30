@@ -25,6 +25,7 @@ public class VentanaEjercicio3 extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtHoras;
+	private String textoSeleccionado;
 
 	/**
 	 * Launch the application.
@@ -69,17 +70,43 @@ public class VentanaEjercicio3 extends JFrame {
 		lblElegir.setFont(new Font("Calibri", Font.BOLD, 14));
 		
 		JRadioButton rdbtnWindows = new JRadioButton("Windows");
+		rdbtnWindows.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+		 
+				 if (rdbtnWindows.isSelected()) {
+	                    textoSeleccionado = "Windows";
+	                }
+			}
+		});
 		rdbtnWindows.setBounds(194, 7, 71, 23);
 		panel1.add(rdbtnWindows);
 		rdbtnWindows.setFont(new Font("Calibri", Font.BOLD, 12));
 		
 		JRadioButton rdbtnMac = new JRadioButton("Mac");
+		rdbtnMac.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (rdbtnMac.isSelected()) {
+                    textoSeleccionado = "Mac";
+                }
+			}
+		});
 		rdbtnMac.setSelected(true);
 		rdbtnMac.setBounds(267, 7, 48, 23);
 		panel1.add(rdbtnMac);
 		rdbtnMac.setFont(new Font("Calibri", Font.BOLD, 12));
 		
 		JRadioButton rdbtnLinux = new JRadioButton("Linux");
+		rdbtnLinux.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (rdbtnLinux.isSelected()) {
+                    textoSeleccionado = "Linux";
+                }
+				
+			}
+		});
+		
 		rdbtnLinux.setBounds(317, 7, 58, 23);
 		panel1.add(rdbtnLinux);
 		rdbtnLinux.setFont(new Font("Calibri", Font.BOLD, 12));
@@ -88,7 +115,17 @@ public class VentanaEjercicio3 extends JFrame {
 		grupoSistemaOperativo.add(rdbtnWindows);
 		grupoSistemaOperativo.add(rdbtnMac);
 		grupoSistemaOperativo.add(rdbtnLinux);
-	
+//		
+//		ButtonModel botonSeleccionado = grupoSistemaOperativo.getSelection();
+//
+//		
+//		for (Enumeration<AbstractButton> buttons = grupoSistemaOperativo.getElements(); buttons.hasMoreElements();) {
+//	        AbstractButton button = buttons.nextElement();
+//	        if (button.isSelected()) {
+//	        	textoSeleccionado = button.getText();
+//	        }
+//	    }
+		
 		
 		JPanel panel2 = new JPanel();
 		panel2.setBounds(27, 85, 381, 93);
@@ -129,8 +166,9 @@ public class VentanaEjercicio3 extends JFrame {
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {			
 				
+				System.out.println(textoSeleccionado);
 
 			}
 		});
