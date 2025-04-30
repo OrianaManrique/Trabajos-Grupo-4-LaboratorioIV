@@ -72,9 +72,9 @@ public class VentanaEjercicio1 extends JFrame {
 		lblFechaNac.setBounds(36, 134, 60, 14);
 		contentPane.add(lblFechaNac);
 		
-		JLabel lblDatosIngresados = new JLabel("Los datos ingresados fueron:");
+		JLabel lblDatosIngresados = new JLabel("Los datos ingresados fueron: ");
 		lblDatosIngresados.setFont(new Font("Calibri", Font.BOLD, 11));
-		lblDatosIngresados.setBounds(10, 236, 179, 14);
+		lblDatosIngresados.setBounds(10, 236, 350, 14);
 		lblDatosIngresados.setVisible(false);
 		contentPane.add(lblDatosIngresados);
 		
@@ -104,11 +104,76 @@ public class VentanaEjercicio1 extends JFrame {
 		
 		btnMostrar.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        JOptionPane.showMessageDialog(null, "¡datos cargados !");
+		    		    
+		    	Boolean vacio = false;
+		    	
+		        if(txtNombre.getText().isEmpty()) {
+		        	txtNombre.setBackground(Color.RED);
+		        	vacio = true;
+		        }else {
+		        
+		        	txtNombre.setBackground(Color.WHITE);
+		        	vacio = false;
+		        }
+		        if(txtApellido.getText().isEmpty()) {
+		        	txtApellido.setBackground(Color.RED);
+		        	vacio = true;
+		        }else {
+		        
+		        	txtApellido.setBackground(Color.WHITE);
+		        	vacio = false;
+		        }
+		        if(txtTelefono.getText().isEmpty()) {
+		        	txtTelefono.setBackground(Color.RED);
+		        	vacio = true;
+		        }else {
+		        
+		        	txtTelefono.setBackground(Color.WHITE);
+		        	vacio = false;
+		        }
+		        if(txtFechaNac.getText().isEmpty()) {
+		        	txtFechaNac.setBackground(Color.RED);
+		        	vacio = true;
+		        }else {
+		        
+		        	txtFechaNac.setBackground(Color.WHITE);
+		        	vacio = false;
+		        }
+		        
+		        if(!vacio) {
+		        	if(txtNombre.getText().matches(".*\\d.*") || txtApellido.getText().matches(".*\\d.*")) {
+		        		txtNombre.setBackground(Color.RED);
+		        		txtApellido.setBackground(Color.RED);
+		        		JOptionPane.showMessageDialog(null, "Los campos 'Nombre' y 'Apellido' no deben contener numeros", "Error", 
+		        										JOptionPane.ERROR_MESSAGE);
+		        		txtNombre.setBackground(Color.WHITE);
+			        	txtApellido.setBackground(Color.WHITE);
+			        	return;
+		        	}
+		   	        
+		        	lblDatosIngresados.setText("Los datos ingresados fueron: ");
+		        	lblDatosIngresados.setText(lblDatosIngresados.getText() + txtNombre.getText() + ", " + txtApellido.getText()
+		        								+ ", " + txtTelefono.getText() + ", " + txtFechaNac.getText());
+		        	txtNombre.setText("");
+		        	txtApellido.setText("");
+		        	txtTelefono.setText("");
+		        	txtFechaNac.setText("");
+		        	lblDatosIngresados.setVisible(true);
+		        	
+		        	// vuelvo a poner el texbox en blanco 
+		        	txtNombre.setBackground(Color.white);
+		        	txtApellido.setBackground(Color.white);
+		        	txtTelefono.setBackground(Color.white);
+		        	txtFechaNac.setBackground(Color.white);	
+		        }else {
+		        	JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+		        	txtNombre.setBackground(Color.white);
+		        	txtApellido.setBackground(Color.white);
+		        	txtTelefono.setBackground(Color.white);
+		        	txtFechaNac.setBackground(Color.white);	
+		        }		        
 		    }
 		});
-		
-		
 		
 	}
 }

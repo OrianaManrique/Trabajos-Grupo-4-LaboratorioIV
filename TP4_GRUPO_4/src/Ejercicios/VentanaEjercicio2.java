@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.BorderFactory;
@@ -14,6 +16,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaEjercicio2 extends JFrame {
 
@@ -93,11 +97,11 @@ public class VentanaEjercicio2 extends JFrame {
 		JPanelNotas1.add(lblNota3);
 		lblNota3.setFont(new Font("Calibri", Font.BOLD, 14));
 		
-		JComboBox cbCondicion = new JComboBox();
+		JComboBox<Object> cbCondicion = new JComboBox<Object>();
 		cbCondicion.setBounds(112, 159, 161, 22);
 		JPanelNotas1.add(cbCondicion);
-		cbCondicion.setModel(new DefaultComboBoxModel(new String[] {"Libre", "Promociona", "Regular"}));
-		cbCondicion.setFont(new Font("Calibri", Font.BOLD, 14));
+		cbCondicion.setModel(new DefaultComboBoxModel<Object>(new String[] {"Aprobado", "Desaprobado"}));
+		cbCondicion.setFont(cbCondicion.getFont().deriveFont(14f));
 		
 		JLabel lblTPS = new JLabel("TPS");
 		lblTPS.setBounds(39, 163, 46, 14);
@@ -123,28 +127,109 @@ public class VentanaEjercicio2 extends JFrame {
 		JPanelNotas2.add(lblCondicion);
 		
 		txtPromedio = new JTextField();
+		txtPromedio.setEditable(false);
 		txtPromedio.setColumns(10);
 		txtPromedio.setBounds(110, 35, 165, 20);
 		JPanelNotas2.add(txtPromedio);
 		
 		txtCondicion = new JTextField();
+		txtCondicion.setEditable(false);
 		txtCondicion.setColumns(10);
 		txtCondicion.setBounds(110, 77, 165, 20);
 		JPanelNotas2.add(txtCondicion);
 		
 		JButton btnSalir = new JButton("SALIR");
-		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+				
+			}
+		});
+	
+		btnSalir.setFont(new Font("Calibri", Font.BOLD, 11));
 		btnSalir.setBounds(369, 308, 122, 44);
 		contentPane.add(btnSalir);
 		
-		JButton btnNewButton_2_1 = new JButton("NUEVO");
-		btnNewButton_2_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_2_1.setBounds(369, 131, 122, 44);
-		contentPane.add(btnNewButton_2_1);
+		JButton btnNuevo = new JButton("NUEVO");
+		btnNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				txtnota1.setText("");
+				txtnota2.setText("");
+				txtnota3.setText("");
+				txtPromedio.setText("");
+				txtCondicion.setText("");
+				
+			}
+		});
+		btnNuevo.setFont(new Font("Calibri", Font.BOLD, 11));
+		btnNuevo.setBounds(369, 131, 122, 44);
+		contentPane.add(btnNuevo);
 		
-		JButton btnNewButton_2_2 = new JButton("CALCULAR");
-		btnNewButton_2_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_2_2.setBounds(369, 59, 122, 44);
-		contentPane.add(btnNewButton_2_2);
+		JButton btnCalcular = new JButton("CALCULAR");
+		
+		btnCalcular.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {				
+				
+				if(txtnota1.getText().isEmpty() || txtnota2.getText().isEmpty() || txtnota3.getText().isEmpty()){
+					
+					JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "No se puede calcular", JOptionPane.ERROR_MESSAGE);        			        	
+					
+				}else {
+					
+					try {
+										
+					if(txtnota1.getText().matches(".*[a-zA-Z].*") || txtnota2.getText().matches(".*[a-zA-Z].*") ||
+							txtnota3.getText().matches(".*[a-zA-Z].*")) {
+						
+						JOptionPane.showMessageDialog(null, "Las notas deben ser numéricas", "No se puede calcular", JOptionPane.ERROR_MESSAGE);
+		        		
+		        	}else {
+								
+					float nota1 = Float.parseFloat(txtnota1.getText());
+					float nota2 = Float.parseFloat(txtnota2.getText());
+					float nota3 = Float.parseFloat(txtnota3.getText());
+					
+					if(nota1 < 1 || nota2 < 1 || nota3 < 1 ){
+						
+						JOptionPane.showMessageDialog(null, "Las notas deben ser mayores a cero", "No se puede calcular", JOptionPane.ERROR_MESSAGE);			
+					}else {
+						
+						float promedio = (nota1+nota2+nota3)/3;
+						
+						txtPromedio.setText(String.valueOf(promedio));
+						if(cbCondicion.getSelectedIndex() == 1) {
+							txtCondicion.setText("Libre");
+							return;
+						}
+						if(nota1 < 6 || nota2 < 6 || nota3 < 6) {
+							txtCondicion.setText("Libre");
+							return;
+						}
+						if(promedio >= 8 && cbCondicion.getSelectedIndex() == 0) {
+							txtCondicion.setText("Promociona");
+							return;
+						}
+						if(promedio <= 8 && cbCondicion.getSelectedIndex() == 0) {
+							txtCondicion.setText("Regular");
+							return;
+						}
+						 
+					   }
+									
+		        	}
+				
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Los datos son incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);			
+					
+				}
+			}
+			}
+		});
+		btnCalcular.setFont(new Font("Calibri", Font.BOLD, 11));
+		btnCalcular.setBounds(369, 59, 122, 44);
+		contentPane.add(btnCalcular);
 	}
+	
 }
