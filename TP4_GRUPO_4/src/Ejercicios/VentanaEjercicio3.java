@@ -12,7 +12,13 @@ import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.Enumeration;
+import java.awt.event.ActionEvent;
 
 public class VentanaEjercicio3 extends JFrame {
 
@@ -68,6 +74,7 @@ public class VentanaEjercicio3 extends JFrame {
 		rdbtnWindows.setFont(new Font("Calibri", Font.BOLD, 12));
 		
 		JRadioButton rdbtnMac = new JRadioButton("Mac");
+		rdbtnMac.setSelected(true);
 		rdbtnMac.setBounds(267, 7, 48, 23);
 		panel1.add(rdbtnMac);
 		rdbtnMac.setFont(new Font("Calibri", Font.BOLD, 12));
@@ -76,6 +83,12 @@ public class VentanaEjercicio3 extends JFrame {
 		rdbtnLinux.setBounds(317, 7, 58, 23);
 		panel1.add(rdbtnLinux);
 		rdbtnLinux.setFont(new Font("Calibri", Font.BOLD, 12));
+		
+		ButtonGroup grupoSistemaOperativo = new ButtonGroup(); 
+		grupoSistemaOperativo.add(rdbtnWindows);
+		grupoSistemaOperativo.add(rdbtnMac);
+		grupoSistemaOperativo.add(rdbtnLinux);
+	
 		
 		JPanel panel2 = new JPanel();
 		panel2.setBounds(27, 85, 381, 93);
@@ -115,6 +128,12 @@ public class VentanaEjercicio3 extends JFrame {
 		txtHoras.setColumns(10);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+
+			}
+		});
 		btnAceptar.setBounds(315, 230, 89, 23);
 		contentPane.add(btnAceptar);
 	}
