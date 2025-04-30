@@ -97,10 +97,10 @@ public class VentanaEjercicio2 extends JFrame {
 		JPanelNotas1.add(lblNota3);
 		lblNota3.setFont(new Font("Calibri", Font.BOLD, 14));
 		
-		JComboBox cbCondicion = new JComboBox();
+		JComboBox<Object> cbCondicion = new JComboBox<Object>();
 		cbCondicion.setBounds(112, 159, 161, 22);
 		JPanelNotas1.add(cbCondicion);
-		cbCondicion.setModel(new DefaultComboBoxModel(new String[] {"Aprobado", "Desaprobado"}));
+		cbCondicion.setModel(new DefaultComboBoxModel<Object>(new String[] {"Aprobado", "Desaprobado"}));
 		cbCondicion.setFont(cbCondicion.getFont().deriveFont(14f));
 		
 		JLabel lblTPS = new JLabel("TPS");
