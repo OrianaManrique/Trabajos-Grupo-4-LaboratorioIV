@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
@@ -25,7 +27,7 @@ public class VentanaEjercicio3 extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtHoras;
-	private String textoSeleccionado;
+	private String SOSeleccionado;
 
 	/**
 	 * Launch the application.
@@ -52,7 +54,7 @@ public class VentanaEjercicio3 extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(213, 224, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setTitle("Selección múltiple");
+		setTitle("Selecci�n multiple");
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -74,7 +76,7 @@ public class VentanaEjercicio3 extends JFrame {
 			public void actionPerformed(ActionEvent e) {	
 		 
 				 if (rdbtnWindows.isSelected()) {
-	                    textoSeleccionado = "Windows";
+	                    SOSeleccionado = "Windows";
 	                }
 			}
 		});
@@ -87,11 +89,10 @@ public class VentanaEjercicio3 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				if (rdbtnMac.isSelected()) {
-                    textoSeleccionado = "Mac";
+					SOSeleccionado = "Mac";
                 }
 			}
 		});
-		rdbtnMac.setSelected(true);
 		rdbtnMac.setBounds(267, 7, 48, 23);
 		panel1.add(rdbtnMac);
 		rdbtnMac.setFont(new Font("Calibri", Font.BOLD, 12));
@@ -101,7 +102,7 @@ public class VentanaEjercicio3 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				if (rdbtnLinux.isSelected()) {
-                    textoSeleccionado = "Linux";
+					SOSeleccionado = "Linux";
                 }
 				
 			}
@@ -139,20 +140,20 @@ public class VentanaEjercicio3 extends JFrame {
 		panel2.add(lblEspecialidad);
 		lblEspecialidad.setFont(new Font("Calibri", Font.BOLD, 14));
 		
-		JCheckBox chckbxProgramacion = new JCheckBox("Programación");
+		JCheckBox chckbxProgramacion = new JCheckBox("Programaci�n");
 		chckbxProgramacion.setFont(new Font("Calibri", Font.BOLD, 12));
 		chckbxProgramacion.setBounds(218, 7, 108, 23);
 		panel2.add(chckbxProgramacion);
 		
-		JCheckBox chckbxAdministracion = new JCheckBox("Administración");
+		JCheckBox chckbxAdministracion = new JCheckBox("Administraci�n");
 		chckbxAdministracion.setFont(new Font("Calibri", Font.BOLD, 12));
 		chckbxAdministracion.setBounds(218, 35, 108, 23);
 		panel2.add(chckbxAdministracion);
 		
-		JCheckBox chckbxDiseñoGrafico = new JCheckBox("Diseño Gráfico");
-		chckbxDiseñoGrafico.setFont(new Font("Calibri", Font.BOLD, 12));
-		chckbxDiseñoGrafico.setBounds(218, 61, 108, 23);
-		panel2.add(chckbxDiseñoGrafico);
+		JCheckBox chckbxDisenioGrafico = new JCheckBox("Dise�o Gr�fico");
+		chckbxDisenioGrafico.setFont(new Font("Calibri", Font.BOLD, 12));
+		chckbxDisenioGrafico.setBounds(218, 61, 108, 23);
+		panel2.add(chckbxDisenioGrafico);
 		
 		JLabel lblMensaje = new JLabel("Cantidad de horas en el computador:");
 		lblMensaje.setFont(new Font("Calibri", Font.BOLD, 14));
@@ -166,13 +167,41 @@ public class VentanaEjercicio3 extends JFrame {
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {			
+			public void actionPerformed(ActionEvent e) {
 				
-				System.out.println(textoSeleccionado);
-
+				if(grupoSistemaOperativo.getSelection() == null) {
+					JOptionPane.showMessageDialog(null, "Debe seleccionar una opcion de 'Sistema Operativo'", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				if(!chckbxProgramacion.isSelected() && !chckbxAdministracion.isSelected() && !chckbxDisenioGrafico.isSelected()) {
+					JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una opcion de 'Especialidad'", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				if(txtHoras.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Debe completar el campo 'Cantidad de Horas'", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				if(txtHoras.getText().matches(".*[a-zA-Z].*")) {
+					JOptionPane.showMessageDialog(null, "El campo 'Cantidad de Horas' debe contener solo numeros", "Error", JOptionPane.ERROR_MESSAGE);
+					txtHoras.setText("");
+					return;
+				}
+				
+				
+				String especialidades = "";
+				
+				if(chckbxProgramacion.isSelected())especialidades += " - " + chckbxProgramacion.getText();
+				if(chckbxAdministracion.isSelected())especialidades += " - " + chckbxAdministracion.getText();
+				if(chckbxDisenioGrafico.isSelected())especialidades += " - " + chckbxDisenioGrafico.getText();
+				
+				String Mensaje = SOSeleccionado + especialidades + " - " + txtHoras.getText() + " Hs";
+				
+				JOptionPane.showMessageDialog(null, Mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+				
 			}
 		});
 		btnAceptar.setBounds(315, 230, 89, 23);
 		contentPane.add(btnAceptar);
 	}
+	
 }

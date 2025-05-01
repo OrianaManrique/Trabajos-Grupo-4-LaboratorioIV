@@ -121,7 +121,7 @@ public class VentanaEjercicio2 extends JFrame {
 		lblPromedio.setBounds(26, 40, 74, 14);
 		JPanelNotas2.add(lblPromedio);
 		
-		JLabel lblCondicion = new JLabel("CondiciÃ³n");
+		JLabel lblCondicion = new JLabel("Condición");
 		lblCondicion.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblCondicion.setBounds(26, 82, 74, 14);
 		JPanelNotas2.add(lblCondicion);
@@ -183,8 +183,11 @@ public class VentanaEjercicio2 extends JFrame {
 					if(txtnota1.getText().matches(".*[a-zA-Z].*") || txtnota2.getText().matches(".*[a-zA-Z].*") ||
 							txtnota3.getText().matches(".*[a-zA-Z].*")) {
 						
-						JOptionPane.showMessageDialog(null, "Las notas deben ser numÃ©ricas", "No se puede calcular", JOptionPane.ERROR_MESSAGE);
-		        		
+						JOptionPane.showMessageDialog(null, "Las notas deben ser numéricas", "No se puede calcular", JOptionPane.ERROR_MESSAGE);
+						if(txtnota1.getText().matches(".*[a-zA-Z].*"))txtnota1.setText("");
+						if(txtnota2.getText().matches(".*[a-zA-Z].*"))txtnota2.setText("");
+						if(txtnota3.getText().matches(".*[a-zA-Z].*"))txtnota3.setText("");	
+						
 		        	}else {
 								
 					float nota1 = Float.parseFloat(txtnota1.getText());
