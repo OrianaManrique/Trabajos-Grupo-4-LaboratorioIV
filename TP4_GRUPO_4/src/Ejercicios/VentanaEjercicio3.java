@@ -54,7 +54,7 @@ public class VentanaEjercicio3 extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(213, 224, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setTitle("Selección multiple");
+		setTitle("Selecciï¿½n multiple");
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -140,17 +140,17 @@ public class VentanaEjercicio3 extends JFrame {
 		panel2.add(lblEspecialidad);
 		lblEspecialidad.setFont(new Font("Calibri", Font.BOLD, 14));
 		
-		JCheckBox chckbxProgramacion = new JCheckBox("Programación");
+		JCheckBox chckbxProgramacion = new JCheckBox("Programaciï¿½n");
 		chckbxProgramacion.setFont(new Font("Calibri", Font.BOLD, 12));
 		chckbxProgramacion.setBounds(218, 7, 108, 23);
 		panel2.add(chckbxProgramacion);
 		
-		JCheckBox chckbxAdministracion = new JCheckBox("Administración");
+		JCheckBox chckbxAdministracion = new JCheckBox("Administraciï¿½n");
 		chckbxAdministracion.setFont(new Font("Calibri", Font.BOLD, 12));
 		chckbxAdministracion.setBounds(218, 35, 108, 23);
 		panel2.add(chckbxAdministracion);
 		
-		JCheckBox chckbxDisenioGrafico = new JCheckBox("Diseño Gráfico");
+		JCheckBox chckbxDisenioGrafico = new JCheckBox("Diseï¿½o Grï¿½fico");
 		chckbxDisenioGrafico.setFont(new Font("Calibri", Font.BOLD, 12));
 		chckbxDisenioGrafico.setBounds(218, 61, 108, 23);
 		panel2.add(chckbxDisenioGrafico);
@@ -185,6 +185,11 @@ public class VentanaEjercicio3 extends JFrame {
 					JOptionPane.showMessageDialog(null, "El campo 'Cantidad de Horas' debe contener solo numeros", "Error", JOptionPane.ERROR_MESSAGE);
 					txtHoras.setText("");
 					return;
+				}
+				if (!txtHoras.getText().matches("\\d*")) {
+				    JOptionPane.showMessageDialog(null, "Solo se permiten nÃºmeros. No se permiten sÃ­mbolos.","Error", JOptionPane.ERROR_MESSAGE);
+				    txtHoras.setText("");
+				    return;
 				}
 				
 				
