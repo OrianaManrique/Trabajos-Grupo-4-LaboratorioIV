@@ -1,25 +1,19 @@
 package Ejercicios;
-
 import java.awt.Color;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
-import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.Enumeration;
 import java.awt.event.ActionEvent;
 
 public class VentanaEjercicio3 extends JFrame {
@@ -54,7 +48,7 @@ public class VentanaEjercicio3 extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(213, 224, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setTitle("Selecci�n multiple");
+		setTitle("Selección multiple");
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -116,17 +110,6 @@ public class VentanaEjercicio3 extends JFrame {
 		grupoSistemaOperativo.add(rdbtnWindows);
 		grupoSistemaOperativo.add(rdbtnMac);
 		grupoSistemaOperativo.add(rdbtnLinux);
-//		
-//		ButtonModel botonSeleccionado = grupoSistemaOperativo.getSelection();
-//
-//		
-//		for (Enumeration<AbstractButton> buttons = grupoSistemaOperativo.getElements(); buttons.hasMoreElements();) {
-//	        AbstractButton button = buttons.nextElement();
-//	        if (button.isSelected()) {
-//	        	textoSeleccionado = button.getText();
-//	        }
-//	    }
-		
 		
 		JPanel panel2 = new JPanel();
 		panel2.setBounds(27, 85, 381, 93);
@@ -140,17 +123,17 @@ public class VentanaEjercicio3 extends JFrame {
 		panel2.add(lblEspecialidad);
 		lblEspecialidad.setFont(new Font("Calibri", Font.BOLD, 14));
 		
-		JCheckBox chckbxProgramacion = new JCheckBox("Programaci�n");
+		JCheckBox chckbxProgramacion = new JCheckBox("Programación");
 		chckbxProgramacion.setFont(new Font("Calibri", Font.BOLD, 12));
 		chckbxProgramacion.setBounds(218, 7, 108, 23);
 		panel2.add(chckbxProgramacion);
 		
-		JCheckBox chckbxAdministracion = new JCheckBox("Administraci�n");
+		JCheckBox chckbxAdministracion = new JCheckBox("Administración");
 		chckbxAdministracion.setFont(new Font("Calibri", Font.BOLD, 12));
 		chckbxAdministracion.setBounds(218, 35, 108, 23);
 		panel2.add(chckbxAdministracion);
 		
-		JCheckBox chckbxDisenioGrafico = new JCheckBox("Dise�o Gr�fico");
+		JCheckBox chckbxDisenioGrafico = new JCheckBox("Diseño Grafico");
 		chckbxDisenioGrafico.setFont(new Font("Calibri", Font.BOLD, 12));
 		chckbxDisenioGrafico.setBounds(218, 61, 108, 23);
 		panel2.add(chckbxDisenioGrafico);
@@ -169,6 +152,10 @@ public class VentanaEjercicio3 extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+			try {
+				
+				float horas = Float.parseFloat(txtHoras.getText());	
+				
 				if(grupoSistemaOperativo.getSelection() == null) {
 					JOptionPane.showMessageDialog(null, "Debe seleccionar una opcion de 'Sistema Operativo'", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
@@ -181,16 +168,15 @@ public class VentanaEjercicio3 extends JFrame {
 					JOptionPane.showMessageDialog(null, "Debe completar el campo 'Cantidad de Horas'", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				if(txtHoras.getText().matches(".*[a-zA-Z].*")) {
-					JOptionPane.showMessageDialog(null, "El campo 'Cantidad de Horas' debe contener solo numeros", "Error", JOptionPane.ERROR_MESSAGE);
+				
+				
+				if (horas <= 0) {
+					
+					JOptionPane.showMessageDialog(null, "Las horas deben ser mayores a 0", "Error", JOptionPane.ERROR_MESSAGE);
 					txtHoras.setText("");
 					return;
 				}
-				if (!txtHoras.getText().matches("\\d*")) {
-				    JOptionPane.showMessageDialog(null, "Solo se permiten números. No se permiten símbolos.","Error", JOptionPane.ERROR_MESSAGE);
-				    txtHoras.setText("");
-				    return;
-				}
+				
 				
 				
 				String especialidades = "";
@@ -202,6 +188,14 @@ public class VentanaEjercicio3 extends JFrame {
 				String Mensaje = SOSeleccionado + especialidades + " - " + txtHoras.getText() + " Hs";
 				
 				JOptionPane.showMessageDialog(null, Mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+				txtHoras.setText("");
+				
+			} catch (Exception e2) {
+				JOptionPane.showMessageDialog(null, "Los datos son incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);	
+				
+				
+			}
+				
 				
 			}
 		});

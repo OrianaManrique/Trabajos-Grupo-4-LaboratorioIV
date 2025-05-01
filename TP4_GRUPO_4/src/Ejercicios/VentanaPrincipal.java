@@ -68,7 +68,7 @@ public static void main(String[] args) {
 				
 				VentanaEjercicio2 ejer2 = new VentanaEjercicio2();
 				ejer2.setVisible(true);
-				JOptionPane.showMessageDialog(null, "Utilizar '.' para números decimales, no utilizar ','", "Aclaración", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Utilizar '.' para números decimales, no utilizar ','", "Aclaración", JOptionPane.INFORMATION_MESSAGE);
         		
 				
 			}
@@ -82,6 +82,7 @@ public static void main(String[] args) {
 				
 				VentanaEjercicio3 ejer3 = new VentanaEjercicio3();
 				ejer3.setVisible(true);
+				JOptionPane.showMessageDialog(null, "Utilizar '.' para números decimales, no utilizar ','", "Aclaración", JOptionPane.INFORMATION_MESSAGE);
 				
 			}
 		});
