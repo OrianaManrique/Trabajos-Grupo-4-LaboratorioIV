@@ -196,7 +196,8 @@ public class VentanaEjercicio3 extends JFrame {
 					}
 						
 					} catch (Exception e2) {
-						JOptionPane.showMessageDialog(null, "Los datos son incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);	
+						JOptionPane.showMessageDialog(null, "Los datos son incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
+						txtHoras.setText("");
 				
 					}
 				}
