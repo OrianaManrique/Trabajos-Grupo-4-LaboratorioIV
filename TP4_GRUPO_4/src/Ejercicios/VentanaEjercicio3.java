@@ -177,11 +177,12 @@ public class VentanaEjercicio3 extends JFrame {
 					
 					float horas = Float.parseFloat(txtHoras.getText());	
 				
-					if (horas <= 0) {
+					if (horas <= 0 || horas > 1000000) {
 					
-					JOptionPane.showMessageDialog(null, "Las horas deben ser mayores a 0", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Las horas deben ser mayores a 0 y menores a 1000000", "Error", JOptionPane.ERROR_MESSAGE);
 					txtHoras.setText("");
 					return;
+					 
 					}else {
 						String especialidades = "";
 						
