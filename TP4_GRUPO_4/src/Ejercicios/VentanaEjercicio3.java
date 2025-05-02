@@ -1,4 +1,5 @@
 package Ejercicios;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -151,10 +152,7 @@ public class VentanaEjercicio3 extends JFrame {
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-			try {
-				
-				float horas = Float.parseFloat(txtHoras.getText());	
+			
 				
 				if(grupoSistemaOperativo.getSelection() == null) {
 					JOptionPane.showMessageDialog(null, "Debe seleccionar una opcion de 'Sistema Operativo'", "Error", JOptionPane.ERROR_MESSAGE);
@@ -167,36 +165,41 @@ public class VentanaEjercicio3 extends JFrame {
 				if(txtHoras.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Debe completar el campo 'Cantidad de Horas'", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
-				}
+				}else if (txtHoras.getText().matches(".*[a-zA-Z].*")){
+					
+					JOptionPane.showMessageDialog(null, "Las horas deben ser sólo numéricas", "Error", JOptionPane.ERROR_MESSAGE);
 				
+				}else {
+					
 				
-				if (horas <= 0) {
+					try {
+						
+					
+					float horas = Float.parseFloat(txtHoras.getText());	
+				
+					if (horas <= 0) {
 					
 					JOptionPane.showMessageDialog(null, "Las horas deben ser mayores a 0", "Error", JOptionPane.ERROR_MESSAGE);
 					txtHoras.setText("");
 					return;
+					}else {
+						String especialidades = "";
+						
+						if(chckbxProgramacion.isSelected())especialidades += " - " + chckbxProgramacion.getText();
+						if(chckbxAdministracion.isSelected())especialidades += " - " + chckbxAdministracion.getText();
+						if(chckbxDisenioGrafico.isSelected())especialidades += " - " + chckbxDisenioGrafico.getText();
+						
+						String Mensaje = SOSeleccionado + especialidades + " - " + txtHoras.getText() + " Hs";
+						
+						JOptionPane.showMessageDialog(null, Mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+						txtHoras.setText("");
+					}
+						
+					} catch (Exception e2) {
+						JOptionPane.showMessageDialog(null, "Los datos son incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);	
+				
+					}
 				}
-				
-				
-				
-				String especialidades = "";
-				
-				if(chckbxProgramacion.isSelected())especialidades += " - " + chckbxProgramacion.getText();
-				if(chckbxAdministracion.isSelected())especialidades += " - " + chckbxAdministracion.getText();
-				if(chckbxDisenioGrafico.isSelected())especialidades += " - " + chckbxDisenioGrafico.getText();
-				
-				String Mensaje = SOSeleccionado + especialidades + " - " + txtHoras.getText() + " Hs";
-				
-				JOptionPane.showMessageDialog(null, Mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-				txtHoras.setText("");
-				
-			} catch (Exception e2) {
-				JOptionPane.showMessageDialog(null, "Los datos son incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);	
-				
-				
-			}
-				
-				
 			}
 		});
 		btnAceptar.setBounds(315, 230, 89, 23);
