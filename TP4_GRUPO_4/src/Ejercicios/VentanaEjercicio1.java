@@ -114,7 +114,7 @@ public class VentanaEjercicio1 extends JFrame {
 		        	if(!txtNombre.getText().matches("^[a-zA-Z0-9]*$")) { 
 			        	
 		        		txtNombre.setBackground(Color.RED);
-		        		JOptionPane.showMessageDialog(null, "EL Nombre no puede contener simbolos", "Error", 
+		        		JOptionPane.showMessageDialog(null, "El nombre no puede contener símbolos", "Error", 
 								JOptionPane.ERROR_MESSAGE);
 		        		txtNombre.setBackground(Color.WHITE);
 		        		return;
@@ -133,7 +133,7 @@ public class VentanaEjercicio1 extends JFrame {
 		        	if(!txtApellido.getText().matches("^[a-zA-Z0-9]*$")) { 
 			        	
 		        		txtApellido.setBackground(Color.RED);
-		        		JOptionPane.showMessageDialog(null, "EL Apellido no puede contener simbolos", "Error", 
+		        		JOptionPane.showMessageDialog(null, "El apellido no puede contener símbolos", "Error", 
 								JOptionPane.ERROR_MESSAGE);
 		        		txtApellido.setBackground(Color.WHITE);
 		        		return;
