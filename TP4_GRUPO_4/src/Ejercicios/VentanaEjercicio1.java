@@ -106,21 +106,23 @@ public class VentanaEjercicio1 extends JFrame {
 		    public void actionPerformed(ActionEvent e) {
 		    		    
 		    	Boolean vacio = false;
-		    	Boolean Signo = false;
-		    	
+
 		        if(txtNombre.getText().isEmpty()) {
 		        	txtNombre.setBackground(Color.RED);
 		        	vacio = true;
 		        }else {	        	
-		        	if(!txtNombre.getText().matches("[^a-zA-Z0-9\\s]")) { 
+		        	if(!txtNombre.getText().matches("^[a-zA-Z0-9]*$")) { 
 			        	
-		        		Signo = false;
+		        		txtNombre.setBackground(Color.RED);
+		        		JOptionPane.showMessageDialog(null, "EL Nombre no puede contener simbolos", "Error", 
+								JOptionPane.ERROR_MESSAGE);
+		        		txtNombre.setBackground(Color.WHITE);
+		        		return;
 		        		
 		        	}else {
 		        		txtNombre.setBackground(Color.WHITE);
 			        	vacio = false;
-		        	}
-		        
+		        	}		        
 		        }
 		        
 		        if(txtApellido.getText().isEmpty()) {
@@ -128,24 +130,30 @@ public class VentanaEjercicio1 extends JFrame {
 		        	vacio = true;
 		        }else {
 		        	
-		        	if(!txtApellido.getText().matches("[^a-zA-Z0-9\\s]")) { 
+		        	if(!txtApellido.getText().matches("^[a-zA-Z0-9]*$")) { 
 			        	
-		        		Signo = false;
+		        		txtApellido.setBackground(Color.RED);
+		        		JOptionPane.showMessageDialog(null, "EL Apellido no puede contener simbolos", "Error", 
+								JOptionPane.ERROR_MESSAGE);
+		        		txtApellido.setBackground(Color.WHITE);
+		        		return;
 		        		
 		        	}else {
 		        		txtApellido.setBackground(Color.WHITE);
 			        	vacio = false;
-		        	}
-		        		        
+		        	}	        		        
 		        }
+		        
 		        if(txtTelefono.getText().isEmpty()) {
 		        	txtTelefono.setBackground(Color.RED);
 		        	vacio = true;
 		        }else {
-		        	if(txtTelefono.getText().matches(".*[a-zA-Z].*")) {
-		        	
+		        	if(!txtTelefono.getText().matches("[0-9]+")) {
+		        	    
+		        		txtTelefono.setBackground(Color.RED);
 		        		JOptionPane.showMessageDialog(null, "El teléfono debe contener sólo números", "Error", 
 								JOptionPane.ERROR_MESSAGE);
+		        		txtTelefono.setBackground(Color.WHITE);
 		        		return;
 		        		
 		        	}else {
@@ -162,16 +170,7 @@ public class VentanaEjercicio1 extends JFrame {
 		        	vacio = false;
 		        }
 		        
-		        if(!vacio && !Signo) {
-		        	if(!txtNombre.getText().matches("[^a-zA-Z0-9\s]") || !txtApellido.getText().matches("[^a-zA-Z0-9\s]") ){
-		        		txtNombre.setBackground(Color.RED);
-		        		txtApellido.setBackground(Color.RED);
-	                        JOptionPane.showMessageDialog(null, "Los campos 'Nombre' y 'Apellido' no deben contener simbolos", "Error", 
-	                                JOptionPane.ERROR_MESSAGE);
-	                        txtNombre.setBackground(Color.WHITE);
-				        	txtApellido.setBackground(Color.WHITE);
-	                        return;
-		        	}
+		        if(!vacio) {
 		        	
 		        	if(txtNombre.getText().matches(".*\\d.*") || txtApellido.getText().matches(".*\\d.*")) {
 		        		txtNombre.setBackground(Color.RED);
