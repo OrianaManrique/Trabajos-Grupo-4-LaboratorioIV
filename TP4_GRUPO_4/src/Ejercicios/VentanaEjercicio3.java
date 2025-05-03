@@ -44,7 +44,7 @@ public class VentanaEjercicio3 extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaEjercicio3() {
-		setDefaultCloseOperation(VentanaEjercicio3.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(VentanaEjercicio3.DISPOSE_ON_CLOSE);
 		setBounds(250, 250, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(213, 224, 255));
