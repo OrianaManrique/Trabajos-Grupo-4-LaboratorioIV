@@ -1,22 +1,14 @@
-package ejercicio3_parte1;
-
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
+package Ejercicio3;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.JComboBox;
 
-public class ventana_1 extends JFrame {//CODIGO VENTANA SOLO LO QUE CREAMOS EN VENTANA
+public class Programa extends JFrame {//CODIGO VENTANA SOLO LO QUE CREAMOS EN VENTANA
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	/**
-	 * @wbp.nonvisual location=24,24
-	 */
-	private final JComboBox comboBox = new JComboBox();
+	
 
 	/**
 	 * Launch the application.
@@ -26,7 +18,9 @@ public class ventana_1 extends JFrame {//CODIGO VENTANA SOLO LO QUE CREAMOS EN V
 	/**
 	 * Create the frame.
 	 */
-	public ventana_1() {
+	
+	
+	public Programa() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

@@ -1,15 +1,15 @@
-package ejercicio3_parte1;
+package Ejercicio3;
 
 import java.awt.EventQueue;
 //codigo para programar mas facil
-public class codigo_ventana1 {
+public class Principal {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ventana_1 frame = new ventana_1();
+					Programa frame = new Programa();
 					
-					frame.setTitle("PROGRAMA");
+					frame.setTitle("Programa");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
