@@ -13,6 +13,7 @@ public class Panel_AgregarPeliculas extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
+
 	private DefaultListModel<Pelicula> listModel;
 
 	/**
@@ -52,13 +53,18 @@ public class Panel_AgregarPeliculas extends JPanel {
 		add(comboBox);
 		
 		JButton btnNewButton = new JButton("Aceptar");
-		btnNewButton.setBounds(137, 236, 263, 39);
+		btnNewButton.setBounds(137, 220, 263, 39);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 			}
 		});
 		add(btnNewButton);		
+		
+		JLabel lblTitulo = new JLabel("          Agregar Películas");
+		lblTitulo.setFont(lblTitulo.getFont().deriveFont(18f));
+		lblTitulo.setBounds(137, 11, 263, 25);
+		add(lblTitulo);
 		
 	}
 	

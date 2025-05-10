@@ -7,6 +7,7 @@ import javax.swing.DefaultListModel;
 public class Principal {
 	
 	private static DefaultListModel<Pelicula> listModel;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

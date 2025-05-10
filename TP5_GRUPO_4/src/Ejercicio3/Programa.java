@@ -20,7 +20,6 @@ public class Programa extends JFrame {//CODIGO VENTANA SOLO LO QUE CREAMOS EN VE
 	 * Launch the application.
 	 */
 	
-
 	/**
 	 * Create the frame.
 	 */
@@ -57,6 +56,18 @@ public class Programa extends JFrame {//CODIGO VENTANA SOLO LO QUE CREAMOS EN VE
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Listar");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				contentPane.removeAll();
+				Panel_ListarPeliculas Panel = new Panel_ListarPeliculas();
+				Panel.setDefaultListModel(listModel);
+				contentPane.add(Panel);
+				contentPane.repaint();
+				contentPane.revalidate();
+				
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem_1);
 	}
 }
