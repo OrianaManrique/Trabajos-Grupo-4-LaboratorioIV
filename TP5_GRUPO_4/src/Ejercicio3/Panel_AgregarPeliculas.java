@@ -15,6 +15,7 @@ public class Panel_AgregarPeliculas extends JPanel {
 	private JTextField textField;
 
 	private DefaultListModel<Pelicula> listModel;
+	private JComboBox<Genero> cbxGenero;
 
 	/**
 	 * Create the panel.
@@ -48,9 +49,9 @@ public class Panel_AgregarPeliculas extends JPanel {
 		lblGenero.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		add(lblGenero);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(288, 150, 112, 22);
-		add(comboBox);
+		cbxGenero = new JComboBox();
+		cbxGenero.setBounds(288, 150, 112, 22);
+		add(cbxGenero);
 		
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.setBounds(137, 220, 263, 39);
@@ -65,6 +66,13 @@ public class Panel_AgregarPeliculas extends JPanel {
 		lblTitulo.setFont(lblTitulo.getFont().deriveFont(18f));
 		lblTitulo.setBounds(137, 11, 263, 25);
 		add(lblTitulo);
+		
+		
+		cbxGenero.addItem(new Genero(0,"Seleccione un género"));
+		cbxGenero.addItem(new Genero(1,"Terror"));
+		cbxGenero.addItem(new Genero(2,"Acción"));
+		cbxGenero.addItem(new Genero(3,"Suspenso"));
+		cbxGenero.addItem(new Genero(4,"Romántica"));
 		
 	}
 	
