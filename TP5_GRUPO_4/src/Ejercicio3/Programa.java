@@ -15,23 +15,11 @@ public class Programa extends JFrame {//CODIGO VENTANA SOLO LO QUE CREAMOS EN VE
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static DefaultListModel<Pelicula> listModel;
-
-	/**
-	 * Launch the application.
-	 */
-	
-	/**
-	 * Create the frame.
-	 */
 	
 	public Programa() {
+		setTitle("Programa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 570, 396);
-		contentPane = new JPanel();
-		//contentPane.setBackground(Color.GREEN);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		setBounds(100, 100, 488, 397);
  	
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -69,5 +57,9 @@ public class Programa extends JFrame {//CODIGO VENTANA SOLO LO QUE CREAMOS EN VE
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 	}
 }

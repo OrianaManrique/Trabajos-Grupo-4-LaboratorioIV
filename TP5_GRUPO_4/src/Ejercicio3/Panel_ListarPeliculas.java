@@ -1,6 +1,8 @@
 package Ejercicio3;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.GridBagLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
@@ -14,30 +16,26 @@ public class Panel_ListarPeliculas extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	
+	private JScrollPane scrollPane;
+	private JList<Pelicula> jList;
 	private DefaultListModel<Pelicula> listModel;
 	
 	
 	public Panel_ListarPeliculas() {
-                setLayout(null);
-        
-                JLabel lblPeliculas = new JLabel("Peliculas: ");
-                lblPeliculas.setBounds(63, 51, 73, 24);
-                lblPeliculas.setFont(new Font("Tahoma", Font.BOLD, 14));
-                add(lblPeliculas);
-
-        JList listPeliculas = new JList();
-        listPeliculas.setBounds(210, 53, 241, 227);
-        listPeliculas.setModel(new AbstractListModel() {
-        	String[] values = new String[] {"- Items"};
-        	public int getSize() {
-        		return values.length;
-        	}
-        	public Object getElementAt(int index) {
-        		return values[index];
-        	}
-        });
-        add(listPeliculas);
+		setLayout(null);
+		
+		JLabel lblListado = new JLabel("Peliculas");
+		lblListado.setBounds(34, 135, 83, 29);
+		lblListado.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
+		add(lblListado);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(127, 21, 315, 275);
+		add(scrollPane);
+		
+		jList = new JList<Pelicula>();
+		scrollPane.setViewportView(jList);
+		jList.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 
 
     }
@@ -45,6 +43,8 @@ public class Panel_ListarPeliculas extends JPanel {
 	public void setDefaultListModel(DefaultListModel<Pelicula> listModelRecibido)
 	{
 		this.listModel = listModelRecibido;
+		jList.setModel(this.listModel);
+
 	}
 
 }

@@ -7,7 +7,10 @@ public class Pelicula {
 	Genero genero;
 	private static int Contador = 0;
 	
-	public Pelicula(){}
+	public Pelicula() {
+		Contador++;
+		this.ID = Contador;
+	}
 	
 	public Pelicula(String Nombre , Genero genero) {
 		
@@ -15,14 +18,11 @@ public class Pelicula {
 		
 		this.ID = Contador;
 		this.nombre = Nombre;
-		this.genero = genero;		
+		this.genero = genero;
 	}
 	
 	public int getID() {
 		return ID;
-	}
-	public void setID(int iD) {
-		ID = iD;
 	}
 	public String getNombre() {
 		return nombre;
@@ -35,6 +35,9 @@ public class Pelicula {
 	}
 	public void setGenero(Genero genero) {
 		this.genero = genero;
+	}
+	public int siguienteID() {
+		return Contador + 1;
 	}
 	
 	@Override

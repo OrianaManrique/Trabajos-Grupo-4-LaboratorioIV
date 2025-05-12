@@ -1,6 +1,7 @@
 package Ejercicio3;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -15,11 +16,8 @@ public class Panel_AgregarPeliculas extends JPanel {
 	private JTextField textField;
 
 	private DefaultListModel<Pelicula> listModel;
-	private JComboBox<Genero> cbxGenero;
-
-	/**
-	 * Create the panel.
-	 */
+	
+	
 	public Panel_AgregarPeliculas() {
 		
 		setLayout(null);
@@ -49,15 +47,33 @@ public class Panel_AgregarPeliculas extends JPanel {
 		lblGenero.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		add(lblGenero);
 		
-		cbxGenero = new JComboBox();
+		JComboBox cbxGenero = new JComboBox();
 		cbxGenero.setBounds(288, 150, 112, 22);
 		add(cbxGenero);
+		cbxGenero.addItem("Seleccione un genero");
+		cbxGenero.addItem(new Genero(1, "Terror"));
+		cbxGenero.addItem(new Genero(2, "Accion"));
+		cbxGenero.addItem(new Genero(3, "Suspenso"));
+		cbxGenero.addItem(new Genero(4, "Romantica"));
 		
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.setBounds(137, 220, 263, 39);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(!textField.getText().isEmpty() && cbxGenero.getSelectedIndex() > 0) {
+					
+					Pelicula pelicula = new Pelicula();
+					pelicula.setNombre(textField.getText());
+					pelicula.setGenero((Genero) cbxGenero.getSelectedItem());
+					listModel.addElement(pelicula);
+					
+					textField.setText("");
+					cbxGenero.setSelectedIndex(0);
+					lblNewLabel.setText(Integer.toString(pelicula.siguienteID()));
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten completos.");
+				}
 			}
 		});
 		add(btnNewButton);		
@@ -66,13 +82,7 @@ public class Panel_AgregarPeliculas extends JPanel {
 		lblTitulo.setFont(lblTitulo.getFont().deriveFont(18f));
 		lblTitulo.setBounds(137, 11, 263, 25);
 		add(lblTitulo);
-		
-		
-		cbxGenero.addItem(new Genero(0,"Seleccione un género"));
-		cbxGenero.addItem(new Genero(1,"Terror"));
-		cbxGenero.addItem(new Genero(2,"Acción"));
-		cbxGenero.addItem(new Genero(3,"Suspenso"));
-		cbxGenero.addItem(new Genero(4,"Romántica"));
+	
 		
 	}
 	
