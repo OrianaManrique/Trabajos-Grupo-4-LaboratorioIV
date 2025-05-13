@@ -3,11 +3,13 @@ package Ejercicio3;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import java.util.*;
 import java.awt.GridBagLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.Collections;
 import java.awt.Font;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
@@ -44,7 +46,15 @@ public class Panel_ListarPeliculas extends JPanel {
 	{
 		this.listModel = listModelRecibido;
 		jList.setModel(this.listModel);
+		ordenAlfabetico(listModelRecibido);
 
 	}
 
+	
+	public void ordenAlfabetico(DefaultListModel<Pelicula> modelo) {		
+		List<Pelicula> lst = Collections.list(modelo.elements());
+		lst.sort(Comparator.comparing(p -> p.getNombre().toLowerCase()));
+		modelo.clear();
+		lst.forEach(modelo::addElement);		
+	}
 }
