@@ -1,20 +1,29 @@
 package Ejercicio3;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import java.awt.event.ActionListener;
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
 
 public class Programa extends JFrame {//CODIGO VENTANA SOLO LO QUE CREAMOS EN VENTANA
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static DefaultListModel<Pelicula> listModel;
+	
+	
 	
 	public Programa() {
 		setTitle("Programa");
@@ -27,6 +36,8 @@ public class Programa extends JFrame {//CODIGO VENTANA SOLO LO QUE CREAMOS EN VE
 		
 		JMenu mnNewMenu = new JMenu("Peliculas");
 		menuBar.add(mnNewMenu);
+		
+		
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Agregar");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
@@ -56,10 +67,8 @@ public class Programa extends JFrame {//CODIGO VENTANA SOLO LO QUE CREAMOS EN VE
 				
 			}
 		});
+		
 		mnNewMenu.add(mntmNewMenuItem_1);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		
 	}
 }

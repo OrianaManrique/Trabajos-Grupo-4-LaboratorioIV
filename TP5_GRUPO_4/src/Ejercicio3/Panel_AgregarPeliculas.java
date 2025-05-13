@@ -9,47 +9,56 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.Font;
+import java.awt.Color;
 
 public class Panel_AgregarPeliculas extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-
+	private JTextField txtNombre;
+	private JLabel lblNombre;
+	private JLabel lblID;
+	private JLabel lblIDAutomatico;
+	private JLabel lblGenero;
+	private JButton btnAceptar;
+	private JLabel lblTitulo;
+	Pelicula pelicula;
+	JComboBox<Object> cbxGenero;
 	private DefaultListModel<Pelicula> listModel;
 	private static int IDGLOBAL=1;
 	
 	
 	public Panel_AgregarPeliculas() {
+		setBackground(new Color(221, 255, 221));
 		
 		setLayout(null);
 		
-		JLabel lblID = new JLabel("ID");
-		lblID.setBounds(137, 66, 18, 28);
+		lblID = new JLabel("ID");
+		lblID.setBounds(94, 66, 18, 28);
 		lblID.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		add(lblID);
 		
-		JLabel lblNewLabel = new JLabel(Integer.toString(IDGLOBAL));
-		lblNewLabel.setBounds(338, 67, 11, 25);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		add(lblNewLabel);
+		lblIDAutomatico = new JLabel(Integer.toString(IDGLOBAL));
+		lblIDAutomatico.setBounds(267, 67, 11, 25);
+		lblIDAutomatico.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		add(lblIDAutomatico);
 		
-		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(137, 105, 58, 28);
+		lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(94, 105, 58, 28);
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		add(lblNombre);
 		
-		textField = new JTextField();
-		textField.setBounds(288, 112, 112, 20);
-		add(textField);
-		textField.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setBounds(197, 112, 160, 20);
+		add(txtNombre);
+		txtNombre.setColumns(10);
 		
-		JLabel lblGenero = new JLabel("Genero");
-		lblGenero.setBounds(137, 144, 58, 28);
+		lblGenero = new JLabel("Genero");
+		lblGenero.setBounds(94, 144, 58, 28);
 		lblGenero.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		add(lblGenero);
 		
-		JComboBox cbxGenero = new JComboBox();
-		cbxGenero.setBounds(288, 150, 112, 22);
+		cbxGenero = new JComboBox<Object>();
+		cbxGenero.setBounds(197, 150, 160, 22);
 		add(cbxGenero);
 		cbxGenero.addItem("Seleccione un genero");
 		cbxGenero.addItem(new Genero(1, "Terror"));
@@ -57,20 +66,20 @@ public class Panel_AgregarPeliculas extends JPanel {
 		cbxGenero.addItem(new Genero(3, "Suspenso"));
 		cbxGenero.addItem(new Genero(4, "Romantica"));
 		
-		JButton btnNewButton = new JButton("Aceptar");
-		btnNewButton.setBounds(137, 220, 263, 39);
-		btnNewButton.addActionListener(new ActionListener() {
+		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBounds(94, 220, 263, 39);
+		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!textField.getText().isEmpty() && cbxGenero.getSelectedIndex() > 0) {
+				if(!txtNombre.getText().isEmpty() && cbxGenero.getSelectedIndex() > 0) {
 					
-					Pelicula pelicula = new Pelicula();
-					pelicula.setNombre(textField.getText());
+					pelicula = new Pelicula();
+					pelicula.setNombre(txtNombre.getText());
 					pelicula.setGenero((Genero) cbxGenero.getSelectedItem());
 					listModel.addElement(pelicula);
 					
-					textField.setText("");
+					txtNombre.setText("");
 					cbxGenero.setSelectedIndex(0);
-					lblNewLabel.setText(Integer.toString(pelicula.siguienteID()));
+					lblIDAutomatico.setText(Integer.toString(pelicula.siguienteID()));
 					IDGLOBAL = pelicula.getID()+1;
 				}
 				else {
@@ -78,11 +87,11 @@ public class Panel_AgregarPeliculas extends JPanel {
 				}
 			}
 		});
-		add(btnNewButton);		
+		add(btnAceptar);		
 		
-		JLabel lblTitulo = new JLabel("          Agregar Películas");
+		lblTitulo = new JLabel("          Agregar Películas");
 		lblTitulo.setFont(lblTitulo.getFont().deriveFont(18f));
-		lblTitulo.setBounds(137, 11, 263, 25);
+		lblTitulo.setBounds(94, 11, 263, 25);
 		add(lblTitulo);
 	
 		

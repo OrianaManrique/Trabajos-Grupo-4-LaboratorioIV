@@ -1,18 +1,13 @@
 package Ejercicio3;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import java.util.*;
-import java.awt.GridBagLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.util.Collections;
 import java.awt.Font;
 import javax.swing.JList;
-import javax.swing.AbstractListModel;
+import java.awt.Color;
 
 public class Panel_ListarPeliculas extends JPanel {
 
@@ -24,6 +19,7 @@ public class Panel_ListarPeliculas extends JPanel {
 	
 	
 	public Panel_ListarPeliculas() {
+		setBackground(new Color(221, 255, 221));
 		setLayout(null);
 		
 		JLabel lblListado = new JLabel("Peliculas");
@@ -36,6 +32,7 @@ public class Panel_ListarPeliculas extends JPanel {
 		add(scrollPane);
 		
 		jList = new JList<Pelicula>();
+		jList.setBackground(new Color(255, 255, 255));
 		scrollPane.setViewportView(jList);
 		jList.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 
