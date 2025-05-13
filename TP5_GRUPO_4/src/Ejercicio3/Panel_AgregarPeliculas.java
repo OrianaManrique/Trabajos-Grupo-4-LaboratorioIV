@@ -16,6 +16,7 @@ public class Panel_AgregarPeliculas extends JPanel {
 	private JTextField textField;
 
 	private DefaultListModel<Pelicula> listModel;
+	private static int IDGLOBAL=1;
 	
 	
 	public Panel_AgregarPeliculas() {
@@ -27,7 +28,7 @@ public class Panel_AgregarPeliculas extends JPanel {
 		lblID.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		add(lblID);
 		
-		JLabel lblNewLabel = new JLabel("1");
+		JLabel lblNewLabel = new JLabel(Integer.toString(IDGLOBAL));
 		lblNewLabel.setBounds(338, 67, 11, 25);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(lblNewLabel);
@@ -70,6 +71,7 @@ public class Panel_AgregarPeliculas extends JPanel {
 					textField.setText("");
 					cbxGenero.setSelectedIndex(0);
 					lblNewLabel.setText(Integer.toString(pelicula.siguienteID()));
+					IDGLOBAL = pelicula.getID()+1;
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten completos.");
