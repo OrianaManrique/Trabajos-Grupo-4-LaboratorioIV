@@ -16,13 +16,14 @@ public class Panel_ListarPeliculas extends JPanel {
 	private JScrollPane scrollPane;
 	private JList<Pelicula> jList;
 	private DefaultListModel<Pelicula> listModel;
+	private JLabel lblListado;
 	
 	
 	public Panel_ListarPeliculas() {
 		setBackground(new Color(221, 255, 221));
 		setLayout(null);
 		
-		JLabel lblListado = new JLabel("Peliculas");
+		lblListado = new JLabel("Peliculas");
 		lblListado.setBounds(34, 135, 83, 29);
 		lblListado.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		add(lblListado);
