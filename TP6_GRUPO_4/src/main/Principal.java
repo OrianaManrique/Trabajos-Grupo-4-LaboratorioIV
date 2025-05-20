@@ -1,11 +1,10 @@
 package main;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -13,23 +12,32 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Entidad.Personas;
+import presentacion.vista.PanelOpcionAgregar;
+import presentacion.vista.PanelOpcionModificar;
+
+
 public class Principal extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private static DefaultListModel<Personas> listModel;
 
 	
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Principal frame = new Principal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    Principal frame = new Principal();
+                    listModel = new DefaultListModel<Personas>();
+                    frame.setVisible(true);
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 	
 	public Principal() {
 
@@ -52,6 +60,12 @@ public class Principal extends JFrame {
 		menuItemAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				contentPane.removeAll();
+				PanelOpcionAgregar panel = new PanelOpcionAgregar();
+				panel.setDefaultListModel(listModel);
+				contentPane.add(panel);
+				contentPane.repaint();
+				contentPane.revalidate();
 			}
 		});
 		mnNewMenu.add(menuItemAgregar);
@@ -62,7 +76,12 @@ public class Principal extends JFrame {
 		
 		menuItemModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				contentPane.removeAll();
+                PanelOpcionModificar panel = new PanelOpcionModificar();
+                panel.setDefaultListModel(listModel);
+                contentPane.add(panel);
+                contentPane.repaint();
+                contentPane.revalidate();
 			}
 		});
 		mnNewMenu.add(menuItemModificar);
