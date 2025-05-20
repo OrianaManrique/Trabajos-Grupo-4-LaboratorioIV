@@ -45,9 +45,9 @@ public class PanelOpcionModificar extends JPanel {
 	        btnModificar.setBounds(360, 287, 89, 23);
 	        add(btnModificar);
 
-	        JLabel lblNewLabel = new JLabel("Seleccione a la persona que desea modificar");
-	        lblNewLabel.setBounds(31, 21, 482, 14);
-	        add(lblNewLabel);
+	        JLabel lblSeleccione = new JLabel("Seleccione a la persona que desea modificar");
+	        lblSeleccione.setBounds(31, 21, 482, 14);
+	        add(lblSeleccione);
 
 	        scrollPanePersonas = new JScrollPane();
 	        scrollPanePersonas.setBounds(30, 60, 420, 200);
