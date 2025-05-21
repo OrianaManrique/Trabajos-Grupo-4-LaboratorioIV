@@ -10,7 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 public class PanelOpcionModificar extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -57,9 +58,27 @@ public class PanelOpcionModificar extends JPanel {
 	        jListPersonas.setBackground(new Color(255, 255, 255));
 	        scrollPanelPersonas.setViewportView(jListPersonas);
 	        jListPersonas.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
-
+          
+	        
+	        jListPersonas.addListSelectionListener(e -> {
+	            Persona seleccionada = jListPersonas.getSelectedValue();
+	            if (seleccionada != null) {
+	                txtNombre.setText(seleccionada.getNombre());
+	                txtApellido.setText(seleccionada.getApellido());
+	                txtDni.setText(String.valueOf(seleccionada.getDni()));
+	                txtDni.setEditable(false);
+	            }
+	        });
+	        
+	        
+	        
 	    }
 
+	   
+	    
+	    
+	    
+	    
 	    public void setDefaultListModel(DefaultListModel<Persona> listModelRecibido)
 	    {
 	        this.listModel = listModelRecibido;
