@@ -4,14 +4,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import Entidad.Persona;
+import dao.PersonaDao;
 
-public class PersonaDaolmpl {
+public class PersonaDaolmpl implements PersonaDao{
 
 	private static final String insert = "INSERT INTO personas (dni, nombre, apellido) VALUES(?, ?, ?)";
 
 	public PersonaDaolmpl() {}
 
-    static public boolean AgregarPersona(Persona persona)
+    public boolean AgregarPersona(Persona persona)
     {
         PreparedStatement statement;
         Connection conexion = Conexion.getConexion().getSQLConexion();

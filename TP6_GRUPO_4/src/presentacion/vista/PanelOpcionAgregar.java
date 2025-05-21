@@ -20,6 +20,7 @@ public class PanelOpcionAgregar extends JPanel {
 	private JTextField txtApellido;
 	private JTextField txtDni;
 	private DefaultListModel<Persona> listModel;
+	private PersonaDaolmpl PersonaDao = new PersonaDaolmpl();
 
 	public PanelOpcionAgregar() {
 		setLayout(null);
@@ -59,7 +60,7 @@ public class PanelOpcionAgregar extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				Persona Persona = new Persona(Integer.parseInt(txtDni.getText()), txtNombre.getText(), txtApellido.getText());
-                PersonaDaolmpl.AgregarPersona(Persona);
+                PersonaDao.AgregarPersona(Persona);
 				
 			}
 		});
