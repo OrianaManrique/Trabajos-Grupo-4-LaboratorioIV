@@ -4,11 +4,14 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import Entidad.Personas;
+import Entidad.Persona;
+import daoImpl.PersonaDaolmpl;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanelOpcionAgregar extends JPanel {
 
@@ -16,7 +19,7 @@ public class PanelOpcionAgregar extends JPanel {
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private JTextField txtDni;
-	private DefaultListModel<Personas> listModel;
+	private DefaultListModel<Persona> listModel;
 
 	public PanelOpcionAgregar() {
 		setLayout(null);
@@ -52,12 +55,20 @@ public class PanelOpcionAgregar extends JPanel {
 		add(txtDni);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Persona Persona = new Persona(Integer.parseInt(txtDni.getText()), txtNombre.getText(), txtApellido.getText());
+                PersonaDaolmpl.AgregarPersona(Persona);
+				
+			}
+		});
 		btnAceptar.setBounds(112, 232, 239, 41);
 		add(btnAceptar);
 
 	}
 	
-	public void setDefaultListModel(DefaultListModel<Personas> listModelRecibido)
+	public void setDefaultListModel(DefaultListModel<Persona> listModelRecibido)
 	{
 		this.listModel = listModelRecibido;
 	}

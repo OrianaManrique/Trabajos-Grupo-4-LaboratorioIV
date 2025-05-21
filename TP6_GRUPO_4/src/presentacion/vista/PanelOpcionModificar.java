@@ -2,7 +2,7 @@ package presentacion.vista;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import Entidad.Personas;
+import Entidad.Persona;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.DefaultListModel;
@@ -15,8 +15,8 @@ public class PanelOpcionModificar extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-		private DefaultListModel<Personas> listModel;
-	    private JList<Personas> jListPersonas;
+		private DefaultListModel<Persona> listModel;
+	    private JList<Persona> jListPersonas;
 	    private JTextField txtNombre;
 	    private JTextField txtApellido;
 	    private JTextField txtDni;
@@ -53,14 +53,14 @@ public class PanelOpcionModificar extends JPanel {
 	        scrollPanelPersonas.setBounds(30, 60, 420, 200);
 	        add(scrollPanelPersonas);
 
-	        jListPersonas = new JList<Personas>();
+	        jListPersonas = new JList<Persona>();
 	        jListPersonas.setBackground(new Color(255, 255, 255));
 	        scrollPanelPersonas.setViewportView(jListPersonas);
 	        jListPersonas.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 
 	    }
 
-	    public void setDefaultListModel(DefaultListModel<Personas> listModelRecibido)
+	    public void setDefaultListModel(DefaultListModel<Persona> listModelRecibido)
 	    {
 	        this.listModel = listModelRecibido;
 	        jListPersonas.setModel(this.listModel);

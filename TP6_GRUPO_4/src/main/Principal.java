@@ -12,7 +12,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Entidad.Personas;
+import Entidad.Persona;
 import presentacion.vista.PanelOpcionAgregar;
 import presentacion.vista.PanelOpcionModificar;
 
@@ -21,7 +21,7 @@ public class Principal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private static DefaultListModel<Personas> listModel;
+	private static DefaultListModel<Persona> listModel;
 
 	
 	public static void main(String[] args) {
@@ -29,7 +29,7 @@ public class Principal extends JFrame {
             public void run() {
                 try {
                     Principal frame = new Principal();
-                    listModel = new DefaultListModel<Personas>();
+                    listModel = new DefaultListModel<Persona>();
                     frame.setVisible(true);
                     frame.setVisible(true);
                 } catch (Exception e) {

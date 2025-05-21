@@ -4,7 +4,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import Entidad.Personas;
+import Entidad.Persona;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 
 public class PanelOpcionEliminar extends JPanel {
 	private JScrollPane scrollPanelPersonas;
-	private JList<Personas> jListPersonas;
+	private JList<Persona> jListPersonas;
 	
 	public PanelOpcionEliminar() {
 		setLayout(null);
@@ -32,7 +32,7 @@ public class PanelOpcionEliminar extends JPanel {
         scrollPanelPersonas.setBounds(59, 45, 260, 200);
         add(scrollPanelPersonas);
         
-        jListPersonas = new JList<Personas>();
+        jListPersonas = new JList<Persona>();
         jListPersonas.setBackground(new Color(255, 255, 255));
         scrollPanelPersonas.setViewportView(jListPersonas);
         jListPersonas.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
