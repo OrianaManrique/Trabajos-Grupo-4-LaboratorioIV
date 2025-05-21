@@ -45,4 +45,31 @@ public class PersonaDaolmpl implements PersonaDao{
     }
 	
 
+    public boolean borrar(String dni) {
+        boolean eliminado = false;
+        PreparedStatement statement;
+        Connection conexion = Conexion.getConexion().getSQLConexion();
+
+        try {
+            statement = conexion.prepareStatement("DELETE FROM personas WHERE dni = ?");
+            statement.setString(1, dni);
+
+            if (statement.executeUpdate() > 0) {
+                conexion.commit();
+                eliminado = true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                conexion.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        return eliminado;
+    }
+    
+    
 }
