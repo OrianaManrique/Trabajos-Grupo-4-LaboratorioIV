@@ -20,7 +20,7 @@ public class PanelOpcionModificar extends JPanel {
 	    private JTextField txtNombre;
 	    private JTextField txtApellido;
 	    private JTextField txtDni;
-	    private JScrollPane scrollPanePersonas;
+	    private JScrollPane scrollPanelPersonas;
 	    private JList list;
 
 	    public PanelOpcionModificar() {
@@ -49,13 +49,13 @@ public class PanelOpcionModificar extends JPanel {
 	        lblSeleccione.setBounds(31, 21, 482, 14);
 	        add(lblSeleccione);
 
-	        scrollPanePersonas = new JScrollPane();
-	        scrollPanePersonas.setBounds(30, 60, 420, 200);
-	        add(scrollPanePersonas);
+	        scrollPanelPersonas = new JScrollPane();
+	        scrollPanelPersonas.setBounds(30, 60, 420, 200);
+	        add(scrollPanelPersonas);
 
 	        jListPersonas = new JList<Personas>();
 	        jListPersonas.setBackground(new Color(255, 255, 255));
-	        scrollPanePersonas.setViewportView(jListPersonas);
+	        scrollPanelPersonas.setViewportView(jListPersonas);
 	        jListPersonas.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
 
 	    }
