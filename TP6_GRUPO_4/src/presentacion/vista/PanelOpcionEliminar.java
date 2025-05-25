@@ -2,7 +2,13 @@ package presentacion.vista;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import Entidad.Persona;
+import dao.PersonaDao;
+import daoImpl.PersonaDaolmpl;
+
 import javax.swing.event.*;
 
 public class PanelOpcionEliminar extends JPanel {
@@ -13,44 +19,53 @@ public class PanelOpcionEliminar extends JPanel {
 
     public PanelOpcionEliminar() {
         setLayout(null);
-
+        
         btnEliminar = new JButton("Eliminar");
-        btnEliminar.setBounds(137, 256, 102, 33);
+        btnEliminar.setBounds(177, 251, 102, 33);
         add(btnEliminar);
-
-        btnEliminar.addActionListener(e -> {
-            Persona personaSeleccionada = jListPersonas.getSelectedValue();
-            if (personaSeleccionada == null) {
-                JOptionPane.showMessageDialog(null, "Seleccione una persona para eliminar.");
-                return;
-            }
-
-            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION);
-
-            if (confirmacion == JOptionPane.YES_OPTION) {
-                daoImpl.PersonaDaolmpl dao = new daoImpl.PersonaDaolmpl();
-                if (dao.borrar(String.valueOf(personaSeleccionada.getDni()))) {
-                    listModel.removeElement(personaSeleccionada);
-                    JOptionPane.showMessageDialog(null, "Persona eliminada correctamente.");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al eliminar.");
-                }
-            }
-        });
 
         // configuracion de scrol y la lista
         scrollPanelPersonas = new JScrollPane();
-        scrollPanelPersonas.setBounds(30, 60, 420, 180);
+        scrollPanelPersonas.setBounds(30, 60, 391, 180);
         add(scrollPanelPersonas);
-
+        
         jListPersonas = new JList<>();
-        jListPersonas.setBackground(Color.WHITE);
         scrollPanelPersonas.setViewportView(jListPersonas);
+        jListPersonas.setBackground(Color.WHITE);
         jListPersonas.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
+        
+        daoImpl.PersonaDaolmpl dao = new daoImpl.PersonaDaolmpl();
+        List<Persona> lPersonas = dao.ListarPersonas();
+        listModel = new DefaultListModel<>();
+        jListPersonas.setModel(listModel);
+        
+        for(Persona persona : lPersonas) {
+        	listModel.addElement(persona);
+        }
 
         //aregada lista opcion de ver personas 
         jListPersonas.addListSelectionListener(e -> {
             //accion fuera de persona
+        });
+        
+        btnEliminar.addActionListener(e -> {
+        	Persona personaSeleccionada = jListPersonas.getSelectedValue();
+        	if (personaSeleccionada == null) {
+        		JOptionPane.showMessageDialog(null, "Seleccione una persona para eliminar.");
+        		return;
+        	}
+        	
+        	int confirmacion = JOptionPane.showConfirmDialog(null, "�Esta seguro de eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        	
+        	if (confirmacion == JOptionPane.YES_OPTION) {
+        		//negocioImpl.PersonaNegocioImpl neg = new negocioImpl.PersonaNegocioImpl();
+        		if (dao.EliminarPersona(personaSeleccionada)) {
+        			listModel.removeElement(personaSeleccionada);
+        			JOptionPane.showMessageDialog(null, "Persona eliminada correctamente.");
+        		} else {
+        			JOptionPane.showMessageDialog(null, "Error al eliminar.");
+        		}
+        	}
         });
     }
 

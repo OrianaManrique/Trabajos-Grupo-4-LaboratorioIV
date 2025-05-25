@@ -32,7 +32,6 @@ public class Principal extends JFrame {
                     Principal frame = new Principal();
                     listModel = new DefaultListModel<Persona>();
                     frame.setVisible(true);
-                    frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -41,7 +40,6 @@ public class Principal extends JFrame {
     }
 	
 	public Principal() {
-
 		setTitle("Programa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 488, 397);
@@ -65,8 +63,9 @@ public class Principal extends JFrame {
 				PanelOpcionAgregar panel = new PanelOpcionAgregar();
 				panel.setDefaultListModel(listModel);
 				contentPane.add(panel);
-				contentPane.repaint();
 				contentPane.revalidate();
+				contentPane.repaint();
+				
 			}
 		});
 		mnNewMenu.add(menuItemAgregar);
@@ -77,12 +76,12 @@ public class Principal extends JFrame {
 		
 		menuItemModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				PanelOpcionModificar panel = new PanelOpcionModificar();
 				contentPane.removeAll();
-                PanelOpcionModificar panel = new PanelOpcionModificar();
-                panel.setDefaultListModel(listModel);
+                //panel.setDefaultListModel(listModel);
                 contentPane.add(panel);
-                contentPane.repaint();
                 contentPane.revalidate();
+                contentPane.repaint();
 			}
 		});
 		mnNewMenu.add(menuItemModificar);
@@ -93,14 +92,12 @@ public class Principal extends JFrame {
 		
 		menuItemEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				contentPane.removeAll();
 				PanelOpcionEliminar panel = new PanelOpcionEliminar();
-                panel.setDefaultListModel(listModel);
+				contentPane.removeAll();
+                //panel.setDefaultListModel(listModel);
                 contentPane.add(panel);
-                contentPane.repaint();
                 contentPane.revalidate();
-				
+                contentPane.repaint();
 			}
 		});
 		mnNewMenu.add(menuItemEliminar);

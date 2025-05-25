@@ -5,13 +5,21 @@ import javax.swing.JTextField;
 import Entidad.Persona;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionListener;
+
+import com.sun.tools.javac.util.Convert;
+
 import javax.swing.event.ListSelectionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 public class PanelOpcionModificar extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -22,7 +30,6 @@ public class PanelOpcionModificar extends JPanel {
 	    private JTextField txtApellido;
 	    private JTextField txtDni;
 	    private JScrollPane scrollPanelPersonas;
-	    private JList list;
 
 	    public PanelOpcionModificar() {
 	        setLayout(null);
@@ -41,24 +48,63 @@ public class PanelOpcionModificar extends JPanel {
 	        txtDni.setBounds(254, 288, 86, 20);
 	        txtDni.setColumns(10);
 	        add(txtDni);
-
+	        
 	        JButton btnModificar = new JButton("Modificar");
+	        btnModificar.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		Persona persona = new Persona(Integer.parseInt(txtDni.getText()),txtNombre.getText(),txtApellido.getText());
+	        		daoImpl.PersonaDaolmpl dao = new daoImpl.PersonaDaolmpl(); 
+	        		if(dao.ModificarPersona(persona)) {
+	        			List<Persona> lPersonas = dao.ListarPersonas();
+	        			listModel = new DefaultListModel<>();
+	        	        jListPersonas.setModel(listModel);
+	        	        jListPersonas.revalidate();
+	        	        jListPersonas.repaint();
+	        	        scrollPanelPersonas.revalidate();
+	        	        scrollPanelPersonas.repaint();
+	        	        jListPersonas.setVisible(true);
+	        	        
+	        	        for(Persona per : lPersonas) {
+	        	        	listModel.addElement(per);
+	        	        	System.out.println(listModel.elementAt(0));
+	        	        }
+	        	        
+	        			txtNombre.setText("");
+		                txtApellido.setText("");
+		                txtDni.setText("");
+	        		}
+	        	}
+	        });
 	        btnModificar.setBounds(360, 287, 89, 23);
 	        add(btnModificar);
-
+	        
 	        JLabel lblSeleccione = new JLabel("Seleccione a la persona que desea modificar");
 	        lblSeleccione.setBounds(31, 21, 482, 14);
 	        add(lblSeleccione);
-
+	        
 	        scrollPanelPersonas = new JScrollPane();
 	        scrollPanelPersonas.setBounds(30, 60, 420, 200);
 	        add(scrollPanelPersonas);
-
+	        
 	        jListPersonas = new JList<Persona>();
 	        jListPersonas.setBackground(new Color(255, 255, 255));
-	        scrollPanelPersonas.setViewportView(jListPersonas);
 	        jListPersonas.setFont(new Font("Trebuchet MS", Font.BOLD, 13));
-          
+	        jListPersonas.setForeground(Color.BLACK);
+	        scrollPanelPersonas.setViewportView(jListPersonas);
+	        
+	        daoImpl.PersonaDaolmpl dao = new daoImpl.PersonaDaolmpl();
+	        List<Persona> lPersonas = dao.ListarPersonas();
+	        listModel = new DefaultListModel<>();
+	        jListPersonas.setModel(listModel);
+	        jListPersonas.revalidate();
+	        jListPersonas.repaint();
+	        scrollPanelPersonas.revalidate();
+	        scrollPanelPersonas.repaint();
+	        jListPersonas.setVisible(true);
+	        
+	        for(Persona persona : lPersonas) {
+	        	listModel.addElement(persona);
+	        }
 	        
 	        jListPersonas.addListSelectionListener(e -> {
 	            Persona seleccionada = jListPersonas.getSelectedValue();
@@ -71,17 +117,12 @@ public class PanelOpcionModificar extends JPanel {
 	        });
 	        
 	        
-	        
 	    }
 
 	   
-	    
-	    
-	    
-	    
 	    public void setDefaultListModel(DefaultListModel<Persona> listModelRecibido)
 	    {
 	        this.listModel = listModelRecibido;
 	        jListPersonas.setModel(this.listModel);
 	    }
-	}
+}

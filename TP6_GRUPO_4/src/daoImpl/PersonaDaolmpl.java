@@ -1,8 +1,12 @@
 package daoImpl;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import Entidad.Persona;
 import dao.PersonaDao;
@@ -10,14 +14,16 @@ import dao.PersonaDao;
 public class PersonaDaolmpl implements PersonaDao{
 
 	private static final String insert = "INSERT INTO personas (dni, nombre, apellido) VALUES(?, ?, ?)";
-
+	private static final String delete = "DELETE FROM personas WHERE dni = ?";
+	private static final String update = "UPDATE personas SET nombre = ?, apellido = ? WHERE dni = ?";
+	private static final String readall = "SELECT * FROM personas";
 	public PersonaDaolmpl() {}
 
     public boolean AgregarPersona(Persona persona)
     {
         PreparedStatement statement;
         Connection conexion = Conexion.getConexion().getSQLConexion();
-        boolean insertExitoso = false;
+        //boolean insertExitoso = false;
         
         try
         {
@@ -29,7 +35,7 @@ public class PersonaDaolmpl implements PersonaDao{
             if(statement.executeUpdate() > 0)
             {
                 conexion.commit();
-                insertExitoso = true;
+                return true;
             }
         } 
         catch (SQLException e) 
@@ -42,22 +48,21 @@ public class PersonaDaolmpl implements PersonaDao{
             }
         }
 
-        return insertExitoso;
+        return false;
     }
 	
 
-    public boolean borrar(String dni) {
-        boolean eliminado = false;
+    public boolean EliminarPersona(Persona persona) {
         PreparedStatement statement;
         Connection conexion = Conexion.getConexion().getSQLConexion();
 
         try {
-            statement = conexion.prepareStatement("DELETE FROM personas WHERE dni = ?");
-            statement.setString(1, dni);
+            statement = conexion.prepareStatement(delete);
+            statement.setString(1, String.valueOf(persona.getDni()));
 
             if (statement.executeUpdate() > 0) {
                 conexion.commit();
-                eliminado = true;
+                return true;
             }
 
         } catch (SQLException e) {
@@ -69,36 +74,62 @@ public class PersonaDaolmpl implements PersonaDao{
             }
         }
 
-        return eliminado;
+        return false;
     }
     
-    
-
-	public boolean ComprobarExistenciaPersona(String dni) {
-        PreparedStatement statement;
-        ResultSet resultset = null;
+    @Override
+    public boolean ModificarPersona(Persona persona) {
+    	PreparedStatement statement;
         Connection conexion = Conexion.getConexion().getSQLConexion();
 
         try {
-            statement = conexion.prepareStatement("SELECT COUNT(*) FROM personas WHERE dni = ?");
-            statement.setString(1, dni);
-            
-            resultset = statement.executeQuery();
-            
-            if (resultset.next()) {
-                int count = resultset.getInt(1); 
-                if (count > 0) {
-                    return true; 
-                }           
-            }
-            
-        } catch (SQLException e) {
-            System.err.println("Error al verificar DNI: " + e.getMessage());
-        }
-        
-        return false;
+            statement = conexion.prepareStatement(update);
+            statement.setString(1, persona.getNombre());
+            statement.setString(2, persona.getApellido());
+            statement.setString(3, String.valueOf(persona.getDni()));
 
+            if (statement.executeUpdate() > 0) {
+                conexion.commit();
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                conexion.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+    	return false;
     }
+    
+    public List<Persona> ListarPersonas() {
+    	PreparedStatement statement;
+		ResultSet resultSet;
+		ArrayList<Persona> personas = new ArrayList<Persona>();
+		Conexion conexion = Conexion.getConexion();
+		try
+		{
+			statement = conexion.getSQLConexion().prepareStatement(readall);
+			resultSet = statement.executeQuery();
+			while(resultSet.next())
+			{
+				Persona per = new Persona();
+				per.setDni(resultSet.getInt("Dni"));
+				per.setNombre(resultSet.getString("Nombre"));
+				per.setApellido(resultSet.getString("Apellido"));
+				personas.add(per);
+			}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return personas;
+	}
+
     
     
 }

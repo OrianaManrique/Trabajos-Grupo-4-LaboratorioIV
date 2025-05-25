@@ -1,16 +1,16 @@
-package Entidad;
+package main;
 
-public class Persona {
+public class UsuarioDB {
 	
 	private int dni;
 	private String nombre;
 	private String apellido;
 	
-	public Persona() {
+	public UsuarioDB() {
 		
 	}
 
-	public Persona(int dni, String nombre, String apellido) {
+	public UsuarioDB(int dni, String nombre, String apellido) {
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -39,10 +39,6 @@ public class Persona {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	
-	@Override
-	public String toString() {
-	    return nombre + " " + apellido + " " + dni;
-	}
+
 	
 }
