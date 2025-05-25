@@ -22,7 +22,6 @@ public class PanelOpcionAgregar extends JPanel {
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private JTextField txtDni;
-	private DefaultListModel<Persona> listModel;
 	private PersonaDaolmpl PersonaDao = new PersonaDaolmpl();
 
 	public PanelOpcionAgregar() {
@@ -105,10 +104,10 @@ public class PanelOpcionAgregar extends JPanel {
                 txtDni.setBackground(Color.RED);
                 Dnivacio = true;
                 }else {
-                if(!txtDni.getText().matches("[0-9]+")) {
+                if(!txtDni.getText().matches("[0-9]+") || txtDni.getText().length() != 8) {
                     
                 txtDni.setBackground(Color.RED);
-                JOptionPane.showMessageDialog(null, "El Dni debe contener sólo números", "Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El Dni debe ser válido", "Error",JOptionPane.ERROR_MESSAGE);
                 txtDni.setBackground(Color.WHITE);
                 return;
                 
@@ -134,10 +133,15 @@ public class PanelOpcionAgregar extends JPanel {
 
                 		if(!PersonaDao.ComprobarExistenciaPersona(txtDni.getText())) {
                             Persona Persona = new Persona(Integer.parseInt(txtDni.getText()), txtNombre.getText(), txtApellido.getText());
-                            PersonaDao.AgregarPersona(Persona);
-                            txtNombre.setText("");
-                            txtApellido.setText("");
-                            txtDni.setText("");
+                           if(PersonaDao.AgregarPersona(Persona)) {
+                        	   
+                        	   JOptionPane.showMessageDialog(null, "La persona fué agregada correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE );
+                        	   
+                        	   txtNombre.setText("");
+                               txtApellido.setText("");
+                               txtDni.setText("");
+                        	  
+                           }
                             
                             return;                         
                          }else {
@@ -168,6 +172,5 @@ public class PanelOpcionAgregar extends JPanel {
 	
 	public void setDefaultListModel(DefaultListModel<Persona> listModelRecibido)
 	{
-		this.listModel = listModelRecibido;
 	}
 }
