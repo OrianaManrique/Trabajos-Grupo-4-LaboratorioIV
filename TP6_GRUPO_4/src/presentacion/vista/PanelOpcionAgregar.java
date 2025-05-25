@@ -13,8 +13,11 @@ import javax.swing.JButton;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.TextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class PanelOpcionAgregar extends JPanel {
 
@@ -43,16 +46,53 @@ public class PanelOpcionAgregar extends JPanel {
 		add(lblDni);
 		
 		txtNombre = new JTextField();
+		txtNombre.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			    char ingreso = e.getKeyChar();
+				
+				if (!((ingreso >= 'a' && ingreso <= 'z') || (ingreso >= 'A' && ingreso <= 'Z') ||
+	                    (ingreso == KeyEvent.VK_BACK_SPACE) || (ingreso == KeyEvent.VK_DELETE))) {
+	                    e.consume();
+	                }
+				
+			}
+		});
 		txtNombre.setBounds(250, 65, 101, 20);
 		add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		txtApellido = new JTextField();
+		txtApellido.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				 char ingreso = e.getKeyChar();
+					
+					if (!((ingreso >= 'a' && ingreso <= 'z') || (ingreso >= 'A' && ingreso <= 'Z') ||
+		                    (ingreso == KeyEvent.VK_BACK_SPACE) || (ingreso == KeyEvent.VK_DELETE))) {
+		                    e.consume();
+		                }
+			}
+		});
 		txtApellido.setColumns(10);
 		txtApellido.setBounds(250, 118, 101, 20);
 		add(txtApellido);
 		
 		txtDni = new JTextField();
+		txtDni.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				char ingreso = e.getKeyChar();
+				
+				if (!Character.isDigit(ingreso)) {
+					e.consume();
+				}
+				
+			}
+		});
 		txtDni.setColumns(10);
 		txtDni.setBounds(250, 170, 101, 20);
 		add(txtDni);
