@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import Entidad.Persona;
 import presentacion.vista.PanelOpcionAgregar;
+import presentacion.vista.PanelOpcionEliminar;
 import presentacion.vista.PanelOpcionModificar;
 
 
@@ -92,6 +93,13 @@ public class Principal extends JFrame {
 		
 		menuItemEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				contentPane.removeAll();
+				PanelOpcionEliminar panel = new PanelOpcionEliminar();
+                panel.setDefaultListModel(listModel);
+                contentPane.add(panel);
+                contentPane.repaint();
+                contentPane.revalidate();
 				
 			}
 		});
