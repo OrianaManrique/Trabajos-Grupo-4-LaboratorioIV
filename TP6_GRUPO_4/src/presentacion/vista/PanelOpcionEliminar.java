@@ -2,17 +2,15 @@ package presentacion.vista;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
-
 import Entidad.Persona;
-import dao.PersonaDao;
-import daoImpl.PersonaDaolmpl;
-
-import javax.swing.event.*;
 
 public class PanelOpcionEliminar extends JPanel {
-    private DefaultListModel<Persona> listModel;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private DefaultListModel<Persona> listModel;
     private JList<Persona> jListPersonas;
     private JScrollPane scrollPanelPersonas;
     private JButton btnEliminar;
@@ -55,7 +53,7 @@ public class PanelOpcionEliminar extends JPanel {
         		return;
         	}
         	
-        	int confirmacion = JOptionPane.showConfirmDialog(null, "¿Esta seguro de eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        	int confirmacion = JOptionPane.showConfirmDialog(null, "ï¿½Esta seguro de eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION);
         	
         	if (confirmacion == JOptionPane.YES_OPTION) {
         		//negocioImpl.PersonaNegocioImpl neg = new negocioImpl.PersonaNegocioImpl();

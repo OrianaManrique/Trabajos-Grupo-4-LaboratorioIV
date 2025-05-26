@@ -24,7 +24,6 @@ public class PanelOpcionAgregar extends JPanel {
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private JTextField txtDni;
-	private DefaultListModel<Persona> listModel;
 	private PersonaDaolmpl PersonaDao = new PersonaDaolmpl();
 
 	public PanelOpcionAgregar() {
@@ -104,7 +103,7 @@ public class PanelOpcionAgregar extends JPanel {
                 if(!txtNombre.getText().matches("^[a-zA-Z0-9]*$")) { 
                 
                 txtNombre.setBackground(Color.RED);
-                JOptionPane.showMessageDialog(null, "El nombre no puede contener símbolos", "Error", 
+                JOptionPane.showMessageDialog(null, "El nombre no puede contener sï¿½mbolos", "Error", 
         JOptionPane.ERROR_MESSAGE);
                 txtNombre.setBackground(Color.WHITE);
                 return;
@@ -117,7 +116,7 @@ public class PanelOpcionAgregar extends JPanel {
                 if(!txtApellido.getText().matches("^[a-zA-Z0-9]*$")) { 
                 
                 txtApellido.setBackground(Color.RED);
-                JOptionPane.showMessageDialog(null, "El apellido no puede contener símbolos", "Error", 
+                JOptionPane.showMessageDialog(null, "El apellido no puede contener sï¿½mbolos", "Error", 
         JOptionPane.ERROR_MESSAGE);
                 txtApellido.setBackground(Color.WHITE);
                 return;
@@ -129,7 +128,7 @@ public class PanelOpcionAgregar extends JPanel {
                 if(!txtDni.getText().matches("[0-9]+")) {
                     
                 txtDni.setBackground(Color.RED);
-                JOptionPane.showMessageDialog(null, "El teléfono debe contener sólo números", "Error", 
+                JOptionPane.showMessageDialog(null, "El telï¿½fono debe contener sï¿½lo nï¿½meros", "Error", 
         JOptionPane.ERROR_MESSAGE);
                 txtDni.setBackground(Color.WHITE);
                 return;
@@ -174,6 +173,5 @@ public class PanelOpcionAgregar extends JPanel {
 	
 	public void setDefaultListModel(DefaultListModel<Persona> listModelRecibido)
 	{
-		this.listModel = listModelRecibido;
 	}
 }
