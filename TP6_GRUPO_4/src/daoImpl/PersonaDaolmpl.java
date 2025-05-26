@@ -149,7 +149,32 @@ public class PersonaDaolmpl implements PersonaDao{
         return Listapersonas;
     }
 
+    public boolean ComprobarExistenciaPersona(String dni) {
+        PreparedStatement statement;
+        ResultSet resultset = null;
+        Connection conexion = Conexion.getConexion().getSQLConexion();
 
+        try {
+            statement = conexion.prepareStatement("SELECT COUNT(*) FROM personas WHERE dni = ?");
+            statement.setString(1, dni);
+            
+            resultset = statement.executeQuery();
+            
+            if (resultset.next()) {
+                int count = resultset.getInt(1); 
+                if (count > 0) {
+                    return true; 
+                }           
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Error al verificar DNI: " + e.getMessage());
+        }
+        
+        return false;
+
+    }
+    
     private static Persona getPersona(ResultSet resultSet) throws SQLException
     {
         int dni = resultSet.getInt("Dni");
