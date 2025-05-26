@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import Entidad.Persona;
 import presentacion.vista.PanelOpcionAgregar;
 import presentacion.vista.PanelOpcionEliminar;
+import presentacion.vista.PanelOpcionListar;
 import presentacion.vista.PanelOpcionModificar;
 
 
@@ -50,23 +51,7 @@ public class Principal extends JFrame {
 		
 		JMenu mnNewMenu = new JMenu("Persona");
 		mnNewMenu.setFont(new Font("Trebuchet MS", Font.BOLD, 18));
-		menuBar.add(mnNewMenu);
-		JMenuItem menuItemEliminar = new JMenuItem("Eliminar");
-		menuItemEliminar.setFont(new Font("Trebuchet MS", Font.BOLD, 18));
-		mnNewMenu.add(menuItemEliminar);
-		menuItemEliminar.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        contentPane.removeAll(); // Limpia lo anterior
-		        PanelOpcionEliminar panelEliminar = new PanelOpcionEliminar(); // Crea el panel
-		        panelEliminar.setDefaultListModel(listModel); // Usa tu modelo
-		        contentPane.add(panelEliminar); // Muestra
-		        contentPane.revalidate();
-		        contentPane.repaint();
-		    }
-		});
-		
-		
-		
+		menuBar.add(mnNewMenu);	
 		
 		//Boton Agregar
 		JMenuItem menuItemAgregar = new JMenuItem("Agregar");
@@ -125,6 +110,12 @@ public class Principal extends JFrame {
 		menuItemListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				contentPane.removeAll();
+                PanelOpcionListar panel = new PanelOpcionListar();
+                panel.setDefaultListModel(listModel);
+                contentPane.add(panel);
+                contentPane.repaint();
+                contentPane.revalidate();
 			}
 		});
 		mnNewMenu.add(menuItemListar);

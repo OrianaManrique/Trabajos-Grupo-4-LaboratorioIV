@@ -14,9 +14,6 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionListener;
-
-import com.sun.tools.javac.util.Convert;
-
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -66,7 +63,6 @@ public class PanelOpcionModificar extends JPanel {
 	        	        
 	        	        for(Persona per : lPersonas) {
 	        	        	listModel.addElement(per);
-	        	        	System.out.println(listModel.elementAt(0));
 	        	        }
 	        	        
 	        			txtNombre.setText("");

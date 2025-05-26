@@ -130,6 +130,35 @@ public class PersonaDaolmpl implements PersonaDao{
 		return personas;
 	}
 
-    
+    public static ArrayList<Persona> ObtenerListaPersonas()
+    {
+        PreparedStatement statement;
+        ResultSet resultSet;
+        ArrayList<Persona> Listapersonas = new ArrayList<Persona>();
+        Conexion conexion = Conexion.getConexion();
+        try 
+        {
+            statement = conexion.getSQLConexion().prepareStatement(readall);
+            resultSet = statement.executeQuery();
+            while(resultSet.next())
+            {
+                Listapersonas.add(getPersona(resultSet));
+            }
+        } 
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+        return Listapersonas;
+    }
+
+
+    private static Persona getPersona(ResultSet resultSet) throws SQLException
+    {
+        int dni = resultSet.getInt("Dni");
+        String nombre = resultSet.getString("Nombre");
+        String apellido = resultSet.getString("Apellido");
+        return new Persona(dni, nombre, apellido);
+    }
     
 }

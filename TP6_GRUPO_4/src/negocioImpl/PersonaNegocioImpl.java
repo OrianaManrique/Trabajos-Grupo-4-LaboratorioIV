@@ -1,9 +1,5 @@
 package negocioImpl;
-
 import java.util.List;
-
-import com.sun.tools.javac.util.Convert;
-
 import dao.PersonaDao;
 import daoImpl.PersonaDaolmpl;
 import Entidad.Persona;
