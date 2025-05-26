@@ -51,6 +51,22 @@ public class Principal extends JFrame {
 		JMenu mnNewMenu = new JMenu("Persona");
 		mnNewMenu.setFont(new Font("Trebuchet MS", Font.BOLD, 18));
 		menuBar.add(mnNewMenu);
+		JMenuItem menuItemEliminar = new JMenuItem("Eliminar");
+		menuItemEliminar.setFont(new Font("Trebuchet MS", Font.BOLD, 18));
+		mnNewMenu.add(menuItemEliminar);
+		menuItemEliminar.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        contentPane.removeAll(); // Limpia lo anterior
+		        PanelOpcionEliminar panelEliminar = new PanelOpcionEliminar(); // Crea el panel
+		        panelEliminar.setDefaultListModel(listModel); // Usa tu modelo
+		        contentPane.add(panelEliminar); // Muestra
+		        contentPane.revalidate();
+		        contentPane.repaint();
+		    }
+		});
+		
+		
+		
 		
 		//Boton Agregar
 		JMenuItem menuItemAgregar = new JMenuItem("Agregar");
