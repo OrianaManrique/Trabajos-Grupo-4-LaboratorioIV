@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="dominio.SegurosDao" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,25 +66,33 @@
     
 <h2><strong>Agregar Seguros</strong></h2>
 
+<%
 
+	SegurosDao sDao = new SegurosDao();
+	int proxID = sDao.ObtenerProxId();
+
+ %>
 
 <div class="fila-formulario">
         <div class="bloque-etiquetas">
-            Id Seguro: </br>
+            Id Seguro:    </br>
 			Descripción: </br>
 			Tipo de Seguro: </br>
 			Costo contratación: </br>
 			Costo Máximo Asegurado: </br>
         </div>
         <div class="bloque-entradas">
-            <input type="text" id="idSeguro" name="idSeguro" readonly> </br>
+            <!-- <input type="text" id="idSeguro" name="idSeguro" readonly> </br> --> <%=proxID %><br>
             <input type="text" id="descripcion" name="descripcion"> </br>
             <select id="tipoSeguro" name="tipoSeguro" style= "width: 177px;"> 
                 <option>Seleccione...</option>
+                <option value="1">Seguro de Casas</option>
+                <option value="2">Seguro de Vida</option>
+                <option value="3">Seguro de Auto</option>
                 </select> </br>
             <input type="text" id="costoContratacion" name="costoContratacion"> </br>
             <input type="text" id="costoMaximoAsegurado" name="costoMaximoAsegurado"> </br>
-            <input type = "submit" name = "Aceptar" value= "Aceptar" /> </br>
+            <input type = "submit" name = btnAceptar value= "Aceptar" /> </br>
         </div>
     </div>
 
