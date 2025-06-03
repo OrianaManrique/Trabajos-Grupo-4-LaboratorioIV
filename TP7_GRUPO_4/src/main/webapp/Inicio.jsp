@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head><title>Inicio</title></head>
+
 <body>
  
     <a href= "Inicio.jsp">Inicio</a>
