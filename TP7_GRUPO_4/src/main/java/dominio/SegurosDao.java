@@ -46,6 +46,30 @@ public class SegurosDao {
 		
 	}
 	
+	public int AgregarSeguro(Seguro seguro) {
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int filas = 0;
+		Connection cn = null;
+		try {
+			cn = DriverManager.getConnection(host + dbName, user, pass); 
+			Statement st = cn.createStatement();
+			String qry = "Insert into seguros(descripcion,idTipo,costoContratacion,costoAsegurado) values ('"
+					+ seguro.getDescripcion() + "','" + seguro.getIdTipo() + "','"
+					+ seguro.getCostoContractacion() + "','" + seguro.getCostoAsegurado() + "')";
+			filas = st.executeUpdate(qry); 
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}		
+		return filas;		
+	}
 	
 	
 	
