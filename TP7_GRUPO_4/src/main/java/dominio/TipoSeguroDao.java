@@ -1,5 +1,11 @@
 package dominio;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 public class TipoSeguroDao {
 		
 	private String host = "jdbc:mysql://localhost:3306/";
@@ -8,11 +14,37 @@ public class TipoSeguroDao {
 	private String dbName = "segurosgroup";
 	
 	
-		
-		
+	public ArrayList<TipoSeguro> obtenerTipoSeguros() {
 
-	public TipoSeguroDao() {
-		// TODO Auto-generated constructor stub
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<TipoSeguro> ListaTipoSeguros = new ArrayList<TipoSeguro>();
+		Connection cn = null;
+		try{
+			cn = DriverManager.getConnection(host + dbName, user, pass);
+			Statement st = cn.createStatement();
+			ResultSet rs = st.executeQuery("Select idTipo,descripcion FROM tiposeguros");
+			
+			while(rs.next()){
+				
+				TipoSeguro tiposeguroRS = new TipoSeguro();
+				tiposeguroRS.setIdTipo((rs.getInt("idTipo"))); 
+				tiposeguroRS.setDescripcion((rs.getString("descripcion")));
+				
+				ListaTipoSeguros.add(tiposeguroRS);
+			}
+			cn.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+		
+		}
+		
+		return ListaTipoSeguros;
 	}
 
 }
