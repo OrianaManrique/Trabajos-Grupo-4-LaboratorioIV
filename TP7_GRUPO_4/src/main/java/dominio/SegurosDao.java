@@ -53,6 +53,7 @@ public class SegurosDao {
 		return id + 1;
 	}
 	
+	
 	public int AgregarSeguro(Seguro seguro) {
 		
 		try {

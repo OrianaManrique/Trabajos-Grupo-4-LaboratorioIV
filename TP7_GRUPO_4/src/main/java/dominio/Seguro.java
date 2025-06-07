@@ -11,11 +11,11 @@ public class Seguro {
 	// Constructores
 	public Seguro() {}	
 	
-	public Seguro(int id, String descripcion, int idTipo, float costoContractacion, float costoAsegurado) {
+	public Seguro(int id, String descripcion, int idTipo, float costoContratacion, float costoAsegurado) {
 		this.id = id;
 		this.descripcion = descripcion;
 		this.idTipo = idTipo;
-		this.costoContratacion = costoContractacion;
+		this.costoContratacion = costoContratacion;
 		this.costoAsegurado = costoAsegurado;
 	}
 	// Getters and Setters
