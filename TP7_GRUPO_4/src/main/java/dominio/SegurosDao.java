@@ -38,12 +38,19 @@ public class SegurosDao {
 			}
 
 			return id + 1;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		} finally {
-			return id + 1;
+			 try {
+		            if (cn != null) cn.close();
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
 		}
 		
+		return id + 1;
 	}
 	
 	public int AgregarSeguro(Seguro seguro) {
@@ -62,7 +69,7 @@ public class SegurosDao {
 			Statement st = cn.createStatement();
 			String qry = "Insert into seguros(descripcion,idTipo,costoContratacion,costoAsegurado) values ('"
 					+ seguro.getDescripcion() + "','" + seguro.getIdTipo() + "','"
-					+ seguro.getCostoContractacion() + "','" + seguro.getCostoAsegurado() + "')";
+					+ seguro.getCostoContratacion() + "','" + seguro.getCostoAsegurado() + "')";
 			filas = st.executeUpdate(qry); 
 		}
 		catch(Exception e) {

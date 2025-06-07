@@ -5,7 +5,7 @@ public class Seguro {
 	private int id;
 	private String descripcion;
 	private int idTipo;
-	private float costoContractacion;
+	private float costoContratacion;
 	private float costoAsegurado;
 	
 	// Constructores
@@ -15,7 +15,7 @@ public class Seguro {
 		this.id = id;
 		this.descripcion = descripcion;
 		this.idTipo = idTipo;
-		this.costoContractacion = costoContractacion;
+		this.costoContratacion = costoContractacion;
 		this.costoAsegurado = costoAsegurado;
 	}
 	// Getters and Setters
@@ -37,11 +37,11 @@ public class Seguro {
 	public void setIdTipo(int idTipo) {
 		this.idTipo = idTipo;
 	}
-	public float getCostoContractacion() {
-		return costoContractacion;
+	public float getCostoContratacion() {
+		return costoContratacion;
 	}
-	public void setCostoContractacion(float costoContractacion) {
-		this.costoContractacion = costoContractacion;
+	public void setCostoContratacion(float costoContratacion) {
+		this.costoContratacion = costoContratacion;
 	}
 	public float getCostoAsegurado() {
 		return costoAsegurado;

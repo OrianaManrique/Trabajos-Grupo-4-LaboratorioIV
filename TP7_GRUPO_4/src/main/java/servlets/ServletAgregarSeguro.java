@@ -49,7 +49,7 @@ public class ServletAgregarSeguro extends HttpServlet {
 			
 			seguro.setDescripcion( request.getParameter("descripcion") );
 			seguro.setIdTipo( Integer.parseInt(request.getParameter("tipoSeguro")));
-			seguro.setCostoContractacion( Float.parseFloat(request.getParameter("costoContratacion")));
+			seguro.setCostoContratacion( Float.parseFloat(request.getParameter("costoContratacion")));
 			seguro.setCostoAsegurado(Float.parseFloat(request.getParameter("costoMaximoAsegurado")));			
 			
 			filas = sDao.AgregarSeguro(seguro);
