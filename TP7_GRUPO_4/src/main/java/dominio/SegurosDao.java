@@ -3,6 +3,7 @@ package dominio;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.sql.Connection;
 
 
@@ -79,6 +80,41 @@ public class SegurosDao {
 		return filas;		
 	}
 	
-	
+	public ArrayList<Seguro> obtenerSeguros() {
+   	
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<Seguro> ListaSeguros = new ArrayList<Seguro>();
+		Connection cn = null;
+		try{
+			cn = DriverManager.getConnection(host + dbName, user, pass);
+			Statement st = cn.createStatement();
+			ResultSet rs = st.executeQuery("SELECT idSeguro , descripcion , idTipo , costoContratacion , costoAsegurado FROM seguros");
+			
+			while(rs.next()){
+												
+				Seguro seguroRs = new Seguro();
+				seguroRs.setId(rs.getInt("idSeguro"));
+				seguroRs.setDescripcion(rs.getString("descripcion"));
+				seguroRs.setIdTipo(rs.getInt("idTipo"));
+				seguroRs.setCostoContratacion(rs.getInt("costoContratacion"));
+				seguroRs.setCostoAsegurado(rs.getInt("costoAsegurado"));
+
+				ListaSeguros.add(seguroRs);
+			}
+			
+			cn.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+		
+		}
+		
+		return ListaSeguros;
+	}
 	
 }
