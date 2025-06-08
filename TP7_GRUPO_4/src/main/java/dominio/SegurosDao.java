@@ -1,6 +1,7 @@
 package dominio;
 
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -114,6 +115,49 @@ public class SegurosDao {
 		}
 		
 		return ListaSeguros;
+	}
+	
+	
+	public ArrayList<Seguro> obtenerSegurosFiltrados(int tipoid) {
+	   	
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<Seguro> ListaSegurosFiltrados = new ArrayList<Seguro>();
+		Connection cn = null;
+		try{
+			
+			cn = DriverManager.getConnection(host + dbName, user, pass);
+			PreparedStatement ps = cn.prepareStatement("SELECT idSeguro , descripcion , idTipo , costoContratacion , costoAsegurado\r\n"
+					+ "FROM seguros\r\n"
+					+ "WHERE idTipo = ?;");
+			ps.setInt(1, tipoid);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			
+			while(rs.next()){
+												
+				Seguro seguroRs = new Seguro();
+				seguroRs.setId(rs.getInt("idSeguro"));
+				seguroRs.setDescripcion(rs.getString("descripcion"));
+				seguroRs.setIdTipo(rs.getInt("idTipo"));
+				seguroRs.setCostoContratacion(rs.getInt("costoContratacion"));
+				seguroRs.setCostoAsegurado(rs.getInt("costoAsegurado"));
+
+				ListaSegurosFiltrados.add(seguroRs);
+			}
+			
+			cn.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+		
+		}
+		
+		return ListaSegurosFiltrados;
 	}
 	
 }

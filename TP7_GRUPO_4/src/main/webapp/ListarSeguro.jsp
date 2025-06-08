@@ -4,7 +4,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dominio.Seguro"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,70 +12,86 @@
 <title>ListarSeguros</title>
 
 <style>
-   a{ 
-     margin-right: 10px;
-   }
-
+a {
+	margin-right: 10px;
+}
 </style>
 
 </head>
 <body>
-    <a href= "Inicio.jsp">  Inicio  </a>
-    <a href = "AgregarSeguro.jsp" >  Agregar Seguro  </a>
-    <a href = "ServletListarSeguro?Param=1" >  Listar  Seguro  </a>
+	<a href="Inicio.jsp"> Inicio </a>
+	<a href="AgregarSeguro.jsp"> Agregar Seguro </a>
+	<a href="ServletListarSeguro?Param=1"> Listar Seguro </a>
 
-    <hr>
+	<hr>
 
-    <h2> Tipo de seguros en la base de datos</h2>
+	<h2>Tipo de seguros en la base de datos</h2>
 
-    <form>
-     
-    <%
-         ArrayList<Seguro> ListaSeguros = null;
-         if (request.getAttribute("listaSeguros") != null) {
-        	 ListaSeguros = (ArrayList<Seguro>) request.getAttribute("listaSeguros");
-         }
+	<form action="ServletListarSeguro" method="post">
 
-     %> 
-        
-    <p>Busqueda por tipo de seguros: 
-    <select name = "tipoSeguro"> 
-    <option> Seleccione... </option>
-    </select>
+		<%
+		TipoSeguroDao tsdao = new TipoSeguroDao();
+		ArrayList<TipoSeguro> tipos = tsdao.obtenerTipoSeguros();
 
-    <input type = "submit"  name="btnFiltrar" value="Filtrar">
+		ArrayList<Seguro> ListaSeguros = null;
+		if (request.getAttribute("listaSeguros") != null) {
+			ListaSeguros = (ArrayList<Seguro>) request.getAttribute("listaSeguros");
+		}
+		%>
 
-    </p>
+		<p>
+			Busqueda por tipo de seguros: <select name="tipoSeguro"
+				style="width: 177px;">
+				<option>Seleccione...</option>
+				<%
+				for (TipoSeguro tipo : tipos) {
+				%>
+				<option value="<%=tipo.getIdTipo()%>"><%=tipo.getDescripcion()%></option>
 
-    <table border= "1">
+				<%
+				}
+				%>
+			</select> <input type="submit" name="btnFiltrar" value="Filtrar">
 
-    <tr> <th> ID <br> Seguro </th>  <th> Descripción Seguro </th> <th> Descripción <br> Tipo seguro </th> <th>Costo <br> contratacion </th> <th>Costo Maximo <br> Asegurado </th> </tr>
+		</p>
 
-    <%      
-            TipoSeguroDao tiposegurodao = new TipoSeguroDao();
-            
-            for (Seguro seg : ListaSeguros) {
-            %>
-             
-                
-                
-            <tr>
-                <td><%=seg.getId()%></td>
-                <td><%=seg.getDescripcion()%></td>
-                <td><%= tiposegurodao.obtenerTipoSeguroporID(seg.getIdTipo()) %></td>
-                <td><%=seg.getCostoContratacion()%></td>
-                <td><%=seg.getCostoAsegurado()%></td>
+		<table border="1">
 
-            </tr>
-            <%
-            }
-            %>
+			<tr>
+				<th>ID <br> Seguro
+				</th>
+				<th>Descripción Seguro</th>
+				<th>Descripción <br> Tipo seguro
+				</th>
+				<th>Costo <br> contratacion
+				</th>
+				<th>Costo Maximo <br> Asegurado
+				</th>
+			</tr>
 
-        </table>
+			<%
+			TipoSeguroDao tiposegurodao = new TipoSeguroDao();
+
+			for (Seguro seg : ListaSeguros) {
+			%>
+
+			<tr>
+				<td><%=seg.getId()%></td>
+				<td><%=seg.getDescripcion()%></td>
+				<td><%=tiposegurodao.obtenerTipoSeguroporID(seg.getIdTipo())%></td>
+				<td><%=seg.getCostoContratacion()%></td>
+				<td><%=seg.getCostoAsegurado()%></td>
+
+			</tr>
+			<%
+			}
+			%>
+
+		</table>
 
 
 
-    </form>
+	</form>
 
 </body>
 </html>

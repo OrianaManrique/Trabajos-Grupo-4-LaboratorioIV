@@ -13,7 +13,7 @@
 
 <style>
 body {
-	font-family: Arial;
+	/*font-family: Arial;*/
 }
 
 input, select {
