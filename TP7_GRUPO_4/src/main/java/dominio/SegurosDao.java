@@ -15,8 +15,7 @@ public class SegurosDao {
 	private String dbName = "segurosgroup";
 
 	public int ObtenerProxId() {
-		
-		
+			
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {

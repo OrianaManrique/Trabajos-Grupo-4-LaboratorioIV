@@ -1,3 +1,5 @@
+<%@page import="dominio.TipoSeguroDao"%>
+<%@page import="dominio.TipoSeguro"%>
 <%@page import="dominio.SegurosDao"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dominio.Seguro"%>
@@ -49,15 +51,18 @@
 
     <tr> <th> ID <br> Seguro </th>  <th> Descripción Seguro </th> <th> Descripción <br> Tipo seguro </th> <th>Costo <br> contratacion </th> <th>Costo Maximo <br> Asegurado </th> </tr>
 
-    <%
+    <%      
+            TipoSeguroDao tiposegurodao = new TipoSeguroDao();
+            
             for (Seguro seg : ListaSeguros) {
             %>
+             
+                
+                
             <tr>
-
-
                 <td><%=seg.getId()%></td>
                 <td><%=seg.getDescripcion()%></td>
-                <td><%=seg.getIdTipo()%></td>
+                <td><%= tiposegurodao.obtenerTipoSeguroporID(seg.getIdTipo()) %></td>
                 <td><%=seg.getCostoContratacion()%></td>
                 <td><%=seg.getCostoAsegurado()%></td>
 
