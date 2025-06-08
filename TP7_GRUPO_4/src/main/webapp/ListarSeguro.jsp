@@ -2,7 +2,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dominio.Seguro"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,14 +14,13 @@
      margin-right: 10px;
    }
 
-
 </style>
 
 </head>
 <body>
     <a href= "Inicio.jsp">  Inicio  </a>
     <a href = "AgregarSeguro.jsp" >  Agregar Seguro  </a>
-    <a href = "ListarSeguro.jsp" >  Listar  Seguro  </a>
+    <a href = "ServletListarSeguro?Param=1" >  Listar  Seguro  </a>
 
     <hr>
 
@@ -29,12 +28,14 @@
 
     <form>
      
-    <% 
-       SegurosDao seguroDao = new SegurosDao();
-       ArrayList<Seguro> ListaSeguros = null;
-       ListaSeguros = seguroDao.obtenerSeguros(); 
-    %> 
-     
+    <%
+         ArrayList<Seguro> ListaSeguros = null;
+         if (request.getAttribute("listaSeguros") != null) {
+        	 ListaSeguros = (ArrayList<Seguro>) request.getAttribute("listaSeguros");
+         }
+
+     %> 
+        
     <p>Busqueda por tipo de seguros: 
     <select name = "tipoSeguro"> 
     <option> Seleccione... </option>
@@ -48,15 +49,24 @@
 
     <tr> <th> ID <br> Seguro </th>  <th> Descripción Seguro </th> <th> Descripción <br> Tipo seguro </th> <th>Costo <br> contratacion </th> <th>Costo Maximo <br> Asegurado </th> </tr>
 
-    <tr>
-       <td></td>
-       <td></td>
-       <td></td>
-       <td></td>
-       <td></td>
-    </tr>
+    <%
+            for (Seguro seg : ListaSeguros) {
+            %>
+            <tr>
 
-    </table>
+
+                <td><%=seg.getId()%></td>
+                <td><%=seg.getDescripcion()%></td>
+                <td><%=seg.getIdTipo()%></td>
+                <td><%=seg.getCostoContratacion()%></td>
+                <td><%=seg.getCostoAsegurado()%></td>
+
+            </tr>
+            <%
+            }
+            %>
+
+        </table>
 
 
 
