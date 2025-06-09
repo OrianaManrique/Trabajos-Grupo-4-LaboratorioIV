@@ -42,7 +42,7 @@ a {
 		<p>
 			Busqueda por tipo de seguros: <select name="tipoSeguro"
 				style="width: 177px;">
-				<option>Seleccione...</option>
+				<option value = "" >Seleccione...</option>
 				<%
 				for (TipoSeguro tipo : tipos) {
 				%>
@@ -71,7 +71,7 @@ a {
 
 			<%
 			TipoSeguroDao tiposegurodao = new TipoSeguroDao();
-
+			if (ListaSeguros != null) {
 			for (Seguro seg : ListaSeguros) {
 			%>
 
@@ -84,6 +84,7 @@ a {
 
 			</tr>
 			<%
+			}
 			}
 			%>
 

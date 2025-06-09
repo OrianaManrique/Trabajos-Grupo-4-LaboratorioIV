@@ -54,16 +54,19 @@ public class ServletListarSeguro extends HttpServlet {
 		
 		if(request.getParameter("btnFiltrar")!= null)
 		{
+			if (!request.getParameter("tipoSeguro").isEmpty()) {
 			ArrayList<Seguro> listafiltrada;
 			SegurosDao sDao = new SegurosDao();
+			
 			int idtipo= Integer.parseInt(request.getParameter("tipoSeguro"));
 			
 			listafiltrada = sDao.obtenerSegurosFiltrados(idtipo);
 			
-			request.setAttribute("listaFilt", listafiltrada);
+			request.setAttribute("listaSeguros", listafiltrada);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguro.jsp");   
 	        rd.forward(request, response);
+			}
 			
 		}
 		

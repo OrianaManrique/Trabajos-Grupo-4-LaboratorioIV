@@ -136,7 +136,6 @@ public class SegurosDao {
 					+ "WHERE idTipo = ?;");
 			ps.setInt(1, tipoid);
 			ResultSet rs = ps.executeQuery();
-			rs.next();
 			
 			while(rs.next()){
 												
