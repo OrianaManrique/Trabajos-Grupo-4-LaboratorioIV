@@ -9,7 +9,7 @@
     <a href= "Inicio.jsp">Inicio</a>
     <a href = "AgregarSeguro.jsp" > Agregar Seguro </a>
     <a href = "ServletListarSeguro?Param=1" > Listar  Seguro </a>
-    
+    <hr>
     <h2>Soy la página inicio</h2>
     
 </body>
