@@ -34,6 +34,7 @@ a {
 		ArrayList<TipoSeguro> tipos = tsdao.obtenerTipoSeguros();
 
 		ArrayList<Seguro> ListaSeguros = null;
+		
 		if (request.getAttribute("listaSeguros") != null) {
 			ListaSeguros = (ArrayList<Seguro>) request.getAttribute("listaSeguros");
 		}

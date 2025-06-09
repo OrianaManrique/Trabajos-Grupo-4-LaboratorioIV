@@ -94,11 +94,27 @@ a {
 				</select> <br> <input type="text" id="costoContratacion"
 					name="costoContratacion"> <br> <input type="text"
 					id="costoMaximoAsegurado" name="costoMaximoAsegurado"> <br>
-				<input type="submit" name=btnAceptar value="Aceptar" /> <br>
+				
 			</div>
-		</div>
-
-		<br> <input type="submit" name="Aceptar2" value="Aceptar" /> <br>
+			
+			</div>
+			
+			<% 
+			if (request.getAttribute("CantFilas") != null){
+				
+			%>
+			
+			<h2 style="color: green;">Seguro agregado con éxito.</h2>
+			
+			<%	
+			}else
+			{
+			 %>
+			<h2 style="color: red;">El Seguro no pudo ser agregado.</h2>
+			<%
+			}
+			%>
+		<br> <input type="submit" name="btnAceptar" value="Aceptar" /> <br>
 
 
 	</form>
