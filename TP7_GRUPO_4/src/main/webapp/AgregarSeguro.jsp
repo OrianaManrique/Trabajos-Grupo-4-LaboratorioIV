@@ -80,7 +80,7 @@ a {
 				<%=proxID%><br> <input type="text" id="descripcion"
 					name="descripcion"> <br> <select id="tipoSeguro"
 					name="tipoSeguro" style="width: 177px;">
-					<option>Seleccione...</option>
+					<option value = "">Seleccione...</option>
 					<%
 					for (TipoSeguro tipo : tipos) {
 					%>
@@ -108,7 +108,7 @@ a {
 			<%	
 			}else{
 			 %>
-			<h2 style="color: red;">El Seguro no pudo ser agSegado.</h2>
+			<h2 style="color: red;">El Seguro no pudo ser agregado.</h2>
 			<%
 			}
 			%>

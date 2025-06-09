@@ -36,9 +36,10 @@ public class ServletAgregarSeguro extends HttpServlet {
 			SegurosDao sDao = new SegurosDao();
 			Seguro seguro = new Seguro();
 
-			if (request.getParameter("descripcion") != null && request.getParameter("tipoSeguro") != null
-					&& request.getParameter("costoContratacion") != null
-					&& request.getParameter("costoMaximoAsegurado") != null) {
+			if (!request.getParameter("descripcion").isEmpty() && !request.getParameter("tipoSeguro").isEmpty()
+					&& !request.getParameter("tipoSeguro").isEmpty()
+					&& !request.getParameter("costoContratacion").isEmpty()
+					&& !request.getParameter("costoMaximoAsegurado").isEmpty() ) {
 
 				seguro.setDescripcion(request.getParameter("descripcion"));
 				seguro.setIdTipo(Integer.parseInt(request.getParameter("tipoSeguro")));

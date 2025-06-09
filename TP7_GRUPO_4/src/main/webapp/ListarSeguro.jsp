@@ -15,6 +15,11 @@
 a {
 	margin-right: 10px;
 }
+
+.ocultarTabla {
+            display: none; / Oculta la tabla y no ocupa espacio */
+}
+   
 </style>
 
 </head>
@@ -56,7 +61,7 @@ a {
 
 		</p>
 
-		<table border="1">
+		<table id = "tablaSeguros "border="1">
 
 			<tr>
 				<th>ID <br> Seguro
@@ -72,7 +77,7 @@ a {
 
 			<%
 			TipoSeguroDao tiposegurodao = new TipoSeguroDao();
-			if (ListaSeguros != null) {
+			if (ListaSeguros != null && !ListaSeguros.isEmpty() ) {
 			for (Seguro seg : ListaSeguros) {
 			%>
 
@@ -86,13 +91,16 @@ a {
 			</tr>
 			<%
 			}
-			}
+			}else
+			{
 			%>
-
+			
 		</table>
-
-
-
+		<%
+			}
+		%>
+		<!-- <h2 style="color: red;">No hay registros de ese tipo de seguro.</h2>  -->
+	
 	</form>
 
 </body>
