@@ -12,55 +12,49 @@ import javax.servlet.http.HttpServletResponse;
 import dominio.Seguro;
 import dominio.SegurosDao;
 
-/**
- * Servlet implementation class ServletAgregarSeguro
- */
 @WebServlet("/ServletAgregarSeguro")
 public class ServletAgregarSeguro extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletAgregarSeguro() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	private static final long serialVersionUID = 1L;
+
+	public ServletAgregarSeguro() {
+		super();
+
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		int filas = 0;
-		if(request.getParameter("btnAceptar")!= null)
-		{
+		if (request.getParameter("btnAceptar") != null) {
 			SegurosDao sDao = new SegurosDao();
 			Seguro seguro = new Seguro();
-			
-			
-			seguro.setDescripcion( request.getParameter("descripcion") );
-			seguro.setIdTipo( Integer.parseInt(request.getParameter("tipoSeguro")));
-			seguro.setCostoContratacion( Float.parseFloat(request.getParameter("costoContratacion")));
-			seguro.setCostoAsegurado(Float.parseFloat(request.getParameter("costoMaximoAsegurado")));			
-			
-			filas = sDao.AgregarSeguro(seguro);
-			
+
+			if (request.getParameter("descripcion") != null && request.getParameter("tipoSeguro") != null
+					&& request.getParameter("costoContratacion") != null
+					&& request.getParameter("costoMaximoAsegurado") != null) {
+
+				seguro.setDescripcion(request.getParameter("descripcion"));
+				seguro.setIdTipo(Integer.parseInt(request.getParameter("tipoSeguro")));
+				seguro.setCostoContratacion(Float.parseFloat(request.getParameter("costoContratacion")));
+				seguro.setCostoAsegurado(Float.parseFloat(request.getParameter("costoMaximoAsegurado")));
+
+				filas = sDao.AgregarSeguro(seguro);
+
+			}
+
 			request.setAttribute("CantFilas", filas);
 			RequestDispatcher rd = request.getRequestDispatcher("/AgregarSeguro.jsp");
-			rd.forward(request, response);			
-			
-		}		
-		
-		doGet(request, response);
+			rd.forward(request, response);
+
+		}
+
 	}
 
 }
