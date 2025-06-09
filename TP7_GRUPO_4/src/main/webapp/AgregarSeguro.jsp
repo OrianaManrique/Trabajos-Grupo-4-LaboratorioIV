@@ -41,10 +41,8 @@ a {
 
 .bloque-etiquetas {
 	flex: 0 0 auto;
-	/* No crece ni se encoge, toma solo el ancho necesario */
 	padding-right: 20px;
-	/* Espacio entre las etiquetas y los campos de entrada */
-	text-align: left; /* Alinea las etiquetas a la derecha */
+	text-align: left; 
 	margin-bottom: 0px;
 	line-height: 1.57;
 }
@@ -54,7 +52,7 @@ a {
 
 <body>
 
-	<form action="ServletAgregarSeguro" method="post">
+	<form action="ServletAgregarSeguro?Param2=1" method="post">
 
 		<a href="Inicio.jsp"> Inicio </a> <a href="AgregarSeguro.jsp">
 			Agregar Seguro </a> <a href="ServletListarSeguro?Param=1"> Listar Seguro </a> <br>
@@ -101,16 +99,19 @@ a {
 			
 			<% 
 			if (request.getAttribute("CantFilas") != null){
-				
+				int filas = (int) request.getAttribute("CantFilas");
+				if (filas > 0) {
 			%>
 			
 			<h2 style="color: green;">Seguro agregado con éxito.</h2>
 			
 			<%	
-			}else
-			{
+			}else{
 			 %>
-			<h2 style="color: red;">El Seguro no pudo ser agregado.</h2>
+			<h2 style="color: red;">El Seguro no pudo ser agSegado.</h2>
+			<%
+			}
+			%>
 			<%
 			}
 			%>
