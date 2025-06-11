@@ -35,6 +35,10 @@ a {
 	<form action="ServletListarSeguro" method="post">
 
 		<%
+		
+		String VisibilidadErrorFiltro = "hidden";
+		String VisibilidadTabla = "visible";
+		
 		TipoSeguroDao tsdao = new TipoSeguroDao();
 		ArrayList<TipoSeguro> tipos = tsdao.obtenerTipoSeguros();
 
@@ -42,6 +46,10 @@ a {
 		
 		if (request.getAttribute("listaSeguros") != null) {
 			ListaSeguros = (ArrayList<Seguro>) request.getAttribute("listaSeguros");
+		}
+		
+		if (request.getAttribute("VisibilidadErrorFiltro") != null) {
+			VisibilidadErrorFiltro = (String)request.getAttribute("VisibilidadErrorFiltro");
 		}
 		%>
 
@@ -57,11 +65,12 @@ a {
 				<%
 				}
 				%>
-			</select> <input type="submit" name="btnFiltrar" value="Filtrar">
+				
+			</select> <input type="submit" name="btnFiltrar" value="Filtrar"> <label id="lblErrorDescripcion" style="visibility:<%=VisibilidadErrorFiltro%>; color: red;" > *Seleccione un tipo de seguro </label>
 
 		</p>
 
-		<table id = "tablaSeguros "border="1">
+		<table style="visibility:<%=VisibilidadTabla%>" id = "tablaSeguros "border="1">
 
 			<tr>
 				<th>ID <br> Seguro

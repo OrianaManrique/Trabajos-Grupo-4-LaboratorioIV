@@ -69,8 +69,25 @@ a {
 
 		TipoSeguroDao dao = new TipoSeguroDao();
 		ArrayList<TipoSeguro> tipos = dao.obtenerTipoSeguros();
+		
+		String VisibilidadErrorDescripcion= "hidden";
+		String VisibilidadErrorTipoSeguro= "hidden";
+		String VisibilidadErrorCostoContratacion= "hidden";
+		String VisibilidadErrorCostoMaximo= "hidden";
+		
+		if (request.getAttribute("mostrarLabelDescripcion") != null &&  
+			request.getAttribute("mostrarLabelDescripcion") != null && 
+			request.getAttribute("mostrarLabelDescripcion") != null && 
+			request.getAttribute("mostrarLabelDescripcion") != null ){	
+			
+			VisibilidadErrorDescripcion = (String) request.getAttribute("mostrarLabelDescripcion");
+			VisibilidadErrorTipoSeguro = (String) request.getAttribute("mostrarLabelTipoSeguro");
+			VisibilidadErrorCostoContratacion = (String) request.getAttribute("mostrarLabelCostoContratacion");
+			VisibilidadErrorCostoMaximo = (String) request.getAttribute("mostrarLabelCostoMaximo");
+		}
+	
 		%>
-
+		
 		<div class="fila-formulario">
 			<div class="bloque-etiquetas">
 				Id Seguro: <br> Descripción: <br> Tipo de Seguro: <br>
@@ -78,9 +95,9 @@ a {
 			</div>
 			<div class="bloque-entradas">
 				<%=proxID%><br> <input type="text" id="descripcion"
-					name="descripcion"> <br> <select id="tipoSeguro"
-					name="tipoSeguro" style="width: 177px;">
-					<option value = "">Seleccione...</option>
+					name="descripcion"> <label id="lblErrorDescripcion" style="visibility:<%=VisibilidadErrorDescripcion%>; color: red;" > * </label> <br> <select id="tipoSeguro"
+					name="tipoSeguro"  style="width: 177px;">
+					<option value = "">Seleccione...</option> 
 					<%
 					for (TipoSeguro tipo : tipos) {
 					%>
@@ -89,9 +106,9 @@ a {
 					<%
 					}
 					%>
-				</select> <br> <input type="text" id="costoContratacion"
-					name="costoContratacion"> <br> <input type="text"
-					id="costoMaximoAsegurado" name="costoMaximoAsegurado"> <br>
+				</select> <label  id="lblErrorTipoSeguro" style="visibility:<%=VisibilidadErrorTipoSeguro%>; color: red;"> * </label> <br> <input  type="number" min="1" id="costoContratacion"
+					name="costoContratacion"> <label id="lblErrorCostoContra" style="visibility:<%=VisibilidadErrorCostoContratacion%>; color: red;"> * </label> <br> <input type="number"
+					min="1" id="costoMaximoAsegurado" name="costoMaximoAsegurado"> <label id="lblErrorCostoMaximo" style="visibility:<%=VisibilidadErrorCostoMaximo%>; color: red;"> * </label> <br>
 				
 			</div>
 			

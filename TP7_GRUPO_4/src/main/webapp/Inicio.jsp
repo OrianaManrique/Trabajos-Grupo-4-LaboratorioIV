@@ -2,7 +2,13 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head><title>Inicio</title></head>
+<head><title>Inicio</title>
+<style>
+a {
+	margin-right: 10px;
+}
+</style>
+</head>
 
 <body>
  

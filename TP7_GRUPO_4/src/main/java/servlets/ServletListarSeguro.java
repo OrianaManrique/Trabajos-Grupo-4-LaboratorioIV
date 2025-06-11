@@ -38,20 +38,35 @@ public class ServletListarSeguro extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+        
+		String visibilidadErrorFiltro = "hidden";
+		String visibilidadTabla = "visible";
+		
 		if (request.getParameter("btnFiltrar") != null) {
-			if (request.getParameter("tipoSeguro") != null) {
+			if (request.getParameter("tipoSeguro") != null && !request.getParameter("tipoSeguro").isEmpty()) {
 				ArrayList<Seguro> listafiltrada;
 				SegurosDao sDao = new SegurosDao();
 
-				int idtipo = Integer.parseInt(request.getParameter("tipoSeguro"));
+				int idtipo = Integer.parseInt(request.getParameter("tipoSeguro"));				
 
 				listafiltrada = sDao.obtenerSegurosFiltrados(idtipo);
 
 				request.setAttribute("listaSeguros", listafiltrada);
+				request.setAttribute("VisibilidadErrorFiltro", visibilidadErrorFiltro);
 
 				RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguro.jsp");
 				rd.forward(request, response);
+			}else {
+				
+				visibilidadErrorFiltro = "visible";
+				visibilidadTabla = "visible";
+				
+				request.setAttribute("VisibilidadErrorFiltro", visibilidadErrorFiltro);
+				request.setAttribute("VisibilidadTabla", visibilidadTabla);
+				RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguro.jsp");
+				rd.forward(request, response);
+
+				
 			}
 
 		}
