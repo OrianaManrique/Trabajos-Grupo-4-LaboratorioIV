@@ -51,6 +51,11 @@ a {
 		if (request.getAttribute("VisibilidadErrorFiltro") != null) {
 			VisibilidadErrorFiltro = (String)request.getAttribute("VisibilidadErrorFiltro");
 		}
+		
+		if (request.getAttribute("VisibilidadTabla") != null) {
+			VisibilidadTabla = (String)request.getAttribute("VisibilidadTabla");
+		}
+		
 		%>
 
 		<p>

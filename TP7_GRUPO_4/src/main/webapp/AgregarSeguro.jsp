@@ -14,6 +14,7 @@
 <style>
 body {
 	/*font-family: Arial;*/
+	
 }
 
 input, select {
@@ -42,7 +43,7 @@ a {
 .bloque-etiquetas {
 	flex: 0 0 auto;
 	padding-right: 20px;
-	text-align: left; 
+	text-align: left;
 	margin-bottom: 0px;
 	line-height: 1.57;
 }
@@ -55,7 +56,8 @@ a {
 	<form action="ServletAgregarSeguro?Param2=1" method="post">
 
 		<a href="Inicio.jsp"> Inicio </a> <a href="AgregarSeguro.jsp">
-			Agregar Seguro </a> <a href="ServletListarSeguro?Param=1"> Listar Seguro </a> <br>
+			Agregar Seguro </a> <a href="ServletListarSeguro?Param=1"> Listar
+			Seguro </a> <br>
 
 		<hr>
 
@@ -69,25 +71,16 @@ a {
 
 		TipoSeguroDao dao = new TipoSeguroDao();
 		ArrayList<TipoSeguro> tipos = dao.obtenerTipoSeguros();
-		
-		String VisibilidadErrorDescripcion= "hidden";
-		String VisibilidadErrorTipoSeguro= "hidden";
-		String VisibilidadErrorCostoContratacion= "hidden";
-		String VisibilidadErrorCostoMaximo= "hidden";
-		
-		if (request.getAttribute("mostrarLabelDescripcion") != null &&  
-			request.getAttribute("mostrarLabelDescripcion") != null && 
-			request.getAttribute("mostrarLabelDescripcion") != null && 
-			request.getAttribute("mostrarLabelDescripcion") != null ){	
-			
-			VisibilidadErrorDescripcion = (String) request.getAttribute("mostrarLabelDescripcion");
-			VisibilidadErrorTipoSeguro = (String) request.getAttribute("mostrarLabelTipoSeguro");
-			VisibilidadErrorCostoContratacion = (String) request.getAttribute("mostrarLabelCostoContratacion");
-			VisibilidadErrorCostoMaximo = (String) request.getAttribute("mostrarLabelCostoMaximo");
+
+		String error = "hidden";
+
+		if (request.getAttribute("txtvacio") != null) {
+
+			error = (String) request.getAttribute("txtvacio");
+
 		}
-	
 		%>
-		
+
 		<div class="fila-formulario">
 			<div class="bloque-etiquetas">
 				Id Seguro: <br> Descripción: <br> Tipo de Seguro: <br>
@@ -95,9 +88,9 @@ a {
 			</div>
 			<div class="bloque-entradas">
 				<%=proxID%><br> <input type="text" id="descripcion"
-					name="descripcion"> <label id="lblErrorDescripcion" style="visibility:<%=VisibilidadErrorDescripcion%>; color: red;" > * </label> <br> <select id="tipoSeguro"
-					name="tipoSeguro"  style="width: 177px;">
-					<option value = "">Seleccione...</option> 
+					name="descripcion"> <br> <select id="tipoSeguro"
+					name="tipoSeguro" style="width: 177px;">
+					<option value="">Seleccione...</option>
 					<%
 					for (TipoSeguro tipo : tipos) {
 					%>
@@ -106,33 +99,36 @@ a {
 					<%
 					}
 					%>
-				</select> <label  id="lblErrorTipoSeguro" style="visibility:<%=VisibilidadErrorTipoSeguro%>; color: red;"> * </label> <br> <input  type="number" min="1" id="costoContratacion"
-					name="costoContratacion"> <label id="lblErrorCostoContra" style="visibility:<%=VisibilidadErrorCostoContratacion%>; color: red;"> * </label> <br> <input type="number"
-					min="1" id="costoMaximoAsegurado" name="costoMaximoAsegurado"> <label id="lblErrorCostoMaximo" style="visibility:<%=VisibilidadErrorCostoMaximo%>; color: red;"> * </label> <br>
-				
+				</select> <br> <input type="number" min="1" id="costoContratacion"
+					name="costoContratacion"> <br> <input type="number" min="1"
+					id="costoMaximoAsegurado" name="costoMaximoAsegurado"> <br>
+
 			</div>
-			
-			</div>
-			
-			<% 
-			if (request.getAttribute("CantFilas") != null){
-				int filas = (int) request.getAttribute("CantFilas");
-				if (filas > 0) {
-			%>
-			
-			<h2 style="color: green;">Seguro agregado con éxito.</h2>
-			
-			<%	
-			}else{
-			 %>
-			<h2 style="color: red;">El Seguro no pudo ser agregado.</h2>
-			<%
-			}
-			%>
-			<%
-			}
-			%>
-		<br> <input type="submit" name="btnAceptar" value="Aceptar" /> <br>
+
+		</div>
+
+		<%
+		if (request.getAttribute("CantFilas") != null) {
+			int filas = (int) request.getAttribute("CantFilas");
+			if (filas > 0) {
+		%>
+
+		<h2 style="color: green;">Seguro agregado con éxito.</h2>
+
+		<%
+		} else {
+		%>
+		<h2 style="color: red;">El Seguro no pudo ser agregado.</h2>
+		<%
+		}
+		%>
+		<%
+		}
+		%>
+
+		<label id="lblError" style="visibility:<%=error%>; color: red;">
+			*Todos los campos deben estar completos. </label> <br> <br> <input
+			type="submit" name="btnAceptar" value="Aceptar" />
 
 
 	</form>

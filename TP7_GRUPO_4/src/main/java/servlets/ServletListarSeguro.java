@@ -34,9 +34,9 @@ public class ServletListarSeguro extends HttpServlet {
 			rd.forward(request, response);
 
 		}
-	}
+	} 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
         
 		String visibilidadErrorFiltro = "hidden";
@@ -58,14 +58,20 @@ public class ServletListarSeguro extends HttpServlet {
 				rd.forward(request, response);
 			}else {
 				
+				ArrayList<Seguro> lista;
+				SegurosDao sDao = new SegurosDao();
+				
 				visibilidadErrorFiltro = "visible";
 				visibilidadTabla = "visible";
 				
+				
+				lista = sDao.obtenerSeguros();
+
 				request.setAttribute("VisibilidadErrorFiltro", visibilidadErrorFiltro);
+				request.setAttribute("listaSeguros", lista);
 				request.setAttribute("VisibilidadTabla", visibilidadTabla);
 				RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguro.jsp");
 				rd.forward(request, response);
-
 				
 			}
 

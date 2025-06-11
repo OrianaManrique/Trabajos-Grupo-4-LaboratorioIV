@@ -32,10 +32,7 @@ public class ServletAgregarSeguro extends HttpServlet {
 			throws ServletException, IOException {
 
 		int filas = 0;
-		String mostrarLabelDescripcion="hidden";
-		String mostrarLabelTipoSeguro="hidden"; 
-		String mostrarLabelCostoContratacion="hidden"; 
-		String mostrarLabelCostoMaximo="hidden"; 
+		String txtvacio= "hidden";
 		
 		if (request.getParameter("btnAceptar") != null) {
 			SegurosDao sDao = new SegurosDao();
@@ -52,26 +49,15 @@ public class ServletAgregarSeguro extends HttpServlet {
 				seguro.setCostoAsegurado(Float.parseFloat(request.getParameter("costoMaximoAsegurado")));
 
 				filas = sDao.AgregarSeguro(seguro);
+			}else {
+				
+				txtvacio = "visible";
 			}
 				
-			if(request.getParameter("descripcion").isEmpty()) {		
-				mostrarLabelDescripcion = "visible";
-			}
-            if(request.getParameter("tipoSeguro").isEmpty()) {
-				mostrarLabelTipoSeguro = "visible";
-			}	
-            if(request.getParameter("costoContratacion").isEmpty()) {
-				mostrarLabelCostoContratacion = "visible";
-			}
-            if(request.getParameter("costoMaximoAsegurado").isEmpty()) {
-				mostrarLabelCostoMaximo = "visible";
-			}	
-										
+									
 			request.setAttribute("CantFilas", filas);
-			request.setAttribute("mostrarLabelDescripcion", mostrarLabelDescripcion);
-			request.setAttribute("mostrarLabelTipoSeguro", mostrarLabelTipoSeguro);
-			request.setAttribute("mostrarLabelCostoContratacion", mostrarLabelCostoContratacion);
-			request.setAttribute("mostrarLabelCostoMaximo", mostrarLabelCostoMaximo);
+			request.setAttribute("txtvacio", txtvacio);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/AgregarSeguro.jsp");
 			rd.forward(request, response);
 
