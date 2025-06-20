@@ -7,20 +7,32 @@
 <title>Confirmar Usuario</title>
 
  <style>
+  body {
+    background-color: #DCDCDC;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
   
   .ContenedorVentana{
   background-color: #4A217C; 
-  width: 700px; 
-  height: 350px; 
+  width: 500px; 
+  height: auto; 
+  margin: 40px auto;
+  padding: 15px;
+  padding-bottom: 20px;
   border-radius: 8px;
+  text-align: center;
   } 
   
   .ContenedorTitulo {
-  background-color: #E5E5E5; 
-  width: 300px; 
+  background-color: white; 
+  margin-top: 200px;
+  width: 280px;
   margin: 0 auto;
   text-align: center;
   border-radius: 8px;
+  padding: 2px;
   }
   
   .ContenedorBoton {
@@ -29,7 +41,9 @@
   }
     
   .btnConfirmar {
-  width: 260px; 
+  width: 230px; 
+  margin-top: 4px;
+  margin-bottom: 5px;
   }
   
   .FormularioUsuario{
@@ -55,6 +69,22 @@
   
   .lblUsuario{
    color: white;
+   font-size: 21px;
+  }
+  
+  .ContenedorControles input{
+  	padding: 15px;
+    border-radius: 15px;
+    border: none;
+    font-size: 15px;
+  	padding: 15px 30px;
+    border-radius: 15px;
+    border: none;
+    font-size: 18px;
+    background-color: #DCDCDC;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
   }
   
 </style>
@@ -79,22 +109,19 @@
 	   
 	    <label class="lblUsuario"> USUARIO </label>
 	    
-	    <input class="inputUsuario" type="text" id="txtDniCliente" name="txtDniCliente" placeholder="12345678.BANCO" readonly > <br/> <br/>
+	    <input class="inputUsuario" type="text" id="txtDniCliente" name="txtDniCliente" placeholder="12345678.BANCO" readonly > <br/> 
 						
-		<input type="password" id="txtContraseña" name="txtContraseña" placeholder="Ingrese una contraseña..."> <br/> <br/>
+		<input class="inputPassword" type="password" id="txtContraseña" name="txtContraseña" placeholder="Ingrese una contraseña..."> <br/> 
 		
-		<input type="password" id="txtContraseña2" name="txtContraseña2" placeholder="repita la contraseña...">  <br/> <br/>
+		<input class="inputPassword" type="password" id="txtContraseña2" name="txtContraseña2" placeholder="repita la contraseña...">  <br/> <br/>
 	   
 	   </form>
-	   		       
-		<br/> <br/>
 				
 		<div class="ContenedorBoton">
-		<br/> <br/>
 		 <input type="submit" style="color:#5F1AB4 "  class="btnConfirmar" name="btnConfirmar" value="CONFIRMAR"/>
 		</div>
 		
-		</div>	
+		</div>
 	</div>		         
          
 </body>
