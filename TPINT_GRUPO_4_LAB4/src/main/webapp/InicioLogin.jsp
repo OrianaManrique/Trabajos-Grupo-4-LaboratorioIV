@@ -68,12 +68,12 @@
      <div class="login-container">
         <h2>Iniciar Sesion</h2>
         <div class="form-body">
-        <form action="">
+        <form>
             <input type="text" name="dni" placeholder="DNI" required>
             <input type="text" name="password" placeholder="Contraseña" required>
             
             <input type="submit" value="Ingresar">
-            <input type="submit" value= "Registrarme" onclick="href='AgregarCliente.jsp'">
+            <input type="submit" value= "Registrarme" onclick="location.href='AgregarCliente.jsp'">
         </form>
         </div>
         </div>
