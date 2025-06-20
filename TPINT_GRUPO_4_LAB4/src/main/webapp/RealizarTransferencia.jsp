@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Realizar transferencia</title>
 <style>
+
 body {
 	margin: 0;
 	padding: 0;
