@@ -16,6 +16,7 @@
   
   .ContenedorTitulo {
   background-color: #1D1B1B; 
+  margin-top: 200px;
   width: 260px; 
   margin: 0 auto;
   text-align: center;
