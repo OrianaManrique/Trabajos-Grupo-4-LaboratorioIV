@@ -45,8 +45,9 @@
 
 </head>
 <body>
-
-  <div class="Contenedor" >
+   <a href="InicioLogin.jsp"> Inicio </a>
+   
+   <div class="Contenedor" >
         <div class="ContenedorTitulo">
            <h2>
 			<strong style="color:#5F1AB4 ">AGREGAR CLIENTE</strong>
@@ -95,6 +96,8 @@
 		
 		
 	</div>		
-
+                
+         
+         
 </body>
 </html>
