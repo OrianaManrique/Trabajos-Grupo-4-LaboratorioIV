@@ -25,7 +25,6 @@ body {
     letter-spacing: 1px;
 }
 
-/* Contenedor de saldos */
 .balance-container {
     display: flex;
     justify-content: center;
