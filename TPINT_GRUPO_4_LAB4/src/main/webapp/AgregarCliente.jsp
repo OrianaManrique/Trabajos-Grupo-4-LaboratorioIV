@@ -12,15 +12,7 @@
   width: 700px; 
   height: 500px; 
   border-radius: 8px;
-  }
-  
-  .ContenedorTitulo {
-  background-color: #1D1B1B; 
-  margin-top: 200px;
-  width: 260px; 
-  margin: 0 auto;
-  text-align: center;
-  }
+  }  
   
   .ContenedorTitulo {
   background-color: #E5E5E5; 
@@ -44,6 +36,10 @@
   margin-top: 15px;
   margin-left: 90px;
   gap:10px;
+  }
+  
+  .FormularioAgregarCLiente input{
+  border-radius: 8px;
   }
   
   .inputFechaNac{
@@ -73,11 +69,13 @@
         
          
 		<br/> <br/>
-	   
+	   	  
 	   <div class="ContenedorControles">
 	   
+	   <form class="FormularioAgregarCLiente">
+	  	   
 	   <div class="ContenedorColumna"> 
-	   
+	    
 	    <input type="text" id="txtDniCliente" name="txtDniCliente" placeholder="Ingrese su Dni...">
 		
 		<select id="ddlSexo" name="tipoSeguro" style="width: 177px;">
@@ -128,11 +126,14 @@
 		
 		<br/> <br/> 
 	   
+	   
+	    </form>
+	    
 	   </div>
 		
 		
 		<div class="ContenedorBoton">
-		 <input type="submit" style="color:#5F1AB4 "  class="btnAgregar" name="btnAgregar" value="AGREGAR"/>
+		 <input type="submit" style="color:#5F1AB4 " class="btnAgregar" name="btnAgregar" value="AGREGAR"/>
 		</div>
 		
 		
