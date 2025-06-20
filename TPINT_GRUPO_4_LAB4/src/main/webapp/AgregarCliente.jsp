@@ -7,10 +7,10 @@
 <title>Agregar Cliente</title>
 
  <style>
-  .Contenedor {
+  .ContenedorVentana{
   background-color: #4A217C; 
   width: 700px; 
-  height: 300px; 
+  height: 500px; 
   border-radius: 8px;
   }
   
@@ -38,7 +38,23 @@
   width: 260px; 
   }
   
-  .ContenedorControles {
+  .ContenedorColumna { 
+  display: flex;
+  margin-top: 15px;
+  margin-left: 90px;
+  gap:10px;
+  }
+  
+  .inputFechaNac{
+  width:167px; 
+  }
+  
+  .inputNacionalidad{
+  width:167px; 
+  }
+   
+  .inputDireccion{
+  width:167px; 
   }
   
 </style>
@@ -47,7 +63,7 @@
 <body>
    <a href="InicioLogin.jsp"> Inicio </a>
    
-   <div class="Contenedor" >
+   <div class="ContenedorVentana" >
         <div class="ContenedorTitulo">
            <h2>
 			<strong style="color:#5F1AB4 ">AGREGAR CLIENTE</strong>
@@ -58,8 +74,10 @@
 		<br/> <br/>
 	   
 	   <div class="ContenedorControles">
-	       
-	       <input type="text" id="txtDniCliente" name="txtDniCliente" placeholder="Ingrese su Dni...">
+	   
+	   <div class="ContenedorColumna"> 
+	   
+	    <input type="text" id="txtDniCliente" name="txtDniCliente" placeholder="Ingrese su Dni...">
 		
 		<select id="ddlSexo" name="tipoSeguro" style="width: 177px;">
 		
@@ -67,25 +85,47 @@
 					
 		</select>
 						
-		<input type="text" id="txtLocalidad" name="txtLocalidad" placeholder="Ingrese su Localidad..."> <br/> <br/>
+		<input type="text" id="txtLocalidad" name="txtLocalidad" placeholder="Ingrese su Localidad..."> 
+		
+	   </div>
+	       
+	       <br/> <br/>
+		
+		<div class="ContenedorColumna"> 
 		
 		<input type="text" id="txtCuil" name="txtCuil" placeholder="Ingrese su Cuil...">
 		
-		<input type="text" id="txtNacionalidad" name="txtNacionalidad" placeholder="Ingrese su Nacionalidad...">
+		<input class="inputNacionalidad" type="text" id="txtNacionalidad" name="txtNacionalidad" placeholder="Ingrese su Nacionalidad...">
 		
-		<input type="text" id="txtProvincia" name="txtProvincia" placeholder="Ingrese su Provincia..."> <br/> <br/>
+		<input type="text" id="txtProvincia" name="txtProvincia" placeholder="Ingrese su Provincia..."> 
+		
+		</div>
+		
+		<br/> <br/>
+		
+		<div class="ContenedorColumna"> 
 		
 		<input type="text" id="txtNombre" name="txtNombre" placeholder="Ingrese su Nombre...">
 		
-		<input type="date" id="txtFechaNacimiento" name="txtFechaNacimiento">
+		<input class="inputFechaNac" type="date" id="txtFechaNacimiento" name="txtFechaNacimiento">
 		
-		<input type="text" id="txtCorreo" name="txtCorreo" placeholder="Ingrese su Correo..."> <br/> <br/>
+		<input type="text" id="txtCorreo" name="txtCorreo" placeholder="Ingrese su Correo..."> 
+		
+		</div>
+		
+		<br/> <br/>
+		
+		<div class="ContenedorColumna"> 
 		
 		<input type="text" id="txtApellido" name="txtApellido" placeholder="Ingrese su Apellido...">
 		
-		<input type="text" id="txtDireccion" name="txtDireccion" placeholder="Ingrese su Dirección...">
+		<input class="inputDireccion" type="text" id="txtDireccion" name="txtDireccion" placeholder="Ingrese su Dirección...">
 		
-		<input type="text" id="txtDireccion" name="txtDireccion" placeholder="Ingrese su Teléfono..."> <br/> <br/> 
+		<input type="text" id="txtDireccion" name="txtDireccion" placeholder="Ingrese su Teléfono..."> 
+		
+		</div>
+		
+		<br/> <br/> 
 	   
 	   </div>
 		
