@@ -131,7 +131,7 @@ p {
   <div class="table-container">
     <a href="HistorialMovimientos.jsp"> Movimientos </a> 
     <br/>
-    <a href="NuevaTransferencia.jsp"> Nueva Transferencia </a>
+    <a href="RealizarTransferencia.jsp"> Nueva Transferencia </a>
     <br/>
     <a href="PedirPrestamo.jsp"> Solicitar Préstamo </a>
     <br/>
