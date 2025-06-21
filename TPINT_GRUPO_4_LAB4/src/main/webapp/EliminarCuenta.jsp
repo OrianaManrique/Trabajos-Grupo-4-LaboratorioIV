@@ -76,9 +76,8 @@ body {
 		<h2>ELIMINAR CUENTA</h2>
 		<div class="form-body">
 			<form>
-				<input type="text" name="dni" placeholder="Dni del cliente..."
-					required> <input type="text" name="Cuenta"
-					placeholder="Numero de cuenta..." required>
+				<input type="text" name="dni" placeholder="Dni del cliente o CUIL..."
+					required>
 
 				<div class="table-container">
 					<table class="movements-table">

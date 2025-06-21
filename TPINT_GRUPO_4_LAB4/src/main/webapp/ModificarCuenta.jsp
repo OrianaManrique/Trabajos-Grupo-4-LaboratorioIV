@@ -93,7 +93,7 @@
 		</div>
 
 		<input class="barraDeBusqueda" type="search"
-			placeholder="Ingrese el numero de cuenta..." style="width: 606px;">
+			placeholder="Ingrese el Dni del cliente o numero de cuenta..." style="width: 606px;">
 		<br />
 
 		<div class="ContenedorControles">
