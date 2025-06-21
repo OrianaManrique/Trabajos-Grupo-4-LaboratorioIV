@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PedirPrestamo</title>
+<title>AutorizarPrestamo</title>
 </head>
 <style>
 body {
@@ -55,7 +55,7 @@ body {
 <div class= "container">
 <div class = "texto-container">
 			<p>
-			<strong style="color:#5F1AB4 ">Pedir Préstamos</strong>
+			<strong style="color:#5F1AB4 ">Autorizar Prestamo</strong>
 		   </p>
 
 </div>

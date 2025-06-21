@@ -58,6 +58,8 @@ Usuario logueado - Cuenta Banco
     <a href="ListarCuenta.jsp"> Listar Cuenta </a>
     <br/>
     <br/>
+    <a href="AutorizarPrestamo.jsp"> Autorizar Prestamo </a> 
+    <br/>
     <a href="Reportes.jsp"> Reportes </a>
     <br/>
 </div>
