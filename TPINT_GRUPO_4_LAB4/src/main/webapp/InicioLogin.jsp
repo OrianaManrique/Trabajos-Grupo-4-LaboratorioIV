@@ -76,16 +76,21 @@ body {
 <body>
 
 	<div class="login-container">
-		<h2>Iniciar Sesion</h2>
+		<h2>Iniciar Sesión</h2>
 		<div class="form-body">
-			<form>
-				<input type="text" name="dni" placeholder="DNI" required> <input
-					type="text" name="password" placeholder="Contraseña" required>
-
-				<input type="submit" value="Ingresar"> <input type="submit"
-					value="Registrarme" onclick="location.href='AgregarCliente.jsp'">
+			<form method="post" action="ServletLogin">
+				<input type="text" name="usuario" placeholder="Usuario" required>
+				<input type="password" name="clave" placeholder="Contraseña" required>
+				<input type="submit" value="Ingresar">
+			</form>
+			<form action="AgregarCliente.jsp">
+				<input type="submit" value="Registrarme">
 			</form>
 		</div>
+		<% if (request.getAttribute("error") != null) { %>
+			<p style="color:red;"><%= request.getAttribute("error") %></p>
+		<% } %>
 	</div>
+
 </body>
 </html>
