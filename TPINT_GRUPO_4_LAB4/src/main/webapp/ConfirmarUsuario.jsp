@@ -7,6 +7,7 @@
 <title>Confirmar Usuario</title>
 
  <style>
+ 
   body {
     background-color: #DCDCDC;
     font-family: Arial, sans-serif;

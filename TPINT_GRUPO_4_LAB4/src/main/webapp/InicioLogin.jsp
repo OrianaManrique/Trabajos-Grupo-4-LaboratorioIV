@@ -7,6 +7,7 @@
 <title>InicioLogin</title>
 </head>
 <style>
+
 body {
 	margin: 0;
 	padding: 0;

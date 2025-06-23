@@ -7,6 +7,7 @@
 <title>PedirPrestamo</title>
 </head>
 <style>
+
 body {
     background-color: white;
     font-family: 'Segoe UI', sans-serif;
