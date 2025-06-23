@@ -9,15 +9,14 @@
 <style>
 
 body {
-    background-color: white;
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
-    color: #333;
+    background: #E0E0E0;
 }
 
 .header {
-    background: linear-gradient(to right, #bc9fd6, #44107a);
+    background: linear-gradient(to right, #602A80, #4C0026);
     color: white;
     padding: 20px;
     text-align: center;
@@ -26,6 +25,52 @@ body {
     letter-spacing: 1px;
 }
 
+.balance-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.balance-box {
+    /*background: linear-gradient(to right, #602A80, #4C0026);*/
+    background: linear-gradient(to right, #A178C1, #A14C6F);, 
+    color: white;
+    padding: 25px 35px;
+    border-radius: 12px;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(204, 0, 143, 0.3);
+    min-width: 200px;
+}
+
+.boton-submit {
+  color: black;
+  background-color: #BDBDBD;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.subtitulo {
+    text-align: center;
+    font-size: 20px;
+    color: #44107a;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+p {
+
+      font-size: 16px;
+      text-align:;
+
+  }
 
 </style>
 
@@ -39,29 +84,39 @@ body {
 Usuario logueado - Cuenta Banco
 </div>
 
-<div>
-	<a href="AgregarCliente.jsp"> Nuevo Cliente </a> 
-    <br/>
-    <a href="ModificarCliente.jsp"> Modificar Cliente </a>
-    <br/>
-    <a href="EliminarCliente.jsp"> Eliminar Cliente </a>
-    <br/>
-    <a href="ListarCliente.jsp"> Listar Cliente </a>
-    <br/>
-    <br/>
-    <a href="AgregarCuenta.jsp"> Nueva Cuenta </a> 
-    <br/>
-    <a href="ModificarCuenta.jsp"> Modificar Cuenta </a>
-    <br/>
-    <a href="EliminarCuenta.jsp"> Eliminar Cuenta </a>
-    <br/>
-    <a href="ListarCuenta.jsp"> Listar Cuenta </a>
-    <br/>
-    <br/>
-    <a href="AutorizarPrestamo.jsp"> Autorizar Prestamo </a> 
-    <br/>
-    <a href="Reportes.jsp"> Reportes </a>
-    <br/>
+
+<div class = "balance-container">
+
+<div class="subtitulo">
+<p>ABML Clientes</p>
+</div>
+<div class = "balance-box">
+<input type="submit" name="btnAgregarCliente" value="Nuevo Cliente" onclick="location.href='AgregarCliente.jsp'"/> <br/>
+<input type="submit" name="btnModificarCliente" value="Modificar Cliente" onclick="location.href='ModificarCliente.jsp'"/> <br/>
+<input type="submit" name="btnEliminarCliente" value="Eliminar Cliente" onclick="location.href='EliminarCliente.jsp'"/> <br/>
+<input type="submit" name="btnListarCliente" value="Listar Cliente" onclick="location.href='ListarCliente.jsp'"/> <br/>
+
+</div>
+
+<div class="subtitulo">
+<p>ABML Cuentas</p>
+</div>
+<div class = "balance-box">
+<input type="submit" name="btnAgregarCuenta" value="Nueva Cuenta" onclick="location.href='AgregarCliente.jsp'"/> <br/>
+<input type="submit" name="btnModificarCuenta" value="Modificar Cuenta" onclick="location.href='ModificarCuenta.jsp'"/> <br/>
+<input type="submit" name="btnEliminarCuenta" value="Eliminar Cuenta" onclick="location.href='EliminarCuenta.jsp'"/> <br/>
+<input type="submit" name="btnListarCuenta" value="Listar Cuenta" onclick="location.href='ListarCuenta.jsp'"/> <br/>
+
+</div>
+<div class="subtitulo">
+<p>Otros</p>
+</div>
+<div class = "balance-box">
+<input type="submit" name="btnAutorizarPrestamo" value="Autorizar Prestamo" onclick="location.href='AutorizarPrestamo.jsp'"/> <br/>
+<input type="submit" name="btnReportes" value="Reportes" onclick="location.href='Reportes.jsp'"/> <br/>
+
+</div>
+
 </div>
 
 </form>
