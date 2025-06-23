@@ -8,58 +8,49 @@
 </head>
 <style>
 body {
-            margin: 0;
-            padding: 0;
-            background-color: #e5e5e5;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-.container {
-            background-color: #44107a;
-            padding: 40px;
-            border-radius: 10px;
-            width: 300px;
-  			height: 300px;
-            text-align: center;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-        }
-
-.texto-container
-       {
-            width: 93%;
-            padding: 5px;
-            margin-bottom: 40px;
-            border: none;
-            border-radius: 8px;
-            background-color: #e5e5e5;
-            font-weight: bold;
-            text-align: center;
-            font-size: 14px;
-        }
-   
-.style-submit{
-
-			margin-top: 160px;
-			text-align: center;
+    background-color: white;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
 }
+
+.header {
+    background: linear-gradient(to right, #bc9fd6, #44107a);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.subtitulo {
+    text-align: center;
+    font-size: 20px;
+    color: #44107a;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+p {
+
+      font-size: 16px;
+      text-align: center;
+
+    }
 
 </style>
 <body>
 
+<div class="header">
+USUARIO LOGUEADO - CUENTA: xxxxxxxx
+</div>
+
 <form>
 
-<div class= "container">
-<div class = "texto-container">
-			<p>
-			<strong style="color:#5F1AB4 ">Pedir Préstamos</strong>
-		   </p>
-
-</div>
-</div>
+<div class="subtitulo">Solicitar Préstamos</div>
 
 </form>
 

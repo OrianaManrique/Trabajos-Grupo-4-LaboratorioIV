@@ -5,17 +5,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Realizar transferencia</title>
+</head>
 <style>
 
 body {
-	margin: 0;
-	padding: 0;
-	background-color: #e5e5e5;
-	font-family: Arial, sans-serif;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-  }
+    background-color: white;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+.header {
+    background: linear-gradient(to right, #bc9fd6, #44107a);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
   .ContenedorVentana{
   background-color: #4A217C; 
   width: 600px;
@@ -94,14 +102,17 @@ body {
   
 </style>
 
-</head>
 <body>
+
+<div class="header">
+USUARIO LOGUEADO - CUENTA: xxxxxxxx
+</div>
    <a class="btnInicio" href="InicioLogin.jsp"> Inicio </a>
    
    <div class="ContenedorVentana" >
         <div class="ContenedorTitulo">
            <h2>
-			<strong style="color:#5F1AB4 ">REALIZAR TRNSFERENCIA</strong>
+			<strong style="color:#5F1AB4 ">REALIZAR TRANSFERENCIA</strong>
 		   </h2>
         </div>
                
@@ -111,7 +122,7 @@ body {
 	  <form class="form-columns">
 	  <div class="form-columna"> 
 	     	  	   
-	    <label class="lblinput">¿A QUIEN LE VAS A TRNSFERIR? </label>
+	    <label class="lblinput">Â¿A QUIEN LE VAS A TRNSFERIR? </label>
 	    <input class="inputCBU" type="text" id="txtCBU" name="txtCBU" placeholder="CBU" > 
 		<label class="lblinput"> IMPORTE </label>  
 		<input class="inputImporte" type="text" id="txtImporte" name="txtImporte" placeholder="$">
