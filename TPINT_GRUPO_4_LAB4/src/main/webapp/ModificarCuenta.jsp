@@ -7,6 +7,23 @@
 <title>MODIFICAR CUENTA</title>
 
 <style>
+body {
+	font-family: 'Segoe UI', sans-serif;
+	margin: 0;
+	padding: 0;
+	background: #E0E0E0;
+}
+
+.header {
+	background: linear-gradient(to right, #602A80, #4C0026);
+	color: white;
+	padding: 20px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	letter-spacing: 1px;
+}
+
 .ContenedorVentana {
 	background-color: #4A217C;
 	width: 700px;
@@ -83,6 +100,9 @@
 
 </head>
 <body>
+
+	<div class="header">Usuario logueado - Cuenta Banco</div>
+
 	<a href="InicioLogin.jsp"> Inicio </a>
 
 	<div class="ContenedorVentana">
@@ -93,8 +113,8 @@
 		</div>
 
 		<input class="barraDeBusqueda" type="search"
-			placeholder="Ingrese el Dni del cliente o numero de cuenta..." style="width: 606px;">
-		<br />
+			placeholder="Ingrese el Dni del cliente o numero de cuenta..."
+			style="width: 606px;"> <br />
 
 		<div class="ContenedorControles">
 
@@ -120,10 +140,8 @@
 						style="width: 177px;">
 
 						<option value="">Tipo de cuenta...</option>
-											
-					</select>
-					
-					<input type="text" id="txtSaldo" name="txtSaldo"
+
+					</select> <input type="text" id="txtSaldo" name="txtSaldo"
 						placeholder="$10.000">
 
 				</div>

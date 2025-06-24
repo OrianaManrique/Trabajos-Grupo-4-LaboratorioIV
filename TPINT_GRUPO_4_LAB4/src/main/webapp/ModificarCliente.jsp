@@ -7,6 +7,24 @@
 <title>MODIFICAR CLIENTE</title>
 
 <style>
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #E0E0E0;
+}
+
+.header {
+    background: linear-gradient(to right, #602A80, #4C0026);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
 .ContenedorVentana {
 	background-color: #4A217C;
 	width: 700px;
@@ -27,7 +45,6 @@
 	margin: 0 auto;
 	width: 260px;
 }
-
 
 .ContenedorColumna {
 	display: flex;
@@ -84,6 +101,9 @@
 
 </head>
 <body>
+
+	<div class="header">Usuario logueado - Cuenta Banco</div>
+	
 	<a href="InicioLogin.jsp"> Inicio </a>
 
 	<div class="ContenedorVentana">
@@ -146,11 +166,10 @@
 				<div class="ContenedorColumna">
 
 					<input type="text" id="txtApellido" name="txtApellido"
-						placeholder="Fernandez"> <input
-						class="inputDireccion" type="text" id="txtDireccion"
-						name="txtDireccion" placeholder="Calle 123"> <input
-						type="text" id="txtTelefono" name="txtTelefono"
-						placeholder="12346789">
+						placeholder="Fernandez"> <input class="inputDireccion"
+						type="text" id="txtDireccion" name="txtDireccion"
+						placeholder="Calle 123"> <input type="text"
+						id="txtTelefono" name="txtTelefono" placeholder="12346789">
 
 				</div>
 

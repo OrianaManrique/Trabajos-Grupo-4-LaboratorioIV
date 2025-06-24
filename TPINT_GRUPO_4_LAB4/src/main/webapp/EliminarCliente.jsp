@@ -8,14 +8,20 @@
 </head>
 <style>
 body {
+	font-family: 'Segoe UI', sans-serif;
 	margin: 0;
 	padding: 0;
-	background-color: #e5e5e5;
-	font-family: Arial, sans-serif;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
+	background: #E0E0E0;
+}
+
+.header {
+	background: linear-gradient(to right, #602A80, #4C0026);
+	color: white;
+	padding: 20px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	letter-spacing: 1px;
 }
 
 .eliminar-container {
@@ -58,11 +64,11 @@ body {
 	cursor: pointer;
 }
 
-.table-container{
-  margin-left: 5%;
-  color:white;
-  margin-top: 5%;
-  margin-bottom: 5%;
+.table-container {
+	margin-left: 5%;
+	color: white;
+	margin-top: 5%;
+	margin-bottom: 5%;
 }
 
 .eliminar-container input[type="submit"] {
@@ -71,6 +77,9 @@ body {
 </style>
 </head>
 <body>
+
+	<div class="header">Usuario logueado - Cuenta Banco</div>
+
 	<div class="eliminar-container">
 		<h2>ELIMINAR CLIENTE</h2>
 		<div class="form-body">

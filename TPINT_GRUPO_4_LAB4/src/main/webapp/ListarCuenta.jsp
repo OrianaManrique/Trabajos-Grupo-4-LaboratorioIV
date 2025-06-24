@@ -6,12 +6,22 @@
 <title>Listar cliente</title>
 
 <style>
-  body {
-    background-color: #DCDCDC;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
+body {
+	font-family: 'Segoe UI', sans-serif;
+	margin: 0;
+	padding: 0;
+	background: #E0E0E0;
+}
+
+.header {
+	background: linear-gradient(to right, #602A80, #4C0026);
+	color: white;
+	padding: 20px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	letter-spacing: 1px;
+}
 
   .ContenedorVentana {
     background-color: #4A217C;
@@ -69,6 +79,9 @@
 
 </head>
 <body>
+
+<div class="header">Usuario logueado - Cuenta Banco</div>
+
 <a href="InicioLogin.jsp"> Inicio </a>
 
 <div class="ContenedorVentana">

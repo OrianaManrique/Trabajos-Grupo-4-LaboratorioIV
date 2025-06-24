@@ -8,14 +8,20 @@
 </head>
 <style>
 body {
+	font-family: 'Segoe UI', sans-serif;
 	margin: 0;
 	padding: 0;
-	background-color: #e5e5e5;
-	font-family: Arial, sans-serif;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
+	background: #E0E0E0;
+}
+
+.header {
+	background: linear-gradient(to right, #602A80, #4C0026);
+	color: white;
+	padding: 20px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	letter-spacing: 1px;
 }
 
 .Eliminar-container {
@@ -68,22 +74,23 @@ body {
 	margin-top: 5%;
 	margin-bottom: 5%;
 }
-
 </style>
 </head>
 <body>
+	<div class="header">Usuario logueado - Cuenta Banco</div>
+	
 	<div class="Eliminar-container">
 		<h2>ELIMINAR CUENTA</h2>
 		<div class="form-body">
 			<form>
-				<input type="text" name="dni" placeholder="Dni del cliente o CUIL..."
-					required>
+				<input type="text" name="dni"
+					placeholder="Dni del cliente o CUIL..." required>
 
 				<div class="table-container">
 					<table class="movements-table">
 						<thead>
 							<tr>
-								<th>| DNI | </th>
+								<th>| DNI |</th>
 								<th>| N DE CUENTA |</th>
 								<th>| CBU |</th>
 							</tr>
