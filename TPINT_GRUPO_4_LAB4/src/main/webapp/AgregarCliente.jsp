@@ -14,15 +14,8 @@
     padding: 0;
     background: #E0E0E0;
 }
- 
-  .ContenedorVentana{
-  background-color: #4A217C; 
-  width: 700px; 
-  height: 500px; 
-  border-radius: 8px;
-  } 
-   
-  .header {
+
+.header {
     background: linear-gradient(to right, #602A80, #4C0026);
     color: white;
     padding: 20px;
@@ -31,6 +24,53 @@
     font-size: 20px;
     letter-spacing: 1px;
 }
+
+.balance-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.balance-box {
+    /*background: linear-gradient(to right, #602A80, #4C0026);*/
+    background: linear-gradient(to right, #A178C1, #A14C6F);, 
+    color: white;
+    padding: 25px 35px;
+    border-radius: 12px;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(204, 0, 143, 0.3);
+    min-width: 200px;
+}
+
+.boton-submit {
+  color: black;
+  background-color: #BDBDBD;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.subtitulo {
+    text-align: center;
+    font-size: 20px;
+    color: #44107a;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+p {
+
+      font-size: 22px;
+      text-align:;
+
+  }
   
   .ContenedorTitulo {
   background-color: #E5E5E5; 
@@ -46,14 +86,15 @@
   }
     
   .btnAgregar {
-  width: 260px; 
+  width: 180px; 
   }
   
   .ContenedorColumna { 
   display: flex;
-  margin-top: 15px;
-  margin-left: 90px;
+  margin: 0;
+   padding: 0;
   gap:10px;
+   justify-content: center;
   }
   
   .FormularioAgregarCLiente input{
@@ -82,17 +123,16 @@ Usuario logueado - Cuenta Banco
 
    <a href="InicioLogin.jsp"> Inicio </a>
    
-   <div class="ContenedorVentana" >
-        <div class="ContenedorTitulo">
-           <h2>
-			<strong style="color:#5F1AB4 ">AGREGAR CLIENTE</strong>
-		   </h2>
-        </div>
-        
-         
-		<br/> <br/>
-	   	  
-	   <div class="ContenedorControles">
+   <div class="balance-container" >
+        <div class="balance-box">
+           <p>
+			<strong>AGREGAR CLIENTE</strong>
+			<br/>
+			<br/>
+			<br/>
+		   </p>
+		   
+		
 	   
 	   <form class="FormularioAgregarCLiente">
 	  	   
@@ -146,22 +186,22 @@ Usuario logueado - Cuenta Banco
 		
 		</div>
 		
-		<br/> <br/> 
+		<br/> 
+		<br/>
 	   
 	   
 	    </form>
 	    
-	   </div>
-		
-		
 		<div class="ContenedorBoton">
 		 <input type="submit" style="color:#5F1AB4 " class="btnAgregar" name="btnAgregar" value="AGREGAR"/>
 		</div>
 		
-		
-	</div>		
-                
-         
-         
+		</div>
+	</div>	
+		   
+		   
+       
+      
+        
 </body>
 </html>

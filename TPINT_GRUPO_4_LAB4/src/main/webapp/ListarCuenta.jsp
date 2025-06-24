@@ -5,6 +5,20 @@
 <meta charset="UTF-8">
 <title>Listar cliente</title>
 
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+	
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#table_id').DataTable();
+	});
+</script>
+
 <style>
 body {
 	font-family: 'Segoe UI', sans-serif;
@@ -66,7 +80,7 @@ body {
   }
 
   th {
-    color: white;
+    color: black;
     padding: 10px;
     text-align: left;
   }
@@ -83,26 +97,29 @@ body {
 <div class="header">Usuario logueado - Cuenta Banco</div>
 
 <a href="InicioLogin.jsp"> Inicio </a>
+<br/>
+<br/>
 
-<div class="ContenedorVentana">
-  
-  <div class="ContenedorColumna">
-    <input type="text" placeholder="Buscar por Numero de cuenta" />
-    <input type="submit" value="Buscar" />
-  </div>
-
-  
-  <div style="display: flex; justify-content: space-between; color: white; font-weight: bold; padding: 0 10px;">
-    <div>Nro de cuenta</div>
-    <div>Dni cliente</div>
-    <div>Fecha de creacion</div>
-    <div>Cbu</div>
-    <div>tipo</div>
-    <div>saldo</div>
-  </div>
-
-  <br/>
-  </div>
+<table id="table_id" class="display">
+		<thead>
+			<tr>
+				<th>Dni</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>111111</td>
+				<td>Carlos</td>
+				<td>Luna</td>
+				<!-- Codigo comentado: Observar que utilizo el onClick al servlet y le paso de parámetro el nombre del boton con otros atributos -->
+				<td><input type="submit" value="Eliminar" name="btnEliminar" onclick="window.location.href='servletPersonas?btnEliminar=1&txtDni=111111&txtNombre=Carlos&txtApellido=Luna'"/></td>
+			</tr>
+			
+		</tbody>
+	</table>
   
   </body>
   </html>

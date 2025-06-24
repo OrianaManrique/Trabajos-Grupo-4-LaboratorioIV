@@ -87,10 +87,9 @@ Usuario logueado - Cuenta Banco
 
 <div class = "balance-container">
 
-<div class="subtitulo">
-<p>ABML Clientes</p>
-</div>
 <div class = "balance-box">
+<p>ABML Clientes</p>
+<br/>
 <input type="submit" name="btnAgregarCliente" value="Nuevo Cliente" onclick="location.href='AgregarCliente.jsp'"/> <br/>
 <input type="submit" name="btnModificarCliente" value="Modificar Cliente" onclick="location.href='ModificarCliente.jsp'"/> <br/>
 <input type="submit" name="btnEliminarCliente" value="Eliminar Cliente" onclick="location.href='EliminarCliente.jsp'"/> <br/>
@@ -98,20 +97,20 @@ Usuario logueado - Cuenta Banco
 
 </div>
 
-<div class="subtitulo">
-<p>ABML Cuentas</p>
-</div>
 <div class = "balance-box">
+<p>ABML Cuentas</p>
+<br/>
 <input type="submit" name="btnAgregarCuenta" value="Nueva Cuenta" onclick="location.href='AgregarCliente.jsp'"/> <br/>
 <input type="submit" name="btnModificarCuenta" value="Modificar Cuenta" onclick="location.href='ModificarCuenta.jsp'"/> <br/>
 <input type="submit" name="btnEliminarCuenta" value="Eliminar Cuenta" onclick="location.href='EliminarCuenta.jsp'"/> <br/>
 <input type="submit" name="btnListarCuenta" value="Listar Cuenta" onclick="location.href='ListarCuenta.jsp'"/> <br/>
 
 </div>
-<div class="subtitulo">
-<p>Otros</p>
-</div>
+
 <div class = "balance-box">
+
+<p>Otros</p>
+<br/>
 <input type="submit" name="btnAutorizarPrestamo" value="Autorizar Prestamo" onclick="location.href='AutorizarPrestamo.jsp'"/> <br/>
 <input type="submit" name="btnReportes" value="Reportes" onclick="location.href='Reportes.jsp'"/> <br/>
 

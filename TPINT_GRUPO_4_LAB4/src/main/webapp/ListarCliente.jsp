@@ -6,6 +6,19 @@
 <meta charset="UTF-8">
 <title>Listar cliente</title>
 
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+	
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#table_id').DataTable();
+	});
+</script>
 <style>
 
 body {
@@ -27,7 +40,8 @@ body {
 
 .ContenedorVentana {
 	background-color: #4A217C;
-	width: 900px;
+	width: auto;
+	
 	margin: 40px auto;
 	padding: 30px;
 	border-radius: 20px;
@@ -68,9 +82,13 @@ table {
 }
 
 th {
-	color: white;
+	color: black;
 	padding: 10px;
 	text-align: left;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
 }
 
 td {
@@ -85,26 +103,29 @@ td {
 	<div class="header">Usuario logueado - Cuenta Banco</div>
 
 	<a href="InicioLogin.jsp"> Inicio </a>
+	
+	<br/>
+	<br/>
 
-	<div class="ContenedorVentana">
-
-		<div class="ContenedorColumna">
-			<input type="text" placeholder="Buscar por Dni o Nombre" /> <input
-				type="submit" value="Buscar" />
-		</div>
-
-
-		<div
-			style="display: flex; justify-content: space-between; color: white; font-weight: bold; padding: 0 10px;">
-			<div>DNI</div>
-			<div>Nombre</div>
-			<div>Apellido</div>
-			<div>Correo</div>
-			<div>Usuario</div>
-		</div>
-
-		<br />
-	</div>
+		<table id="table_id" class="display">
+		<thead>
+			<tr>
+				<th>Dni</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>41111222</td>
+				<td>Oriana</td>
+				<td>Manrique</td>
+				<td><input type="submit" value="Eliminar" name="btnEliminar" onclick="window.location.href='servletPersonas?btnEliminar=1&txtDni=41111222&txtNombre=Oriana&txtApellido=Manrique'"/></td>
+			</tr>
+			
+		</tbody>
+	</table>
 
 </body>
 </html>
