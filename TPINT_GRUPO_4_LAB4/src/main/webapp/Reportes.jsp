@@ -8,15 +8,14 @@
 </head>
 <style>
 body {
-    background-color: white;
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
-    color: #333;
+    background: #E0E0E0;
 }
 
 .header {
-    background: linear-gradient(to right, #bc9fd6, #44107a);
+    background: linear-gradient(to right, #602A80, #4C0026);
     color: white;
     padding: 20px;
     text-align: center;

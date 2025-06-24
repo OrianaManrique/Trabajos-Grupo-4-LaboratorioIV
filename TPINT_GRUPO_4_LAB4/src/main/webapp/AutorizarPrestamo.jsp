@@ -8,15 +8,21 @@
 </head>
 <style>
 body {
-            margin: 0;
-            padding: 0;
-            background-color: #e5e5e5;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #E0E0E0;
+}
+
+.header {
+    background: linear-gradient(to right, #602A80, #4C0026);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
 
 .container {
             background-color: #44107a;
@@ -49,6 +55,10 @@ body {
 
 </style>
 <body>
+
+<div class="header">
+Usuario logueado - Cuenta Banco
+</div>
 
 <form>
 

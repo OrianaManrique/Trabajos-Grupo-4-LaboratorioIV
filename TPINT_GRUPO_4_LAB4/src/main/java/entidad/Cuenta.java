@@ -2,18 +2,18 @@ package entidad;
 
 import java.sql.Date;
 
-public class cuenta {
+public class Cuenta {
 
 	private String nroCuenta_cuenta;
 	private int dni_Cliente;
 	private Date fecha_creacion_cuenta;
 	private String cbu_cuenta;
-	private tipo_cuenta tipo_cuenta;
+	private Tipo_Cuenta tipo_cuenta;
 	private double saldo_cuenta;
 	private boolean estado_cuenta;
 
-	public cuenta(String nroCuenta_cuenta, int dni_Cliente, Date fecha_creacion_cuenta, String cbu_cuenta,
-			tipo_cuenta tipo_cuenta, double saldo_cuenta) {
+	public Cuenta(String nroCuenta_cuenta, int dni_Cliente, Date fecha_creacion_cuenta, String cbu_cuenta,
+			Tipo_Cuenta tipo_cuenta, double saldo_cuenta) {
 		this.nroCuenta_cuenta = nroCuenta_cuenta;
 		this.dni_Cliente = dni_Cliente;
 		this.fecha_creacion_cuenta = fecha_creacion_cuenta;
@@ -55,11 +55,11 @@ public class cuenta {
 		this.cbu_cuenta = cbu_cuenta;
 	}
 
-	public tipo_cuenta getTipo_cuenta() {
+	public Tipo_Cuenta getTipo_cuenta() {
 		return tipo_cuenta;
 	}
 
-	public void setTipo_cuenta(tipo_cuenta tipo_cuenta) {
+	public void setTipo_cuenta(Tipo_Cuenta tipo_cuenta) {
 		this.tipo_cuenta = tipo_cuenta;
 	}
 

@@ -5,14 +5,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Agregar Cliente</title>
-
+</head>
  <style>
+ 
+ body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #E0E0E0;
+}
+ 
   .ContenedorVentana{
   background-color: #4A217C; 
   width: 700px; 
   height: 500px; 
   border-radius: 8px;
-  }  
+  } 
+   
+  .header {
+    background: linear-gradient(to right, #602A80, #4C0026);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
   
   .ContenedorTitulo {
   background-color: #E5E5E5; 
@@ -56,8 +74,12 @@
   
 </style>
 
-</head>
 <body>
+
+<div class="header">
+Usuario logueado - Cuenta Banco
+</div>
+
    <a href="InicioLogin.jsp"> Inicio </a>
    
    <div class="ContenedorVentana" >
