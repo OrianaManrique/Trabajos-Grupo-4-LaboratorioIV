@@ -1,15 +1,15 @@
 package entidad;
 
-public class provincia {
+public class Provincia {
 	
 	private int id_provincia;
 	private String descripcion_provincia;
 	
-	public provincia(){
+	public Provincia(){
 		
 	} 
 	
-    public provincia(String Descripcion_provincia){
+    public Provincia(String Descripcion_provincia){
 		this.descripcion_provincia = Descripcion_provincia;
 	} 
 			

@@ -134,7 +134,7 @@ Usuario logueado - Cuenta Banco
 		   
 		
 	   
-	   <form class="FormularioAgregarCLiente">
+	   <form action="ServletClientes" method="post">
 	  	   
 	   <div class="ContenedorColumna"> 
 	    
@@ -143,6 +143,9 @@ Usuario logueado - Cuenta Banco
 		<select id="ddlSexo" name="tipoSeguro" style="width: 177px;">
 		
 				<option value="">Seleccione su sexo...</option>
+				<option value="F">Femenino</option>
+				<option value="M">Masculino</option>
+				<option value="O">Otro/s</option>
 					
 		</select>
 						
@@ -182,7 +185,7 @@ Usuario logueado - Cuenta Banco
 		
 		<input class="inputDireccion" type="text" id="txtDireccion" name="txtDireccion" placeholder="Ingrese su Dirección...">
 		
-		<input type="text" id="txtDireccion" name="txtDireccion" placeholder="Ingrese su Teléfono..."> 
+		<input type="text" id="txtTelefono" name="txtTelefono" placeholder="Ingrese su Teléfono..."> 
 		
 		</div>
 		

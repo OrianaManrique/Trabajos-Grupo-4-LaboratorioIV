@@ -1,11 +1,22 @@
 package presentacion.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import entidad.Cliente;
+import entidad.Localidad;
+import entidad.Provincia;
+import negocio.ClienteNeg;
+import negocioImpl.ClienteNegImpl;
 
 /**
  * Servlet implementation class ServletClientes
@@ -13,6 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ServletClientes")
 public class ServletClientes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	Boolean estado;
+	ClienteNeg negCli = new ClienteNegImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -22,19 +36,57 @@ public class ServletClientes extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+
+		if(request.getParameter("btnAgregar")!=null)
+	    {
+	    	Cliente cliente = new Cliente();
+	    	Localidad localidad = new Localidad();
+	    	Provincia provincia = new Provincia();
+	    	
+	    	cliente.setDni_cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
+	    	cliente.setNombre_cliente(request.getParameter("txtNombre"));
+	    	cliente.setApellido_cliente(request.getParameter("txtApellido"));
+	    	cliente.setCuil_cliente(Integer.parseInt(request.getParameter("txtCuil")));
+	    	cliente.setSexo_cliente(request.getParameter("ddlSexo"));
+	    	
+	    	/*posteriormente vamos a sumar Localidad/ProvinciaDao para los métodos de obtener*/
+	    	localidad.setId_localidad(Integer.parseInt(request.getParameter("txtLocalidad")));
+	    	provincia.setId_provincia(Integer.parseInt(request.getParameter("txtProvincia")));
+	    	String fecha = request.getParameter("txtFechaNacimiento");
+	    	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+	    	Date fechanacimiento = null;
+	    	
+			try {
+				fechanacimiento = (Date) formato.parse(fecha);
+			} catch (ParseException e) {
+				
+				e.printStackTrace();
+			}
+	    	
+	    	cliente.setId_localidad(localidad);
+	    	cliente.setId_provincia(provincia);
+	    	cliente.setNacionalidad_cliente(request.getParameter("txtNacionalidad"));
+	    	cliente.setFecha_nacimiento_cliente(fechanacimiento);
+	    	cliente.setCorreo_electronico_cliente(request.getParameter("txtCorreo"));
+	    	cliente.setDireccion_cliente(request.getParameter("txtDireccion"));
+	    	cliente.setTelefono_cliente(request.getParameter("txtTelefono"));
+	    	estado = negCli.insertar(cliente);
+	    	
+	    	request.setAttribute("exito", estado);
+	    	
+	    	RequestDispatcher dispatcher = request.getRequestDispatcher("AgregarCliente.jsp");
+			dispatcher.forward(request, response);
+	    }
+		
 		doGet(request, response);
 	}
 

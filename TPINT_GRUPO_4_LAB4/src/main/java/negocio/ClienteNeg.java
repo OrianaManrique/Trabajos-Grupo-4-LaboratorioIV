@@ -1,5 +1,4 @@
 package negocio;
-
 import entidad.Cliente;
 
 public interface ClienteNeg {

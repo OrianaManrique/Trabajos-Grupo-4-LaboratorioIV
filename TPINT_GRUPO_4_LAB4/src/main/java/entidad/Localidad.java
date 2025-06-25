@@ -1,16 +1,16 @@
 package entidad;
 
-public class localidad {
+public class Localidad {
    
 	private int id_localidad;
 	private String descripcion_localidad;
-	provincia id_provincia;
+	Provincia id_provincia;
 	
-	public localidad(){
+	public Localidad(){
 				
 	}
 	
-	public localidad(String Descripcion_localidad){
+	public Localidad(String Descripcion_localidad){
 		this.descripcion_localidad = Descripcion_localidad;
 	}
 
@@ -30,11 +30,11 @@ public class localidad {
 		this.descripcion_localidad = descripcion_localidad;
 	}
 
-	public provincia getId_provincia() {
+	public Provincia getId_provincia() {
 		return id_provincia;
 	}
 
-	public void setId_provincia(provincia id_provincia) {
+	public void setId_provincia(Provincia id_provincia) {
 		this.id_provincia = id_provincia;
 	}
 

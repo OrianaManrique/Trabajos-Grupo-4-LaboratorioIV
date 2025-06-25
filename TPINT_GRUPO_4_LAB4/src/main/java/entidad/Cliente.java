@@ -11,8 +11,8 @@ public class Cliente {
 	private String nacionalidad_cliente;
 	private Date fecha_nacimiento_cliente;
 	private String Direccion_cliente;
-	provincia id_provincia;
-	localidad id_localidad;
+	Provincia id_provincia;
+	Localidad id_localidad;
 	private String correo_electronico_cliente;
 	private String telefono_cliente;
 	private String usuario_cliente;
@@ -24,11 +24,11 @@ public class Cliente {
 				
 	}
 	
-	public Cliente(int cuil_cliente, String nombre_cliente, String apellido_cliente,
+	public Cliente(int dni, int cuil_cliente, String nombre_cliente, String apellido_cliente,
 			String sexo_cliente, String nacionalidad_cliente, Date fecha_nacimiento_cliente, String direccion_cliente,
-			provincia id_provincia, localidad id_localidad, String correo_electronico_cliente, String telefono_cliente,
-			String usuario_cliente, String contraseña_cliente, boolean estado) {
+			Provincia id_provincia, Localidad id_localidad, String correo_electronico_cliente, String telefono_cliente) {
 
+		dni_cliente = dni;
 		this.Cuil_cliente = cuil_cliente;
 		this.nombre_cliente = nombre_cliente;
 		this.apellido_cliente = apellido_cliente;
@@ -40,8 +40,8 @@ public class Cliente {
 		this.id_localidad = id_localidad;
 		this.correo_electronico_cliente = correo_electronico_cliente;
 		this.telefono_cliente = telefono_cliente;
-		this.usuario_cliente = usuario_cliente;
-		this.contraseña_cliente = contraseña_cliente;
+		this.usuario_cliente = "";
+		this.contraseña_cliente = "";
 		this.estado = true;
 	}
 
@@ -109,19 +109,19 @@ public class Cliente {
 		Direccion_cliente = direccion_cliente;
 	}
 
-	public provincia getId_provincia() {
+	public Provincia getId_provincia() {
 		return id_provincia;
 	}
 
-	public void setId_provincia(provincia id_provincia) {
+	public void setId_provincia(Provincia id_provincia) {
 		this.id_provincia = id_provincia;
 	}
 
-	public localidad getId_localidad() {
+	public Localidad getId_localidad() {
 		return id_localidad;
 	}
 
-	public void setId_localidad(localidad id_localidad) {
+	public void setId_localidad(Localidad id_localidad) {
 		this.id_localidad = id_localidad;
 	}
 
