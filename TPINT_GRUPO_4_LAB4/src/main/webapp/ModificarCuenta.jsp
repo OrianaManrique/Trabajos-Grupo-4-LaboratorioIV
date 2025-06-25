@@ -7,6 +7,7 @@
 <title>MODIFICAR CUENTA</title>
 
 <style>
+
 body {
 	font-family: 'Segoe UI', sans-serif;
 	margin: 0;

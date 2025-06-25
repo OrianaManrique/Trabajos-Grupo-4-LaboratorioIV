@@ -11,6 +11,8 @@ public class Cuenta {
 	private Tipo_Cuenta tipo_cuenta;
 	private double saldo_cuenta;
 	private boolean estado_cuenta;
+	
+	public Cuenta() {}
 
 	public Cuenta(String nroCuenta_cuenta, int dni_Cliente, Date fecha_creacion_cuenta, String cbu_cuenta,
 			Tipo_Cuenta tipo_cuenta, double saldo_cuenta) {

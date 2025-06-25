@@ -3,6 +3,8 @@ package entidad;
 public class Tipo_Cuenta {
 	private int id_tipoCuenta;
 	private String descripcion_tipoCuenta;
+    		
+	public Tipo_Cuenta(){}
 
 	public Tipo_Cuenta(int id_tipoCuenta, String descripcion_tipoCuenta) {
 		this.id_tipoCuenta = id_tipoCuenta;

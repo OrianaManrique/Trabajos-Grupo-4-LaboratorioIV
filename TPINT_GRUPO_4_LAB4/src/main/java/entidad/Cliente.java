@@ -157,7 +157,7 @@ public class Cliente {
 		this.contraseña_cliente = contraseña_cliente;
 	}
 
-	public boolean isEstado() {
+	public boolean getEstado() {
 		return estado;
 	}
 
