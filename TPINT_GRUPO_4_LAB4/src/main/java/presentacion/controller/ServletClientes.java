@@ -36,6 +36,7 @@ public class ServletClientes extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		if (request.getParameter("Param") != null) {
 
 			String operacion = request.getParameter("Param").toString();
@@ -46,12 +47,15 @@ public class ServletClientes extends HttpServlet {
 				
 				request.setAttribute("listaLocalidades", negloc.listarLocalidades(1));			
 				request.setAttribute("listaProvincias", negprov.listarProvincias());
-				RequestDispatcher dispatcher = request.getRequestDispatcher("AgregarCliente.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCliente.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}
-			case "ListarClientes": {
+			case "CargarUsuario": {
 				
+				request.setAttribute("NombreUsuario", request.getParameter("txtDniCliente"));
+				RequestDispatcher requestdispatcher = request.getRequestDispatcher("/ConfirmarUsuario.jsp");
+				requestdispatcher.forward(request, response);
 				break;
 			}
 			default:

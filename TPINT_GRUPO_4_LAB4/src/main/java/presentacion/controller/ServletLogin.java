@@ -5,7 +5,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-@WebServlet("/InicioLogin.jsp")
+
+@WebServlet("/ServletLogin")
 public class ServletLogin extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -18,33 +19,6 @@ public class ServletLogin extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-     
-    	if (request.getParameter("Param") != null) {
-
-			String operacion = request.getParameter("Param").toString();
-
-			switch (operacion) {
-			case "CargarUsuario": {
-				// Cargo el formulario
-				
-				
-
-				RequestDispatcher requestdispatcher = request.getRequestDispatcher("ConfirmarUsuario.jsp");
-				requestdispatcher.forward(request, response);
-				break;
-			}
-			case "ListarClientes": {
-				
-				break;
-			}
-			default:
-				break;
-			}
-
-			RequestDispatcher rdrequestdispatcher = request.getRequestDispatcher("AgregarCliente.jsp");
-			rdrequestdispatcher.forward(request, response);
-
-		}
 
     }
 

@@ -92,6 +92,13 @@
 
 </head>
 <body>
+
+    <%
+		if (request.getAttribute("NombreUsuario") != null) {
+			String NombreUsuario = request.getAttribute("NombreUsuario").toString();
+		}
+	%>
+
    <a href="InicioLogin.jsp"> Inicio </a>
    
    <div class="ContenedorVentana" >
@@ -110,7 +117,7 @@
 	   
 	    <label class="lblUsuario"> USUARIO </label>
 	    
-	    <input class="inputUsuario" type="text" id="txtDniCliente" name="txtDniCliente" placeholder="12345678.BANCO" readonly > <br/> 
+	    <input class="inputUsuario" type="text" id="txtDniCliente" name="txtDniCliente" value="2" readonly > <br/> 
 						
 		<input class="inputPassword" type="password" id="txtContraseña" name="txtContraseña" placeholder="Ingrese una contraseña..."> <br/> 
 		

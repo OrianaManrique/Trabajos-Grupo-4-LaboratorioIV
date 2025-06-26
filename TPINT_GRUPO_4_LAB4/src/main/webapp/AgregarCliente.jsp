@@ -128,7 +128,7 @@ p {
 	}
 	%>
 
-	<form action="ServletLogin?param=CargarUsuario" method="post">
+	<form action="ServletClientes?Param=CargarUsuario" method="post">
 
 		<div class="header">Usuario logueado - Cuenta Banco</div>
 
