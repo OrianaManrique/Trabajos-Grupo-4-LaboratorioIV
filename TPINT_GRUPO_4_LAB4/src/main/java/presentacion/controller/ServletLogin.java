@@ -18,7 +18,34 @@ public class ServletLogin extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        procesarLogin(request, response);
+     
+    	if (request.getParameter("Param") != null) {
+
+			String operacion = request.getParameter("Param").toString();
+
+			switch (operacion) {
+			case "CargarUsuario": {
+				// Cargo el formulario
+				
+				
+
+				RequestDispatcher requestdispatcher = request.getRequestDispatcher("ConfirmarUsuario.jsp");
+				requestdispatcher.forward(request, response);
+				break;
+			}
+			case "ListarClientes": {
+				
+				break;
+			}
+			default:
+				break;
+			}
+
+			RequestDispatcher rdrequestdispatcher = request.getRequestDispatcher("AgregarCliente.jsp");
+			rdrequestdispatcher.forward(request, response);
+
+		}
+
     }
 
     private void procesarLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

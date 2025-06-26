@@ -44,11 +44,9 @@ public class ServletClientes extends HttpServlet {
 			case "CargarAgregarCliente": {
 				// Cargo el formulario
 				
-				
-				
-				request.setAttribute("listaLocalidades", negloc.listarLocalidades(2));			
+				request.setAttribute("listaLocalidades", negloc.listarLocalidades(1));			
 				request.setAttribute("listaProvincias", negprov.listarProvincias());
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCliente.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("AgregarCliente.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}

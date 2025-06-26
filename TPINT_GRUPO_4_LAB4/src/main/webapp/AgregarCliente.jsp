@@ -128,7 +128,7 @@ p {
 	}
 	%>
 
-	<form action="ServletClientes?param=1" method="get">
+	<form action="ServletLogin?param=CargarUsuario" method="post">
 
 		<div class="header">Usuario logueado - Cuenta Banco</div>
 
@@ -141,22 +141,29 @@ p {
 				</p>
 
 				<div class="ContenedorColumna">
-
+				
+                 
 					<input type="text" id="txtDniCliente" name="txtDniCliente"
 						placeholder="Ingrese su Dni..."> <select id="txtProvincia"
 						name="txtProvincia" style="width: 177px;">
                         
-                        <option value="">Seleccione su Provincia...</option>                    
+                        <option value="">Seleccione su Provincia...</option>                                                    
                         
 						<%
+						String idProvinciaSeleccionada = "";
+						
 						for (Provincia p : ListaProvincias) {
 						%>
 						<option value="<%=p.getId_provincia()%>"><%=p.getDescripcion_provincia()%></option>
+						
 						<%
 						}
-						%>				
+						%>
 
-					</select> <select id="txtLocalidad" name="txtLocalidad"
+					</select> 
+					
+					
+					<select id="txtLocalidad" name="txtLocalidad"
 						style="width: 177px;">
 
 						<option value="">Seleccione su Localidad...</option>
@@ -226,7 +233,7 @@ p {
 
 				<div class="ContenedorBoton">
 					<input type="submit" style="color: #5F1AB4" class="btnAgregar"
-						name="btnAgregar" value="AGREGAR" />
+						name="btnAgregar" value="CONFIRMAR DATOS" />
 				</div>
 
 			</div>
