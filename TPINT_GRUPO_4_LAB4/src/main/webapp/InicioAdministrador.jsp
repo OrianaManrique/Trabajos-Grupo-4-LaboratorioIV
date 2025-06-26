@@ -90,7 +90,8 @@ Usuario logueado - Cuenta Banco
 <div class = "balance-box">
 <p>ABML Clientes</p>
 <br/>
-<input type="submit" name="btnAgregarCliente" value="Nuevo Cliente" onclick="location.href='AgregarCliente.jsp'"/> <br/>
+
+<a href = "ServletClientes?Param=1" > Agregar Cliente </a> <br/>
 <input type="submit" name="btnModificarCliente" value="Modificar Cliente" onclick="location.href='ModificarCliente.jsp'"/> <br/>
 <input type="submit" name="btnEliminarCliente" value="Eliminar Cliente" onclick="location.href='EliminarCliente.jsp'"/> <br/>
 <input type="submit" name="btnListarCliente" value="Listar Cliente" onclick="location.href='ListarCliente.jsp'"/> <br/>
@@ -100,7 +101,7 @@ Usuario logueado - Cuenta Banco
 <div class = "balance-box">
 <p>ABML Cuentas</p>
 <br/>
-<input type="submit" name="btnAgregarCuenta" value="Nueva Cuenta" onclick="location.href='AgregarCliente.jsp'"/> <br/>
+<input type="submit" name="btnAgregarCuenta" value="Nueva Cuenta" onclick="location.href='AgregarCuenta.jsp'"/> <br/>
 <input type="submit" name="btnModificarCuenta" value="Modificar Cuenta" onclick="location.href='ModificarCuenta.jsp'"/> <br/>
 <input type="submit" name="btnEliminarCuenta" value="Eliminar Cuenta" onclick="location.href='EliminarCuenta.jsp'"/> <br/>
 <input type="submit" name="btnListarCuenta" value="Listar Cuenta" onclick="location.href='ListarCuenta.jsp'"/> <br/>
