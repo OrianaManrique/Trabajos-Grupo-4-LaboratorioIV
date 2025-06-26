@@ -58,6 +58,29 @@ public class ServletClientes extends HttpServlet {
 				requestdispatcher.forward(request, response);
 				break;
 			}
+			case "Buscar":
+			{
+				if (request.getParameter("btnBuscar") != null) {
+				
+					Cliente cliente = new Cliente();
+					Cliente clienteTable = new Cliente();
+					
+					cliente.setDni_cliente(Integer.parseInt(request.getParameter("dni")));
+					
+					clienteTable = negCli.obtenerCliente(cliente.getDni_cliente());
+					
+					
+					
+					
+					request.setAttribute("Clientedni", request.getParameter("dniCli"));
+					request.setAttribute("Clientenom", request.getParameter("NombreCli"));
+					request.setAttribute("Clienteape", request.getParameter("ApellidoCli"));
+					RequestDispatcher requestdispatcher = request.getRequestDispatcher("/EliminarCliente.jsp");
+					requestdispatcher.forward(request, response);
+				
+				}
+				break;
+			}
 			default:
 				break;
 			}

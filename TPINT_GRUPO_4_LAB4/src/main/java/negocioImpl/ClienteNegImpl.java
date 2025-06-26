@@ -15,4 +15,8 @@ public class ClienteNegImpl implements ClienteNeg {
 	public boolean insertar(Cliente cliente) {
 		return cliDao.insertar(cliente);
 	}
+	
+	public Cliente obtenerCliente(int dni) {
+		return cliDao.obtenerCliente(dni);
+	}
 }

@@ -112,6 +112,12 @@ table {
 </head>
 <body>
 
+<%
+		if (request.getAttribute("Cliente") != null) {
+			String NombreUsuario = request.getAttribute("NombreUsuario").toString();
+		}
+%>
+
 			<form>
 	<div class="header">Usuario logueado - Cuenta Banco</div>
 
@@ -142,8 +148,9 @@ table {
 					</table>
 				
 				<div class = "contenedor">
-				<input type="submit" value="BUSCAR"> <input type="submit"
-					value="CANCELAR">
+				<input type="submit" value="Buscar" name="btnBuscar"/>
+				<input type="submit" value="Eliminar" name="btnEliminar" onclick="window.location.href='servletClientes?btnEliminar=1'"/>
+				
 					</div>
 			</div>
 			</div>
