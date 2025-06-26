@@ -1,8 +1,6 @@
 package datosImpl;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
-
 import datos.ProvinciaDao;
 import entidad.Provincia;
 

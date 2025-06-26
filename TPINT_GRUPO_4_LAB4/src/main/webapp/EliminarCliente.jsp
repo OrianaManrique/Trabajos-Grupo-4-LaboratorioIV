@@ -25,71 +25,106 @@ body {
 	letter-spacing: 1px;
 }
 
-.eliminar-container {
-	background-color: #44107a;
-	padding: 40px;
-	border-radius: 10px;
-	width: 300px;
-	text-align: center;
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+.balance-container {
+	display: flex;
+	justify-content: center;
+	gap: 40px;
+	margin: 30px 0;
+	flex-wrap: wrap;
 }
 
-.eliminar-container h2 {
+.balance-box {
+	/*background: linear-gradient(to right, #602A80, #4C0026);*/
+	background: linear-gradient(to right, #A178C1, #A14C6F); ,
 	color: white;
-	margin-bottom: 30px;
-	font-size: 24px;
-}
-
-.eliminar-container input[type="text"] {
-	width: 93%;
-	padding: 10px;
-	margin-bottom: 10px;
-	border: none;
-	border-radius: 8px;
-	background-color: #e5e5e5;
+	padding: 25px 35px;
+	border-radius: 12px;
+	font-size: 26px;
 	font-weight: bold;
 	text-align: center;
-	font-size: 12px;
+	box-shadow: 0 4px 10px rgba(204, 0, 143, 0.3);
+	min-width: 200px;
+	width: 500px;
+	height: 400px;
+	/**/
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;     
+	
 }
 
-.eliminar-container input[type="submit"] {
-	width: 100%;
-	padding: 10px;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	border: none;
-	border-radius: 8px;
-	background-color: #e5e5e5;
-	color: #44107a;
-	font-weight: bold;
-	cursor: pointer;
-}
+ .btn input[type="submit"] {
+            background-color: #4C0026;
+            color: white;
+            border: none;
+            border-radius: 8px;;
+            font-size: 1rem;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 15px;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+        }
 
-.table-container {
-	margin-left: 5%;
+        .btn:hover {
+            background-color: #602A80;
+        }
+
+.contenedor {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Empuja contenido hacia abajo */
+            align-items: center;       /* Centra horizontalmente */
+        }
+
+
+
+p {
+	font-size: 22px;
+	text-align: center;
 	color: white;
-	margin-top: 5%;
-	margin-bottom: 5%;
+	font-weight: bold;
+	text-align: center;
+	
 }
 
-.eliminar-container input[type="submit"] {
-	background-color: #d4d4d4;
+.form-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #ddd;;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+table {
+    table-layout: auto;
+    font-size: 18px;
+    justify-content: center;
+    text-align: center;
 }
+
+
 </style>
 </head>
 <body>
 
+			<form>
 	<div class="header">Usuario logueado - Cuenta Banco</div>
 
-	<div class="eliminar-container">
-		<h2>ELIMINAR CLIENTE</h2>
-		<div class="form-body">
-			<form>
+	<div class="balance-container">
+		<div class="balance-box">
+		
+		<p>ELIMINAR CLIENTE</p>
+		
+			
 				<input type="text" name="dni" placeholder="Dni del cliente..."
 					required>
 
-				<div class="table-container">
-					<table class="movements-table">
+					<table class="table">
 						<thead>
 							<tr>
 								<th>| DNI |</th>
@@ -105,13 +140,16 @@ body {
 							</tr>
 						</tbody>
 					</table>
-				</div>
-
+				
+				<div class = "contenedor">
 				<input type="submit" value="BUSCAR"> <input type="submit"
 					value="CANCELAR">
-
+					</div>
+			</div>
+			</div>
+			
 			</form>
-		</div>
-	</div>
+			
+	
 </body>
 </html>

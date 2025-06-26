@@ -1,4 +1,6 @@
 package datosImpl;
+import java.sql.ResultSet;
+
 import datos.ClienteDao;
 import entidad.Cliente;
 
@@ -38,4 +40,33 @@ public class ClienteDaoImpl implements ClienteDao{
 		return estado;
 	}
 
+public Cliente obtenerCliente(int dni) {
+		
+		Cliente cliente= new Cliente();
+
+		conexion = new Conexion();
+		conexion.open();	
+
+		String consulta = "select dni_cliente, nombre_cliente, apellido_cliente\r\n"
+				+ "		from clientes\r\n"
+				+ "		where dni_cliente = " +dni;
+				
+		try
+		 {
+			ResultSet rs =conexion.query(consulta);
+			cliente.setDni_cliente(rs.getInt("dni_cliente"));
+			cliente.setNombre_cliente(rs.getString("dni_cliente"));
+			cliente.setApellido_cliente(rs.getString("dni_cliente"));
+		 }
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			conexion.close();
+		}
+		
+		return cliente;
+	}
 }
