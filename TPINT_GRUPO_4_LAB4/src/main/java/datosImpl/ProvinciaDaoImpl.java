@@ -9,10 +9,10 @@ import entidad.Provincia;
 public class ProvinciaDaoImpl implements ProvinciaDao {
 	
 	
-	public List<Provincia> listarProvincias() {
+	public ArrayList<Provincia> listarProvincias() {
 		 Conexion conexion= new Conexion();
 		 conexion.open();
-		 List<Provincia> list = new ArrayList<Provincia>();
+		 ArrayList<Provincia> list = new ArrayList<Provincia>();
 		 try
 		 {
 			 ResultSet rs= conexion.query("SELECT id_provincia ,Descripcion_provincia FROM provincias");

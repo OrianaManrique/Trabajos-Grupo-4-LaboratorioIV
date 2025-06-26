@@ -1,14 +1,16 @@
 package negocioImpl;
-import java.util.List;
+import java.util.ArrayList;
 import datos.ProvinciaDao;
 import datosImpl.ProvinciaDaoImpl;
 import entidad.Provincia;
+import negocio.ProvinciaNeg;
 
-public class ProvinciaNegImpl {
+public class ProvinciaNegImpl implements ProvinciaNeg {
     
 	private ProvinciaDao provDao = new ProvinciaDaoImpl();
-	
-	public List<Provincia> obtenerTodos() {
+
+	@Override
+	public ArrayList<Provincia> listarProvincias() {
 		return provDao.listarProvincias();
 	}
 	

@@ -1,9 +1,10 @@
 package datos;
+import java.util.ArrayList;
 import java.util.List;
 import entidad.Provincia;
 
 public interface ProvinciaDao {
    
-	public List<Provincia> listarProvincias();
+	public ArrayList<Provincia> listarProvincias();
 	
 }
