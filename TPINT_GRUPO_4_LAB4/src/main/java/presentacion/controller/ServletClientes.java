@@ -14,82 +14,104 @@ import entidad.Cliente;
 import entidad.Localidad;
 import entidad.Provincia;
 import negocio.ClienteNeg;
+import negocio.LocalidadNeg;
 import negocioImpl.ClienteNegImpl;
+import negocioImpl.LocalidadNegImpl;
+import negocio.ProvinciaNeg;
+import negocioImpl.ProvinciaNegImpl;
 
-/**
- * Servlet implementation class ServletClientes
- */
+
 @WebServlet("/ServletClientes")
 public class ServletClientes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	Boolean estado;
 	ClienteNeg negCli = new ClienteNegImpl();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletClientes() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	ProvinciaNeg negprov = new ProvinciaNegImpl();
+	LocalidadNeg negloc = new LocalidadNegImpl();
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ServletClientes() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		if (request.getParameter("Param") != null) {
-            
-			
+
+			String operacion = request.getParameter("Param").toString();
+
+			switch (operacion) {
+			case "CargarAgregarCliente": {
+				// Cargo el formulario
+				
+				
+				
+				request.setAttribute("listaLocalidades", negloc.listarLocalidades(2));			
+				request.setAttribute("listaProvincias", negprov.listarProvincias());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCliente.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
+			case "ListarClientes": {
+				
+				break;
+			}
+			default:
+				break;
+			}
+
 			RequestDispatcher rd = request.getRequestDispatcher("AgregarCliente.jsp");
 			rd.forward(request, response);
 
 		}
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
+		if (request.getParameter("btnAgregar") != null) {
+			Cliente cliente = new Cliente();
+			Localidad localidad = new Localidad();
+			Provincia provincia = new Provincia();
 
-		if(request.getParameter("btnAgregar")!=null)
-	    {
-	    	Cliente cliente = new Cliente();
-	    	Localidad localidad = new Localidad();
-	    	Provincia provincia = new Provincia();
-	    	
-	    	cliente.setDni_cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
-	    	cliente.setNombre_cliente(request.getParameter("txtNombre"));
-	    	cliente.setApellido_cliente(request.getParameter("txtApellido"));
-	    	cliente.setCuil_cliente(Integer.parseInt(request.getParameter("txtCuil")));
-	    	cliente.setSexo_cliente(request.getParameter("ddlSexo"));
-	    	
-	    	/*posteriormente vamos a sumar Localidad/ProvinciaDao para los métodos de obtener*/
-	    	localidad.setId_localidad(Integer.parseInt(request.getParameter("txtLocalidad")));
-	    	provincia.setId_provincia(Integer.parseInt(request.getParameter("txtProvincia")));
-	    	String fecha = request.getParameter("txtFechaNacimiento");
-	    	SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-	    	Date fechanacimiento = null;
-	    	
+			cliente.setDni_cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
+			cliente.setNombre_cliente(request.getParameter("txtNombre"));
+			cliente.setApellido_cliente(request.getParameter("txtApellido"));
+			cliente.setCuil_cliente(Integer.parseInt(request.getParameter("txtCuil")));
+			cliente.setSexo_cliente(request.getParameter("ddlSexo"));
+
+			/*
+			 * posteriormente vamos a sumar Localidad/ProvinciaDao para los métodos de
+			 * obtener
+			 */
+			localidad.setId_localidad(Integer.parseInt(request.getParameter("txtLocalidad")));
+			provincia.setId_provincia(Integer.parseInt(request.getParameter("txtProvincia")));
+			String fecha = request.getParameter("txtFechaNacimiento");
+			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+			Date fechanacimiento = null;
+
 			try {
 				fechanacimiento = (Date) formato.parse(fecha);
 			} catch (ParseException e) {
-				
+
 				e.printStackTrace();
 			}
-	    	
-	    	cliente.setId_localidad(localidad);
-	    	cliente.setId_provincia(provincia);
-	    	cliente.setNacionalidad_cliente(request.getParameter("txtNacionalidad"));
-	    	cliente.setFecha_nacimiento_cliente(fechanacimiento);
-	    	cliente.setCorreo_electronico_cliente(request.getParameter("txtCorreo"));
-	    	cliente.setDireccion_cliente(request.getParameter("txtDireccion"));
-	    	cliente.setTelefono_cliente(request.getParameter("txtTelefono"));
-	    	estado = negCli.insertar(cliente);
-	    	
-	    	request.setAttribute("exito", estado);
-	    	
-	    	RequestDispatcher dispatcher = request.getRequestDispatcher("AgregarCliente.jsp");
+
+			cliente.setId_localidad(localidad);
+			cliente.setId_provincia(provincia);
+			cliente.setNacionalidad_cliente(request.getParameter("txtNacionalidad"));
+			cliente.setFecha_nacimiento_cliente(fechanacimiento);
+			cliente.setCorreo_electronico_cliente(request.getParameter("txtCorreo"));
+			cliente.setDireccion_cliente(request.getParameter("txtDireccion"));
+			cliente.setTelefono_cliente(request.getParameter("txtTelefono"));
+			estado = negCli.insertar(cliente);
+
+			request.setAttribute("exito", estado);
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("AgregarCliente.jsp");
 			dispatcher.forward(request, response);
-	    }
-		
+		}
+
 		doGet(request, response);
 	}
 

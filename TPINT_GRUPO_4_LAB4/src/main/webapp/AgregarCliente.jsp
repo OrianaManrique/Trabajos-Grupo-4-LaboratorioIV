@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="entidad.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,32 +115,59 @@ p {
 </style>
 
 <body>
-   
-   <form action="ServletClientes?param=1" method="get">
-   
-	<div class="header">Usuario logueado - Cuenta Banco</div>
+    
+	<%
+	ArrayList<Provincia> ListaProvincias = new ArrayList<Provincia>();
+	if (request.getAttribute("listaProvincias") != null) {
+		ListaProvincias = (ArrayList<Provincia>) request.getAttribute("listaProvincias");
+	}
+	
+	ArrayList<Localidad> ListaLocalidades = new ArrayList<Localidad>();
+	if (request.getAttribute("listaLocalidades") != null) {
+		ListaLocalidades = (ArrayList<Localidad>) request.getAttribute("listaLocalidades");
+	}
+	%>
 
-	<a href="InicioLogin.jsp"> Inicio </a>
+	<form action="ServletClientes?param=1" method="get">
 
-	<div class="balance-container">
-		<div class="balance-box">
-			<p>
-				<strong>AGREGAR CLIENTE</strong> <br /> <br /> <br />
-			</p>
+		<div class="header">Usuario logueado - Cuenta Banco</div>
 
+		<a href="InicioLogin.jsp"> Inicio </a>
+
+		<div class="balance-container">
+			<div class="balance-box">
+				<p>
+					<strong>AGREGAR CLIENTE</strong> <br /> <br /> <br />
+				</p>
 
 				<div class="ContenedorColumna">
 
 					<input type="text" id="txtDniCliente" name="txtDniCliente"
 						placeholder="Ingrese su Dni..."> <select id="txtProvincia"
 						name="txtProvincia" style="width: 177px;">
-
-						<option value="">Seleccione su Provincia...</option>
+                        
+                        <option value="">Seleccione su Provincia...</option>                    
+                        
+						<%
+						for (Provincia p : ListaProvincias) {
+						%>
+						<option value="<%=p.getId_provincia()%>"><%=p.getDescripcion_provincia()%></option>
+						<%
+						}
+						%>				
 
 					</select> <select id="txtLocalidad" name="txtLocalidad"
 						style="width: 177px;">
 
 						<option value="">Seleccione su Localidad...</option>
+						
+						<%
+						for (Localidad l : ListaLocalidades) {
+						%>
+						<option value="<%=l.getId_localidad()%>"><%=l.getDescripcion_localidad()%></option>
+						<%
+						}
+						%>	
 
 					</select>
 
@@ -194,14 +224,14 @@ p {
 				<br /> <br />
 
 
-			<div class="ContenedorBoton">
-				<input type="submit" style="color: #5F1AB4" class="btnAgregar"
-					name="btnAgregar" value="AGREGAR" />
-			</div>
+				<div class="ContenedorBoton">
+					<input type="submit" style="color: #5F1AB4" class="btnAgregar"
+						name="btnAgregar" value="AGREGAR" />
+				</div>
 
+			</div>
 		</div>
-	</div>
-</form>
+	</form>
 
 
 
