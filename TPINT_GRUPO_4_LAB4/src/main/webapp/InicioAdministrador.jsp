@@ -73,8 +73,6 @@ p {
 
 </style>
 
-
-
 <body>
 
 <form>
@@ -93,7 +91,7 @@ Usuario logueado - Cuenta Banco
 <a href = "ServletClientes?Param=CargarAgregarCliente" > Agregar Cliente </a> <br/>
 <input type="submit" name="btnModificarCliente" value="Modificar Cliente" onclick="location.href='ModificarCliente.jsp'"/> <br/>
 <input type="submit" name="btnEliminarCliente" value="Eliminar Cliente" onclick="location.href='EliminarCliente.jsp'"/> <br/>
-<input type="submit" name="btnListarCliente" value="Listar Cliente" onclick="location.href='ListarCliente.jsp'"/> <br/>
+<a href = "ServletClientes?Param=ListarClientes" > Listar Clientes </a> <br/>
 
 </div>
 

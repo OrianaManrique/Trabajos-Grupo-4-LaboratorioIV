@@ -1,5 +1,7 @@
 package negocioImpl;
 
+import java.util.ArrayList;
+
 import datos.ClienteDao;
 import datosImpl.ClienteDaoImpl;
 import entidad.Cliente;
@@ -24,5 +26,10 @@ public class ClienteNegImpl implements ClienteNeg {
 	public boolean borrar(int dni) {
 
 		return cliDao.borrar(dni);
+	}
+
+	@Override
+	public ArrayList<Cliente> obtenerClientes() {
+		return cliDao.obtenerClientes();
 	}
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="entidad.*"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +10,7 @@
 
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-	
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8"
@@ -20,7 +22,6 @@
 	});
 </script>
 <style>
-
 body {
 	font-family: 'Segoe UI', sans-serif;
 	margin: 0;
@@ -41,7 +42,6 @@ body {
 .ContenedorVentana {
 	background-color: #4A217C;
 	width: auto;
-	
 	margin: 40px auto;
 	padding: 30px;
 	border-radius: 20px;
@@ -88,7 +88,7 @@ th {
 }
 
 tbody tr:nth-child(odd) {
-  background-color: #f2f2f2;
+	background-color: #f2f2f2;
 }
 
 td {
@@ -103,27 +103,43 @@ td {
 	<div class="header">Usuario logueado - Cuenta Banco</div>
 
 	<a href="InicioLogin.jsp"> Inicio </a>
-	
-	<br/>
-	<br/>
 
-		<table id="table_id" class="display">
+	<br />
+	<br />
+
+	<%
+	ArrayList<Cliente> ListaClientes = new ArrayList<Cliente>();
+	if (request.getAttribute("Lista") != null) {
+		ListaClientes = (ArrayList<Cliente>) request.getAttribute("Lista");
+
+	}
+	%>
+	<table id="table_id" class="display">
 		<thead>
 			<tr>
 				<th>Dni</th>
 				<th>Nombre</th>
 				<th>Apellido</th>
+				<th>Cuil</th>
+				<th>Correo</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
+			<%
+			for (Cliente cliente : ListaClientes) {
+			%>
 			<tr>
-				<td>41111222</td>
-				<td>Oriana</td>
-				<td>Manrique</td>
-				<td><input type="submit" value="Eliminar" name="btnEliminar" onclick="window.location.href='servletPersonas?btnEliminar=1&txtDni=41111222&txtNombre=Oriana&txtApellido=Manrique'"/></td>
+				<td><%=cliente.getDni_cliente()  %></td>
+				<td><%=cliente.getNombre_cliente() %></td>
+				<td><%=cliente.getApellido_cliente() %></td>
+				<td><%=cliente.getCuil_cliente() %></td>
+				<td><%=cliente.getCorreo_electronico_cliente() %></td>
+				<td><a href="ServletClientesParam=Modificar"> Modificar </a> <br /></td>
 			</tr>
-			
+			<%
+			}
+			%>
 		</tbody>
 	</table>
 

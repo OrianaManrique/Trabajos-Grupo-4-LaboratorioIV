@@ -50,6 +50,13 @@ public class ServletClientes extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
+			case "ListarClientes": {
+				// Cargo el form
+				request.setAttribute("Lista", negCli.obtenerClientes());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarCliente.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
 			default:
 				break;
 			}
@@ -57,9 +64,9 @@ public class ServletClientes extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/InicioAdministrador.jsp");
 			rd.forward(request, response);
 
-		}
-	}
-
+			}
+	   }
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

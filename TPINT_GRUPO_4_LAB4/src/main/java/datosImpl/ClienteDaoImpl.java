@@ -1,11 +1,14 @@
 package datosImpl;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import datos.ClienteDao;
 import entidad.Cliente;
+import entidad.Cuenta;
 import entidad.Localidad;
 import entidad.Provincia;
+import entidad.Tipo_Cuenta;
 
 public class ClienteDaoImpl implements ClienteDao {
 
@@ -103,5 +106,43 @@ public class ClienteDaoImpl implements ClienteDao {
 			conexion.close();
 		}
 		return estado;
+	}
+
+	@Override
+	public ArrayList<Cliente> obtenerClientes() {
+		conexion = new Conexion();
+		conexion.open();
+		
+		String consulta = ("Select dni_cliente , nombre_cliente , apellido_cliente , cuil_cliente , correo_electronico_cliente  from clientes where estado_cliente=1");
+		
+		ArrayList<Cliente> lista = new ArrayList<Cliente>();
+		
+		 try
+		 {
+			 ResultSet rs= conexion.query(consulta);
+			 
+			 while(rs.next())
+			 {
+				 Cliente cliente = new Cliente();
+				 cliente.setDni_cliente(rs.getInt("dni_cliente"));
+				 cliente.setNombre_cliente(rs.getString("nombre_cliente"));
+				 cliente.setApellido_cliente(rs.getString("apellido_cliente"));
+				 cliente.setCuil_cliente(rs.getInt("cuil_cliente"));
+				 cliente.setCorreo_electronico_cliente(rs.getString("correo_electronico_cliente"));
+				 
+				 lista.add(cliente);
+			 }
+			 
+		 }
+		 catch(Exception e)
+		 {
+			 e.printStackTrace();
+		 }
+		 finally
+		 {
+			 conexion.close();
+		 }
+		 return lista;
+
 	}
 }
