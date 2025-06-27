@@ -90,7 +90,7 @@ Usuario logueado - Cuenta Banco
 
 <a href = "ServletClientes?Param=CargarAgregarCliente" > Agregar Cliente </a> <br/>
 <a href = "ServletClientes?Param=ListarClientes" > Modificar Clientes </a> <br/>
-<input type="submit" name="btnEliminarCliente" value="Eliminar Cliente" onclick="location.href='EliminarCliente.jsp'"/> <br/>
+<a href = "EliminarCliente.jsp" > Eliminar Clientes </a> <br/>
 <a href = "ServletClientes?Param=ListarClientes" > Listar Clientes </a> <br/>
 
 </div>

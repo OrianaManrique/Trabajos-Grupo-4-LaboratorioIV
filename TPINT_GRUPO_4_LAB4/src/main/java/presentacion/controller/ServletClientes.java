@@ -62,6 +62,7 @@ public class ServletClientes extends HttpServlet {
 				break;
 			}
 
+
 			return;
 
 		}
@@ -69,7 +70,7 @@ public class ServletClientes extends HttpServlet {
 		
 		if (request.getParameter("Param2") != null && request.getParameter("Param") != null) {
 
-			String operacion = request.getParameter("Param2").toString();
+			String operacion = request.getParameter("Param").toString();
 
 			switch (operacion) {
 			case "CargarModificarCliente": {
@@ -87,7 +88,7 @@ public class ServletClientes extends HttpServlet {
 			default:
 				break;
 			}
-
+            
 			return;
 
 		}

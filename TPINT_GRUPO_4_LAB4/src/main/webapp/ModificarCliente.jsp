@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="entidad.*"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,6 +118,9 @@ p {
 <body>
     
 	<%
+	
+	Cliente cliente = new Cliente();
+	
 	ArrayList<Provincia> ListaProvincias = new ArrayList<Provincia>();
 	if (request.getAttribute("listaProvincias") != null) {
 		ListaProvincias = (ArrayList<Provincia>) request.getAttribute("listaProvincias");
@@ -127,13 +131,16 @@ p {
 		ListaLocalidades = (ArrayList<Localidad>) request.getAttribute("listaLocalidades");
 	}
 	
-	ArrayList<Cliente> ListaClientes = new ArrayList<Cliente>();
-	if (request.getAttribute("listaLocalidades") != null) {
-		ListaLocalidades = (ArrayList<Localidad>) request.getAttribute("listaLocalidades");
+	if (request.getAttribute("Cliente") != null) {
+		
+		cliente = (Cliente)request.getAttribute("Cliente");
+		
 	}
 	%>
+	
+	
 
-	<form action="ServletClientes?Param=EditarCliente" method="post">
+	<form action="ServletModificarClientes?Param=ConfirmarEditarCliente" method="post">
 
 		<div class="header">Usuario logueado - Cuenta Banco</div>
 
@@ -149,10 +156,10 @@ p {
 				
                  
 					<input type="text" id="txtDniCliente" name="txtDniCliente"
-						placeholder="Ingrese su Dni..." readonly> <select id="txtProvincia"
+						value="<%=cliente.getDni_cliente()%>" readonly> <select id="txtProvincia"
 						name="txtProvincia" style="width: 177px;">
                         
-                        <option value="">Seleccione su Provincia...</option>                                                    
+                        <option value="">Seleccione su Provincia...</option>                                                  
                         
 						<%
 						String idProvinciaSeleccionada = "";
@@ -190,13 +197,12 @@ p {
 				<div class="ContenedorColumna">
 
 					<input type="text" id="txtCuil" name="txtCuil"
-						placeholder="Ingrese su Cuil..."> <input
+						placeholder="Ingrese su Cuil..." value="<%=cliente.getCuil_cliente()%>" > <input
 						class="inputNacionalidad" type="text" id="txtNacionalidad"
-						name="txtNacionalidad" placeholder="Ingrese su Nacionalidad...">
+						name="txtNacionalidad" placeholder="Ingrese su Nacionalidad..." value="<%=cliente.getNacionalidad_cliente()%>">
 
 
-
-					<select id="ddlSexo" name="tiposexo" style="width: 177px;">
+					<select id="ddlSexo"  name="tiposexo" style="width: 177px;">
 
 						<option value="">Seleccione su sexo...</option>
 						<option value="F">Femenino</option>
@@ -212,10 +218,10 @@ p {
 				<div class="ContenedorColumna">
 
 					<input type="text" id="txtNombre" name="txtNombre"
-						placeholder="Ingrese su Nombre..."> <input
+						placeholder="Ingrese su Nombre..." value="<%=cliente.getNombre_cliente()%>"> <input
 						class="inputFechaNac" type="date" id="txtFechaNacimiento"
-						name="txtFechaNacimiento"> <input type="text"
-						id="txtCorreo" name="txtCorreo" placeholder="Ingrese su Correo...">
+						name="txtFechaNacimiento" value="<%=cliente.getFecha_nacimiento_cliente()%>"> <input type="text"
+						id="txtCorreo" name="txtCorreo" value="<%=cliente.getCorreo_electronico_cliente()%>" placeholder="Ingrese su Correo...">
 
 				</div>
 
@@ -224,12 +230,11 @@ p {
 				<div class="ContenedorColumna">
 
 					<input type="text" id="txtApellido" name="txtApellido"
-						placeholder="Ingrese su Apellido..."> <input
-						class="inputDireccion" type="text" id="txtDireccion"
+						value="<%=cliente.getApellido_cliente()%>" placeholder="Ingrese su Apellido..."> <input
+						class="inputDireccion" value="<%=cliente.getDireccion_cliente()%>" type="text" id="txtDireccion"
 						name="txtDireccion" placeholder="Ingrese su Dirección...">
-
 					<input type="text" id="txtTelefono" name="txtTelefono"
-						placeholder="Ingrese su Teléfono...">
+						placeholder="Ingrese su Teléfono..." value="<%=cliente.getTelefono_cliente()%>">
 
 				</div>
 

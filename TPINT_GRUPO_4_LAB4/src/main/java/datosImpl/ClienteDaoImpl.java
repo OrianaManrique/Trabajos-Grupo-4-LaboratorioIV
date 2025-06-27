@@ -1,8 +1,10 @@
 package datosImpl;
 
+import java.sql.Date;
 import java.sql.ResultSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import datos.ClienteDao;
 import entidad.Cliente;
 import entidad.Cuenta;
@@ -50,6 +52,10 @@ public class ClienteDaoImpl implements ClienteDao {
 	}
 
 	public Cliente obtenerCliente(int dni) {
+		
+		Localidad localidad = new Localidad();
+		Provincia provincia = new Provincia();
+
 
 		Cliente cliente = new Cliente();
 
@@ -57,15 +63,27 @@ public class ClienteDaoImpl implements ClienteDao {
 		conexion.open();
 
 		/* agregar filtro de estado=1 */
-		String consulta = "select dni_cliente, nombre_cliente, apellido_cliente\r\n" + "		from clientes\r\n"
+		String consulta = "select * \r\n" + " from clientes\r\n"
 				+ "		where dni_cliente = " + dni;
 
 		try {
 			ResultSet rs = conexion.query(consulta);
 			if (rs.next()) {
+				
 				cliente.setDni_cliente(rs.getInt("dni_cliente"));
 				cliente.setNombre_cliente(rs.getString("nombre_cliente"));
-				cliente.setApellido_cliente(rs.getString("apellido_cliente"));
+				cliente.setApellido_cliente(rs.getString("apellido_cliente"));			
+				cliente.setCuil_cliente(rs.getInt("cuil_cliente"));
+				cliente.setSexo_cliente(rs.getString("sexo_cliente"));
+				provincia.setId_provincia(rs.getInt("id_provincia_cliente"));
+				localidad.setId_localidad(rs.getInt("id_localidad_cliente"));
+				cliente.setFecha_nacimiento_cliente(rs.getDate("fecha_nacimiento_cliente"));
+				cliente.setProvincia(provincia);
+				cliente.setLocalidad(localidad);
+				cliente.setNacionalidad_cliente(rs.getString("nacionalidad_cliente"));
+				cliente.setCorreo_electronico_cliente(rs.getString("correo_electronico_cliente"));
+				cliente.setDireccion_cliente(rs.getString("direccion_cliente"));
+				cliente.setTelefono_cliente(rs.getString("telefono_cliente"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -134,28 +152,33 @@ public class ClienteDaoImpl implements ClienteDao {
 
 	@Override
 	public boolean editar(Cliente cliente) {
-		boolean estado = true;
+	    boolean estado = true;
 
-		conexion = new Conexion();
-		conexion.open();
+	    conexion = new Conexion();
+	    conexion.open();
 
-		String query = "UPDATE clientes SET nombre='" + cliente.getNombre_cliente() + "', cuil_cliente='"
-				+ cliente.getCuil_cliente() + "', apellido_cliente='" + cliente.getApellido_cliente()
-				+ "', sexo_cliente='" + cliente.getSexo_cliente() + "', nacionalidad_cliente='"
-				+ cliente.getNacionalidad_cliente() + "', fecha_nacimiento_cliente='"
-				+ cliente.getFecha_nacimiento_cliente() + "', direccion_cliente='" + cliente.getDireccion_cliente()
-				+ "', id_localidad_cliente='" + cliente.getLocalidad() + "', id_provincia_cliente'"
-				+ cliente.getProvincia() + "', correo_electronico_cliente='" + cliente.getCorreo_electronico_cliente()
-				+ "', telefono_cliente='" + cliente.getTelefono_cliente() + "', usuario_cliente='"
-				+ cliente.getUsuario_cliente() + "', contraseña_cliente='" + cliente.getContraseña_cliente()
-				+ "' WHERE dni_cliente ='" + cliente.getDni_cliente() + "'";
-		try {
-			estado = conexion.execute(query);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			conexion.close();
-		}
-		return estado;
+	    String query = "UPDATE clientes SET nombre_cliente='" + cliente.getNombre_cliente() + "', "
+	    	    + "cuil_cliente='" + cliente.getCuil_cliente() + "', "
+	    	    + "apellido_cliente='" + cliente.getApellido_cliente() + "', "
+	    	    + "sexo_cliente='" + cliente.getSexo_cliente() + "', "
+	    	    + "nacionalidad_cliente='" + cliente.getNacionalidad_cliente() + "', "
+	    	    + "fecha_nacimiento_cliente='" + cliente.getFecha_nacimiento_cliente() + "', "
+	    	    + "direccion_cliente='" + cliente.getDireccion_cliente() + "', "
+	    	    + "id_localidad_cliente='" + cliente.getLocalidad().getId_localidad() + "', "
+	    	    + "id_provincia_cliente='" + cliente.getProvincia().getId_provincia() + "', "
+	    	    + "correo_electronico_cliente='" + cliente.getCorreo_electronico_cliente() + "', "
+	    	    + "telefono_cliente='" + cliente.getTelefono_cliente() + "', "
+	    	    + "usuario_cliente='" + cliente.getUsuario_cliente() + "', "
+	    	    + "contraseña_cliente='" + cliente.getContraseña_cliente() + "' "
+	    	    + "WHERE dni_cliente='" + cliente.getDni_cliente() + "'";
+
+	    try {
+	        estado = conexion.execute(query);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        conexion.close();
+	    }
+	    return estado;
 	}
 }
