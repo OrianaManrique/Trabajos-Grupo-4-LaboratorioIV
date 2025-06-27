@@ -34,7 +34,7 @@ public class CuentaDaoImpl implements CuentaDao {
 				Cuenta cuenta = new Cuenta();
 				 cuenta.setNroCuenta_cuenta(rs.getString("NroCuenta_Cuenta"));
 				 cuenta.setDni_Cliente(rs.getInt("dni_cliente"));
-				 cuenta.setFecha_creacion_cuenta(rs.getDate("fecha_creación_cuenta"));
+				 cuenta.setFecha_creacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
 				 cuenta.setCbu_cuenta(rs.getString("cbu_cuenta"));
 				 
 				 Tipo_Cuenta tipo = new Tipo_Cuenta();
