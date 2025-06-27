@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="entidad.Cliente" %>
+<%@ page import="entidad.Cliente"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,6 @@
 <title>EliminarCliente</title>
 </head>
 <style>
-
 body {
 	font-family: 'Segoe UI', sans-serif;
 	margin: 0;
@@ -51,36 +50,33 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	align-items: center;     
-	
+	align-items: center;
 }
 
- .btn input[type="submit"] {
-            background-color: #4C0026;
-            color: white;
-            border: none;
-            border-radius: 8px;;
-            font-size: 1rem;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin-top: 15px;
-            display: inline-block;
-            text-align: center;
-            text-decoration: none;
-        }
+.btn input[type="submit"] {
+	background-color: #4C0026;
+	color: white;
+	border: none;
+	border-radius: 8px;;
+	font-size: 1rem;
+	padding: 10px 20px;
+	cursor: pointer;
+	margin-top: 15px;
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+}
 
-        .btn:hover {
-            background-color: #602A80;
-        }
+.btn:hover {
+	background-color: #602A80;
+}
 
 .contenedor {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end; /* Empuja contenido hacia abajo */
-            align-items: center;       /* Centra horizontalmente */
-        }
-
-
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end; /* Empuja contenido hacia abajo */
+	align-items: center; /* Centra horizontalmente */
+}
 
 p {
 	font-size: 22px;
@@ -88,84 +84,97 @@ p {
 	color: white;
 	font-weight: bold;
 	text-align: center;
-	
 }
 
 .form-group input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #ddd;;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
-        
-table {
-    table-layout: auto;
-    font-size: 18px;
-    justify-content: center;
-    text-align: center;
+	width: 100%;
+	padding: 10px;
+	background-color: #ddd;;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	font-size: 1rem;
+	box-sizing: border-box;
 }
 
-
+table {
+	table-layout: auto;
+	font-size: 18px;
+	justify-content: center;
+	text-align: center;
+}
 </style>
 </head>
 <body>
 
-<%
-Cliente cliente = new Cliente();
-String VisibilidadTabla = "none";
-String VisibilidadBoton = "none";
+	<%
+	Cliente cliente = new Cliente();
+	String VisibilidadTabla = "none";
+	String VisibilidadBoton = "none";
 
-if (request.getAttribute("Cliente") != null) {
-			 cliente = (Cliente)request.getAttribute("Cliente");
-			 
-			 VisibilidadTabla = "table";
-			 VisibilidadBoton = "inline";
-			 
-}
-%>
+	if (request.getAttribute("Cliente") != null) {
+		cliente = (Cliente) request.getAttribute("Cliente");
+
+		VisibilidadTabla = "table";
+		VisibilidadBoton = "inline";
+
+	}
+	%>
 
 	<form action="ServletClientes?Param=Buscar" method="post">
-	<div class="header">Usuario logueado - Cuenta Banco</div>
+		<div class="header">Usuario logueado - Cuenta Banco</div>
 
-	<div class="balance-container">
-		<div class="balance-box">
-		
-		<p>ELIMINAR CLIENTE</p>
-		
-			
+		<div class="balance-container">
+			<div class="balance-box">
+
+				<p>ELIMINAR CLIENTE</p>
+
+
 				<input type="text" name="dni" placeholder="Dni del cliente..."
 					required>
 
-					<table class="table" style="display:<%=VisibilidadTabla%>">
-						<thead>
-							<tr>
-								<th>| DNI |</th>
-								<th>| NOMBRE |</th>
-								<th>| APELLIDO |</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><%= cliente.getDni_cliente() %></td>
-								<td><%= cliente.getNombre_cliente() %></td>
-								<td><%= cliente.getApellido_cliente() %></td>
-							</tr>
-						</tbody>
-					</table>
-				
-				<div class = "contenedor">
-				<input type="submit" value="Buscar" name="btnBuscar"/>
-				<input type="submit" value="Eliminar" style="display:<%=VisibilidadBoton%>" name="btnEliminar"/>
-				
-					</div>
+				<table class="table" style="display:<%=VisibilidadTabla%>">
+					<thead>
+						<tr>
+							<th>| DNI |</th>
+							<th>| NOMBRE |</th>
+							<th>| APELLIDO |</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><%=cliente.getDni_cliente()%></td>
+							<td><%=cliente.getNombre_cliente()%></td>
+							<td><%=cliente.getApellido_cliente()%></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="contenedor">
+					<input type="submit" value="Buscar" name="btnEliminar" /> <!-- <input
+						type="submit" value="Eliminar"
+						style="display:<%=VisibilidadBoton%>" name="btnEliminar" /> -->
+
+				</div>
 			</div>
-			</div>
-			
-			</form>
-			
-	
+		</div>
+
+	</form>
+	<%
+	if (request.getAttribute("Exito") != null) {
+		
+		Boolean exito = false;
+		exito =(Boolean)request.getAttribute("Exito");
+		
+		if(exito == true){
+			%>
+			<%=
+			exito
+			%>
+			<%
+		}
+
+	}
+	%>
+
 </body>
 </html>
