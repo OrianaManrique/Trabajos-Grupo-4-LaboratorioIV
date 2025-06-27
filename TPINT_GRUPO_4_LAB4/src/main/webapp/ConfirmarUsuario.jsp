@@ -98,6 +98,8 @@
     
 		if (request.getAttribute("Dni") != null) {
 			dni_cliente = request.getAttribute("Dni").toString();
+			
+			
 		}
 	%>
 
@@ -114,30 +116,39 @@
 	   
 	   <div class="ContenedorControles">	   
 	   
-	   <form class="FormularioUsuario" action="ServletClientes?Param=AgregarClienteyUsuario" method="post">   
+	   <form class="FormularioUsuario" action="ServletConfirmarUsuario?Param=AgregarClienteyUsuario" method="post">   
 	   
 	    <label class="lblUsuario"> USUARIO </label>
 	    
-	    <input class="inputUsuario" type="text" id="txtDniCliente" name="txtUsuarioCliente" value="<%=dni_cliente + ".Banco" %>" readonly > <br/> 
+	    <input class="inputUsuario" type="text" id="txtUsuarioCliente" name="txtUsuarioCliente" value="<%=dni_cliente + ".Banco" %>" readonly > <br/> 
 						
 		<input class="inputPassword" type="password" id="txtContraseña" name="txtContraseña" placeholder="Ingrese una contraseña..."> <br/> 
 		
 		<input class="inputPassword" type="password" id="txtContraseña2" name="txtContraseña2" placeholder="repita la contraseña...">  <br/> <br/>
-	      
-				
+	      				
 		<div class="ContenedorBoton">
 		 <input type="submit" style="color:#5F1AB4 " class="btnConfirmar" name="btnConfirmar" value="CONFIRMAR"/>
 		</div>
 		</form>
 		</div>
-	</div>		         
-         
+	</div>
+
+
 	<%
-		if (request.getAttribute("exito") != null) {
+	if (request.getAttribute("Exito") != null) {
+		Boolean exito = (Boolean) request.getAttribute("Exito");
+
+		if (exito != null && exito) {
 	%>
-	Cliente Agregado con exito
+	<p style="color: green;">EXITO - Cliente Agregado</p>
 	<%
-		}
+	} else {
 	%>
+	<p style="color: red;">ERROR - Cliente no agregado</p>
+	<%
+	}
+	}
+	%>
+	
 </body>
 </html>

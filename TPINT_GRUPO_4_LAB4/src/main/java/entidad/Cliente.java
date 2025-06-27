@@ -11,8 +11,8 @@ public class Cliente {
 	private String nacionalidad_cliente;
 	private Date fecha_nacimiento_cliente;
 	private String Direccion_cliente;
-	Provincia id_provincia;
-	Localidad id_localidad;
+	private Localidad localidad;
+	private Provincia provincia;
 	private String correo_electronico_cliente;
 	private String telefono_cliente;
 	private String usuario_cliente;
@@ -26,7 +26,7 @@ public class Cliente {
 	
 	public Cliente(int dni, int cuil_cliente, String nombre_cliente, String apellido_cliente,
 			String sexo_cliente, String nacionalidad_cliente, Date fecha_nacimiento_cliente, String direccion_cliente,
-			Provincia id_provincia, Localidad id_localidad, String correo_electronico_cliente, String telefono_cliente) {
+			Provincia provincia, Localidad localidad, String correo_electronico_cliente, String telefono_cliente) {
 
 		dni_cliente = dni;
 		this.Cuil_cliente = cuil_cliente;
@@ -36,8 +36,8 @@ public class Cliente {
 		this.nacionalidad_cliente = nacionalidad_cliente;
 		this.fecha_nacimiento_cliente = fecha_nacimiento_cliente;
 		this.Direccion_cliente = direccion_cliente;
-		this.id_provincia = id_provincia;
-		this.id_localidad = id_localidad;
+		this.provincia = provincia;
+		this.localidad = localidad;
 		this.correo_electronico_cliente = correo_electronico_cliente;
 		this.telefono_cliente = telefono_cliente;
 		this.usuario_cliente = "";
@@ -109,21 +109,21 @@ public class Cliente {
 		Direccion_cliente = direccion_cliente;
 	}
 
-	public Provincia getId_provincia() {
-		return id_provincia;
-	}
+    public Localidad getLocalidad() {   	
+    	return localidad;  	
+    }
+    
+    public void setLocalidad(Localidad localidad) { 
+    	this.localidad = localidad; 
+    }
 
-	public void setId_provincia(Provincia id_provincia) {
-		this.id_provincia = id_provincia;
-	}
-
-	public Localidad getId_localidad() {
-		return id_localidad;
-	}
-
-	public void setId_localidad(Localidad id_localidad) {
-		this.id_localidad = id_localidad;
-	}
+    public Provincia getProvincia() { 
+    	return provincia; 
+    }
+    
+    public void setProvincia(Provincia provincia) { 
+    	this.provincia = provincia; 
+    }
 
 	public String getCorreo_electronico_cliente() {
 		return correo_electronico_cliente;
@@ -170,8 +170,8 @@ public class Cliente {
 		return "Cliente [dni_cliente=" + dni_cliente + ", Cuil_cliente=" + Cuil_cliente + ", nombre_cliente="
 				+ nombre_cliente + ", apellido_cliente=" + apellido_cliente + ", sexo_cliente=" + sexo_cliente
 				+ ", nacionalidad_cliente=" + nacionalidad_cliente + ", fecha_nacimiento_cliente="
-				+ fecha_nacimiento_cliente + ", Direccion_cliente=" + Direccion_cliente + ", id_provincia="
-				+ id_provincia + ", id_localidad=" + id_localidad + ", correo_electronico_cliente="
+				+ fecha_nacimiento_cliente + ", Direccion_cliente=" + Direccion_cliente + ", provincia="
+				+ provincia + ", localidad=" + localidad + ", correo_electronico_cliente="
 				+ correo_electronico_cliente + ", telefono_cliente=" + telefono_cliente + ", usuario_cliente="
 				+ usuario_cliente + ", contraseña_cliente=" + contraseña_cliente + ", estado=" + estado + "]";
 	}

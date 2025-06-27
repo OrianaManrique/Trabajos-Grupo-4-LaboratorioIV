@@ -191,7 +191,7 @@ p {
 
 
 
-					<select id="ddlSexo" name="tipoSeguro" style="width: 177px;">
+					<select id="ddlSexo" name="tiposexo" style="width: 177px;">
 
 						<option value="">Seleccione su sexo...</option>
 						<option value="F">Femenino</option>

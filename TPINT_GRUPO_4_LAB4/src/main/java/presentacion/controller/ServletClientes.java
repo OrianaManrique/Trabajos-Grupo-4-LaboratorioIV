@@ -1,9 +1,10 @@
 package presentacion.controller;
-
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,19 +42,12 @@ public class ServletClientes extends HttpServlet {
 			String operacion = request.getParameter("Param").toString();
 
 			switch (operacion) {
-			case "CargarAgregarCliente": {
-
+			case "CargarAgregarCliente": {			
+				
 				request.setAttribute("listaLocalidades", negloc.listarLocalidades(1));
 				request.setAttribute("listaProvincias", negprov.listarProvincias());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCliente.jsp");
 				dispatcher.forward(request, response);
-				break;
-			}
-			case "CargarUsuario": {
-
-				request.setAttribute("NombreUsuario", request.getParameter("txtDniCliente"));
-				RequestDispatcher requestdispatcher = request.getRequestDispatcher("/ConfirmarUsuario.jsp");
-				requestdispatcher.forward(request, response);
 				break;
 			}
 			default:
@@ -75,88 +69,51 @@ public class ServletClientes extends HttpServlet {
 
 			switch (operacion) {
 			case "CargarUsuario": {
+				
+				Cliente cliente = new Cliente();
+				Localidad localidad = new Localidad();
+				Provincia provincia = new Provincia();
 
-				request.getSession().setAttribute("provincia", request.getParameter("txtProvincia"));
-				request.getSession().setAttribute("localidad", request.getParameter("txtProvincia"));
-				request.getSession().setAttribute("cuil", request.getParameter("txtCuil"));
-				request.getSession().setAttribute("nombre", request.getParameter("txtNombre"));
-				request.getSession().setAttribute("apellido", request.getParameter("txtApellido"));
-				request.getSession().setAttribute("direccion", request.getParameter("txtDireccion"));
-				request.getSession().setAttribute("telefono", request.getParameter("txtTelefono"));
-				request.getSession().setAttribute("sexo", request.getParameter("ddlSexo"));
-				request.getSession().setAttribute("telefono", request.getParameter("txtTelefono"));
-				request.getSession().setAttribute("fechanac", request.getParameter("txtFechaNacimiento"));
-				request.getSession().setAttribute("nacionalidad", request.getParameter("txtNacionalidad"));
-				request.getSession().setAttribute("correo", request.getParameter("txtCorreo"));
-				request.getSession().setAttribute("dni", request.getParameter("txtDniCliente"));
+				cliente.setDni_cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
+				cliente.setNombre_cliente(request.getParameter("txtNombre"));
+				cliente.setApellido_cliente(request.getParameter("txtApellido"));
+				cliente.setCuil_cliente(Integer.parseInt(request.getParameter("txtCuil")));
+				cliente.setSexo_cliente(request.getParameter("tiposexo"));
+				provincia.setId_provincia(Integer.parseInt(request.getParameter("txtProvincia")));
+				localidad.setId_localidad(Integer.parseInt(request.getParameter("txtLocalidad")));
+				String fecha = request.getParameter("txtFechaNacimiento");
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+				formato.setLenient(false);
+				Date fechanacimiento = null;
 
-				System.out.println(request.getSession().getAttribute("txtDniCliente"));
-
+				try {
+				    fechanacimiento = new Date(formato.parse(fecha).getTime()); 
+				} catch (ParseException e) {
+				    e.printStackTrace();
+				}
+				
+				cliente.setFecha_nacimiento_cliente(fechanacimiento);
+				cliente.setProvincia(provincia);
+				cliente.setLocalidad(localidad);
+				cliente.setNacionalidad_cliente(request.getParameter("txtNacionalidad"));
+				cliente.setFecha_nacimiento_cliente(fechanacimiento);
+				cliente.setCorreo_electronico_cliente(request.getParameter("txtCorreo"));
+				cliente.setDireccion_cliente(request.getParameter("txtDireccion"));
+				cliente.setTelefono_cliente(request.getParameter("txtTelefono"));
+								
+				HttpSession session  = request.getSession();
+				session.setAttribute("ClienteparaAgregar", cliente);
+              
 				request.setAttribute("Dni", request.getParameter("txtDniCliente"));
 				RequestDispatcher requestdispatcher = request.getRequestDispatcher("/ConfirmarUsuario.jsp");
 				requestdispatcher.forward(request, response);
 				break;
 			}
-			/*case "Buscar": {
-				/* if (request.getParameter("btnBuscar") != null) { */
-
-				/*request.setAttribute("Cliente", negCli.obtenerCliente((Integer.parseInt(request.getParameter("dni")))));
-				RequestDispatcher requestdispatcher = request.getRequestDispatcher("/EliminarCliente.jsp");
-				requestdispatcher.forward(request, response);*/
-
-				/* } 
-				break;
-			}*/
+			
 			default:
 				break;
 			}
 
-		}
-        
-		if (request.getParameter("btnConfirmar") != null) {
-			Cliente cliente = new Cliente();
-			Localidad localidad = new Localidad();
-			Provincia provincia = new Provincia();
-            
-			if(request.getSession().getAttribute("txtDniCliente").toString()==null) {
-
-			}
-			cliente.setDni_cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
-			cliente.setNombre_cliente(request.getParameter("txtNombre"));
-			cliente.setApellido_cliente(request.getParameter("txtApellido"));
-			cliente.setCuil_cliente(Integer.parseInt(request.getParameter("txtCuil")));
-			cliente.setSexo_cliente(request.getParameter("ddlSexo"));
-
-			
-			  //posteriormente vamos a sumar Localidad/ProvinciaDao para los métodos de
-			  //obtener
-			 
-			localidad.setId_localidad(Integer.parseInt(request.getParameter("txtLocalidad")));
-			provincia.setId_provincia(Integer.parseInt(request.getParameter("txtProvincia")));
-			String fecha = request.getParameter("txtFechaNacimiento");
-			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-			Date fechanacimiento = null;
-
-			try {
-				fechanacimiento = (Date) formato.parse(fecha);
-			} catch (ParseException e) {
-
-				e.printStackTrace();
-			}
-
-			cliente.setId_localidad(localidad);
-			cliente.setId_provincia(provincia);
-			cliente.setNacionalidad_cliente(request.getParameter("txtNacionalidad"));
-			cliente.setFecha_nacimiento_cliente(fechanacimiento);
-			cliente.setCorreo_electronico_cliente(request.getParameter("txtCorreo"));
-			cliente.setDireccion_cliente(request.getParameter("txtDireccion"));
-			cliente.setTelefono_cliente(request.getParameter("txtTelefono"));
-			estado = negCli.insertar(cliente);
-
-			request.setAttribute("exito", estado);
-
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/ConfirmarUsuario.jsp");
-			dispatcher.forward(request, response);
 		}
 		
 		if (request.getParameter("btnEliminar") != null) {
