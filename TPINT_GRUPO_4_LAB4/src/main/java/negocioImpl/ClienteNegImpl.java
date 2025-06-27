@@ -1,4 +1,5 @@
 package negocioImpl;
+
 import datos.ClienteDao;
 import datosImpl.ClienteDaoImpl;
 import entidad.Cliente;
@@ -7,7 +8,7 @@ import negocio.ClienteNeg;
 public class ClienteNegImpl implements ClienteNeg {
 
 	private ClienteDao cliDao = new ClienteDaoImpl();
-	
+
 	public ClienteNegImpl() {
 		// TODO Auto-generated constructor stub
 	}
@@ -15,8 +16,13 @@ public class ClienteNegImpl implements ClienteNeg {
 	public boolean insertar(Cliente cliente) {
 		return cliDao.insertar(cliente);
 	}
-	
+
 	public Cliente obtenerCliente(int dni) {
 		return cliDao.obtenerCliente(dni);
+	}
+
+	public boolean borrar(int dni) {
+
+		return cliDao.borrar(dni);
 	}
 }

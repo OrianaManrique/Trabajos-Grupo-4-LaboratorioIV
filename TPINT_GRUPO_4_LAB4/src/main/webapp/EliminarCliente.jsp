@@ -115,13 +115,19 @@ table {
 
 <%
 Cliente cliente = new Cliente();
+String VisibilidadTabla = "none";
+String VisibilidadBoton = "none";
 
 if (request.getAttribute("Cliente") != null) {
 			 cliente = (Cliente)request.getAttribute("Cliente");
+			 
+			 VisibilidadTabla = "table";
+			 VisibilidadBoton = "inline";
+			 
 }
 %>
 
-			<form action="ServletClientes?Param=Buscar" method="get">
+	<form action="ServletClientes?Param=Buscar" method="post">
 	<div class="header">Usuario logueado - Cuenta Banco</div>
 
 	<div class="balance-container">
@@ -133,7 +139,7 @@ if (request.getAttribute("Cliente") != null) {
 				<input type="text" name="dni" placeholder="Dni del cliente..."
 					required>
 
-					<table class="table">
+					<table class="table" style="display:<%=VisibilidadTabla%>">
 						<thead>
 							<tr>
 								<th>| DNI |</th>
@@ -152,7 +158,7 @@ if (request.getAttribute("Cliente") != null) {
 				
 				<div class = "contenedor">
 				<input type="submit" value="Buscar" name="btnBuscar"/>
-				<input type="submit" value="Eliminar" name="btnEliminar"/>
+				<input type="submit" value="Eliminar" style="display:<%=VisibilidadBoton%>" name="btnEliminar"/>
 				
 					</div>
 			</div>
