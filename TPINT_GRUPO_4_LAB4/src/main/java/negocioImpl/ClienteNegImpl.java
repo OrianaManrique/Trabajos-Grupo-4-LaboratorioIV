@@ -32,4 +32,9 @@ public class ClienteNegImpl implements ClienteNeg {
 	public ArrayList<Cliente> obtenerClientes() {
 		return cliDao.obtenerClientes();
 	}
+
+	@Override
+	public boolean editar(Cliente cliente) {
+		return cliDao.editar(cliente);
+	}
 }

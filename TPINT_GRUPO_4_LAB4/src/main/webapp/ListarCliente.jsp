@@ -135,7 +135,7 @@ td {
 				<td><%=cliente.getApellido_cliente() %></td>
 				<td><%=cliente.getCuil_cliente() %></td>
 				<td><%=cliente.getCorreo_electronico_cliente() %></td>
-				<td><a href="ServletClientesParam=Modificar"> Modificar </a> <br /></td>
+				<td><a href="ServletClientes?Param=CargarModificarCliente&Param2=<%=cliente.getDni_cliente()%>"> Modificar </a> <br /></td>
 			</tr>
 			<%
 			}

@@ -1,4 +1,5 @@
 package presentacion.controller;
+
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
@@ -42,8 +43,8 @@ public class ServletClientes extends HttpServlet {
 			String operacion = request.getParameter("Param").toString();
 
 			switch (operacion) {
-			case "CargarAgregarCliente": {			
-				
+			case "CargarAgregarCliente": {
+
 				request.setAttribute("listaLocalidades", negloc.listarLocalidades(1));
 				request.setAttribute("listaProvincias", negprov.listarProvincias());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCliente.jsp");
@@ -61,12 +62,37 @@ public class ServletClientes extends HttpServlet {
 				break;
 			}
 
-			RequestDispatcher rd = request.getRequestDispatcher("/InicioAdministrador.jsp");
-			rd.forward(request, response);
+			return;
 
+		}
+		
+		
+		if (request.getParameter("Param2") != null && request.getParameter("Param") != null) {
+
+			String operacion = request.getParameter("Param2").toString();
+
+			switch (operacion) {
+			case "CargarModificarCliente": {
+				
+				if (request.getParameter("Param2") != null) {
+					request.setAttribute("DniClienteEditar", request.getParameter("Param2"));
+				}
+				
+				request.setAttribute("listaLocalidades", negloc.listarLocalidades(1));
+				request.setAttribute("listaProvincias", negprov.listarProvincias());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCliente.jsp");
+				dispatcher.forward(request, response);
+				break;
 			}
-	   }
-	
+			default:
+				break;
+			}
+
+			return;
+
+		}
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -76,7 +102,7 @@ public class ServletClientes extends HttpServlet {
 
 			switch (operacion) {
 			case "CargarUsuario": {
-				
+
 				Cliente cliente = new Cliente();
 				Localidad localidad = new Localidad();
 				Provincia provincia = new Provincia();
@@ -94,11 +120,11 @@ public class ServletClientes extends HttpServlet {
 				Date fechanacimiento = null;
 
 				try {
-				    fechanacimiento = new Date(formato.parse(fecha).getTime()); 
+					fechanacimiento = new Date(formato.parse(fecha).getTime());
 				} catch (ParseException e) {
-				    e.printStackTrace();
+					e.printStackTrace();
 				}
-				
+
 				cliente.setFecha_nacimiento_cliente(fechanacimiento);
 				cliente.setProvincia(provincia);
 				cliente.setLocalidad(localidad);
@@ -107,22 +133,23 @@ public class ServletClientes extends HttpServlet {
 				cliente.setCorreo_electronico_cliente(request.getParameter("txtCorreo"));
 				cliente.setDireccion_cliente(request.getParameter("txtDireccion"));
 				cliente.setTelefono_cliente(request.getParameter("txtTelefono"));
-								
-				HttpSession session  = request.getSession();
+
+				HttpSession session = request.getSession();
 				session.setAttribute("ClienteparaAgregar", cliente);
-              
+
 				request.setAttribute("Dni", request.getParameter("txtDniCliente"));
 				RequestDispatcher requestdispatcher = request.getRequestDispatcher("/ConfirmarUsuario.jsp");
 				requestdispatcher.forward(request, response);
 				break;
 			}
-			
+
+
 			default:
 				break;
 			}
 
 		}
-		
+
 		if (request.getParameter("btnEliminar") != null) {
 
 			request.setAttribute("Exito", negCli.borrar((Integer.parseInt(request.getParameter("dni")))));
@@ -131,7 +158,6 @@ public class ServletClientes extends HttpServlet {
 			return;
 
 		}
-
 
 	}
 
