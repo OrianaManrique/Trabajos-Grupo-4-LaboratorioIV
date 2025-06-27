@@ -60,7 +60,7 @@ public class ServletClientes extends HttpServlet {
 			}
 			case "Buscar":
 			{
-				if (request.getParameter("btnBuscar") != null) {
+				/*if (request.getParameter("btnBuscar") != null) {*/
 				
 					Cliente cliente = new Cliente();
 					cliente.setDni_cliente(Integer.parseInt(request.getParameter("dni")));
@@ -69,7 +69,7 @@ public class ServletClientes extends HttpServlet {
 					RequestDispatcher requestdispatcher = request.getRequestDispatcher("/EliminarCliente.jsp");
 					requestdispatcher.forward(request, response);
 				
-				}
+				/*}*/
 				break;
 			}
 			default:

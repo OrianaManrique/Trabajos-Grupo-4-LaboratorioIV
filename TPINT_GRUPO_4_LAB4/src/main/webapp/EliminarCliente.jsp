@@ -118,10 +118,10 @@ Cliente cliente = new Cliente();
 
 if (request.getAttribute("Cliente") != null) {
 			 cliente = (Cliente)request.getAttribute("Cliente");
-		}
+}
 %>
 
-			<form>
+			<form action="ServletClientes?Param=Buscar" method="get">
 	<div class="header">Usuario logueado - Cuenta Banco</div>
 
 	<div class="balance-container">
@@ -143,16 +143,16 @@ if (request.getAttribute("Cliente") != null) {
 						</thead>
 						<tbody>
 							<tr>
-								<td><% cliente.getDni_cliente(); %></td>
-								<td><% cliente.getNombre_cliente(); %></td>
-								<td><% cliente.getApellido_cliente(); %></td>
+								<td><%= cliente.getDni_cliente() %></td>
+								<td><%= cliente.getNombre_cliente() %></td>
+								<td><%= cliente.getApellido_cliente() %></td>
 							</tr>
 						</tbody>
 					</table>
 				
 				<div class = "contenedor">
 				<input type="submit" value="Buscar" name="btnBuscar"/>
-				<input type="submit" value="Eliminar" name="btnEliminar" onclick="window.location.href='servletClientes?btnEliminar=1'"/>
+				<input type="submit" value="Eliminar" name="btnEliminar"/>
 				
 					</div>
 			</div>

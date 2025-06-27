@@ -56,8 +56,8 @@ public Cliente obtenerCliente(int dni) {
 		 {
 			ResultSet rs =conexion.query(consulta);
 			cliente.setDni_cliente(rs.getInt("dni_cliente"));
-			cliente.setNombre_cliente(rs.getString("dni_cliente"));
-			cliente.setApellido_cliente(rs.getString("dni_cliente"));
+			cliente.setNombre_cliente(rs.getString("nombre_cliente"));
+			cliente.setApellido_cliente(rs.getString("apellido_cliente"));
 		 }
 		catch(Exception e)
 		{
