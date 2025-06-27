@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page import="entidad.*"%>
+<%@page import="java.util.ArrayList"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -100,26 +102,51 @@ body {
 <br/>
 <br/>
 
+
+<% 
+
+ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();
+if (request.getAttribute("Lista") != null) {
+	ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("Lista");
+	
+}
+
+
+%>
+
+<form>
+
 <table id="table_id" class="display">
 		<thead>
 			<tr>
+				<th>Numero de cuenta</th>
 				<th>Dni</th>
-				<th>Nombre</th>
-				<th>Apellido</th>
-				<th></th>
+				<th>Fecha de creación</th>
+				<th>CBU</th>
+				<th>Tipo de cunta</th>
+				<th>Saldo</th>
+				<th>	</th>
 			</tr>
 		</thead>
 		<tbody>
+		<%
+			for (Cuenta cuentaCliente : ListaCuentas) {
+		%>
 			<tr>
-				<td>111111</td>
-				<td>Carlos</td>
-				<td>Luna</td>
-				<!-- Codigo comentado: Observar que utilizo el onClick al servlet y le paso de parámetro el nombre del boton con otros atributos -->
-				<td><input type="submit" value="Eliminar" name="btnEliminar" onclick="window.location.href='servletPersonas?btnEliminar=1&txtDni=111111&txtNombre=Carlos&txtApellido=Luna'"/></td>
+				<td><%= cuentaCliente.getNroCuenta_cuenta() %></td>
+				<td><%= cuentaCliente.getDni_Cliente() %></td>
+				<td><%= cuentaCliente.getFecha_creacion_cuenta() %></td>
+				<td><%= cuentaCliente.getCbu_cuenta() %></td>
+				<td><%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta() %></td>
+				<td><%= cuentaCliente.getSaldo_cuenta() %></td>
+				<td><a href = "ServletCuenta?Param=Modificar" > Modificar </a> <br/></td>
 			</tr>
-			
+			<%
+			}
+			%>
 		</tbody>
 	</table>
   
+  </form>
   </body>
   </html>

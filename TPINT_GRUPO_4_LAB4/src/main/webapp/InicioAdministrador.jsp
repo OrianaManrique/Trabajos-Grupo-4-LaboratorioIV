@@ -103,7 +103,7 @@ Usuario logueado - Cuenta Banco
 <input type="submit" name="btnAgregarCuenta" value="Nueva Cuenta" onclick="location.href='AgregarCuenta.jsp'"/> <br/>
 <input type="submit" name="btnModificarCuenta" value="Modificar Cuenta" onclick="location.href='ModificarCuenta.jsp'"/> <br/>
 <input type="submit" name="btnEliminarCuenta" value="Eliminar Cuenta" onclick="location.href='EliminarCuenta.jsp'"/> <br/>
-<input type="submit" name="btnListarCuenta" value="Listar Cuenta" onclick="location.href='ListarCuenta.jsp'"/> <br/>
+<a href = "ServletCuentas?Param=Listar" > Listar Cuentas </a> <br/>
 
 </div>
 
