@@ -80,8 +80,6 @@ public class ClienteDaoImpl implements ClienteDao {
 		    	estado = true;
 		    }
 		    
-			//estado = conexion.executeUpdate(query);
-		    
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

@@ -167,7 +167,7 @@ table {
 				%>
 
 				<div class="contenedor">
-					<input type="submit" value="Buscar" name="btnEliminar" />
+					<input type="submit" value="Eliminar" name="btnEliminar" />
 
 				</div>
 			</div>
