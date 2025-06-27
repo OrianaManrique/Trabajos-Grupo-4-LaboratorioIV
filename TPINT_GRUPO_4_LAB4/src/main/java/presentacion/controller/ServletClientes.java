@@ -42,7 +42,6 @@ public class ServletClientes extends HttpServlet {
 
 			switch (operacion) {
 			case "CargarAgregarCliente": {
-				// Cargo el formulario
 
 				request.setAttribute("listaLocalidades", negloc.listarLocalidades(1));
 				request.setAttribute("listaProvincias", negprov.listarProvincias());
@@ -112,8 +111,6 @@ public class ServletClientes extends HttpServlet {
 				break;
 			}
 
-			RequestDispatcher rd = request.getRequestDispatcher("/InicioAdministrador.jsp");
-			rd.forward(request, response);
 		}
         
 		if (request.getParameter("btnConfirmar") != null) {
@@ -155,8 +152,6 @@ public class ServletClientes extends HttpServlet {
 			cliente.setDireccion_cliente(request.getParameter("txtDireccion"));
 			cliente.setTelefono_cliente(request.getParameter("txtTelefono"));
 			estado = negCli.insertar(cliente);
-			
-			System.out.println(cliente.getDireccion_cliente());
 
 			request.setAttribute("exito", estado);
 
@@ -173,7 +168,7 @@ public class ServletClientes extends HttpServlet {
 
 		}
 
-		/*doGet(request, response);*/
+
 	}
 
 }

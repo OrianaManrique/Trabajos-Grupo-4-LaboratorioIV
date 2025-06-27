@@ -76,4 +76,15 @@ public class Conexion {
 		return estado;
 	}
 	
+
+    public int executeUpdate(String query) throws SQLException {
+        Statement statement = null;
+        try {
+        	statement = conexion.createStatement();
+            return statement.executeUpdate(query);
+        } finally {
+            if (statement != null) statement.close();
+        }
+    }
+	
 }

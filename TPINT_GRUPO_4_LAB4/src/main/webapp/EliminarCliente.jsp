@@ -34,7 +34,7 @@ body {
 }
 
 .balance-box {
-	/*background: linear-gradient(to right, #602A80, #4C0026);*/
+	
 	background: linear-gradient(to right, #A178C1, #A14C6F); ,
 	color: white;
 	padding: 25px 35px;
@@ -74,8 +74,8 @@ body {
 .contenedor {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end; /* Empuja contenido hacia abajo */
-	align-items: center; /* Centra horizontalmente */
+	justify-content: flex-end; 
+	align-items: center; 
 }
 
 p {
@@ -149,32 +149,33 @@ table {
 					</tbody>
 				</table>
 
+				<%
+
+				if (request.getAttribute("Exito") != null) {
+					Boolean exito = (Boolean) request.getAttribute("Exito"); 
+
+					if (exito != null && exito) { 
+				%>
+				<p style="color: green;">Cliente Eliminado</p>
+				<%
+				} else { 
+				%>
+				<p style="color: red;">ERROR - no se encuentra el Cliente</p>
+				<%
+				}
+				}
+				%>
+
 				<div class="contenedor">
-					<input type="submit" value="Buscar" name="btnEliminar" /> <!-- <input
-						type="submit" value="Eliminar"
-						style="display:<%=VisibilidadBoton%>" name="btnEliminar" /> -->
+					<input type="submit" value="Buscar" name="btnEliminar" />
 
 				</div>
 			</div>
 		</div>
 
 	</form>
-	<%
-	if (request.getAttribute("Exito") != null) {
-		
-		Boolean exito = false;
-		exito =(Boolean)request.getAttribute("Exito");
-		
-		if(exito == true){
-			%>
-			<%=
-			exito
-			%>
-			<%
-		}
 
-	}
-	%>
+
 
 </body>
 </html>

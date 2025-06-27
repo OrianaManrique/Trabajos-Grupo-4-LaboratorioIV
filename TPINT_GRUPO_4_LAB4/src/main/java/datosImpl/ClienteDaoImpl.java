@@ -67,12 +67,21 @@ public class ClienteDaoImpl implements ClienteDao {
 	@Override
 	public boolean borrar(int dni) {
 		
-		boolean estado = true;
+		boolean estado = false;
+		
+		try {
 		conexion = new Conexion();
 		conexion.open();
 		String query = "UPDATE clientes SET estado_cliente=0 WHERE dni_cliente = " + dni;
-		try {
-			estado = conexion.execute(query);
+		    
+		    int filasAfectadas = conexion.executeUpdate(query);
+		    
+		    if(filasAfectadas > 0) {
+		    	estado = true;
+		    }
+		    
+			//estado = conexion.executeUpdate(query);
+		    
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
