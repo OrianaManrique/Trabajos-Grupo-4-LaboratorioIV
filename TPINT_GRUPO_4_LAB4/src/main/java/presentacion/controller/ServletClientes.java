@@ -61,7 +61,7 @@ public class ServletClientes extends HttpServlet {
 				break;
 			}
 
-			RequestDispatcher rd = request.getRequestDispatcher("AgregarCliente.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/InicioAdministrador.jsp");
 			rd.forward(request, response);
 
 		}
@@ -112,7 +112,7 @@ public class ServletClientes extends HttpServlet {
 				break;
 			}
 
-			RequestDispatcher rd = request.getRequestDispatcher("/EliminarCliente.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/InicioAdministrador.jsp");
 			rd.forward(request, response);
 		}
         

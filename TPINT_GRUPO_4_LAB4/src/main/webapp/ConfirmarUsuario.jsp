@@ -92,10 +92,12 @@
 
 </head>
 <body>
-
+       
     <%
-		if (request.getAttribute("NombreUsuario") != null) {
-			String NombreUsuario = request.getAttribute("NombreUsuario").toString();
+        String dni_cliente = null;
+    
+		if (request.getAttribute("Dni") != null) {
+			dni_cliente = request.getAttribute("Dni").toString();
 		}
 	%>
 
@@ -112,25 +114,30 @@
 	   
 	   <div class="ContenedorControles">	   
 	   
-	   <form class="FormularioUsuario">
-	   
+	   <form class="FormularioUsuario" action="ServletClientes?Param=AgregarClienteyUsuario" method="post">   
 	   
 	    <label class="lblUsuario"> USUARIO </label>
 	    
-	    <input class="inputUsuario" type="text" id="txtDniCliente" name="txtDniCliente" value="2" readonly > <br/> 
+	    <input class="inputUsuario" type="text" id="txtDniCliente" name="txtUsuarioCliente" value="<%=dni_cliente + ".Banco" %>" readonly > <br/> 
 						
 		<input class="inputPassword" type="password" id="txtContraseña" name="txtContraseña" placeholder="Ingrese una contraseña..."> <br/> 
 		
 		<input class="inputPassword" type="password" id="txtContraseña2" name="txtContraseña2" placeholder="repita la contraseña...">  <br/> <br/>
-	   
-	   </form>
+	      
 				
 		<div class="ContenedorBoton">
-		 <input type="submit" style="color:#5F1AB4 "  class="btnConfirmar" name="btnConfirmar" value="CONFIRMAR"/>
+		 <input type="submit" style="color:#5F1AB4 " class="btnConfirmar" name="btnConfirmar" value="CONFIRMAR"/>
 		</div>
-		
+		</form>
 		</div>
 	</div>		         
          
+	<%
+		if (request.getAttribute("exito") != null) {
+	%>
+	Cliente Agregado con exito
+	<%
+		}
+	%>
 </body>
 </html>
