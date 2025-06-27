@@ -63,18 +63,9 @@ public class ServletClientes extends HttpServlet {
 				if (request.getParameter("btnBuscar") != null) {
 				
 					Cliente cliente = new Cliente();
-					Cliente clienteTable = new Cliente();
-					
 					cliente.setDni_cliente(Integer.parseInt(request.getParameter("dni")));
 					
-					clienteTable = negCli.obtenerCliente(cliente.getDni_cliente());
-					
-					
-					
-					
-					request.setAttribute("Clientedni", request.getParameter("dniCli"));
-					request.setAttribute("Clientenom", request.getParameter("NombreCli"));
-					request.setAttribute("Clienteape", request.getParameter("ApellidoCli"));
+					request.setAttribute("Cliente", negCli.obtenerCliente(cliente.getDni_cliente()));
 					RequestDispatcher requestdispatcher = request.getRequestDispatcher("/EliminarCliente.jsp");
 					requestdispatcher.forward(request, response);
 				

@@ -47,6 +47,7 @@ public Cliente obtenerCliente(int dni) {
 		conexion = new Conexion();
 		conexion.open();	
 
+		/*agregar filtro de estado=1*/
 		String consulta = "select dni_cliente, nombre_cliente, apellido_cliente\r\n"
 				+ "		from clientes\r\n"
 				+ "		where dni_cliente = " +dni;

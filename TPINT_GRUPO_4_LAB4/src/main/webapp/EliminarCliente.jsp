@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="entidad.Cliente" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,8 +114,10 @@ table {
 <body>
 
 <%
-		if (request.getAttribute("Cliente") != null) {
-			String NombreUsuario = request.getAttribute("NombreUsuario").toString();
+Cliente cliente = new Cliente();
+
+if (request.getAttribute("Cliente") != null) {
+			 cliente = (Cliente)request.getAttribute("Cliente");
 		}
 %>
 
@@ -140,9 +143,9 @@ table {
 						</thead>
 						<tbody>
 							<tr>
-								<td>12345678</td>
-								<td>Carlos</td>
-								<td>Perez</td>
+								<td><% cliente.getDni_cliente(); %></td>
+								<td><% cliente.getNombre_cliente(); %></td>
+								<td><% cliente.getApellido_cliente(); %></td>
 							</tr>
 						</tbody>
 					</table>
