@@ -148,7 +148,7 @@ Usuario logueado - Cuenta Banco
 	   
 	   <div class="ContenedorControles">	   
 	   
-	  <form class="form-columns">
+	  <form action="ServletCuentas?Param=Asignar" method="post">
 	  
 	  <div class="form-columna"> 
 	     	  	   
