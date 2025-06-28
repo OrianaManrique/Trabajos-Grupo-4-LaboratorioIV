@@ -2,9 +2,7 @@ package datosImpl;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 import datos.CuentaDao;
-import entidad.Cliente;
 import entidad.Cuenta;
 import entidad.Tipo_Cuenta;
 
@@ -140,6 +138,29 @@ public class CuentaDaoImpl implements CuentaDao {
 		}
 
 		return cuenta;
+	}
+	
+	public Boolean agregarCuenta(Cuenta cuenta){
+		
+		boolean estado = true;
+		
+
+		conexion = new Conexion();
+		conexion.open();
+
+		String consulta = "INSERT INTO cuentas (NroCuenta_Cuenta, dni_cliente, fecha_creacion_cuenta, cbu_cuenta, id_TipoCuenta) "
+				+ "VALUES ("+ cuenta.getNroCuenta_cuenta() +" ," + cuenta.getDni_Cliente() + " ,"+ cuenta.getFecha_creacion_cuenta() + " ,"
+			    + "'"+ cuenta.getCbu_cuenta() +"', "    
+			    +"'"+ cuenta.getTipo_cuenta() +"' );";
+
+		try {
+			estado = conexion.execute(consulta);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+		return estado;
 	}
 
 }

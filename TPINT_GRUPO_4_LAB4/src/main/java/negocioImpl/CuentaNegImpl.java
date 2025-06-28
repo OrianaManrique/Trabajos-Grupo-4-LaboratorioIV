@@ -26,4 +26,8 @@ public class CuentaNegImpl implements CuentaNeg{
 	public boolean editar(Cuenta cuenta) {
 		return cuentaDao.editar(cuenta);
 	}
+	
+	public Boolean agregarCuenta(Cuenta cuenta) {
+		return cuentaDao.agregarCuenta(cuenta);
+	}
 }

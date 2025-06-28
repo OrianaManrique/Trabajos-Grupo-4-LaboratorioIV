@@ -98,7 +98,7 @@ Usuario logueado - Cuenta Banco
 <div class = "balance-box">
 <p>ABML Cuentas</p>
 <br/>
-<input type="submit" name="btnAgregarCuenta" value="Nueva Cuenta" onclick="location.href='AgregarCuenta.jsp'"/> <br/>
+<a href = "ServletCuentas?Param=CargarAgregar" > Agregar Cuenta </a> <br/>
 <input type="submit" name="btnModificarCuenta" value="Modificar Cuenta" onclick="location.href='ModificarCuenta.jsp'"/> <br/>
 <a href = "EliminarCuenta.jsp" > Eliminar Cuentas </a> <br/>
 <a href = "ServletCuentas?Param=Listar" > Listar Cuentas </a> <br/>
