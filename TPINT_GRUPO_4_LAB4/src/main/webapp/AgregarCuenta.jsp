@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="java.util.ArrayList"%>
+<%@page import="entidad.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,6 +123,13 @@
 
 
 <body>
+
+	<%
+	ArrayList<Tipo_Cuenta> ListaTipoCuentas = new ArrayList<Tipo_Cuenta>();
+	if (request.getAttribute("listaTipoCuentas") != null) {
+		ListaTipoCuentas = (ArrayList<Tipo_Cuenta>) request.getAttribute("listaTipoCuentas");
+	}
+	%>
 
 <div class="header">
 Usuario logueado - Cuenta Banco

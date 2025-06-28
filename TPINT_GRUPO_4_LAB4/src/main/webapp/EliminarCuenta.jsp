@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>EliminarCliente</title>
+<title>EliminarCuenta</title>
 </head>
 <style>
 body {
