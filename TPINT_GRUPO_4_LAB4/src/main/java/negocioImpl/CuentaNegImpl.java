@@ -21,4 +21,9 @@ public class CuentaNegImpl implements CuentaNeg{
 	public boolean borrar(String NroCuenta_Cuenta) {
 		return cuentaDao.borrar(NroCuenta_Cuenta);
 	}
+
+	@Override
+	public boolean editar(Cuenta cuenta) {
+		return cuentaDao.editar(cuenta);
+	}
 }

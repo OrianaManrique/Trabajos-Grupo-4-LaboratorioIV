@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="entidad.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MODIFICAR CUENTA</title>
+<title>Confirmar Usuario</title>
+</head>
 
 <style>
-
 body {
 	font-family: 'Segoe UI', sans-serif;
 	margin: 0;
@@ -28,78 +30,96 @@ body {
 .ContenedorVentana {
 	background-color: #4A217C;
 	width: 700px;
-	height: 400px;
-	padding: 40px;
+	height: 450px;
 	border-radius: 8px;
 }
 
 .ContenedorTitulo {
 	background-color: #E5E5E5;
-	width: 350px;
+	width: 300px;
 	margin: 0 auto;
 	text-align: center;
 	border-radius: 8px;
 }
 
-.ContenedorBoton {
-	margin: 0 auto;
-	width: 260px;
-}
-
 .ContenedorColumna {
 	display: flex;
+	flex-direction: column;
 	margin-top: 15px;
 	margin-left: 90px;
 	gap: 10px;
 }
 
-.FormularioModificarCuenta input {
+.ContenedorBoton {
+	margin: 0 auto;
+	width: 260px;
+	height: 100px;
+}
+
+.btnAsignar {
+	width: 260px;
+	height: 30%;
+}
+
+.FormularioUsuario {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	margin-right: 12%;
+}
+
+.FormularioUsuario input {
 	border-radius: 8px;
 }
 
-.inputFechaNac {
-	width: 167px;
+input::placeholder {
+	font-size: 13px;
+	text-align: center;
 }
 
-.inputNacionalidad {
-	width: 167px;
+.inputBloqueado {
+	color: grey;
 }
 
-.inputDireccion {
-	width: 167px;
+.inputFechaActual {
+	width: 157px;
 }
 
-.ContenedorVentana h2 {
+.inputddlTipoCuenta {
+	width: 166px;
+}
+
+.ContenedorControles {
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+.form-columns {
+	display: flex;
+	gap: 40px;
+}
+
+.form-columna {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.inputSegundaColumna {
+	margin-top: 34px;
+}
+
+.lblinput {
 	color: white;
-	margin-bottom: 30px;
-	font-size: 24px;
-}
-
-.ContenedorVentana input[type="submit"] {
-	width: 100%;
-	padding: 10px;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	border: none;
-	border-radius: 8px;
-	background-color: #e5e5e5;
-	color: #44107a;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-.ContenedorVentana input[type="submit"] {
-	background-color: #d4d4d4;
-}
-
-.barraDeBusqueda {
-	width: 150px;
-	margin-left: 53px;
-	margin-bottom: 50px;
 }
 </style>
 
-</head>
+
 <body>
 
 	<div class="header">Usuario logueado - Cuenta Banco</div>
@@ -113,37 +133,41 @@ body {
 			</h2>
 		</div>
 
-		<input class="barraDeBusqueda" type="search"
-			placeholder="Ingrese el Dni del cliente o numero de cuenta..."
-			style="width: 606px;"> <br />
+		<br /> <br />
 
 		<div class="ContenedorControles">
 
-			<form class="FormularioModificarCuenta">
+			<form class="form-columns">
 
-				<div class="ContenedorColumna">
+				<div class="form-columna">
 
-					<input type="text" id="txtNumeroCuenta" name="txtNumeroCuenta"
-						placeholder="CTA-1234567"> <input type="text"
-						id="txtDniCuenta" name="txtDniCuenta" placeholder="12345678">
+					<label class="lblinput"> Numero de Cuenta </label> <input
+						class="inputBloqueado" type="text" id="txtNumeroCuenta"
+						name="txtNumeroCuenta" placeholder="A12345678" readonly>
 
-					<input type="date" id="txtFechaDeCreacion" name="txtLocalidad">
+					<label class="lblinput"> CBU </label> <input class="inputBloqueado"
+						type="text" id="txtNumeroCuenta" name="txtNumeroCuenta"
+						placeholder="7654321" readonly> <label class="lblinput">
+						Saldo </label> <input class="inputBloqueado" type="text"
+						id="txtNumeroCuenta" name="txtNumeroCuenta" placeholder="$10.000"
+						readonly>
 
 				</div>
 
 				<br /> <br />
 
-				<div class="ContenedorColumna">
+				<div class="form-columna">
 
-					<input type="text" id="txtCbu" name="txtCbu"
-						placeholder="01234567820"> <select
-						class="inputSegundaColumna" id="ddTipoCuenta" name="ddTipoCuenta"
-						style="width: 177px;">
+					<input class="inputSegundaColumna" type="text" id="txtDniCliente"
+						name="txtDniCliente" placeholder="Ingrese el dni del cliente...">
 
-						<option value="">Tipo de cuenta...</option>
+					<input class="inputSegundaColumna" type="date" id="txtFechaActual"
+						name="txtFechaActual"> <select class="inputSegundaColumna"
+						id="ddTipoCuenta" name="ddTipoCuenta" style="width: 177px;">
 
-					</select> <input type="text" id="txtSaldo" name="txtSaldo"
-						placeholder="$10.000">
+						<option value="">Seleccione un tipo...</option>
+
+					</select>
 
 				</div>
 
@@ -153,15 +177,17 @@ body {
 
 		</div>
 
+		<br /> <br />
+
+
+
 		<div class="ContenedorBoton">
-			<input type="submit" style="color: #5F1AB4" class="btnAgregar"
-				name="btnAgregar" value="MODIFICAR" />
+			<br /> <br /> <input type="submit" style="color: #5F1AB4"
+				class="btnAsignar" name="btnAsignar" value="ASIGNAR" />
 		</div>
 
 
 	</div>
-
-
 
 </body>
 </html>

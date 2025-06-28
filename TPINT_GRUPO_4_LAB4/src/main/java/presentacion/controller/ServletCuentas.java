@@ -14,15 +14,16 @@ import negocioImpl.CuentaNegImpl;
 @WebServlet("/ServletCuentas")
 public class ServletCuentas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	CuentaNeg negCuenta = new CuentaNegImpl();
-    
-    public ServletCuentas() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	CuentaNeg negCuenta = new CuentaNegImpl();
+
+	public ServletCuentas() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		if (request.getParameter("Param") != null) {
 
 			String operacion = request.getParameter("Param").toString();
@@ -36,7 +37,7 @@ public class ServletCuentas extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			
+
 			default:
 				break;
 			}
@@ -45,10 +46,31 @@ public class ServletCuentas extends HttpServlet {
 			rd.forward(request, response);
 			return;
 		}
+
+		if (request.getParameter("Param2") != null && request.getParameter("Param") != null) {
+
+			String operacion = request.getParameter("Param").toString();
+
+			switch (operacion) {
+			case "CargarModificarCuenta": {		
+                
+				request.setAttribute("NumeroCuentaEditar", request.getParameter("Param2"));
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
+			default:
+				break;
+			}
+
+			return;
+
+		}
 	}
-     
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		if (request.getParameter("btnEliminarCuenta") != null) {
 
 			request.setAttribute("Exito", negCuenta.borrar(request.getParameter("NumeroDeCuenta")));

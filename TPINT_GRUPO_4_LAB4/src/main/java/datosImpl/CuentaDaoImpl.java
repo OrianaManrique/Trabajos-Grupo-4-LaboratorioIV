@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import datos.CuentaDao;
+import entidad.Cliente;
 import entidad.Cuenta;
 import entidad.Tipo_Cuenta;
 
@@ -81,6 +82,64 @@ public class CuentaDaoImpl implements CuentaDao {
 			conexion.close();
 		}
 		return estado;
+	}
+
+	@Override
+	public boolean editar(Cuenta cuenta) {
+
+		boolean estado = true;
+
+		conexion = new Conexion();
+		conexion.open();
+
+		String query = "UPDATE cuentas SET " + "NroCuenta_Cuenta=" + cuenta.getNroCuenta_cuenta() + ", "
+				+ "dni_cliente='" + cuenta.getDni_Cliente() + "', " + "fecha_creacion_cuenta='"
+				+ cuenta.getFecha_creacion_cuenta() + "', " + "cbu_cuenta='" + cuenta.getCbu_cuenta() + "', "
+				+ "id_TipoCuenta=" + cuenta.getTipo_cuenta() + ", " + "saldo_cuenta=" + cuenta.getSaldo_cuenta() + " "
+				+ "WHERE NroCuenta_Cuenta=" + cuenta.getNroCuenta_cuenta();
+
+		try {
+			estado = conexion.execute(query);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+		return estado;
+	}
+
+	@Override
+	public Cuenta obtenerCuenta(String NroCuenta_Cuenta) {
+		conexion = new Conexion();
+		conexion.open();
+		
+		Cuenta cuenta = new Cuenta();
+		Tipo_Cuenta tipocuenta= new Tipo_Cuenta();
+
+		String consulta = "select * \r\n" + " from cuentas\r\n"
+				+ "		where NroCuenta_Cuenta = " + NroCuenta_Cuenta;
+
+		try {
+			ResultSet rs = conexion.query(consulta);
+			if (rs.next()) {
+				
+				cuenta.setNroCuenta_cuenta(rs.getString("NroCuenta_Cuenta"));
+				cuenta.setDni_Cliente(rs.getInt("dni_cliente"));
+				cuenta.setFecha_creacion_cuenta((rs.getDate("fecha_creacion_cuenta")));		
+				cuenta.setCbu_cuenta(rs.getString("cbu_cuenta"));
+				tipocuenta.setId_tipoCuenta(rs.getInt("id_TipoCuenta"));
+				cuenta.setTipo_cuenta(tipocuenta);
+				cuenta.setSaldo_cuenta(rs.getDouble("id_TipoCuenta"));			
+				
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+
+		return cuenta;
 	}
 
 }
