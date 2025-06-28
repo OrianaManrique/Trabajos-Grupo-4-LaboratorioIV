@@ -7,5 +7,6 @@ import entidad.Cuenta;
 public interface CuentaDao {
 	
 	public ArrayList<Cuenta> obtenerCuentas();
+	public boolean borrar(String NroCuenta_Cuenta);
 
 }

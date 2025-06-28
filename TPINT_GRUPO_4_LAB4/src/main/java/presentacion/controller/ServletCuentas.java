@@ -46,10 +46,17 @@ public class ServletCuentas extends HttpServlet {
 			return;
 		}
 	}
-
+     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		doGet(request, response);
+		if (request.getParameter("btnEliminarCuenta") != null) {
+
+			request.setAttribute("Exito", negCuenta.borrar(request.getParameter("NumeroDeCuenta")));
+			RequestDispatcher requestdispatcher = request.getRequestDispatcher("/EliminarCuenta.jsp");
+			requestdispatcher.forward(request, response);
+			return;
+
+		}
 	}
 
 }

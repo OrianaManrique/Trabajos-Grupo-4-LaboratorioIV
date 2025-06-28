@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="entidad.Cliente"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>EliminarCuenta</title>
+<title>EliminarCliente</title>
 </head>
 <style>
-
 body {
 	font-family: 'Segoe UI', sans-serif;
 	margin: 0;
@@ -25,92 +25,157 @@ body {
 	letter-spacing: 1px;
 }
 
-.Eliminar-container {
-	background-color: #44107a;
-	padding: 40px;
-	border-radius: 10px;
-	width: 300px;
-	text-align: center;
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+.balance-container {
+	display: flex;
+	justify-content: center;
+	gap: 40px;
+	margin: 30px 0;
+	flex-wrap: wrap;
 }
 
-.Eliminar-container h2 {
+.balance-box {
+	
+	background: linear-gradient(to right, #A178C1, #A14C6F); ,
 	color: white;
-	margin-bottom: 30px;
-	font-size: 24px;
-}
-
-.Eliminar-container input[type="text"] {
-	width: 93%;
-	padding: 10px;
-	margin-bottom: 10px;
-	border: none;
-	border-radius: 8px;
-	background-color: #e5e5e5;
+	padding: 25px 35px;
+	border-radius: 12px;
+	font-size: 26px;
 	font-weight: bold;
 	text-align: center;
-	font-size: 12px;
+	box-shadow: 0 4px 10px rgba(204, 0, 143, 0.3);
+	min-width: 200px;
+	width: 500px;
+	height: 400px;
+	/**/
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
 }
 
-.Eliminar-container input[type="submit"] {
+.btn input[type="submit"] {
+	background-color: #4C0026;
+	color: white;
+	border: none;
+	border-radius: 8px;;
+	font-size: 1rem;
+	padding: 10px 20px;
+	cursor: pointer;
+	margin-top: 15px;
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+}
+
+.btn:hover {
+	background-color: #602A80;
+}
+
+.contenedor {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end; 
+	align-items: center; 
+}
+
+p {
+	font-size: 22px;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+
+.form-group input[type="text"] {
 	width: 100%;
 	padding: 10px;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	border: none;
+	background-color: #ddd;;
+	border: 1px solid #ccc;
 	border-radius: 8px;
-	background-color: #e5e5e5;
-	color: #44107a;
-	font-weight: bold;
-	cursor: pointer;
+	font-size: 1rem;
+	box-sizing: border-box;
 }
 
-.Eliminar-container input[type="submit"] {
-	background-color: #d4d4d4;
-}
-
-.table-container {
-	margin-left: 5%;
-	color: white;
-	margin-top: 5%;
-	margin-bottom: 5%;
+table {
+	table-layout: auto;
+	font-size: 18px;
+	justify-content: center;
+	text-align: center;
 }
 </style>
 </head>
 <body>
-	<div class="header">Usuario logueado - Cuenta Banco</div>
-	
-	<div class="Eliminar-container">
-		<h2>ELIMINAR CUENTA</h2>
-		<div class="form-body">
-			<form>
-				<input type="text" name="dni"
-					placeholder="Dni del cliente o CUIL..." required>
 
-				<div class="table-container">
-					<table class="movements-table">
-						<thead>
-							<tr>
-								<th>| DNI |</th>
-								<th>| N DE CUENTA |</th>
-								<th>| CBU |</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>12345678</td>
-								<td>CTA-12345678</td>
-								<td>78932499</td>
-							</tr>
-						</tbody>
-					</table>
+	<%
+	Cliente cliente = new Cliente();
+	String VisibilidadTabla = "none";
+	String VisibilidadBoton = "none";
+
+	if (request.getAttribute("Cliente") != null) {
+		cliente = (Cliente) request.getAttribute("Cliente");
+
+		VisibilidadTabla = "table";
+		VisibilidadBoton = "inline";
+
+	}
+	%>
+
+	<form action="ServletCuentas?Param=Buscar" method="post">
+		<div class="header">Usuario logueado - Cuenta Banco</div>
+
+		<div class="balance-container">
+			<div class="balance-box">
+
+				<p>ELIMINAR CUENTA</p>
+
+
+				<input type="text" name="NumeroDeCuenta" placeholder="Numero de cuenta..."
+					required>
+
+				<table class="table" style="display:<%=VisibilidadTabla%>">
+					<thead>
+						<tr>
+							<th>| DNI |</th>
+							<th>| NOMBRE |</th>
+							<th>| APELLIDO |</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><%=cliente.getDni_cliente()%></td>
+							<td><%=cliente.getNombre_cliente()%></td>
+							<td><%=cliente.getApellido_cliente()%></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<%
+
+				if (request.getAttribute("Exito") != null) {
+					Boolean exito = (Boolean) request.getAttribute("Exito"); 
+
+					if (exito != null && exito) { 
+				%>
+				<p style="color: green;">Cuenta Eliminada</p>
+				<%
+				} else { 
+				%>
+				<p style="color: red;">ERROR - no se encuentra la Cuenta</p>
+				<%
+				}
+				}
+				%>
+
+				<div class="contenedor">
+					<input type="submit" value="Eliminar" name="btnEliminarCuenta" />
+
 				</div>
-
-				<input type="submit" value="BUSCAR"> <input type="submit"
-					value="CANCELAR">
-
-			</form>
+			</div>
 		</div>
-	</div>
+
+	</form>
+
+
+
 </body>
 </html>

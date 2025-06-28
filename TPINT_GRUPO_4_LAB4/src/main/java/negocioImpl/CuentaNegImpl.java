@@ -16,4 +16,9 @@ public class CuentaNegImpl implements CuentaNeg{
 	public ArrayList<Cuenta> obtenerCuentas(){
 		return cuentaDao.obtenerCuentas();
 	}
+
+	@Override
+	public boolean borrar(String NroCuenta_Cuenta) {
+		return cuentaDao.borrar(NroCuenta_Cuenta);
+	}
 }
