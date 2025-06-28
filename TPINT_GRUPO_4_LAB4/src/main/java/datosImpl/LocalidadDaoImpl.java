@@ -16,7 +16,7 @@ public class LocalidadDaoImpl implements LocalidadDao {
 		try {
 
 			ResultSet rs = conexion
-					.query("SELECT l.id_localidad, l.Descripcion_localidad, p.id_provincia, p.Descripcion_Provincia " + // <--- ¿Está Descripcion_Provincia aquí?
+					.query("SELECT l.id_localidad, l.Descripcion_localidad, p.id_provincia, p.Descripcion_Provincia " +
 						    "FROM localidades l " +
 						    "INNER JOIN provincias p ON l.id_provincia = p.id_provincia");
 			while (rs.next()) {
