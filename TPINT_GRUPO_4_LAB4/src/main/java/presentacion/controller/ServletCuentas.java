@@ -116,8 +116,8 @@ public class ServletCuentas extends HttpServlet {
 				cuenta.setFecha_creacion_cuenta(fechacreacion);
 				
 				Tipo_Cuenta tipo = new Tipo_Cuenta();
-				tipo.setId_tipoCuenta(0);
-				tipo.setDescripcion_tipoCuenta(operacion);
+				
+				tipo.setId_tipoCuenta(Integer.parseInt(request.getParameter("ddlTipoCuenta")));
 				
 				cuenta.setTipo_cuenta(tipo);
 				

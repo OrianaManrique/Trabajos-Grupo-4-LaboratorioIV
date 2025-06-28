@@ -44,11 +44,7 @@ public class CuentaDaoImpl implements CuentaDao {
 				lista.add(cuenta);
 			}
 
-			for (Cuenta cuentaCliente : lista) {
-
-				System.out.println(cuentaCliente.getDni_Cliente());
-			}
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -148,10 +144,14 @@ public class CuentaDaoImpl implements CuentaDao {
 		conexion = new Conexion();
 		conexion.open();
 
-		String consulta = "INSERT INTO cuentas (NroCuenta_Cuenta, dni_cliente, fecha_creacion_cuenta, cbu_cuenta, id_TipoCuenta) "
-				+ "VALUES ("+ cuenta.getNroCuenta_cuenta() +" ," + cuenta.getDni_Cliente() + " ,"+ cuenta.getFecha_creacion_cuenta() + " ,"
-			    + "'"+ cuenta.getCbu_cuenta() +"', "    
-			    +"'"+ cuenta.getTipo_cuenta() +"' );";
+		String consulta = "INSERT INTO cuentas (NroCuenta_Cuenta, dni_cliente, fecha_creacion_cuenta, cbu_cuenta, id_TipoCuenta, saldo_cuenta, estado_cuenta) "
+	               + "VALUES ('" + cuenta.getNroCuenta_cuenta() + "', "
+	               + cuenta.getDni_Cliente() + ", "
+	               + "'" + cuenta.getFecha_creacion_cuenta().toString() + "', "
+	               + "'" + cuenta.getCbu_cuenta() + "', "
+	               + cuenta.getTipo_cuenta().getId_tipoCuenta() + ", "
+	               + cuenta.getSaldo_cuenta() + ", "
+	               + cuenta.getEstado_cuenta() + ");";
 
 		try {
 			estado = conexion.execute(consulta);

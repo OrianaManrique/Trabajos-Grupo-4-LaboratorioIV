@@ -73,7 +73,7 @@ public class Cuenta {
 		this.saldo_cuenta = saldo_cuenta;
 	}
 
-	public boolean isEstado_cuenta() {
+	public boolean getEstado_cuenta() {
 		return estado_cuenta;
 	}
 

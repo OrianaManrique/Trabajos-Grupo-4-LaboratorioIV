@@ -17,7 +17,6 @@ public class Tipo_CuentaNegImpl implements Tipo_CuentaNeg{
 
 	@Override
 	public ArrayList<Tipo_Cuenta> obtenerTiposCuentas() {
-		// TODO Auto-generated method stub
 		return  tipoDao.obtenerTiposCuentas();
 	}
 

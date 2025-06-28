@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.ArrayList"%>
 <%@page import="entidad.*"%>
+<%@page import="negocio.*"%>
+<%@page import="negocioImpl.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,21 +14,44 @@
 
  <style>
   
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #E0E0E0;
+ body {
+	font-family: 'Segoe UI', sans-serif;
+	margin: 0;
+	padding: 0;
+	background: #E0E0E0;
 }
 
 .header {
-    background: linear-gradient(to right, #602A80, #4C0026);
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-    letter-spacing: 1px;
+	background: linear-gradient(to right, #602A80, #4C0026);
+	color: white;
+	padding: 20px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	letter-spacing: 1px;
+}
+
+.balance-container {
+	display: flex;
+	justify-content: center;
+	gap: 40px;
+	margin: 30px 0;
+	flex-wrap: wrap;
+}
+
+.balance-box {
+	/*background: linear-gradient(to right, #602A80, #4C0026);*/
+	background: linear-gradient(to right, #A178C1, #A14C6F); ,
+	color: white;
+	padding: 25px 35px;
+	border-radius: 12px;
+	font-size: 26px;
+	font-weight: bold;
+	text-align: center;
+	box-shadow: 0 4px 10px rgba(204, 0, 143, 0.3);
+	min-width: 200px;
+	width: 700px;
+	height: 800px;
 }
   
   .ContenedorVentana{
@@ -119,6 +145,16 @@
   color: white;
   }
   
+  p {
+	font-size: 30px;
+	text-align: center;
+	color: black;
+	font-weight: bold;
+	text-align: center;
+	background-color: #E5E5E5;
+	border-radius: 8px;
+}
+  
 </style>
 
 
@@ -126,9 +162,14 @@
 
 	<%
 	ArrayList<Tipo_Cuenta> ListaTipoCuentas = new ArrayList<Tipo_Cuenta>();
-	if (request.getAttribute("listaTipoCuentas") != null) {
-		ListaTipoCuentas = (ArrayList<Tipo_Cuenta>) request.getAttribute("listaTipoCuentas");
+	if (request.getAttribute("Tipos") != null) {
+		ListaTipoCuentas = (ArrayList<Tipo_Cuenta>) request.getAttribute("Tipos");
 	}
+	
+	if (request.getAttribute("Tipos") != null) {
+		ListaTipoCuentas = (ArrayList<Tipo_Cuenta>) request.getAttribute("Tipos");
+	}
+	
 	%>
 
 <div class="header">
@@ -137,68 +178,54 @@ Usuario logueado - Cuenta Banco
 
    <a href="InicioLogin.jsp"> Inicio </a>
    
-   <div class="ContenedorVentana" >
-        <div class="ContenedorTitulo">
-           <h2>
-			<strong style="color:#5F1AB4 ">AGREGAR CUENTA</strong>
-		   </h2>
-        </div>
+   <form action="ServletCuentas?Param=Asignar" method="post">
+   
+   <div class="balance-container" >
+      <div class="balance-box" >
+			<p> AGREGAR CUENTA</p>
                
-		<br/> <br/>
-	   
-	   <div class="ContenedorControles">	   
-	   
-	  <form action="ServletCuentas?Param=Asignar" method="post">
-	  
 	  <div class="form-columna"> 
 	     	  	   
 	    <label class="lblinput">Numero de Cuenta </label>  
 	    
-	    <input class="inputBloqueado" type="text" id="txtNumeroCuenta" name="txtNumeroCuenta" placeholder="A12345678" readonly > 
+	    <input class="inputBloqueado" type="text" id="txtNumeroCuenta" name="txtNumeroCuenta" placeholder="A12345678"> 
 		
 		<label class="lblinput"> CBU </label>  
 				
-		<input class="inputBloqueado" type="text" id="txtNumeroCuenta" name="txtNumeroCuenta" placeholder="7654321" readonly > 
+		<input class="inputBloqueado" type="text" id="txtCBU" name="txtCBU" placeholder="7654321"> 
 		
 				 <label class="lblinput"> Saldo </label>  
 		
-		<input class="inputBloqueado" type="text" id="txtNumeroCuenta" name="txtNumeroCuenta" placeholder="$10.000" readonly > 	
+		<input class="inputBloqueado" type="text" id="txtSaldo" value = 10000 name="txtSaldo" placeholder="$10.000" ReadOnly> 	
 					   	   
 	   </div>
-	   
-	   <br/> <br/>
-	   
 	   <div class="form-columna"> 
 	   
 	    <input class="inputSegundaColumna" type="text" id="txtDniCliente" name="txtDniCliente" placeholder="Ingrese el dni del cliente...">
 	     	  	   		
 		<input class="inputSegundaColumna" type="date" id="txtFechaActual" name="txtFechaActual">
 		
-		<select class="inputSegundaColumna" id="ddTipoCuenta" name="ddTipoCuenta" style="width: 177px;">
+		<select class="inputSegundaColumna" id="ddlTipoCuenta" name="ddlTipoCuenta" style="display: flex;">
 
                 <option value="">Seleccione un tipo...</option>
-
+				<%
+						for (Tipo_Cuenta tipo : ListaTipoCuentas) {
+						%>
+						<option value="<%= tipo.getId_tipoCuenta() %>"><%= tipo.getDescripcion_tipoCuenta() %></option>
+						<%
+						}
+						%>
         </select>
         	      
 	   </div>
-	   
-	   <br/> <br/>
 
-	   </form>
-	   
-	   	 </div>
-	   	       
-		<br/> <br/>
-		
-			
-		
 		<div class="ContenedorBoton">
-		<br/> <br/>
-		 <input type="submit" style="color:#5F1AB4 "  class="btnAsignar" name="btnAsignar" value="ASIGNAR"/>
+		 <input type="submit" style="color:#5F1AB4 " name="btnAsignar" value="Asignar"/>
 		</div>
-		
-			
-	</div>		         
+	   	 </div>
+	</div>	
+	</form>
+	   	         
          
 </body>
 </html>
