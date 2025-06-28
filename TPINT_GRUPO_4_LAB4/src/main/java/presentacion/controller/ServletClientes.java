@@ -45,7 +45,7 @@ public class ServletClientes extends HttpServlet {
 			switch (operacion) {
 			case "CargarAgregarCliente": {
 
-				request.setAttribute("listaLocalidades", negloc.listarLocalidades(1));
+				request.setAttribute("listaLocalidades", negloc.listarLocalidades());
 				request.setAttribute("listaProvincias", negprov.listarProvincias());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCliente.jsp");
 				dispatcher.forward(request, response);
@@ -79,7 +79,7 @@ public class ServletClientes extends HttpServlet {
 					request.setAttribute("DniClienteEditar", request.getParameter("Param2"));
 				}
 				
-				request.setAttribute("listaLocalidades", negloc.listarLocalidades(1));
+				request.setAttribute("listaLocalidades", negloc.listarLocalidades());
 				request.setAttribute("listaProvincias", negprov.listarProvincias());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCliente.jsp");
 				dispatcher.forward(request, response);

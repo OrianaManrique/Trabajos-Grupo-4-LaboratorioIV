@@ -10,8 +10,8 @@ public class LocalidadNegImpl implements LocalidadNeg{
 	private LocalidadDao provDao = new LocalidadDaoImpl();
 	
 	@Override
-	public ArrayList<Localidad> listarLocalidades(int IdProvincia) {
-		return provDao.listaLocalidad(IdProvincia);
+	public ArrayList<Localidad> listarLocalidades() {
+		return provDao.listaLocalidad();
 	}
 
 }

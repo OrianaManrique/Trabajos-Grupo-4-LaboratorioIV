@@ -30,10 +30,10 @@ public class Localidad {
 		this.descripcion_localidad = descripcion_localidad;
 	}
 
-	public Provincia getId_provincia() {
-		return id_provincia;
+	public int getIdProvincia() {
+	    return id_provincia.getId_provincia();
 	}
-
+	
 	public void setId_provincia(Provincia id_provincia) {
 		this.id_provincia = id_provincia;
 	}

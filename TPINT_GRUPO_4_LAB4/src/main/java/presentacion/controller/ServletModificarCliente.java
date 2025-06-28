@@ -49,7 +49,7 @@ public class ServletModificarCliente extends HttpServlet {
 				int dniCliente = Integer.parseInt(request.getParameter("Param2"));
 				request.setAttribute("DniClienteEditar", dniCliente);
 				request.setAttribute("Cliente", negCli.obtenerCliente(dniCliente));
-				request.setAttribute("listaLocalidades", negloc.listarLocalidades(1));
+				request.setAttribute("listaLocalidades", negloc.listarLocalidades());
 				request.setAttribute("listaProvincias", negprov.listarProvincias());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCliente.jsp");
 				dispatcher.forward(request, response);

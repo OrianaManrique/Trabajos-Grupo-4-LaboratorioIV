@@ -4,6 +4,6 @@ import entidad.Localidad;
 
 public interface LocalidadNeg {
   
-	public ArrayList<Localidad> listarLocalidades(int IdProvincia);
+	public ArrayList<Localidad> listarLocalidades();
 	
 }

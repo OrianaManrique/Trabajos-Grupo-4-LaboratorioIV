@@ -115,13 +115,13 @@ p {
 </style>
 
 <body>
-    
+
 	<%
 	ArrayList<Provincia> ListaProvincias = new ArrayList<Provincia>();
 	if (request.getAttribute("listaProvincias") != null) {
 		ListaProvincias = (ArrayList<Provincia>) request.getAttribute("listaProvincias");
 	}
-	
+
 	ArrayList<Localidad> ListaLocalidades = new ArrayList<Localidad>();
 	if (request.getAttribute("listaLocalidades") != null) {
 		ListaLocalidades = (ArrayList<Localidad>) request.getAttribute("listaLocalidades");
@@ -141,42 +141,33 @@ p {
 				</p>
 
 				<div class="ContenedorColumna">
-				
-                 
-					<input type="text" id="txtDniCliente" name="txtDniCliente"
-						placeholder="Ingrese su Dni..."> <select id="txtProvincia"
-						name="txtProvincia" style="width: 177px;">
-                        
-                        <option value="">Seleccione su Provincia...</option>                                                    
-                        
+
+
+					<input type="number" max="99999999" id="txtDniCliente" name="txtDniCliente"
+						placeholder="Ingrese su Dni..."required> <select id="txtProvincia"
+						name="txtProvincia" onchange="actualizarLocalidades()"
+						style="width: 177px;" required>
+
+						<option value="">Seleccione su Provincia...</option>
+
 						<%
 						String idProvinciaSeleccionada = "";
-						
+
 						for (Provincia p : ListaProvincias) {
 						%>
 						<option value="<%=p.getId_provincia()%>"><%=p.getDescripcion_provincia()%></option>
-						
+
 						<%
 						}
 						%>
 
-					</select> 
-					
-					
-					<select id="txtLocalidad" name="txtLocalidad"
-						style="width: 177px;">
+
+					</select> <select id="txtLocalidad" name="txtLocalidad"
+						style="width: 177px;" required>
 
 						<option value="">Seleccione su Localidad...</option>
-						
-						<%
-						for (Localidad l : ListaLocalidades) {
-						%>
-						<option value="<%=l.getId_localidad()%>"><%=l.getDescripcion_localidad()%></option>
-						<%
-						}
-						%>	
-
 					</select>
+
 
 				</div>
 
@@ -184,14 +175,14 @@ p {
 
 				<div class="ContenedorColumna">
 
-					<input type="text" id="txtCuil" name="txtCuil"
-						placeholder="Ingrese su Cuil..."> <input
+					<input type="number" max="999999999999" id="txtCuil" name="txtCuil"
+						placeholder="Ingrese su Cuil..."required> <input
 						class="inputNacionalidad" type="text" id="txtNacionalidad"
-						name="txtNacionalidad" placeholder="Ingrese su Nacionalidad...">
+						name="txtNacionalidad" placeholder="Ingrese su Nacionalidad..." required>
 
 
 
-					<select id="ddlSexo" name="tiposexo" style="width: 177px;">
+					<select id="ddlSexo" name="tiposexo" style="width: 177px;" required>
 
 						<option value="">Seleccione su sexo...</option>
 						<option value="F">Femenino</option>
@@ -207,10 +198,10 @@ p {
 				<div class="ContenedorColumna">
 
 					<input type="text" id="txtNombre" name="txtNombre"
-						placeholder="Ingrese su Nombre..."> <input
+						placeholder="Ingrese su Nombre..."required> <input
 						class="inputFechaNac" type="date" id="txtFechaNacimiento"
-						name="txtFechaNacimiento"> <input type="text"
-						id="txtCorreo" name="txtCorreo" placeholder="Ingrese su Correo...">
+						name="txtFechaNacimiento"required> <input type="text"
+						id="txtCorreo" name="txtCorreo" placeholder="Ingrese su Correo..." required>
 
 				</div>
 
@@ -219,12 +210,12 @@ p {
 				<div class="ContenedorColumna">
 
 					<input type="text" id="txtApellido" name="txtApellido"
-						placeholder="Ingrese su Apellido..."> <input
+						placeholder="Ingrese su Apellido..."required> <input
 						class="inputDireccion" type="text" id="txtDireccion"
-						name="txtDireccion" placeholder="Ingrese su Dirección...">
+						name="txtDireccion" placeholder="Ingrese su Dirección..." required>
 
 					<input type="text" id="txtTelefono" name="txtTelefono"
-						placeholder="Ingrese su Teléfono...">
+						placeholder="Ingrese su Teléfono..." required>
 
 				</div>
 
@@ -244,4 +235,50 @@ p {
 
 
 </body>
+
+<script>
+
+const localidades = [
+    <%for (Localidad l : ListaLocalidades) {%>
+        {
+            id: "<%=l.getId_localidad()%>",
+            nombre: "<%=l.getDescripcion_localidad()%>",
+            idProvincia: "<%=l.getIdProvincia()%>"
+        },
+    <%}%>
+];   
+  
+const ultimaLocalidad = localidades.at(-1);
+
+if (ultimaLocalidad?.id === "") {
+    localidades.pop();
+}
+
+    function actualizarLocalidades() {
+        var idProvincia = document.getElementById("txtProvincia").value;
+        var selectLocalidad = document.getElementById("txtLocalidad");
+
+        selectLocalidad.innerHTML = '<option value="">Seleccione su Localidad...</option>';
+
+        var localidadesFiltradas = localidades.filter(function(localidad) {
+            return localidad.idProvincia === idProvincia;
+        });
+
+        if (localidadesFiltradas.length > 0) {
+            localidadesFiltradas.forEach(function(localidad) {
+                var option = document.createElement("option");
+                option.value = localidad.id;
+                option.textContent = localidad.nombre;
+                selectLocalidad.appendChild(option);
+            });
+        } else {   	
+            var option = document.createElement("option");
+            option.value = "";
+            option.textContent = "Esta provincia no tiene localidades cargadas";
+            selectLocalidad.appendChild(option);
+        }
+
+    }
+</script>
+
 </html>
