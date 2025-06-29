@@ -208,7 +208,7 @@ if (request.getAttribute("TipoSeleccionado") != null) {
 
 				</div>
 
-				<br /> <br />s
+				<br /> <br />
 
 			</div>
 

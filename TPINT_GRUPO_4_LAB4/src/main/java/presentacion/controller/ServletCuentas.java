@@ -172,7 +172,7 @@ public class ServletCuentas extends HttpServlet {
 				cuenta.setTipo_cuenta(tipo);			
 				
 				request.setAttribute("Exito", negCuenta.modificarCuenta(cuenta));;
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/InicioAdministrador.jsp");
 				dispatcher.forward(request, response);			
 				break;
 			}				

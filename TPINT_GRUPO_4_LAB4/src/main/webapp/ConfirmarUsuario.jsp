@@ -120,7 +120,7 @@
 	   
 	    <label class="lblUsuario"> USUARIO </label>
 	    
-	    <input class="inputUsuario" type="text" id="txtUsuarioCliente" name="txtUsuarioCliente" value="<%=dni_cliente + ".Banco" %>" readonly > <br/> 
+	    <input class="inputUsuario" type="text" id="txtUsuarioCliente" name="txtUsuarioCliente" value="<%=dni_cliente%>" readonly > <br/> 
 						
 		<input class="inputPassword" type="password" id="txtContra" name="txtContra" placeholder="Ingrese una contraseña..."> <br/> 
 		
