@@ -142,7 +142,6 @@ p {
 
 				<div class="ContenedorColumna">
 
-
 					<input type="number" max="99999999" id="txtDniCliente" name="txtDniCliente"
 						placeholder="Ingrese su Dni..."required> <select id="txtProvincia"
 						name="txtProvincia" onchange="actualizarLocalidades()"
@@ -179,8 +178,6 @@ p {
 						placeholder="Ingrese su Cuil..."required> <input
 						class="inputNacionalidad" type="text" id="txtNacionalidad"
 						name="txtNacionalidad" placeholder="Ingrese su Nacionalidad..." required>
-
-
 
 					<select id="ddlSexo" name="tiposexo" style="width: 177px;" required>
 
@@ -221,7 +218,6 @@ p {
 
 				<br /> <br />
 
-
 				<div class="ContenedorBoton">
 					<input type="submit" style="color: #5F1AB4" class="btnAgregar"
 						name="btnAgregar" value="CONFIRMAR DATOS" />
@@ -232,8 +228,6 @@ p {
 	</form>
 
 
-
-
 </body>
 
 <script>
@@ -242,7 +236,7 @@ const localidades = [
     <%for (Localidad l : ListaLocalidades) {%>
         {
             id: "<%=l.getId_localidad()%>",
-            nombre: "<%=l.getDescripcion_localidad()%>",
+            Descripcion: "<%=l.getDescripcion_localidad()%>",
             idProvincia: "<%=l.getIdProvincia()%>"
         },
     <%}%>
@@ -268,7 +262,7 @@ if (ultimaLocalidad?.id === "") {
             localidadesFiltradas.forEach(function(localidad) {
                 var option = document.createElement("option");
                 option.value = localidad.id;
-                option.textContent = localidad.nombre;
+                option.textContent = localidad.Descripcion;
                 selectLocalidad.appendChild(option);
             });
         } else {   	
@@ -279,6 +273,7 @@ if (ultimaLocalidad?.id === "") {
         }
 
     }
+    
 </script>
 
 </html>

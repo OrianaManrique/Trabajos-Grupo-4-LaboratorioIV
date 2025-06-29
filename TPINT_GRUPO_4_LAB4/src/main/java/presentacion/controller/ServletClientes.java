@@ -67,31 +67,6 @@ public class ServletClientes extends HttpServlet {
 
 		}
 		
-		
-		if (request.getParameter("Param2") != null && request.getParameter("Param") != null) {
-
-			String operacion = request.getParameter("Param").toString();
-
-			switch (operacion) {
-			case "CargarModificarCliente": {
-				
-				if (request.getParameter("Param2") != null) {
-					request.setAttribute("DniClienteEditar", request.getParameter("Param2"));
-				}
-				
-				request.setAttribute("listaLocalidades", negloc.listarLocalidades());
-				request.setAttribute("listaProvincias", negprov.listarProvincias());
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCliente.jsp");
-				dispatcher.forward(request, response);
-				break;
-			}
-			default:
-				break;
-			}
-            
-			return;
-
-		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

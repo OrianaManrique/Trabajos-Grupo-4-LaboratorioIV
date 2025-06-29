@@ -122,12 +122,12 @@
 	    
 	    <input class="inputUsuario" type="text" id="txtUsuarioCliente" name="txtUsuarioCliente" value="<%=dni_cliente + ".Banco" %>" readonly > <br/> 
 						
-		<input class="inputPassword" type="password" id="txtContraseña" name="txtContraseña" placeholder="Ingrese una contraseña..."> <br/> 
+		<input class="inputPassword" type="password" id="txtContra" name="txtContra" placeholder="Ingrese una contraseña..."> <br/> 
 		
-		<input class="inputPassword" type="password" id="txtContraseña2" name="txtContraseña2" placeholder="repita la contraseña...">  <br/> <br/>
+		<input class="inputPassword" type="password" id="txtContra" name="txtContra" placeholder="repita la contraseña...">  <br/> <br/>
 	      				
 		<div class="ContenedorBoton">
-		 <input type="submit" style="color:#5F1AB4 " class="btnConfirmar" name="btnConfirmar" value="CONFIRMAR"/>
+		 <input type="submit" style="color:#5F1AB4 " class="btnConfirmarUsuario" name="btnConfirmarUsuario" value="CONFIRMAR"/>
 		</div>
 		</form>
 		</div>

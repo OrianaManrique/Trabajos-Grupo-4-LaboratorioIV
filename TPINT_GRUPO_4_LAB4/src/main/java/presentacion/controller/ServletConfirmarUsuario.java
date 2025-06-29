@@ -41,7 +41,7 @@ public class ServletConfirmarUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		/*if (request.getParameter("btnConfirmar") != null) {
+		/*if (request.getParameter("btnConfirmarUsuario") != null) {
 			
 			
 			boolean estado = false;
@@ -71,7 +71,7 @@ public class ServletConfirmarUsuario extends HttpServlet {
 				HttpSession session = request.getSession(false);
 				Cliente cliente = (Cliente) session.getAttribute("ClienteparaAgregar");
 				cliente.setUsuario_cliente(request.getParameter("txtUsuarioCliente"));
-				cliente.setContraseña_cliente(request.getParameter("txtContraseña"));
+				cliente.setContraseña_cliente(request.getParameter("txtContra"));
 				
 				System.out.println(cliente.getContraseña_cliente());
 
@@ -89,6 +89,8 @@ public class ServletConfirmarUsuario extends HttpServlet {
 			return;
 
 		}
+		
+		
 	}
 
 }
