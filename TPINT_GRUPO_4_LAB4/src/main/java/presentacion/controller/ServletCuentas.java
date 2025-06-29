@@ -1,18 +1,14 @@
 package presentacion.controller;
-
 import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import entidad.Cuenta;
 import entidad.Tipo_Cuenta;
 import negocio.CuentaNeg;
@@ -79,7 +75,7 @@ public class ServletCuentas extends HttpServlet {
 			case "CargarEliminarCuenta":{			
 					
 				request.setAttribute("ListaCuentasFiltradas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("Param2"))));
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarCuentasCliente.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/EliminarCuenta.jsp");
 				dispatcher.forward(request, response);			
 				break;
 			}
@@ -89,7 +85,7 @@ public class ServletCuentas extends HttpServlet {
 				
 				request.setAttribute("Exito", estado);				
 				request.setAttribute("ListaCuentasFiltradas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("dniCliente"))));
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarCuentasCliente.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/EliminarCuenta.jsp");
 				dispatcher.forward(request, response);			
 				break;
 			}

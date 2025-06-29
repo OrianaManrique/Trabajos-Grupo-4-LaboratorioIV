@@ -99,7 +99,7 @@ public class ClienteDaoImpl implements ClienteDao {
 		try {
 			conexion = new Conexion();
 			conexion.open();
-			String query = "UPDATE clientes SET estado_cliente=0 WHERE dni_cliente = " + dni + " AND estado_cliente = 1";
+			String query = "CALL BajaCompletaCliente("+dni+")";
 
 			int filasAfectadas = conexion.executeUpdate(query);
 
