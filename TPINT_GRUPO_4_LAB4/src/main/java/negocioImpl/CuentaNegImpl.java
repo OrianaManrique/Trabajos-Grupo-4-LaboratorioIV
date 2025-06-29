@@ -23,8 +23,8 @@ public class CuentaNegImpl implements CuentaNeg{
 	}
 
 	@Override
-	public boolean editar(Cuenta cuenta) {
-		return cuentaDao.editar(cuenta);
+	public boolean modificarCuenta(Cuenta cuenta) {
+		return cuentaDao.modificarCuenta(cuenta);
 	}
 	
 	public Boolean agregarCuenta(Cuenta cuenta) {
@@ -33,5 +33,10 @@ public class CuentaNegImpl implements CuentaNeg{
 	
 	public ArrayList<Cuenta> obtenerCuentasxDni(int dni_cliente) {
 		return cuentaDao.obtenerCuentasxDni(dni_cliente);
+	}
+
+	@Override
+	public Cuenta Obtenercuenta(String NroCuenta_Cuenta) {
+		return cuentaDao.Obtenercuenta(NroCuenta_Cuenta);
 	}
 }

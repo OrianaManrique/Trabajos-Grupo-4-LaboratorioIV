@@ -139,7 +139,7 @@ if (request.getAttribute("Lista") != null) {
 				<td><%= cuentaCliente.getCbu_cuenta() %></td>
 				<td><%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta() %></td>
 				<td><%= cuentaCliente.getSaldo_cuenta() %></td>
-				<td><a href = "ServletModificarCuentas?Param=CargarModificarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%>" > Modificar </a> <br/></td>
+				<td><a href = "ServletCuentas?Param=CargarModificarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%>" > Modificar </a> <br/></td>
 			</tr>
 			<%
 			}

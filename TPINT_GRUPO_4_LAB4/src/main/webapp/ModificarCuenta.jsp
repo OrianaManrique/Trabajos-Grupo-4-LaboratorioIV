@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Confirmar Usuario</title>
+<title>Modificar Cuenta</title>
 </head>
 
 <style>
@@ -56,7 +56,7 @@ body {
 	height: 100px;
 }
 
-.btnAsignar {
+.btnModificar {
 	width: 260px;
 	height: 30%;
 }
@@ -110,19 +110,46 @@ input::placeholder {
 	gap: 15px;
 }
 
-.inputSegundaColumna {
-	margin-top: 34px;
+.form-columna2 {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-top: 20px;
 }
 
 .lblinput {
 	color: white;
 }
 </style>
+  
+  
+<% 
 
+Cuenta cuenta = new Cuenta();
+int TipoSeleccionado = 0;
+
+if (request.getAttribute("CuentaEditar") != null) {
+	cuenta = (Cuenta) request.getAttribute("CuentaEditar");
+   }
+
+ArrayList<Tipo_Cuenta> ListaTipoCuentas = new ArrayList<Tipo_Cuenta>();
+if (request.getAttribute("Tipos") != null) {
+	ListaTipoCuentas = (ArrayList<Tipo_Cuenta>) request.getAttribute("Tipos");
+}
+
+
+if (request.getAttribute("TipoSeleccionado") != null) {
+	TipoSeleccionado = (int)request.getAttribute("TipoSeleccionado");
+   }
+
+%>
 
 <body>
 
-	<div class="header">Usuario logueado - Cuenta Banco</div>
+<div class="header">Usuario logueado - Cuenta Banco</div>
+	
+	<form action="ServletCuentas?Param=Modificar" method="post">
 
 	<a href="InicioLogin.jsp"> Inicio </a>
 
@@ -137,43 +164,53 @@ input::placeholder {
 
 		<div class="ContenedorControles">
 
-			<form class="form-columns">
+			<div class="form-columns">
 
 				<div class="form-columna">
 
-					<label class="lblinput"> Numero de Cuenta </label> <input
-						class="inputBloqueado" type="text" id="txtNumeroCuenta"
-						name="txtNumeroCuenta" placeholder="A12345678" readonly>
-
-					<label class="lblinput"> CBU </label> <input class="inputBloqueado"
-						type="text" id="txtNumeroCuenta" name="txtNumeroCuenta"
-						placeholder="7654321" readonly> <label class="lblinput">
-						Saldo </label> <input class="inputBloqueado" type="text"
-						id="txtNumeroCuenta" name="txtNumeroCuenta" placeholder="$10.000"
-						readonly>
+					    <label class="lblinput"> Numero de Cuenta - Bloqueado</label> 
+					    <input class="inputBloqueado" value="<%=cuenta.getNroCuenta_cuenta()%>" type="text" id="txtNumeroCuenta" name="txtNumeroCuenta" readonly>
+					    <label class="lblinput"> CBU </label> 
+					    <input value="<%=cuenta.getCbu_cuenta()%>" type="text" id="txtCBU" name="txtCBU"> 
+						<label class="lblinput">Saldo </label> 
+						<input value="<%=cuenta.getSaldo_cuenta()%>" type="text" id="txtSaldo" name="txtSaldo" placeholder="$10.000">
 
 				</div>
 
 				<br /> <br />
 
-				<div class="form-columna">
-
-					<input class="inputSegundaColumna" type="text" id="txtDniCliente"
-						name="txtDniCliente" placeholder="Ingrese el dni del cliente...">
-
-					<input class="inputSegundaColumna" type="date" id="txtFechaActual"
-						name="txtFechaActual"> <select class="inputSegundaColumna"
-						id="ddTipoCuenta" name="ddTipoCuenta" style="width: 177px;">
-
-						<option value="">Seleccione un tipo...</option>
+				<div class="form-columna2">			
+				
+                    <label class="lblinput"> Dni cliente - Bloqueado</label> 
+					<input class="inputBloqueado" type="text" id="txtDniCliente"
+						name="txtDniCliente" value="<%=cuenta.getDni_Cliente()%>" readonly>
+                    
+                    <label class="lblinput"> Fecha Creación </label> 
+					<input  type="date" value="<%=cuenta.getFecha_creacion_cuenta()%>"  id="txtFechaActual" name="txtFechaActual"> 
+						 
+						 
+						 <label class="lblinput"> Tipo de cuenta </label>
+						 
+						<select 	id="ddlTipoCuenta" name="ddlTipoCuenta" style="width: 177px;">                                        
+						<option value="">Seleccione un tipo...</option>					
+						<%				
+						
+						for (Tipo_Cuenta tipo : ListaTipoCuentas) {	
+						%>
+                             <option value="<%= tipo.getId_tipoCuenta() %>" <%= (tipo.getId_tipoCuenta() == TipoSeleccionado) ? "selected" : "" %>>     
+                             <%= tipo.getDescripcion_tipoCuenta() %>      
+                             </option>		
+                             <%
+						}
+						%>
 
 					</select>
 
 				</div>
 
-				<br /> <br />
+				<br /> <br />s
 
-			</form>
+			</div>
 
 		</div>
 
@@ -183,11 +220,12 @@ input::placeholder {
 
 		<div class="ContenedorBoton">
 			<br /> <br /> <input type="submit" style="color: #5F1AB4"
-				class="btnAsignar" name="btnAsignar" value="ASIGNAR" />
+				class="btnModificar" name="btnModificar" value="Modificar" />
 		</div>
 
-
 	</div>
+	
+</form>
 
 </body>
 </html>

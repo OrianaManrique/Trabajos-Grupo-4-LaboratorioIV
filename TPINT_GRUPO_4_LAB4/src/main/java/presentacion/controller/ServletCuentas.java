@@ -55,9 +55,7 @@ public class ServletCuentas extends HttpServlet {
 				break;
 			}
 
-			RequestDispatcher rd = request.getRequestDispatcher("/ListarCuenta.jsp");
-			rd.forward(request, response);
-			return;
+
 		}
 
 		if (request.getParameter("Param2") != null && request.getParameter("Param") != null) {
@@ -65,9 +63,16 @@ public class ServletCuentas extends HttpServlet {
 			String operacion = request.getParameter("Param").toString();
 
 			switch (operacion) {
-			case "CargarModificarCuenta": {		
-                
-				request.setAttribute("NumeroCuentaEditar", request.getParameter("Param2"));
+			case "CargarModificarCuenta":{		
+								
+          		Cuenta cuentaEditar = negCuenta.Obtenercuenta(request.getParameter("Param2"));
+          		int TipoSeleccionado = cuentaEditar.getTipo_cuenta().getId_tipoCuenta();
+          		
+          		System.out.println(TipoSeleccionado);
+          		
+				request.setAttribute("CuentaEditar", cuentaEditar);
+				request.setAttribute("TipoSeleccionado", TipoSeleccionado);
+				request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
 				dispatcher.forward(request, response);
 				break;
@@ -139,10 +144,41 @@ public class ServletCuentas extends HttpServlet {
 				requestdispatcher.forward(request, response);
 				break;
 			}
-			
-			default:
+			case "Modificar":{
+						
+				Cuenta cuenta = new Cuenta();
+				
+				cuenta.setNroCuenta_cuenta(request.getParameter("txtNumeroCuenta"));
+				cuenta.setCbu_cuenta(request.getParameter("txtCBU"));
+				cuenta.setDni_Cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
+				cuenta.setSaldo_cuenta(Double.parseDouble(request.getParameter("txtSaldo")));
+				
+				String fecha = request.getParameter("txtFechaActual");
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                formato.setLenient(false);
+                Date fechacreacion = null;
+
+                try {
+                	fechacreacion = new Date(formato.parse(fecha).getTime());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+				
+				cuenta.setFecha_creacion_cuenta(fechacreacion);
+				
+				Tipo_Cuenta tipo = new Tipo_Cuenta();
+				
+				tipo.setId_tipoCuenta(Integer.parseInt(request.getParameter("ddlTipoCuenta")));		
+				cuenta.setTipo_cuenta(tipo);			
+				
+				request.setAttribute("Exito", negCuenta.modificarCuenta(cuenta));;
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
+				dispatcher.forward(request, response);			
+				break;
+			}				
+			    default:
 				break;
 			}
-			}
-			}
+		}
+	}
 }
