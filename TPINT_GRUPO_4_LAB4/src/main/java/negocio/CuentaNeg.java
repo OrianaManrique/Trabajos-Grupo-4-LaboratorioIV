@@ -8,5 +8,5 @@ public interface CuentaNeg {
 	public boolean editar(Cuenta cuenta);
 	public boolean borrar(String NroCuenta_Cuenta);
 	public Boolean agregarCuenta(Cuenta cuenta);
-	
+	public ArrayList<Cuenta> obtenerCuentasxDni(int dni_cliente);	
 }

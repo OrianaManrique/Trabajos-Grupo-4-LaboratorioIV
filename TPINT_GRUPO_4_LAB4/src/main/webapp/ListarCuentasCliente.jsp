@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <%@page import="entidad.*"%>
 <%@page import="java.util.ArrayList"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Listar cliente</title>
+<title>Listar Cuenta Cliente</title>
 
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
@@ -21,6 +21,7 @@
 		$('#table_id').DataTable();
 	});
 </script>
+
 <style>
 body {
 	font-family: 'Segoe UI', sans-serif;
@@ -41,7 +42,7 @@ body {
 
 .ContenedorVentana {
 	background-color: #4A217C;
-	width: auto;
+	width: 900px;
 	margin: 40px auto;
 	padding: 30px;
 	border-radius: 20px;
@@ -72,10 +73,6 @@ body {
 	cursor: pointer;
 }
 
-.hyperlinkModificar{
- margin-right: 10px;
-}
-
 table {
 	background-color: #E5E5E5;
 	width: 100%;
@@ -91,10 +88,6 @@ th {
 	text-align: left;
 }
 
-tbody tr:nth-child(odd) {
-	background-color: #f2f2f2;
-}
-
 td {
 	padding: 10px;
 	font-weight: bold;
@@ -107,49 +100,53 @@ td {
 	<div class="header">Usuario logueado - Cuenta Banco</div>
 
 	<a href="InicioLogin.jsp"> Inicio </a>
+	<br />
+	<br />
 
-	<br />
-	<br />
 
 	<%
-	ArrayList<Cliente> ListaClientes = new ArrayList<Cliente>();
-	if (request.getAttribute("Lista") != null) {
-		ListaClientes = (ArrayList<Cliente>) request.getAttribute("Lista");
+	ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();
+	if (request.getAttribute("ListaCuentasFiltradas") != null) {
+		ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("ListaCuentasFiltradas");
 
 	}
 	%>
-	<table id="table_id" class="display">
-		<thead>
-			<tr>
-				<th>Dni</th>
-				<th>Nombre</th>
-				<th>Apellido</th>
-				<th>Cuil</th>
-				<th>Correo</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<%
-			for (Cliente cliente : ListaClientes) {
-			%>
-			<tr>
-				<td><%=cliente.getDni_cliente()%></td>
-				<td><%=cliente.getNombre_cliente()%></td>
-				<td><%=cliente.getApellido_cliente()%></td>
-				<td><%=cliente.getCuil_cliente()%></td>
-				<td><%=cliente.getCorreo_electronico_cliente()%></td>
-				<td><a
-					href="ServletModificarClientes?Param=CargarModificarCliente&Param2=<%=cliente.getDni_cliente()%>" class="hyperlinkModificar">
-						Modificar </a> <a
-					href="ServletCuentas?Param=CargarEliminarCuenta&Param2=<%=cliente.getDni_cliente()%>">
-						Ver cuentas </a> <br /></td>
-			</tr>
-			<%
-			}
-			%>
-		</tbody>
-	</table>
 
+	<form>
+
+		<table id="table_id" class="display">
+			<thead>
+				<tr>
+					<th>Numero de cuenta</th>
+					<th>Dni</th>
+					<th>Fecha de creación</th>
+					<th>CBU</th>
+					<th>Tipo de cunta</th>
+					<th>Saldo</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+				for (Cuenta cuentaCliente : ListaCuentas) {
+				%>
+				<tr>
+					<td><%=cuentaCliente.getNroCuenta_cuenta()%></td>
+					<td><%=cuentaCliente.getDni_Cliente()%></td>
+					<td><%=cuentaCliente.getFecha_creacion_cuenta()%></td>
+					<td><%=cuentaCliente.getCbu_cuenta()%></td>
+					<td><%=cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta()%></td>
+					<td><%=cuentaCliente.getSaldo_cuenta()%></td>
+					<td><a
+						href="ServletCuentas?Param=EliminarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%>&dniCliente=<%=cuentaCliente.getDni_Cliente()%>">
+							Eliminar </a> <br /></td>
+				</tr>
+				<%
+				}
+				%>
+			</tbody>
+		</table>
+
+	</form>
 </body>
 </html>

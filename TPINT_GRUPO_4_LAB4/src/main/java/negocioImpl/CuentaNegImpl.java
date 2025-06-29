@@ -30,4 +30,8 @@ public class CuentaNegImpl implements CuentaNeg{
 	public Boolean agregarCuenta(Cuenta cuenta) {
 		return cuentaDao.agregarCuenta(cuenta);
 	}
+	
+	public ArrayList<Cuenta> obtenerCuentasxDni(int dni_cliente) {
+		return cuentaDao.obtenerCuentasxDni(dni_cliente);
+	}
 }

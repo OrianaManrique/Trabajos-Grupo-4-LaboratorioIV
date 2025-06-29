@@ -100,7 +100,7 @@ Usuario logueado - Cuenta Banco
 <br/>
 <a href = "ServletCuentas?Param=CargarAgregar" > Agregar Cuenta </a> <br/>
 <input type="submit" name="btnModificarCuenta" value="Modificar Cuenta" onclick="location.href='ModificarCuenta.jsp'"/> <br/>
-<a href = "EliminarCuenta.jsp" > Eliminar Cuentas </a> <br/>
+<a href = "ServletClientes?Param=ListarClientes" > Eliminar Cuentas </a> <br/>
 <a href = "ServletCuentas?Param=Listar" > Listar Cuentas </a> <br/>
 
 </div>

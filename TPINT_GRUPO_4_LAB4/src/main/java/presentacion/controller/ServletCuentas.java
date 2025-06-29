@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,7 +34,7 @@ public class ServletCuentas extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		if (request.getParameter("Param") != null) {
+		if (request.getParameter("Param") != null && request.getParameter("Param2")==null) {
 
 			String operacion = request.getParameter("Param").toString();
 
@@ -46,8 +47,7 @@ public class ServletCuentas extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-
-			case "CargarAgregar": {
+			case "CargarAgregar": {			
 
 				request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCuenta.jsp");
@@ -74,6 +74,23 @@ public class ServletCuentas extends HttpServlet {
 				request.setAttribute("NumeroCuentaEditar", request.getParameter("Param2"));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
 				dispatcher.forward(request, response);
+				break;
+			}
+			case "CargarEliminarCuenta":{			
+					
+				request.setAttribute("ListaCuentasFiltradas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("Param2"))));
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarCuentasCliente.jsp");
+				dispatcher.forward(request, response);			
+				break;
+			}
+			case "EliminarCuenta":{	
+						
+				boolean estado = negCuenta.borrar(request.getParameter("Param2"));
+				
+				request.setAttribute("Exito", estado);				
+				request.setAttribute("ListaCuentasFiltradas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("dniCliente"))));
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarCuentasCliente.jsp");
+				dispatcher.forward(request, response);			
 				break;
 			}
 			default:

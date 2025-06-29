@@ -6,7 +6,7 @@ public interface CuentaDao {
 	
 	public ArrayList<Cuenta> obtenerCuentas();
 	public boolean editar(Cuenta cuenta);
-	public Cuenta obtenerCuenta(String NroCuenta_Cuenta);
+	public ArrayList<Cuenta> obtenerCuentasxDni(int dni_cliente);
 	public boolean borrar(String NroCuenta_Cuenta);
 	public Boolean agregarCuenta(Cuenta cuenta);
 

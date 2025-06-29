@@ -61,8 +61,8 @@ public class CuentaDaoImpl implements CuentaDao {
 		try {
 			conexion = new Conexion();
 			conexion.open();
-			String query = "UPDATE cuentas SET estado_cuenta = 0 WHERE NroCuenta_Cuenta = " + NroCuenta_Cuenta
-					+ " AND estado_cuenta = 1";
+			String query = "UPDATE cuentas SET estado_cuenta = 0 WHERE NroCuenta_Cuenta = '" + NroCuenta_Cuenta
+					+ " ' AND estado_cuenta = 1";
 
 			int filasAfectadas = conexion.executeUpdate(query);
 
@@ -103,37 +103,44 @@ public class CuentaDaoImpl implements CuentaDao {
 	}
 
 	@Override
-	public Cuenta obtenerCuenta(String NroCuenta_Cuenta) {
+	public ArrayList<Cuenta> obtenerCuentasxDni(int dni_cliente) {
+		
 		conexion = new Conexion();
 		conexion.open();
-		
-		Cuenta cuenta = new Cuenta();
-		Tipo_Cuenta tipocuenta= new Tipo_Cuenta();
+        
+		String consulta = ("SELECT c.NroCuenta_Cuenta, c.dni_cliente, c.fecha_creacion_cuenta, "
+				+ "c.cbu_cuenta, c.id_TipoCuenta, tc.Descripcion_tipoCuenta, " + "c.saldo_cuenta FROM Cuentas c "
+				+ "LEFT JOIN Tipo_Cuentas tc ON c.id_TipoCuenta = tc.id_TipoCuenta WHERE c.estado_cuenta = 1 AND c.dni_cliente=" + dni_cliente);
 
-		String consulta = "select * \r\n" + " from cuentas\r\n"
-				+ "		where NroCuenta_Cuenta = " + NroCuenta_Cuenta;
+		ArrayList<Cuenta> lista = new ArrayList<Cuenta>();
 
 		try {
 			ResultSet rs = conexion.query(consulta);
-			if (rs.next()) {
-				
+
+			while (rs.next()) {
+				Cuenta cuenta = new Cuenta();
 				cuenta.setNroCuenta_cuenta(rs.getString("NroCuenta_Cuenta"));
 				cuenta.setDni_Cliente(rs.getInt("dni_cliente"));
-				cuenta.setFecha_creacion_cuenta((rs.getDate("fecha_creacion_cuenta")));		
+				cuenta.setFecha_creacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
 				cuenta.setCbu_cuenta(rs.getString("cbu_cuenta"));
-				tipocuenta.setId_tipoCuenta(rs.getInt("id_TipoCuenta"));
-				cuenta.setTipo_cuenta(tipocuenta);
-				cuenta.setSaldo_cuenta(rs.getDouble("id_TipoCuenta"));			
-				
-				
+
+				Tipo_Cuenta tipo = new Tipo_Cuenta();
+
+				tipo.setId_tipoCuenta(rs.getInt("id_TipoCuenta"));
+				tipo.setDescripcion_tipoCuenta(rs.getString("Descripcion_tipoCuenta"));
+				cuenta.setTipo_cuenta(tipo);
+				cuenta.setSaldo_cuenta(rs.getDouble("saldo_cuenta"));
+
+				lista.add(cuenta);
 			}
+
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			conexion.close();
 		}
-
-		return cuenta;
+		return lista;
 	}
 	
 	public Boolean agregarCuenta(Cuenta cuenta){

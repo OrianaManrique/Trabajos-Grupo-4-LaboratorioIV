@@ -40,25 +40,6 @@ public class ServletConfirmarUsuario extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		/*if (request.getParameter("btnConfirmarUsuario") != null) {
-			
-			
-			boolean estado = false;
-			HttpSession session = request.getSession(false);
-			Cliente cliente = (Cliente) session.getAttribute("ClienteparaAgregar");
-			cliente.setUsuario_cliente(request.getParameter("txtUsuarioCliente"));
-			cliente.setContraseña_cliente(request.getParameter("txtContraseña"));
-			
-			System.out.println(cliente.getContraseña_cliente());
-
-			estado = negCli.insertar(cliente);
-
-			request.setAttribute("Exito", estado);		
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/ConfirmarUsuario.jsp");
-			dispatcher.forward(request, response);
-		}
-		*/
 		
 		if (request.getParameter("Param") != null) {
 
@@ -72,8 +53,6 @@ public class ServletConfirmarUsuario extends HttpServlet {
 				Cliente cliente = (Cliente) session.getAttribute("ClienteparaAgregar");
 				cliente.setUsuario_cliente(request.getParameter("txtUsuarioCliente"));
 				cliente.setContraseña_cliente(request.getParameter("txtContra"));
-				
-				System.out.println(cliente.getContraseña_cliente());
 
 				estado = negCli.insertar(cliente);
 
