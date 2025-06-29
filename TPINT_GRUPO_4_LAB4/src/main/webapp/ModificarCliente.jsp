@@ -157,7 +157,7 @@ p {
                  
 					<input type="text" id="txtDniCliente" name="txtDniCliente"
 						value="<%=cliente.getDni_cliente()%>" readonly> <select id="txtProvincia"
-						name="txtProvincia" style="width: 177px;">
+						name="txtProvincia" onchange="actualizarLocalidades()" style="width: 177px;">
                         
                         <option value="">Seleccione su Provincia...</option>                                                  
                         
@@ -176,18 +176,9 @@ p {
 					
 					
 					<select id="txtLocalidad" name="txtLocalidad"
-						style="width: 177px;">
+						style="width: 177px;" required>
 
 						<option value="">Seleccione su Localidad...</option>
-						
-						<%
-						for (Localidad l : ListaLocalidades) {
-						%>
-						<option value="<%=l.getId_localidad()%>"><%=l.getDescripcion_localidad()%></option>
-						<%
-						}
-						%>	
-
 					</select>
 
 				</div>
@@ -251,7 +242,51 @@ p {
 	</form>
 
 
+<script>
 
+const localidades = [
+    <%for (Localidad l : ListaLocalidades) {%>
+        {
+            id: "<%=l.getId_localidad()%>",
+            Descripcion: "<%=l.getDescripcion_localidad()%>",
+            idProvincia: "<%=l.getIdProvincia()%>"
+        },
+    <%}%>
+];   
+  
+const ultimaLocalidad = localidades.at(-1);
+
+if (ultimaLocalidad?.id === "") {
+    localidades.pop();
+}
+
+    function actualizarLocalidades() {
+        var idProvincia = document.getElementById("txtProvincia").value;
+        var selectLocalidad = document.getElementById("txtLocalidad");
+
+        selectLocalidad.innerHTML = '<option value="">Seleccione su Localidad...</option>';
+
+        var localidadesFiltradas = localidades.filter(function(localidad) {
+            return localidad.idProvincia === idProvincia;
+        });
+
+        if (localidadesFiltradas.length > 0) {
+            localidadesFiltradas.forEach(function(localidad) {
+                var option = document.createElement("option");
+                option.value = localidad.id;
+                option.textContent = localidad.Descripcion;
+                selectLocalidad.appendChild(option);
+            });
+        } else {   	
+            var option = document.createElement("option");
+            option.value = "";
+            option.textContent = "Esta provincia no tiene localidades cargadas";
+            selectLocalidad.appendChild(option);
+        }
+
+    }
+    
+</script>
 
 </body>
 </html>

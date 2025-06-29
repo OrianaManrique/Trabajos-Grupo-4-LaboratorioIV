@@ -17,8 +17,7 @@ public class Cliente {
 	private String telefono_cliente;
 	private String usuario_cliente;
 	private String contraseña_cliente;
-	
-	private boolean estado;
+	private int estado;
 	
 	public Cliente(){
 				
@@ -42,7 +41,7 @@ public class Cliente {
 		this.telefono_cliente = telefono_cliente;
 		this.usuario_cliente = "";
 		this.contraseña_cliente = "";
-		this.estado = true;
+		this.estado = 1;
 	}
 
 	public int getDni_cliente() {
@@ -157,11 +156,11 @@ public class Cliente {
 		this.contraseña_cliente = contraseña_cliente;
 	}
 
-	public boolean getEstado() {
+	public int getEstado() {
 		return estado;
 	}
 
-	public void setEstado(boolean estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
 	}
 

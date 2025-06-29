@@ -10,7 +10,7 @@ public class Cuenta {
 	private String cbu_cuenta;
 	private Tipo_Cuenta tipo_cuenta;
 	private double saldo_cuenta;
-	private boolean estado_cuenta;
+	private int estado_cuenta;
 	
 	public Cuenta() {}
 
@@ -22,7 +22,7 @@ public class Cuenta {
 		this.cbu_cuenta = cbu_cuenta;
 		this.tipo_cuenta = tipo_cuenta;
 		this.saldo_cuenta = saldo_cuenta;
-		this.estado_cuenta = true;
+		this.estado_cuenta = 1;
 	}
 
 	public String getNroCuenta_cuenta() {
@@ -73,11 +73,11 @@ public class Cuenta {
 		this.saldo_cuenta = saldo_cuenta;
 	}
 
-	public boolean getEstado_cuenta() {
+	public int getEstado_cuenta() {
 		return estado_cuenta;
 	}
 
-	public void setEstado_cuenta(boolean estado_cuenta) {
+	public void setEstado_cuenta(int estado_cuenta) {
 		this.estado_cuenta = estado_cuenta;
 	}
 

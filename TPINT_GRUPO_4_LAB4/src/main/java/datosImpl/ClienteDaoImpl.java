@@ -1,16 +1,11 @@
 package datosImpl;
 
-import java.sql.Date;
 import java.sql.ResultSet;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import datos.ClienteDao;
 import entidad.Cliente;
-import entidad.Cuenta;
 import entidad.Localidad;
 import entidad.Provincia;
-import entidad.Tipo_Cuenta;
 
 public class ClienteDaoImpl implements ClienteDao {
 
@@ -26,6 +21,8 @@ public class ClienteDaoImpl implements ClienteDao {
 
 		localidad = cliente.getLocalidad();
 		provincia = cliente.getProvincia();
+		
+		cliente.setEstado(1);
 
 		conexion = new Conexion();
 		conexion.open();
@@ -39,7 +36,7 @@ public class ClienteDaoImpl implements ClienteDao {
 				+ cliente.getFecha_nacimiento_cliente() + "', '" + cliente.getDireccion_cliente() + "', "
 				+ localidad.getId_localidad() + ", " + provincia.getId_provincia() + ", '"
 				+ cliente.getCorreo_electronico_cliente() + "', '" + cliente.getTelefono_cliente() + "', '"
-				+ cliente.getUsuario_cliente() + "', '" + cliente.getContraseña_cliente() + "', '" + 1 + "')";
+				+ cliente.getUsuario_cliente() + "', '" + cliente.getContraseña_cliente() + "', '" + cliente.getEstado() + "')";
 
 		try {
 			estado = conexion.execute(query);

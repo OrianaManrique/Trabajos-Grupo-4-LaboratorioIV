@@ -42,7 +42,7 @@ public class CuentasDao {
 			    cta.setTipo_cuenta(tipoCuenta);
 			    
 			    cta.setSaldo_cuenta(rs.getDouble("saldo_cuenta"));
-			    cta.setEstado_cuenta(rs.getBoolean("estado_cuenta"));
+			    cta.setEstado_cuenta(rs.getInt("estado_cuenta"));
 
 			}
 			cn.close();

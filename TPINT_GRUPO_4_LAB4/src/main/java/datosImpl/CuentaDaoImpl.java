@@ -20,7 +20,7 @@ public class CuentaDaoImpl implements CuentaDao {
 
 		String consulta = ("SELECT c.NroCuenta_Cuenta, c.dni_cliente, c.fecha_creacion_cuenta, "
 				+ "c.cbu_cuenta, c.id_TipoCuenta, tc.Descripcion_tipoCuenta, " + "c.saldo_cuenta FROM Cuentas c "
-				+ "LEFT JOIN Tipo_Cuentas tc ON c.id_TipoCuenta = tc.id_TipoCuenta");
+				+ "LEFT JOIN Tipo_Cuentas tc ON c.id_TipoCuenta = tc.id_TipoCuenta WHERE c.estado_cuenta = 1;");
 
 		ArrayList<Cuenta> lista = new ArrayList<Cuenta>();
 
@@ -140,9 +140,10 @@ public class CuentaDaoImpl implements CuentaDao {
 		
 		boolean estado = true;
 		
-
 		conexion = new Conexion();
 		conexion.open();
+		
+		cuenta.setEstado_cuenta(1);
 
 		String consulta = "INSERT INTO cuentas (NroCuenta_Cuenta, dni_cliente, fecha_creacion_cuenta, cbu_cuenta, id_TipoCuenta, saldo_cuenta, estado_cuenta) "
 	               + "VALUES ('" + cuenta.getNroCuenta_cuenta() + "', "
