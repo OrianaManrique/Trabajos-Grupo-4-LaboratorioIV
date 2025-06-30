@@ -44,7 +44,7 @@ body {
 	font-size: 24px;
 }
 
-.login-container input[type="text"] {
+.login-container input[type="text"] , [type="password"] {
 	width: 93%;
 	padding: 10px;
 	margin-bottom: 10px;

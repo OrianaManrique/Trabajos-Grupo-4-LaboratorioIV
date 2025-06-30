@@ -109,8 +109,8 @@ Usuario logueado - Cuenta Banco
 
 <p>Otros</p>
 <br/>
-<input type="submit" name="btnAutorizarPrestamo" value="Autorizar Prestamo" onclick="location.href='AutorizarPrestamo.jsp'"/> <br/>
-<input type="submit" name="btnReportes" value="Reportes" onclick="location.href='Reportes.jsp'"/> <br/>
+<a href = "AutorizarPrestamo.jsp" > Autorizar Prestamo </a> <br/>
+<a href = "Reportes.jsp" > Reportes </a> <br/>
 
 </div>
 
