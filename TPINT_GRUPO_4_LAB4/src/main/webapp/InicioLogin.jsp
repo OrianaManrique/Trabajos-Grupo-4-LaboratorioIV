@@ -78,13 +78,10 @@ body {
 	<div class="login-container">
 		<h2>Iniciar Sesión</h2>
 		<div >
-			<form method="post" action="ServletLogin">
+			<form method="post" action="ServletLogin?Param=Ingresar" method ="post">
 				<input type="text" name="usuario" placeholder="Usuario" required>
 				<input type="password" name="clave" placeholder="Contraseña" required>
 				<input type="submit" value="Ingresar">
-			</form>
-			<form action="AgregarCliente.jsp">
-				<input type="submit" value="Registrarme">
 			</form>
 		</div>
 		<% if (request.getAttribute("error") != null) { %>
