@@ -20,13 +20,15 @@ public class ServletLogin extends HttpServlet {
 		
 
 		if (request.getParameter("Param") != null) {
-			String dni = request.getParameter("dni");
-			String clave = request.getParameter("password");
+			String dni = request.getParameter("usuario");
+			String clave = request.getParameter("clave");
 
 			if (dni != null && clave != null && dni.equals(ADMIN_DNI) && clave.equals(ADMIN_CLAVE)) {
 				HttpSession session = request.getSession();
 				session.setAttribute("usuarioLogueado", dni);
-				response.sendRedirect("/InicioAdministrador.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/InicioAdministrador.jsp");
+				rd.forward(request, response);
+			
 			} else {
 				request.setAttribute("error", "DNI o contraseña incorrectos");
 				RequestDispatcher rd = request.getRequestDispatcher("/InicioLogin.jsp");
