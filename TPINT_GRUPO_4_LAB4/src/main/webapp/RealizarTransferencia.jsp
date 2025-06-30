@@ -122,7 +122,7 @@ USUARIO LOGUEADO - CUENTA: xxxxxxxx
 	  <form class="form-columns">
 	  <div class="form-columna"> 
 	     	  	   
-	    <label class="lblinput">Â¿A QUIEN LE VAS A TRNSFERIR? </label>
+	    <label class="lblinput">¿A QUIEN LE VAS A TRANSFERIR? </label>
 	    <input class="inputCBU" type="text" id="txtCBU" name="txtCBU" placeholder="CBU" > 
 		<label class="lblinput"> IMPORTE </label>  
 		<input class="inputImporte" type="text" id="txtImporte" name="txtImporte" placeholder="$">
