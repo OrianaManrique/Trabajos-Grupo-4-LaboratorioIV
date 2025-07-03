@@ -11,7 +11,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #e5e5e5;
+	background: linear-gradient(to top, #bc9fd6, #44107a);
 	font-family: Arial, sans-serif;
 	display: flex;
 	justify-content: center;

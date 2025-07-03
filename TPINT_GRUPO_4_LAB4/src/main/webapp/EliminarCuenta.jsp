@@ -138,7 +138,8 @@ td {
 					<td><%=cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta()%></td>
 					<td><%=cuentaCliente.getSaldo_cuenta()%></td>
 					<td><a
-						href="ServletCuentas?Param=EliminarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%>&dniCliente=<%=cuentaCliente.getDni_Cliente()%>">
+						href="ServletCuentas?Param=EliminarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%>&dniCliente=<%=cuentaCliente.getDni_Cliente()%>"
+						onclick="return confirm('¿Estás seguro de eliminar la cuenta <%=cuentaCliente.getNroCuenta_cuenta()%>? Esta acción no se puede deshacer');">
 							Eliminar </a> <br /></td>
 				</tr>
 				<%
