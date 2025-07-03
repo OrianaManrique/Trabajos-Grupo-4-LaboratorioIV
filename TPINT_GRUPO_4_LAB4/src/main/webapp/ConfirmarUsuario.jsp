@@ -116,7 +116,7 @@
 	   
 	   <div class="ContenedorControles">	   
 	   
-	   <form class="FormularioUsuario" action="ServletConfirmarUsuario?Param=ConfirmarCliente" method="post">   
+	   <form class="FormularioUsuario" action="ServletClientes?Param=ConfirmarClienteyUsuario" method="post">   
 	   
 	    <label class="lblUsuario"> USUARIO </label>
 	    

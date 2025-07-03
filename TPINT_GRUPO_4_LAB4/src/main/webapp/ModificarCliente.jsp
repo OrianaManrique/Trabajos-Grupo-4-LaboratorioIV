@@ -140,7 +140,7 @@ p {
 	
 	
 
-	<form action="ServletModificarClientes?Param=ConfirmarEditarCliente" method="post">
+	<form action="ServletClientes" method="post">
 
 		<div class="header">Usuario logueado - Cuenta Banco</div>
 

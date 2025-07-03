@@ -140,7 +140,7 @@ td {
 				<td><%=cliente.getCuil_cliente()%></td>
 				<td><%=cliente.getCorreo_electronico_cliente()%></td>
 				<td><a
-					href="ServletModificarClientes?Param=CargarModificarCliente&Param2=<%=cliente.getDni_cliente()%>" class="hyperlinkModificar">
+					href="ServletClientes?Param=CargarModificarCliente&Param2=<%=cliente.getDni_cliente()%>" class="hyperlinkModificar">
 						Modificar </a> <a
 					href="ServletCuentas?Param=CargarEliminarCuenta&Param2=<%=cliente.getDni_cliente()%>">
 						Ver cuentas </a> <br /></td>
