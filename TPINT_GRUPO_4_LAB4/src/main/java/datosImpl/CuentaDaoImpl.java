@@ -39,7 +39,7 @@ public class CuentaDaoImpl implements CuentaDao {
 				tipo.setId_tipoCuenta(rs.getInt("id_TipoCuenta"));
 				tipo.setDescripcion_tipoCuenta(rs.getString("Descripcion_tipoCuenta"));
 				cuenta.setTipo_cuenta(tipo);
-				cuenta.setSaldo_cuenta(rs.getDouble("saldo_cuenta"));
+				cuenta.setSaldo_cuenta(rs.getFloat("saldo_cuenta"));
 
 				lista.add(cuenta);
 			}
@@ -131,7 +131,7 @@ public class CuentaDaoImpl implements CuentaDao {
 				tipo.setId_tipoCuenta(rs.getInt("id_TipoCuenta"));
 				tipo.setDescripcion_tipoCuenta(rs.getString("Descripcion_tipoCuenta"));
 				cuenta.setTipo_cuenta(tipo);
-				cuenta.setSaldo_cuenta(rs.getDouble("saldo_cuenta"));
+				cuenta.setSaldo_cuenta(rs.getFloat("saldo_cuenta"));
 
 				lista.add(cuenta);
 			}
@@ -199,7 +199,7 @@ public class CuentaDaoImpl implements CuentaDao {
 				tipo.setDescripcion_tipoCuenta(rs.getString("Descripcion_tipoCuenta"));
 				cuenta.setTipo_cuenta(tipo);
 
-				cuenta.setSaldo_cuenta(rs.getDouble("saldo_cuenta"));
+				cuenta.setSaldo_cuenta(rs.getFloat("saldo_cuenta"));
 
 			}
 

@@ -9,13 +9,13 @@ public class Cuenta {
 	private Date fecha_creacion_cuenta;
 	private String cbu_cuenta;
 	private Tipo_Cuenta tipo_cuenta;
-	private double saldo_cuenta;
+	private Float saldo_cuenta;
 	private int estado_cuenta;
 	
 	public Cuenta() {}
 
 	public Cuenta(String nroCuenta_cuenta, int dni_Cliente, Date fecha_creacion_cuenta, String cbu_cuenta,
-			Tipo_Cuenta tipo_cuenta, double saldo_cuenta) {
+			Tipo_Cuenta tipo_cuenta, Float saldo_cuenta) {
 		this.nroCuenta_cuenta = nroCuenta_cuenta;
 		this.dni_Cliente = dni_Cliente;
 		this.fecha_creacion_cuenta = fecha_creacion_cuenta;
@@ -69,7 +69,7 @@ public class Cuenta {
 		return saldo_cuenta;
 	}
 
-	public void setSaldo_cuenta(double saldo_cuenta) {
+	public void setSaldo_cuenta(Float saldo_cuenta) {
 		this.saldo_cuenta = saldo_cuenta;
 	}
 

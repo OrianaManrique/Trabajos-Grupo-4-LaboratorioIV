@@ -118,7 +118,7 @@ public class ServletCuentas extends HttpServlet {
 				cuenta.setNroCuenta_cuenta(request.getParameter("txtNumeroCuenta"));
 				cuenta.setCbu_cuenta(request.getParameter("txtCBU"));
 				cuenta.setDni_Cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
-				cuenta.setSaldo_cuenta(Double.parseDouble(request.getParameter("txtSaldo")));
+				cuenta.setSaldo_cuenta(Float.parseFloat(request.getParameter("txtSaldo")));
 				
 				String fecha = request.getParameter("txtFechaActual");
                 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
@@ -151,7 +151,7 @@ public class ServletCuentas extends HttpServlet {
 				cuenta.setNroCuenta_cuenta(request.getParameter("txtNumeroCuenta"));
 				cuenta.setCbu_cuenta(request.getParameter("txtCBU"));
 				cuenta.setDni_Cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
-				cuenta.setSaldo_cuenta(Double.parseDouble(request.getParameter("txtSaldo")));
+				cuenta.setSaldo_cuenta(Float.parseFloat(request.getParameter("txtSaldo")));
 				
 				String fecha = request.getParameter("txtFechaActual");
                 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
