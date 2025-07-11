@@ -2,8 +2,8 @@ package entidad;
 
 public class Tipo_Movimientos {
 
-	int id_tipomovimiento;
-	String descripcion_tipomovimiento;
+	private int id_tipomovimiento;
+	private String descripcion_tipomovimiento;
 	
 	
 	public Tipo_Movimientos() {}

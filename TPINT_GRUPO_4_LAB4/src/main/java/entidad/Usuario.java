@@ -1,56 +1,88 @@
 package entidad;
 
 public class Usuario {
-	private String dniUsuario;
-	private String passwordUsuario;
-	private String tipoUsuario;
-	private int estadoUsuario;
+	private String usuario_us;
+	private String contraseña_us;
+	private String tipo_us;
+	private int dniCliente_us;
+	private String nombreCliente_us;
+	private String apellido_us;
+	private int estado_us;
 	
 	public Usuario() {}
 
-	public Usuario(String dniUsuario, String passwordUsuario, String tipoUsuario, String estadoUsuario) {
-		super();
-		this.dniUsuario = dniUsuario;
-		this.passwordUsuario = passwordUsuario;
-		this.tipoUsuario = tipoUsuario;
-		this.estadoUsuario = 1;
+	public Usuario(String usuario, String contraseña, String tipo, int dni, String nombre, String apellido, int estado) {
+		usuario_us = usuario;
+		contraseña_us = contraseña;
+		tipo_us = tipo;
+		dniCliente_us = dni;
+		nombreCliente_us = nombre;
+		apellido_us = apellido;
+		estado_us = estado;
 	}
 
-	public String getDniUsuario() {
-		return dniUsuario;
+	public String getUsuario_us() {
+		return usuario_us;
 	}
 
-	public void setDniUsuario(String dniUsuario) {
-		this.dniUsuario = dniUsuario;
+	public void setUsuario_us(String usuario_us) {
+		this.usuario_us = usuario_us;
 	}
 
-	public String getPasswordUsuario() {
-		return passwordUsuario;
+	public String getContraseña_us() {
+		return contraseña_us;
 	}
 
-	public void setPasswordUsuario(String passwordUsuario) {
-		this.passwordUsuario = passwordUsuario;
+	public void setContraseña_us(String contraseña_us) {
+		this.contraseña_us = contraseña_us;
 	}
 
-	public String getTipoUsuario() {
-		return tipoUsuario;
+	public String getTipo_us() {
+		return tipo_us;
 	}
 
-	public void setTipoUsuario(String tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
+	public void setTipo_us(String tipo_us) {
+		this.tipo_us = tipo_us;
 	}
 
-	public int getEstadoUsuario() {
-		return estadoUsuario;
+	public int getDniCliente_us() {
+		return dniCliente_us;
 	}
 
-	public void setEstadoUsuario(int estadoUsuario) {
-		this.estadoUsuario = estadoUsuario;
+	public void setDniCliente_us(int dniCliente_us) {
+		this.dniCliente_us = dniCliente_us;
+	}
+
+	public String getNombreCliente_us() {
+		return nombreCliente_us;
+	}
+
+	public void setNombreCliente_us(String nombreCliente_us) {
+		this.nombreCliente_us = nombreCliente_us;
+	}
+
+	public String getApellido_us() {
+		return apellido_us;
+	}
+
+	public void setApellido_us(String apellido_us) {
+		this.apellido_us = apellido_us;
+	}
+
+	public int getEstado_us() {
+		return estado_us;
+	}
+
+	public void setEstado_us(int estado_us) {
+		this.estado_us = estado_us;
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [dniUsuario=" + dniUsuario + ", passwordUsuario=" + passwordUsuario + ", tipoUsuario="
-				+ tipoUsuario + ", estadoUsuario=" + estadoUsuario + "]";
+		return "Usuario [usuario_us=" + usuario_us + ", contraseña_us=" + contraseña_us + ", tipo_us=" + tipo_us
+				+ ", dniCliente_us=" + dniCliente_us + ", nombreCliente_us=" + nombreCliente_us + ", apellido_us="
+				+ apellido_us + ", estado_us=" + estado_us + "]";
 	}
+	
+	
 }

@@ -4,32 +4,32 @@ import java.sql.Date;
 
 public class Cuenta {
 
-	private String nroCuenta_cuenta;
+	private int nroCuenta_cuenta;
 	private int dni_Cliente;
-	private Date fecha_creacion_cuenta;
-	private String cbu_cuenta;
-	private Tipo_Cuenta tipo_cuenta;
+	private Date fechaCreacion_cuenta;
+	private int cbu_cuenta;
+	private Tipo_Cuenta tipoCuenta_cuenta;
 	private Float saldo_cuenta;
 	private int estado_cuenta;
 	
 	public Cuenta() {}
 
-	public Cuenta(String nroCuenta_cuenta, int dni_Cliente, Date fecha_creacion_cuenta, String cbu_cuenta,
+	public Cuenta(int nroCuenta_cuenta, int dni_Cliente, Date fecha_creacion_cuenta, int cbu_cuenta,
 			Tipo_Cuenta tipo_cuenta, Float saldo_cuenta) {
 		this.nroCuenta_cuenta = nroCuenta_cuenta;
 		this.dni_Cliente = dni_Cliente;
-		this.fecha_creacion_cuenta = fecha_creacion_cuenta;
+		this.fechaCreacion_cuenta = fecha_creacion_cuenta;
 		this.cbu_cuenta = cbu_cuenta;
-		this.tipo_cuenta = tipo_cuenta;
+		this.tipoCuenta_cuenta = tipo_cuenta;
 		this.saldo_cuenta = saldo_cuenta;
 		this.estado_cuenta = 1;
 	}
 
-	public String getNroCuenta_cuenta() {
+	public int getNroCuenta_cuenta() {
 		return nroCuenta_cuenta;
 	}
 
-	public void setNroCuenta_cuenta(String nroCuenta_cuenta) {
+	public void setNroCuenta_cuenta(int nroCuenta_cuenta) {
 		this.nroCuenta_cuenta = nroCuenta_cuenta;
 	}
 
@@ -41,28 +41,28 @@ public class Cuenta {
 		this.dni_Cliente = dni_Cliente;
 	}
 
-	public Date getFecha_creacion_cuenta() {
-		return fecha_creacion_cuenta;
+	public Date getFechaCreacion_cuenta() {
+		return fechaCreacion_cuenta;
 	}
 
-	public void setFecha_creacion_cuenta(Date fecha_creacion_cuenta) {
-		this.fecha_creacion_cuenta = fecha_creacion_cuenta;
+	public void setFechaCreacion_cuenta(Date fechaCreacion_cuenta) {
+		this.fechaCreacion_cuenta = fechaCreacion_cuenta;
 	}
 
-	public String getCbu_cuenta() {
+	public int getCbu_cuenta() {
 		return cbu_cuenta;
 	}
 
-	public void setCbu_cuenta(String cbu_cuenta) {
+	public void setCbu_cuenta(int cbu_cuenta) {
 		this.cbu_cuenta = cbu_cuenta;
 	}
 
 	public Tipo_Cuenta getTipo_cuenta() {
-		return tipo_cuenta;
+		return tipoCuenta_cuenta;
 	}
 
 	public void setTipo_cuenta(Tipo_Cuenta tipo_cuenta) {
-		this.tipo_cuenta = tipo_cuenta;
+		this.tipoCuenta_cuenta = tipo_cuenta;
 	}
 
 	public double getSaldo_cuenta() {
@@ -83,9 +83,12 @@ public class Cuenta {
 
 	@Override
 	public String toString() {
-		return "cuenta [nroCuenta_cuenta=" + nroCuenta_cuenta + ", dni_Cliente=" + dni_Cliente
-				+ ", fecha_creacion_cuenta=" + fecha_creacion_cuenta + ", cbu_cuenta=" + cbu_cuenta + ", tipo_cuenta="
-				+ tipo_cuenta + ", saldo_cuenta=" + saldo_cuenta + ", estado_cuenta=" + estado_cuenta + "]";
+		return "Cuenta [nroCuenta_cuenta=" + nroCuenta_cuenta + ", dni_Cliente=" + dni_Cliente
+				+ ", fechaCreacion_cuenta=" + fechaCreacion_cuenta + ", cbu_cuenta=" + cbu_cuenta
+				+ ", tipoCuenta_cuenta=" + tipoCuenta_cuenta + ", saldo_cuenta=" + saldo_cuenta + ", estado_cuenta="
+				+ estado_cuenta + "]";
 	}
+
+	
 
 }
