@@ -161,15 +161,14 @@
 <body>
 
 	<%
-	ArrayList<Tipo_Cuenta> ListaTipoCuentas = new ArrayList<Tipo_Cuenta>();
-	if (request.getAttribute("Tipos") != null) {
-		ListaTipoCuentas = (ArrayList<Tipo_Cuenta>) request.getAttribute("Tipos");
-	}
-	
-	if (request.getAttribute("Tipos") != null) {
-		ListaTipoCuentas = (ArrayList<Tipo_Cuenta>) request.getAttribute("Tipos");
-	}
-	
+	ArrayList<TipoCuenta> ListaTipoCuentas = new ArrayList<TipoCuenta>();
+		if (request.getAttribute("Tipos") != null) {
+			ListaTipoCuentas = (ArrayList<TipoCuenta>) request.getAttribute("Tipos");
+		}
+		
+		if (request.getAttribute("Tipos") != null) {
+			ListaTipoCuentas = (ArrayList<TipoCuenta>) request.getAttribute("Tipos");
+		}
 	%>
 
 <div class="header">
@@ -209,8 +208,8 @@ Usuario logueado - Cuenta Banco
 
                 <option value="">Seleccione un tipo...</option>
 				<%
-						for (Tipo_Cuenta tipo : ListaTipoCuentas) {
-						%>
+				for (TipoCuenta tipo : ListaTipoCuentas) {
+				%>
 						<option value="<%= tipo.getId_tipoCuenta() %>"><%= tipo.getDescripcion_tipoCuenta() %></option>
 						<%
 						}

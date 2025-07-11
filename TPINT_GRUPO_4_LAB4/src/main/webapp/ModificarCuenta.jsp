@@ -124,26 +124,24 @@ input::placeholder {
 </style>
   
   
-<% 
+<%
+    Cuenta cuenta = new Cuenta();
+    int TipoSeleccionado = 0;
 
-Cuenta cuenta = new Cuenta();
-int TipoSeleccionado = 0;
+    if (request.getAttribute("CuentaEditar") != null) {
+    	cuenta = (Cuenta) request.getAttribute("CuentaEditar");
+       }
 
-if (request.getAttribute("CuentaEditar") != null) {
-	cuenta = (Cuenta) request.getAttribute("CuentaEditar");
-   }
-
-ArrayList<Tipo_Cuenta> ListaTipoCuentas = new ArrayList<Tipo_Cuenta>();
-if (request.getAttribute("Tipos") != null) {
-	ListaTipoCuentas = (ArrayList<Tipo_Cuenta>) request.getAttribute("Tipos");
-}
+    ArrayList<TipoCuenta> ListaTipoCuentas = new ArrayList<TipoCuenta>();
+    if (request.getAttribute("Tipos") != null) {
+    	ListaTipoCuentas = (ArrayList<TipoCuenta>) request.getAttribute("Tipos");
+    }
 
 
-if (request.getAttribute("TipoSeleccionado") != null) {
-	TipoSeleccionado = (int)request.getAttribute("TipoSeleccionado");
-   }
-
-%>
+    if (request.getAttribute("TipoSeleccionado") != null) {
+    	TipoSeleccionado = (int)request.getAttribute("TipoSeleccionado");
+       }
+    %>
 
 <body>
 
@@ -193,10 +191,9 @@ if (request.getAttribute("TipoSeleccionado") != null) {
 						 
 						<select 	id="ddlTipoCuenta" name="ddlTipoCuenta" style="width: 177px;">                                        
 						<option value="">Seleccione un tipo...</option>					
-						<%				
-						
-						for (Tipo_Cuenta tipo : ListaTipoCuentas) {	
-						%>
+						<%
+											for (TipoCuenta tipo : ListaTipoCuentas) {
+											%>
                              <option value="<%= tipo.getId_tipoCuenta() %>" <%= (tipo.getId_tipoCuenta() == TipoSeleccionado) ? "selected" : "" %>>     
                              <%= tipo.getDescripcion_tipoCuenta() %>      
                              </option>		

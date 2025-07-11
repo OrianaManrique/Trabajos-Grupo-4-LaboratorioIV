@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import datos.CuentaDao;
 import entidad.Cuenta;
-import entidad.Tipo_Cuenta;
+import entidad.TipoCuenta;
 
 public class CuentaDaoImpl implements CuentaDao {
 
@@ -34,7 +34,7 @@ public class CuentaDaoImpl implements CuentaDao {
 				cuenta.setFecha_creacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
 				cuenta.setCbu_cuenta(rs.getString("cbu_cuenta"));
 
-				Tipo_Cuenta tipo = new Tipo_Cuenta();
+				TipoCuenta tipo = new TipoCuenta();
 
 				tipo.setId_tipoCuenta(rs.getInt("id_TipoCuenta"));
 				tipo.setDescripcion_tipoCuenta(rs.getString("Descripcion_tipoCuenta"));
@@ -126,7 +126,7 @@ public class CuentaDaoImpl implements CuentaDao {
 				cuenta.setFecha_creacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
 				cuenta.setCbu_cuenta(rs.getString("cbu_cuenta"));
 
-				Tipo_Cuenta tipo = new Tipo_Cuenta();
+				TipoCuenta tipo = new TipoCuenta();
 
 				tipo.setId_tipoCuenta(rs.getInt("id_TipoCuenta"));
 				tipo.setDescripcion_tipoCuenta(rs.getString("Descripcion_tipoCuenta"));
@@ -172,7 +172,7 @@ public class CuentaDaoImpl implements CuentaDao {
 	@Override
 	public Cuenta Obtenercuenta(String NroCuenta_Cuenta) {
 		Cuenta cuenta = null;
-		Tipo_Cuenta tipo = null;
+		TipoCuenta tipo = null;
 
 		try {
 			conexion = new Conexion();
@@ -193,7 +193,7 @@ public class CuentaDaoImpl implements CuentaDao {
 				cuenta.setFecha_creacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
 				cuenta.setCbu_cuenta(rs.getString("cbu_cuenta"));
 
-				tipo = new Tipo_Cuenta();
+				tipo = new TipoCuenta();
 
 				tipo.setId_tipoCuenta(rs.getInt("id_TipoCuenta"));
 				tipo.setDescripcion_tipoCuenta(rs.getString("Descripcion_tipoCuenta"));

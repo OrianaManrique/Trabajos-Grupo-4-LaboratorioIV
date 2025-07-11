@@ -1,14 +1,14 @@
 package entidad;
 
-public class Tipo_Movimientos {
+public class TipoMovimiento {
 
 	private int id_tipomovimiento;
 	private String descripcion_tipomovimiento;
 	
 	
-	public Tipo_Movimientos() {}
+	public TipoMovimiento() {}
 	
-	public Tipo_Movimientos(int id, String descripcion) {
+	public TipoMovimiento(int id, String descripcion) {
 
 		id_tipomovimiento = id;
 		descripcion_tipomovimiento = descripcion;

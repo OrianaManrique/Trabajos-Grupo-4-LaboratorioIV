@@ -2,9 +2,9 @@ package negocio;
 
 import java.util.ArrayList;
 
-import entidad.Tipo_Cuenta;
+import entidad.TipoCuenta;
 
 public interface Tipo_CuentaNeg {
 
-	public ArrayList<Tipo_Cuenta> obtenerTiposCuentas();
+	public ArrayList<TipoCuenta> obtenerTiposCuentas();
 }

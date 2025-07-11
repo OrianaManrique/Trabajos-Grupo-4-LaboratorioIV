@@ -1,12 +1,12 @@
 package entidad;
 
-public class Tipo_Cuenta {
+public class TipoCuenta {
 	private int id_tipoCuenta;
 	private String descripcion_tipoCuenta;
     		
-	public Tipo_Cuenta(){}
+	public TipoCuenta(){}
 
-	public Tipo_Cuenta(int id_tipoCuenta, String descripcion_tipoCuenta) {
+	public TipoCuenta(int id_tipoCuenta, String descripcion_tipoCuenta) {
 		this.id_tipoCuenta = id_tipoCuenta;
 		this.descripcion_tipoCuenta = descripcion_tipoCuenta;
 	}

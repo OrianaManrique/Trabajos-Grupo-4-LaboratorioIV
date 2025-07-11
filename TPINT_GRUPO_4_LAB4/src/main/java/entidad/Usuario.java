@@ -4,9 +4,7 @@ public class Usuario {
 	private String usuario_us;
 	private String contraseña_us;
 	private String tipo_us;
-	private int dniCliente_us;
-	private String nombreCliente_us;
-	private String apellido_us;
+	private Cliente dniCliente_us, nombreCliente_us, apellido_us;
 	private int estado_us;
 	
 	public Usuario() {}
@@ -15,9 +13,9 @@ public class Usuario {
 		usuario_us = usuario;
 		contraseña_us = contraseña;
 		tipo_us = tipo;
-		dniCliente_us = dni;
-		nombreCliente_us = nombre;
-		apellido_us = apellido;
+		dniCliente_us.setDni_cliente(dni);
+		nombreCliente_us.setNombre_cliente(nombre); 
+		apellido_us.setApellido_cliente(apellido);
 		estado_us = estado;
 	}
 
@@ -45,28 +43,8 @@ public class Usuario {
 		this.tipo_us = tipo_us;
 	}
 
-	public int getDniCliente_us() {
+	public Cliente getDniCliente_us() {
 		return dniCliente_us;
-	}
-
-	public void setDniCliente_us(int dniCliente_us) {
-		this.dniCliente_us = dniCliente_us;
-	}
-
-	public String getNombreCliente_us() {
-		return nombreCliente_us;
-	}
-
-	public void setNombreCliente_us(String nombreCliente_us) {
-		this.nombreCliente_us = nombreCliente_us;
-	}
-
-	public String getApellido_us() {
-		return apellido_us;
-	}
-
-	public void setApellido_us(String apellido_us) {
-		this.apellido_us = apellido_us;
 	}
 
 	public int getEstado_us() {

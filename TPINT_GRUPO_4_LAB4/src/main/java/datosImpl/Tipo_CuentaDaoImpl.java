@@ -2,7 +2,7 @@ package datosImpl;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import datos.Tipo_CuentaDao;
-import entidad.Tipo_Cuenta;
+import entidad.TipoCuenta;
 
 public class Tipo_CuentaDaoImpl implements Tipo_CuentaDao{
 	
@@ -13,21 +13,21 @@ public class Tipo_CuentaDaoImpl implements Tipo_CuentaDao{
 	}
 
 	@Override
-	public ArrayList<Tipo_Cuenta> obtenerTiposCuentas() {
+	public ArrayList<TipoCuenta> obtenerTiposCuentas() {
 		
 		conexion = new Conexion();
 		conexion.open();
 
 		String consulta = ("SELECT id_TipoCuenta, Descripcion_tipoCuenta FROM tipo_cuentas;");
 
-		ArrayList<Tipo_Cuenta> lista = new ArrayList<Tipo_Cuenta>();
+		ArrayList<TipoCuenta> lista = new ArrayList<TipoCuenta>();
 
 		try {
 			ResultSet rs = conexion.query(consulta);
 
 			while (rs.next()) {
 				
-				Tipo_Cuenta tipo = new Tipo_Cuenta();
+				TipoCuenta tipo = new TipoCuenta();
 				
 				tipo.setId_tipoCuenta(rs.getInt("id_TipoCuenta"));
 				tipo.setDescripcion_tipoCuenta(rs.getString("Descripcion_tipoCuenta"));

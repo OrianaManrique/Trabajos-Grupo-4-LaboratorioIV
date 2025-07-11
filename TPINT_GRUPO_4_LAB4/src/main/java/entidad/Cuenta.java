@@ -8,14 +8,14 @@ public class Cuenta {
 	private int dni_Cliente;
 	private Date fechaCreacion_cuenta;
 	private int cbu_cuenta;
-	private Tipo_Cuenta tipoCuenta_cuenta;
+	private TipoCuenta tipoCuenta_cuenta;
 	private Float saldo_cuenta;
 	private int estado_cuenta;
 	
 	public Cuenta() {}
 
 	public Cuenta(int nroCuenta_cuenta, int dni_Cliente, Date fecha_creacion_cuenta, int cbu_cuenta,
-			Tipo_Cuenta tipo_cuenta, Float saldo_cuenta) {
+			TipoCuenta tipo_cuenta, Float saldo_cuenta) {
 		this.nroCuenta_cuenta = nroCuenta_cuenta;
 		this.dni_Cliente = dni_Cliente;
 		this.fechaCreacion_cuenta = fecha_creacion_cuenta;
@@ -57,11 +57,11 @@ public class Cuenta {
 		this.cbu_cuenta = cbu_cuenta;
 	}
 
-	public Tipo_Cuenta getTipo_cuenta() {
+	public TipoCuenta getTipo_cuenta() {
 		return tipoCuenta_cuenta;
 	}
 
-	public void setTipo_cuenta(Tipo_Cuenta tipo_cuenta) {
+	public void setTipo_cuenta(TipoCuenta tipo_cuenta) {
 		this.tipoCuenta_cuenta = tipo_cuenta;
 	}
 

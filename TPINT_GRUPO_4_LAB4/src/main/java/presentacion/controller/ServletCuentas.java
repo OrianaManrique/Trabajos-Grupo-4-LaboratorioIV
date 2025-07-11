@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import entidad.Cuenta;
-import entidad.Tipo_Cuenta;
+import entidad.TipoCuenta;
 import negocio.CuentaNeg;
 import negocioImpl.CuentaNegImpl;
 import negocio.Tipo_CuentaNeg;
@@ -133,7 +133,7 @@ public class ServletCuentas extends HttpServlet {
 				
 				cuenta.setFecha_creacion_cuenta(fechacreacion);
 				
-				Tipo_Cuenta tipo = new Tipo_Cuenta();
+				TipoCuenta tipo = new TipoCuenta();
 				
 				tipo.setId_tipoCuenta(Integer.parseInt(request.getParameter("ddlTipoCuenta")));
 				
@@ -166,7 +166,7 @@ public class ServletCuentas extends HttpServlet {
 				
 				cuenta.setFecha_creacion_cuenta(fechacreacion);
 				
-				Tipo_Cuenta tipo = new Tipo_Cuenta();
+				TipoCuenta tipo = new TipoCuenta();
 				
 				tipo.setId_tipoCuenta(Integer.parseInt(request.getParameter("ddlTipoCuenta")));		
 				cuenta.setTipo_cuenta(tipo);			

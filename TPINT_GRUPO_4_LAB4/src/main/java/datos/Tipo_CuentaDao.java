@@ -2,10 +2,10 @@ package datos;
 
 import java.util.ArrayList;
 
-import entidad.Tipo_Cuenta;
+import entidad.TipoCuenta;
 
 public interface Tipo_CuentaDao {
 	
-	public ArrayList<Tipo_Cuenta> obtenerTiposCuentas();
+	public ArrayList<TipoCuenta> obtenerTiposCuentas();
 
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import datos.Tipo_CuentaDao;
 import datosImpl.Tipo_CuentaDaoImpl;
-import entidad.Tipo_Cuenta;
+import entidad.TipoCuenta;
 import negocio.Tipo_CuentaNeg;
 
 public class Tipo_CuentaNegImpl implements Tipo_CuentaNeg{
@@ -16,7 +16,7 @@ public class Tipo_CuentaNegImpl implements Tipo_CuentaNeg{
 	}
 
 	@Override
-	public ArrayList<Tipo_Cuenta> obtenerTiposCuentas() {
+	public ArrayList<TipoCuenta> obtenerTiposCuentas() {
 		return  tipoDao.obtenerTiposCuentas();
 	}
 
