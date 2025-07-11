@@ -23,25 +23,25 @@ public class Cliente {
 				
 	}
 	
-	public Cliente(int dni, int cuil_cliente, String nombre_cliente, String apellido_cliente,
-			String sexo_cliente, String nacionalidad_cliente, Date fecha_nacimiento_cliente, String direccion_cliente,
-			Provincia provincia, Localidad localidad, String correo_electronico_cliente, String telefono_cliente) {
+	public Cliente(int dni, int cuil, String nombre, String apellido, String sexo, String nacionalidad, Date fecha_nacimiento, 
+			String direccion, Provincia provincia, Localidad localidad, String correo_electronico, String telefono, String usuario,
+			String contraseña) {
 
 		dni_cliente = dni;
-		this.cuil_cliente = cuil_cliente;
-		this.nombre_cliente = nombre_cliente;
-		this.apellido_cliente = apellido_cliente;
-		this.sexo_cliente = sexo_cliente;
-		this.nacionalidad_cliente = nacionalidad_cliente;
-		this.fechaNacimiento_cliente = fecha_nacimiento_cliente;
-		this.direccion_cliente = direccion_cliente;
-		this.provincia_cliente = provincia;
-		this.localidad_cliente = localidad;
-		this.correoElectronico_cliente = correo_electronico_cliente;
-		this.telefono_cliente = telefono_cliente;
-		this.usuario_cliente = "";
-		this.contraseña_cliente = "";
-		this.estado_cliente = 1;
+		cuil_cliente = cuil;
+		nombre_cliente = nombre;
+		apellido_cliente = apellido;
+		sexo_cliente = sexo;
+		nacionalidad_cliente = nacionalidad;
+		fechaNacimiento_cliente = fecha_nacimiento;
+		direccion_cliente = direccion;
+		provincia_cliente = provincia;
+		localidad_cliente = localidad;
+		correoElectronico_cliente = correo_electronico;
+		telefono_cliente = telefono;
+		usuario_cliente = usuario;
+		contraseña_cliente = contraseña;
+		estado_cliente = 1;
 	}
 
 	public int getDni_cliente() {
