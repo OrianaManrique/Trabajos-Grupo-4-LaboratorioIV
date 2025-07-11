@@ -15,16 +15,15 @@ public class Prestamo {
 	private float montoMensual_prestamo;
 	private String condicion_prestamo;
 	private int estado_prestamo;	
-	
-	
+		
 	public Prestamo() {};
 	
-	public Prestamo(int id, Cliente dniCliente, Cuenta nroCuenta,float importeApagar, 
+	public Prestamo(int id, int dniCliente, Cuenta nroCuenta,float importeApagar, 
 			float importeSolicitado, int plazoDePago, int cuotas, Date fechaCreacion, 
 			float montoMensual, String condicion, int estado) {
 		
 		this.id_prestamo = id;
-		this.dniCliente_prestamo = dniCliente;
+		this.dniCliente_prestamo.setDni_cliente(dniCliente);
 		this.nroCuenta_prestamo = nroCuenta;
 		this.importeApagar_prestamo = importeApagar;
 		this.importeSolicitado_prestamo = importeSolicitado;
@@ -44,10 +43,7 @@ public class Prestamo {
 	}
 	public Cliente getDniCliente_prestamo() {
 		return dniCliente_prestamo;
-	}
-	public void setDniCliente_prestamo(Cliente dniCliente_prestamo) {
-		this.dniCliente_prestamo = dniCliente_prestamo;
-	}
+	}	
 	public Cuenta getNroCuenta_prestamo() {
 		return nroCuenta_prestamo;
 	}
@@ -102,6 +98,5 @@ public class Prestamo {
 	public void setEstado_prestamo(int estado_prestamo) {
 		this.estado_prestamo = estado_prestamo;
 	}
-		
-	
+			
 }
