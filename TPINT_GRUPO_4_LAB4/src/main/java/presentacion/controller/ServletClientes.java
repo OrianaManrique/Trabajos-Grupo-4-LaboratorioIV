@@ -110,7 +110,7 @@ public class ServletClientes extends HttpServlet {
 				cliente.setDni_cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
 				cliente.setNombre_cliente(request.getParameter("txtNombre"));
 				cliente.setApellido_cliente(request.getParameter("txtApellido"));
-				cliente.setCuil_cliente(Integer.parseInt(request.getParameter("txtCuil")));
+				cliente.setCuil_cliente((request.getParameter("txtCuil")));
 				cliente.setSexo_cliente(request.getParameter("tiposexo"));
 				provincia.setId_provincia(Integer.parseInt(request.getParameter("txtProvincia")));
 				localidad.setId_localidad(Integer.parseInt(request.getParameter("txtLocalidad")));
@@ -185,7 +185,7 @@ public class ServletClientes extends HttpServlet {
 			cliente.setDni_cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
 			cliente.setNombre_cliente(request.getParameter("txtNombre"));
 			cliente.setApellido_cliente(request.getParameter("txtApellido"));
-			cliente.setCuil_cliente(Integer.parseInt(request.getParameter("txtCuil")));
+			cliente.setCuil_cliente((request.getParameter("txtCuil")));
 			cliente.setSexo_cliente(request.getParameter("tiposexo"));
 			provincia.setId_provincia(Integer.parseInt(request.getParameter("txtProvincia")));
 			localidad.setId_localidad(Integer.parseInt(request.getParameter("txtLocalidad")));

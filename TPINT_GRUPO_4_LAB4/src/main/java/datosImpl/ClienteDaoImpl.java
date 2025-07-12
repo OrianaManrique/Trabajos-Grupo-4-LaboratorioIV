@@ -63,7 +63,7 @@ public class ClienteDaoImpl implements ClienteDao {
 				cliente.setDni_cliente(rs.getInt("dni_cliente"));
 				cliente.setNombre_cliente(rs.getString("nombre_cliente"));
 				cliente.setApellido_cliente(rs.getString("apellido_cliente"));			
-				cliente.setCuil_cliente(rs.getInt("cuil_cliente"));
+				cliente.setCuil_cliente(rs.getString("cuil_cliente"));
 				cliente.setSexo_cliente(rs.getString("sexo_cliente"));
 				provincia.setId_provincia(rs.getInt("id_provincia_cliente"));
 				localidad.setId_localidad(rs.getInt("id_localidad_cliente"));
@@ -125,7 +125,7 @@ public class ClienteDaoImpl implements ClienteDao {
 				cliente.setDni_cliente(rs.getInt("dni_cliente"));
 				cliente.setNombre_cliente(rs.getString("nombre_cliente"));
 				cliente.setApellido_cliente(rs.getString("apellido_cliente"));
-				cliente.setCuil_cliente(rs.getInt("cuil_cliente"));
+				cliente.setCuil_cliente(rs.getString("cuil_cliente"));
 				cliente.setCorreo_electronico_cliente(rs.getString("correo_electronico_cliente"));
 
 				lista.add(cliente);

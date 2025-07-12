@@ -4,7 +4,7 @@ import java.sql.Date;
 public class Cliente {
 	
 	private int dni_cliente;
-	private int cuil_cliente;  
+	private String cuil_cliente;  
 	private String nombre_cliente;
 	private String apellido_cliente;
 	private String sexo_cliente;
@@ -23,7 +23,7 @@ public class Cliente {
 				
 	}
 	
-	public Cliente(int dni, int cuil, String nombre, String apellido, String sexo, String nacionalidad, Date fecha_nacimiento, 
+	public Cliente(int dni, String cuil, String nombre, String apellido, String sexo, String nacionalidad, Date fecha_nacimiento, 
 			String direccion, Provincia provincia, Localidad localidad, String correo_electronico, String telefono, String usuario,
 			String contraseña) {
 
@@ -52,11 +52,11 @@ public class Cliente {
 		this.dni_cliente = dni_cliente;
 	}
 
-	public int getCuil_cliente() {
+	public String getCuil_cliente() {
 		return cuil_cliente;
 	}
 
-	public void setCuil_cliente(int cuil_cliente) {
+	public void setCuil_cliente(String cuil_cliente) {
 		this.cuil_cliente = cuil_cliente;
 	}
 
