@@ -10,7 +10,7 @@ public class Transferencia {
 	private float monto_transferencia;
 	private Date fecha_transferencia;
 		
-	public Transferencia(int id, int cbu_emisor, int cbu_receptor,
+	public Transferencia(int id, String cbu_emisor, String cbu_receptor,
 			float monto_transferencia, Date fecha) {
 
 		this.id_transferencia = id;
