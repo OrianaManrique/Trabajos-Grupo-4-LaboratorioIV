@@ -135,7 +135,7 @@ if (request.getAttribute("Lista") != null) {
 			<tr>
 				<td><%= cuentaCliente.getNroCuenta_cuenta() %></td>
 				<td><%= cuentaCliente.getDni_Cliente() %></td>
-				<td><%= cuentaCliente.getFecha_creacion_cuenta() %></td>
+				<td><%= cuentaCliente.getFechaCreacion_cuenta() %></td>
 				<td><%= cuentaCliente.getCbu_cuenta() %></td>
 				<td><%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta() %></td>
 				<td><%= cuentaCliente.getSaldo_cuenta() %></td>

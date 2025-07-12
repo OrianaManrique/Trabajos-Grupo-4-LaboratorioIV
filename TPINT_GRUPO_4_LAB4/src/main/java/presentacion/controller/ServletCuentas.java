@@ -102,7 +102,7 @@ public class ServletCuentas extends HttpServlet {
 
 		}
 	}
-
+     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -115,7 +115,7 @@ public class ServletCuentas extends HttpServlet {
 				
 				Cuenta cuenta = new Cuenta();
 
-				cuenta.setNroCuenta_cuenta(request.getParameter("txtNumeroCuenta"));
+				cuenta.setNroCuenta_cuenta(Integer.parseInt(request.getParameter("txtNumeroCuenta")));
 				cuenta.setCbu_cuenta(request.getParameter("txtCBU"));
 				cuenta.setDni_Cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
 				cuenta.setSaldo_cuenta(Float.parseFloat(request.getParameter("txtSaldo")));
@@ -131,7 +131,7 @@ public class ServletCuentas extends HttpServlet {
                     e.printStackTrace();
                 }
 				
-				cuenta.setFecha_creacion_cuenta(fechacreacion);
+				cuenta.setFechaCreacion_cuenta(fechacreacion);
 				
 				TipoCuenta tipo = new TipoCuenta();
 				
@@ -148,7 +148,7 @@ public class ServletCuentas extends HttpServlet {
 						
 				Cuenta cuenta = new Cuenta();
 				
-				cuenta.setNroCuenta_cuenta(request.getParameter("txtNumeroCuenta"));
+				cuenta.setNroCuenta_cuenta(Integer.parseInt(request.getParameter("txtNumeroCuenta")));
 				cuenta.setCbu_cuenta(request.getParameter("txtCBU"));
 				cuenta.setDni_Cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
 				cuenta.setSaldo_cuenta(Float.parseFloat(request.getParameter("txtSaldo")));
@@ -164,7 +164,7 @@ public class ServletCuentas extends HttpServlet {
                     e.printStackTrace();
                 }
 				
-				cuenta.setFecha_creacion_cuenta(fechacreacion);
+				cuenta.setFechaCreacion_cuenta(fechacreacion);
 				
 				TipoCuenta tipo = new TipoCuenta();
 				

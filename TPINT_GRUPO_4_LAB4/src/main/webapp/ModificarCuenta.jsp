@@ -184,7 +184,7 @@ input::placeholder {
 						name="txtDniCliente" value="<%=cuenta.getDni_Cliente()%>" readonly>
                     
                     <label class="lblinput"> Fecha Creación </label> 
-					<input  type="date" value="<%=cuenta.getFecha_creacion_cuenta()%>"  id="txtFechaActual" name="txtFechaActual"> 
+					<input  type="date" value="<%=cuenta.getFechaCreacion_cuenta()%>"  id="txtFechaActual" name="txtFechaActual"> 
 						 
 						 
 						 <label class="lblinput"> Tipo de cuenta </label>

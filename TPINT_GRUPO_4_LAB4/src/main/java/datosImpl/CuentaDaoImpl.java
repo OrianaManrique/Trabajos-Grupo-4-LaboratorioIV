@@ -29,9 +29,9 @@ public class CuentaDaoImpl implements CuentaDao {
 
 			while (rs.next()) {
 				Cuenta cuenta = new Cuenta();
-				cuenta.setNroCuenta_cuenta(rs.getString("NroCuenta_Cuenta"));
+				cuenta.setNroCuenta_cuenta(rs.getInt("NroCuenta_Cuenta"));
 				cuenta.setDni_Cliente(rs.getInt("dni_cliente"));
-				cuenta.setFecha_creacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
+				cuenta.setFechaCreacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
 				cuenta.setCbu_cuenta(rs.getString("cbu_cuenta"));
 
 				TipoCuenta tipo = new TipoCuenta();
@@ -88,7 +88,7 @@ public class CuentaDaoImpl implements CuentaDao {
 
 		String consulta = "UPDATE cuentas SET " + "NroCuenta_Cuenta = '" + cuenta.getNroCuenta_cuenta() + "', "
 				+ "dni_cliente = '" + cuenta.getDni_Cliente() + "', " + "fecha_creacion_cuenta = '"
-				+ cuenta.getFecha_creacion_cuenta() + "', " + "cbu_cuenta = '" + cuenta.getCbu_cuenta() + "', "
+				+ cuenta.getFechaCreacion_cuenta() + "', " + "cbu_cuenta = '" + cuenta.getCbu_cuenta() + "', "
 				+ "id_TipoCuenta = " + cuenta.getTipo_cuenta().getId_tipoCuenta() + ", " + "saldo_cuenta = "
 				+ cuenta.getSaldo_cuenta() + " " + "WHERE NroCuenta_Cuenta = '" + cuenta.getNroCuenta_cuenta() + "'";
 
@@ -121,9 +121,9 @@ public class CuentaDaoImpl implements CuentaDao {
 
 			while (rs.next()) {
 				Cuenta cuenta = new Cuenta();
-				cuenta.setNroCuenta_cuenta(rs.getString("NroCuenta_Cuenta"));
+				cuenta.setNroCuenta_cuenta(rs.getInt("NroCuenta_Cuenta"));
 				cuenta.setDni_Cliente(rs.getInt("dni_cliente"));
-				cuenta.setFecha_creacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
+				cuenta.setFechaCreacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
 				cuenta.setCbu_cuenta(rs.getString("cbu_cuenta"));
 
 				TipoCuenta tipo = new TipoCuenta();
@@ -155,7 +155,7 @@ public class CuentaDaoImpl implements CuentaDao {
 
 		String consulta = "INSERT INTO cuentas (NroCuenta_Cuenta, dni_cliente, fecha_creacion_cuenta, cbu_cuenta, id_TipoCuenta, saldo_cuenta, estado_cuenta) "
 				+ "VALUES ('" + cuenta.getNroCuenta_cuenta() + "', " + cuenta.getDni_Cliente() + ", " + "'"
-				+ cuenta.getFecha_creacion_cuenta().toString() + "', " + "'" + cuenta.getCbu_cuenta() + "', "
+				+ cuenta.getFechaCreacion_cuenta().toString() + "', " + "'" + cuenta.getCbu_cuenta() + "', "
 				+ cuenta.getTipo_cuenta().getId_tipoCuenta() + ", " + cuenta.getSaldo_cuenta() + ", "
 				+ cuenta.getEstado_cuenta() + ");";
 
@@ -188,9 +188,9 @@ public class CuentaDaoImpl implements CuentaDao {
 			if (rs.next()) {
 				cuenta = new Cuenta();
 
-				cuenta.setNroCuenta_cuenta(rs.getString("NroCuenta_Cuenta"));
+				cuenta.setNroCuenta_cuenta(rs.getInt("NroCuenta_Cuenta"));
 				cuenta.setDni_Cliente(rs.getInt("dni_cliente"));
-				cuenta.setFecha_creacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
+				cuenta.setFechaCreacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
 				cuenta.setCbu_cuenta(rs.getString("cbu_cuenta"));
 
 				tipo = new TipoCuenta();
