@@ -89,7 +89,7 @@ Usuario logueado - Cuenta Banco
 
 <a href = "ServletClientes?Param=CargarAgregarCliente" > Agregar Cliente </a> <br/>
 <a href = "ServletClientes?Param=ListarClientes" > Modificar Clientes </a> <br/>
-<a href = "EliminarCliente.jsp" > Eliminar Clientes </a> <br/>
+<a href = "ServletClientes?Param=ListarEliminarCliente" > Eliminar Clientes </a> <br/>
 <a href = "ServletClientes?Param=ListarClientes" > Listar Clientes </a> <br/>
 
 </div>

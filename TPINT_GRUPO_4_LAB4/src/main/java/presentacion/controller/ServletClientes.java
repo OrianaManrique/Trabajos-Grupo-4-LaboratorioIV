@@ -37,7 +37,7 @@ public class ServletClientes extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		if (request.getParameter("Param") != null && request.getParameter("Param2")==null) {
+		if (request.getParameter("Param") != null && request.getParameter("Param2") == null) {
 
 			String operacion = request.getParameter("Param").toString();
 
@@ -57,22 +57,28 @@ public class ServletClientes extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
+			case "ListarEliminarCliente": {
+				// Cargo el form
+				request.setAttribute("Lista", negCli.obtenerClientes());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/EliminarCliente.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
 			default:
 				break;
 			}
 
-
 			return;
 
 		}
-		
-		if (request.getParameter("Param") != null && request.getParameter("Param2")!=null) {
+
+		if (request.getParameter("Param") != null && request.getParameter("Param2") != null) {
 
 			String operacion = request.getParameter("Param").toString();
 
 			switch (operacion) {
 			case "CargarModificarCliente": {
-	               
+
 				int dniCliente = Integer.parseInt(request.getParameter("Param2"));
 				request.setAttribute("DniClienteEditar", dniCliente);
 				request.setAttribute("Cliente", negCli.obtenerCliente(dniCliente));
@@ -82,15 +88,25 @@ public class ServletClientes extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
+			case "EliminarCliente": {
+
+				boolean estado = negCli.borrar(Integer.parseInt(request.getParameter("Param2")));
+
+				request.setAttribute("Exito", estado);
+				request.setAttribute("Lista", negCli.obtenerClientes());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/EliminarCliente.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
+
 			default:
 				break;
 			}
 
-
 			return;
 
 		}
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -142,8 +158,8 @@ public class ServletClientes extends HttpServlet {
 				requestdispatcher.forward(request, response);
 				break;
 			}
-			case "ConfirmarClienteyUsuario": {			
-				
+			case "ConfirmarClienteyUsuario": {
+
 				boolean estado = false;
 				HttpSession session = request.getSession(false);
 				Cliente cliente = (Cliente) session.getAttribute("ClienteparaAgregar");
@@ -151,12 +167,11 @@ public class ServletClientes extends HttpServlet {
 				cliente.setContraseña_cliente(request.getParameter("txtContra"));
 				estado = negCli.insertar(cliente);
 
-				request.setAttribute("Exito", estado);		
+				request.setAttribute("Exito", estado);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ConfirmarUsuario.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}
-
 
 			default:
 				break;
@@ -172,11 +187,9 @@ public class ServletClientes extends HttpServlet {
 			return;
 
 		}
-		
-		
+
 		if (request.getParameter("btnModificar") != null) {
-			
-			
+
 			Cliente cliente = new Cliente();
 			Localidad localidad = new Localidad();
 			Provincia provincia = new Provincia();

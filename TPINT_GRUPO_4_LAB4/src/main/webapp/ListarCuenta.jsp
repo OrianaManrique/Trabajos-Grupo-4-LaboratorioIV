@@ -76,7 +76,7 @@ body {
     background-color: #E5E5E5;
     width: 100%;
     border-collapse: collapse;
-    padding: 20px;
+    /*padding: 20px;*/
     font-size: 18px;
     border-radius: 5px;
   }
