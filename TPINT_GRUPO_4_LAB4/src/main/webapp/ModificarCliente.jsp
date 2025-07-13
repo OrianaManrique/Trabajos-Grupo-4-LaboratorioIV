@@ -3,14 +3,14 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="entidad.*"%>
 
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Agregar Cliente</title>
+<title>Modificar Cliente</title>
 </head>
 <style>
+
 body {
 	font-family: 'Segoe UI', sans-serif;
 	margin: 0;

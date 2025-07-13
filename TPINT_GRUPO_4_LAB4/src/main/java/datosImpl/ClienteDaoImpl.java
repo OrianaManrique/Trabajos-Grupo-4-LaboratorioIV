@@ -110,6 +110,7 @@ public class ClienteDaoImpl implements ClienteDao {
 
 	@Override
 	public ArrayList<Cliente> obtenerClientes() {
+		
 		conexion = new Conexion();
 		conexion.open();
 

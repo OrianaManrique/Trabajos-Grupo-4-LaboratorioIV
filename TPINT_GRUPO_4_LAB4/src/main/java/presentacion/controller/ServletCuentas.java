@@ -37,7 +37,7 @@ public class ServletCuentas extends HttpServlet {
 			switch (operacion) {
 			case "Listar": {
 				// Cargo el form
-
+				
 				request.setAttribute("Lista", negCuenta.obtenerCuentas());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarCuenta.jsp");
 				dispatcher.forward(request, response);

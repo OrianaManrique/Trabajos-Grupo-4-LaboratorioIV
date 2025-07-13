@@ -14,7 +14,6 @@ body {
     padding: 0;
     background: #E0E0E0;
 }
-
 .header {
     background: linear-gradient(to right, #602A80, #4C0026);
     color: white;
