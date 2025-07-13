@@ -115,7 +115,6 @@ public class ServletCuentas extends HttpServlet {
 				
 				Cuenta cuenta = new Cuenta();
 
-				cuenta.setNroCuenta_cuenta(Integer.parseInt(request.getParameter("txtNumeroCuenta")));
 				cuenta.setCbu_cuenta(request.getParameter("txtCBU"));
 				cuenta.setDni_Cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
 				cuenta.setSaldo_cuenta(Float.parseFloat(request.getParameter("txtSaldo")));
@@ -148,7 +147,6 @@ public class ServletCuentas extends HttpServlet {
 						
 				Cuenta cuenta = new Cuenta();
 				
-				cuenta.setNroCuenta_cuenta(Integer.parseInt(request.getParameter("txtNumeroCuenta")));
 				cuenta.setCbu_cuenta(request.getParameter("txtCBU"));
 				cuenta.setDni_Cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
 				cuenta.setSaldo_cuenta(Float.parseFloat(request.getParameter("txtSaldo")));

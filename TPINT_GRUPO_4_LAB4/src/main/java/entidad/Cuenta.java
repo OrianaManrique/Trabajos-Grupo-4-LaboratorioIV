@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Cuenta {
 
-	private int nroCuenta_cuenta;
+	private String nroCuenta_cuenta;
 	private int dni_Cliente;
 	private Date fechaCreacion_cuenta;
 	private String cbu_cuenta;
@@ -14,7 +14,7 @@ public class Cuenta {
 	
 	public Cuenta() {}
 
-	public Cuenta(int nroCuenta_cuenta, int dni_Cliente, Date fecha_creacion_cuenta, String cbu_cuenta,
+	public Cuenta(String nroCuenta_cuenta, int dni_Cliente, Date fecha_creacion_cuenta, String cbu_cuenta,
 			TipoCuenta tipo_cuenta, Float saldo_cuenta) {
 		this.nroCuenta_cuenta = nroCuenta_cuenta;
 		this.dni_Cliente = dni_Cliente;
@@ -25,11 +25,11 @@ public class Cuenta {
 		this.estado_cuenta = 1;
 	}
 
-	public int getNroCuenta_cuenta() {
+	public String getNroCuenta_cuenta() {
 		return nroCuenta_cuenta;
 	}
 
-	public void setNroCuenta_cuenta(int nroCuenta_cuenta) {
+	public void setNroCuenta_cuenta(String nroCuenta_cuenta) {
 		this.nroCuenta_cuenta = nroCuenta_cuenta;
 	}
 
