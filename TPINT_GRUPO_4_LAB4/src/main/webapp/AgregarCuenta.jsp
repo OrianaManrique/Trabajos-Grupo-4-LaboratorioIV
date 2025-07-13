@@ -163,6 +163,8 @@
 	<%
 	
 	LocalDate fechaActual = LocalDate.now();
+	int nroCuenta = 0;
+	String CBU = "";
 	
 	ArrayList<TipoCuenta> ListaTipoCuentas = new ArrayList<TipoCuenta>();
 		if (request.getAttribute("Tipos") != null) {
@@ -172,8 +174,15 @@
 		if (request.getAttribute("Tipos") != null) {
 			ListaTipoCuentas = (ArrayList<TipoCuenta>) request.getAttribute("Tipos");
 		}
+		
+		if (request.getAttribute("NroCuenta") != null) {
+			nroCuenta = (int)request.getAttribute("NroCuenta");
+		}
+		
+		if (request.getAttribute("CBU") != null) {
+			CBU = (String)request.getAttribute("CBU");
+		}
 	%>
-
 <div class="header">
 Usuario logueado - Cuenta Banco
 </div>
@@ -190,11 +199,11 @@ Usuario logueado - Cuenta Banco
 	     	  	   
 	    <label class="lblinput">Numero de Cuenta </label>  
 	    
-	    <input class="inputBloqueado" type="text" id="txtNumeroCuenta" name="txtNumeroCuenta" placeholder="A12345678"> 
+	    <input class="inputBloqueado" type="text" id="txtNumeroCuenta" name="txtNumeroCuenta" value= <%=nroCuenta%> ReadOnly> 
 		
 		<label class="lblinput"> CBU </label>  
 				
-		<input class="inputBloqueado" type="text" id="txtCBU" name="txtCBU" placeholder="7654321"> 
+		<input class="inputBloqueado" type="text" id="txtCBU" name="txtCBU" value = <%=CBU%> ReadOnly> 
 		
 				 <label class="lblinput"> Saldo </label>  
 		

@@ -43,4 +43,8 @@ public class CuentaNegImpl implements CuentaNeg{
 	public int proximoNroCuenta() {
 		return cuentaDao.proximoNroCuenta();
 	}
+	
+	public String ObtenerCBU() {
+		return cuentaDao.ObtenerCBU();
+	}
 }

@@ -11,5 +11,6 @@ public interface CuentaDao {
 	public boolean borrar(int NroCuenta_Cuenta);
 	public Boolean agregarCuenta(Cuenta cuenta);
 	public int proximoNroCuenta();
+	public String ObtenerCBU();
 
 }

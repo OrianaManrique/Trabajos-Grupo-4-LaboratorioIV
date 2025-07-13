@@ -48,8 +48,10 @@ public class ServletCuentas extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			case "CargarAgregar": {			
-
+			case "CargarAgregar": {	
+				
+				request.setAttribute("NroCuenta", negCuenta.proximoNroCuenta());
+				request.setAttribute("CBU", negCuenta.ObtenerCBU());
 				request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCuenta.jsp");
 				dispatcher.forward(request, response);

@@ -1,10 +1,11 @@
 package datosImpl;
-
+import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import datos.CuentaDao;
 import entidad.Cuenta;
 import entidad.TipoCuenta;
+import java.util.Random;
 
 public class CuentaDaoImpl implements CuentaDao {
 
@@ -208,7 +209,7 @@ public class CuentaDaoImpl implements CuentaDao {
 
 	public int proximoNroCuenta() {
 
-		int proxNum = 11000;
+		int proxNum = 11001;
 
 		try {
 			conexion = new Conexion();
@@ -233,5 +234,23 @@ public class CuentaDaoImpl implements CuentaDao {
 		return proxNum;
 	}
 
+	public String ObtenerCBU() {
+		
+		String cbu= "";
+		
+		int digitos = 22;
+
+		int  minimo = (int)Math.pow(10, digitos - 1); // 10000
+		int  maximo = (int)Math.pow(10, digitos) - 1; // 99999
+
+        Random aleatorio = new Random();
+        int  numero = aleatorio.nextInt(maximo - minimo + 1) + minimo;
+        
+        cbu = Integer.toString(numero);    
+
+        System.out.println("Número aleatorio de " + digitos + " dígitos: " + numero);
+
+		return cbu;
+	}
 
 }
