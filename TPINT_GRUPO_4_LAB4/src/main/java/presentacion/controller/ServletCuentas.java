@@ -35,20 +35,21 @@ public class ServletCuentas extends HttpServlet {
 			String operacion = request.getParameter("Param").toString();
 
 			switch (operacion) {
-			case "Listar": {
-				// Cargo el form
+			case "ListarCuentas": {
 				
-				request.setAttribute("Lista", negCuenta.obtenerCuentas());
-				
-				int proxId;
-				proxId = negCuenta.proximoNroCuenta();
-				System.out.println(proxId);
-				
+				request.setAttribute("Lista", negCuenta.obtenerCuentas());		
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarCuenta.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}
-			case "CargarAgregar": {	
+			case "ListarEliminar":{			
+				
+				request.setAttribute("Lista", negCuenta.obtenerCuentas());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/EliminarCuenta.jsp");
+				dispatcher.forward(request, response);			
+				break;
+			}
+			case "CargarAgregarCuenta": {	
 				
 				request.setAttribute("NroCuenta", negCuenta.proximoNroCuenta());
 				request.setAttribute("CBU", negCuenta.ObtenerCBU());
@@ -84,19 +85,12 @@ public class ServletCuentas extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			case "CargarEliminarCuenta":{			
-					
-				request.setAttribute("ListaCuentasFiltradas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("Param2"))));
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/EliminarCuenta.jsp");
-				dispatcher.forward(request, response);			
-				break;
-			}
 			case "EliminarCuenta":{	
 						
 				boolean estado = negCuenta.borrar(Integer.parseInt(request.getParameter("Param2")));
 				
 				request.setAttribute("Exito", estado);				
-				request.setAttribute("ListaCuentasFiltradas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("dniCliente"))));
+				request.setAttribute("Lista", negCuenta.obtenerCuentas());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/EliminarCuenta.jsp");
 				dispatcher.forward(request, response);			
 				break;

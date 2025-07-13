@@ -97,10 +97,10 @@ Usuario logueado - Cuenta Banco
 <div class = "balance-box">
 <p>ABML Cuentas</p>
 <br/>
-<a href = "ServletCuentas?Param=CargarAgregar" > Agregar Cuenta </a> <br/>
-<a href = "ServletCuentas?Param=Listar" > Modificar Cuentas </a> <br/>
-<a href = "ServletClientes?Param=ListarClientes" > Eliminar Cuentas </a> <br/>
-<a href = "ServletCuentas?Param=Listar" > Listar Cuentas </a> <br/>
+<a href = "ServletCuentas?Param=CargarAgregarCuenta" > Agregar Cuenta </a> <br/>
+<a href = "ServletCuentas?Param=ListarCuentas" > Modificar Cuentas </a> <br/>
+<a href = "ServletCuentas?Param=ListarEliminar" > Eliminar Cuentas </a> <br/>
+<a href = "ServletCuentas?Param=ListarCuentas" > Listar Cuentas </a> <br/>
 
 </div>
 

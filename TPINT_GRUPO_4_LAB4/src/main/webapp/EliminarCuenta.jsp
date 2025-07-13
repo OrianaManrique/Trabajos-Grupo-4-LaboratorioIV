@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Listar Cuenta Cliente</title>
+<title>Eliminar Cuentas</title>
 
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
@@ -106,8 +106,8 @@ td {
 
 	<%
 	ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();
-	if (request.getAttribute("ListaCuentasFiltradas") != null) {
-		ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("ListaCuentasFiltradas");
+	if (request.getAttribute("Lista") != null) {
+		ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("Lista");
 
 	}
 	%>
