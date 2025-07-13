@@ -82,7 +82,6 @@ public class CuentaDaoImpl implements CuentaDao {
 
 		boolean estado = true;
 
-		
 		conexion = new Conexion();
 		conexion.open();
 
@@ -94,7 +93,7 @@ public class CuentaDaoImpl implements CuentaDao {
 
 		try {
 			estado = conexion.execute(consulta);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -151,13 +150,8 @@ public class CuentaDaoImpl implements CuentaDao {
 		conexion = new Conexion();
 		conexion.open();
 
-		cuenta.setEstado_cuenta(1);
-
-		String consulta = "INSERT INTO cuentas (nroCuenta_cuenta, dnicliente_cuenta, fecha_creacion_cuenta, cbu_cuenta, id_tipoCuenta, saldo_cuenta, estado_cuenta) "
-				+ "VALUES ('" + cuenta.getNroCuenta_cuenta() + "', " + cuenta.getDni_Cliente() + ", " + "'"
-				+ cuenta.getFechaCreacion_cuenta().toString() + "', " + "'" + cuenta.getCbu_cuenta() + "', "
-				+ cuenta.getTipo_cuenta().getId_tipoCuenta() + ", " + cuenta.getSaldo_cuenta() + ", "
-				+ cuenta.getEstado_cuenta() + ");";
+		String consulta = "CALL AgregarCuenta(" + cuenta.getDni_Cliente() + ", '" + cuenta.getCbu_cuenta() + "', "
+				+ cuenta.getTipo_cuenta() + ");";
 
 		try {
 			estado = conexion.execute(consulta);
@@ -210,6 +204,36 @@ public class CuentaDaoImpl implements CuentaDao {
 		}
 
 		return cuenta;
+	}
+
+	public String proximoNroCuenta() {
+
+		String proxNum = "";
+
+		try {
+			conexion = new Conexion();
+			conexion.open();
+
+			//String consulta = "SELECT COUNT(*) AS 'total cuentas' FROM cuentas;";
+			String consulta = "SELECT nroCuenta_cuenta FROM bd_banco.cuentas;";
+
+			ResultSet rs = conexion.query(consulta);
+
+			if (rs.next()) {
+
+				//proxNum = Integer.toString(rs.getInt("total cuentas"));	
+				
+				//ACORTAR EL NUMERO DE CUENTA DE INT 10 A 5 , O VER OTRA MANERA DE GENERAR EL NUMERO DE CUENTA.
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+
+		return proxNum;
 	}
 
 }

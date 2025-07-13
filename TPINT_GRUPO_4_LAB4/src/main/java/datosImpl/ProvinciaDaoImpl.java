@@ -13,12 +13,12 @@ public class ProvinciaDaoImpl implements ProvinciaDao {
 		 ArrayList<Provincia> list = new ArrayList<Provincia>();
 		 try
 		 {
-			 ResultSet rs= conexion.query("SELECT id_provincia ,Descripcion_provincia FROM provincias");
+			 ResultSet rs= conexion.query("SELECT id_provincia, descripcion_provincia FROM provincias");
 			 while(rs.next())
 			 {
 				 Provincia prov = new Provincia();
 				 prov.setId_provincia(rs.getInt("id_provincia"));
-				 prov.setDescripcion_provincia(rs.getString("Descripcion_provincia"));
+				 prov.setDescripcion_provincia(rs.getString("descripcion_provincia"));
 				 
 				 list.add(prov);
 			 }

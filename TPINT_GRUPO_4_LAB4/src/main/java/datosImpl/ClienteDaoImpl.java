@@ -29,7 +29,7 @@ public class ClienteDaoImpl implements ClienteDao {
 
 		String query = "CALL AltaCompletaCliente('" +cliente.getDni_cliente()+"', "+cliente.getCuil_cliente()+", '"+cliente.getNombre_cliente()+"', '"+cliente.getApellido_cliente()
 		+"', '"+cliente.getSexo_cliente()+"', '"+cliente.getNacionalidad_cliente()+"', '"+cliente.getFecha_nacimiento_cliente()+"', '"+cliente.getDireccion_cliente()+"', "+localidad.getId_localidad()+", "+provincia.getId_provincia()+", '"
-				+cliente.getCorreo_electronico_cliente()+"', '"+cliente.getTelefono_cliente()+"', '"+cliente.getContraseña_cliente()+"', "+cliente.getEstado()+");";
+				+cliente.getCorreo_electronico_cliente()+"', '"+cliente.getTelefono_cliente()+"', '"+cliente.getUsuario_cliente() +"', '"+cliente.getContraseña_cliente()+"', "+cliente.getEstado()+");";
 
 		try {
 			estado = conexion.execute(query);

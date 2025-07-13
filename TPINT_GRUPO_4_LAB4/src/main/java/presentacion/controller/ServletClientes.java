@@ -149,7 +149,6 @@ public class ServletClientes extends HttpServlet {
 				Cliente cliente = (Cliente) session.getAttribute("ClienteparaAgregar");
 				cliente.setUsuario_cliente(request.getParameter("txtUsuarioCliente"));
 				cliente.setContraseña_cliente(request.getParameter("txtContra"));
-
 				estado = negCli.insertar(cliente);
 
 				request.setAttribute("Exito", estado);		

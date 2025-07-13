@@ -117,20 +117,6 @@ public class ServletCuentas extends HttpServlet {
 
 				cuenta.setCbu_cuenta(request.getParameter("txtCBU"));
 				cuenta.setDni_Cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
-				cuenta.setSaldo_cuenta(Float.parseFloat(request.getParameter("txtSaldo")));
-				
-				String fecha = request.getParameter("txtFechaActual");
-                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                formato.setLenient(false);
-                Date fechacreacion = null;
-
-                try {
-                	fechacreacion = new Date(formato.parse(fecha).getTime());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-				
-				cuenta.setFechaCreacion_cuenta(fechacreacion);
 				
 				TipoCuenta tipo = new TipoCuenta();
 				

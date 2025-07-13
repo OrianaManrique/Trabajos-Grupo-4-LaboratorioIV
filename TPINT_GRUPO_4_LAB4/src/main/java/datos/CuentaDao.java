@@ -10,5 +10,6 @@ public interface CuentaDao {
 	public ArrayList<Cuenta> obtenerCuentasxDni(int dni_cliente);
 	public boolean borrar(String NroCuenta_Cuenta);
 	public Boolean agregarCuenta(Cuenta cuenta);
+	public String proximoNroCuenta();
 
 }

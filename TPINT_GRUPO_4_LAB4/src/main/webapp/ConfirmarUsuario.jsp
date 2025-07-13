@@ -98,7 +98,7 @@
     
 		if (request.getAttribute("Dni") != null) {
 			dni_cliente = request.getAttribute("Dni").toString();
-			
+			dni_cliente = dni_cliente + ".BANCO";
 			
 		}
 	%>

@@ -4,6 +4,7 @@
 <%@page import="entidad.*"%>
 <%@page import="negocio.*"%>
 <%@page import="negocioImpl.*"%>
+<%@page import = "java.time.LocalDate"%>
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +41,6 @@
 }
 
 .balance-box {
-	/*background: linear-gradient(to right, #602A80, #4C0026);*/
 	background: linear-gradient(to right, #A178C1, #A14C6F); ,
 	color: white;
 	padding: 25px 35px;
@@ -161,6 +161,9 @@
 <body>
 
 	<%
+	
+	LocalDate fechaActual = LocalDate.now();
+	
 	ArrayList<TipoCuenta> ListaTipoCuentas = new ArrayList<TipoCuenta>();
 		if (request.getAttribute("Tipos") != null) {
 			ListaTipoCuentas = (ArrayList<TipoCuenta>) request.getAttribute("Tipos");
@@ -202,7 +205,7 @@ Usuario logueado - Cuenta Banco
 	   
 	    <input class="inputSegundaColumna" type="text" id="txtDniCliente" name="txtDniCliente" placeholder="Ingrese el dni del cliente...">
 	     	  	   		
-		<input class="inputSegundaColumna" type="date" id="txtFechaActual" name="txtFechaActual">
+		<input class="inputSegundaColumna" type="date" id="txtFechaActual" value = <%=fechaActual%> name="txtFechaActual" ReadOnly>
 		
 		<select class="inputSegundaColumna" id="ddlTipoCuenta" name="ddlTipoCuenta" style="display: flex;">
 
