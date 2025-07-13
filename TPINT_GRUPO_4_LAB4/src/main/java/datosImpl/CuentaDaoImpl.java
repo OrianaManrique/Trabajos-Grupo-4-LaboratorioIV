@@ -1,5 +1,4 @@
 package datosImpl;
-import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import datos.CuentaDao;
@@ -237,20 +236,30 @@ public class CuentaDaoImpl implements CuentaDao {
 	public String ObtenerCBU() {
 		
 		String cbu= "";
-		
-		int digitos = 22;
+		int largo = 22;
+		String grupo1 = "";
+		String grupo2 = "";
+		String grupo3 = "";
+		Random random = new Random();
 
-		int  minimo = (int)Math.pow(10, digitos - 1); // 10000
-		int  maximo = (int)Math.pow(10, digitos) - 1; // 99999
+        int minimo = 10000000;
+        int maximo = 99999999;
 
-        Random aleatorio = new Random();
-        int  numero = aleatorio.nextInt(maximo - minimo + 1) + minimo;
+        grupo1 = Integer.toString(random.nextInt(maximo - minimo + 1) + minimo);
+        grupo2 = Integer.toString(random.nextInt(maximo - minimo + 1) + minimo);
+        grupo3 = Integer.toString(random.nextInt(999999 - 100000 + 1) + 100000);
         
-        cbu = Integer.toString(numero);    
-
-        System.out.println("Número aleatorio de " + digitos + " dígitos: " + numero);
-
-		return cbu;
+        cbu += grupo1 += grupo2 += grupo3;
+        
+        if (cbu.length()== largo) {
+        	
+        	return cbu;
+        }
+        else {
+        	
+        	return cbu;
+        }
+        
 	}
 
 }
