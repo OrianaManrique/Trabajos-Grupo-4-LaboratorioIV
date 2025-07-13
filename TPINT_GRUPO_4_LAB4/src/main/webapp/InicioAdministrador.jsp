@@ -111,6 +111,7 @@ Usuario logueado - Cuenta Banco
 <a href = "AutorizarPrestamo.jsp" > Autorizar Prestamo </a> <br/>
 <a href = "Reportes.jsp" > Reportes </a> <br/>
 
+
 </div>
 
 </div>

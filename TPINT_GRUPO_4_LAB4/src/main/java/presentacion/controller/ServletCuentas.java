@@ -39,6 +39,11 @@ public class ServletCuentas extends HttpServlet {
 				// Cargo el form
 				
 				request.setAttribute("Lista", negCuenta.obtenerCuentas());
+				
+				int proxId;
+				proxId = negCuenta.proximoNroCuenta();
+				System.out.println(proxId);
+				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarCuenta.jsp");
 				dispatcher.forward(request, response);
 				break;

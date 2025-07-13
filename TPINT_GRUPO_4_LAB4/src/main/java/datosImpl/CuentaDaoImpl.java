@@ -206,24 +206,21 @@ public class CuentaDaoImpl implements CuentaDao {
 		return cuenta;
 	}
 
-	public String proximoNroCuenta() {
+	public int proximoNroCuenta() {
 
-		String proxNum = "";
+		int proxNum = 11000;
 
 		try {
 			conexion = new Conexion();
 			conexion.open();
 
-			//String consulta = "SELECT COUNT(*) AS 'total cuentas' FROM cuentas;";
-			String consulta = "SELECT nroCuenta_cuenta FROM bd_banco.cuentas;";
+			String consulta = "SELECT COUNT(*) AS 'total cuentas' FROM cuentas;";
 
 			ResultSet rs = conexion.query(consulta);
 
 			if (rs.next()) {
 
-				//proxNum = Integer.toString(rs.getInt("total cuentas"));	
-				
-				//ACORTAR EL NUMERO DE CUENTA DE INT 10 A 5 , O VER OTRA MANERA DE GENERAR EL NUMERO DE CUENTA.
+				proxNum += rs.getInt("total cuentas");
 
 			}
 
@@ -235,5 +232,6 @@ public class CuentaDaoImpl implements CuentaDao {
 
 		return proxNum;
 	}
+
 
 }

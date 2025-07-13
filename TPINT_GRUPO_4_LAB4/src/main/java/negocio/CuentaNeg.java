@@ -10,4 +10,5 @@ public interface CuentaNeg {
 	public Cuenta Obtenercuenta(int NroCuenta_Cuenta);
 	public Boolean agregarCuenta(Cuenta cuenta);
 	public ArrayList<Cuenta> obtenerCuentasxDni(int dni_cliente);	
+	public int proximoNroCuenta();
 }

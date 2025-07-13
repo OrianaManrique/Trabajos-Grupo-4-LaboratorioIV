@@ -18,7 +18,7 @@ public class Tipo_CuentaDaoImpl implements Tipo_CuentaDao{
 		conexion = new Conexion();
 		conexion.open();
 
-		String consulta = ("SELECT id_TipoCuenta, Descripcion_tipoCuenta FROM tipo_cuentas;");
+		String consulta = ("SELECT id_tipoCuenta, descripcion_tipoCuenta FROM tipocuentas;");
 
 		ArrayList<TipoCuenta> lista = new ArrayList<TipoCuenta>();
 
@@ -29,7 +29,7 @@ public class Tipo_CuentaDaoImpl implements Tipo_CuentaDao{
 				
 				TipoCuenta tipo = new TipoCuenta();
 				
-				tipo.setId_tipoCuenta(rs.getInt("id_TipoCuenta"));
+				tipo.setId_tipoCuenta(rs.getInt("id_tipoCuenta"));
 				tipo.setDescripcion_tipoCuenta(rs.getString("Descripcion_tipoCuenta"));
 
 				lista.add(tipo);

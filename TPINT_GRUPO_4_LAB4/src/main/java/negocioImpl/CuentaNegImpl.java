@@ -39,4 +39,8 @@ public class CuentaNegImpl implements CuentaNeg{
 	public Cuenta Obtenercuenta(int NroCuenta_Cuenta) {
 		return cuentaDao.Obtenercuenta(NroCuenta_Cuenta);
 	}
+	
+	public int proximoNroCuenta() {
+		return cuentaDao.proximoNroCuenta();
+	}
 }
