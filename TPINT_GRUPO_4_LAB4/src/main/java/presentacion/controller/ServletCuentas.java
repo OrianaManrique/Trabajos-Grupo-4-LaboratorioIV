@@ -65,7 +65,7 @@ public class ServletCuentas extends HttpServlet {
 			switch (operacion) {
 			case "CargarModificarCuenta":{		
 								
-          		Cuenta cuentaEditar = negCuenta.Obtenercuenta(request.getParameter("Param2"));
+          		Cuenta cuentaEditar = negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("Param2")));
           		int TipoSeleccionado = cuentaEditar.getTipo_cuenta().getId_tipoCuenta();
           		
           		System.out.println(TipoSeleccionado);
@@ -86,7 +86,7 @@ public class ServletCuentas extends HttpServlet {
 			}
 			case "EliminarCuenta":{	
 						
-				boolean estado = negCuenta.borrar(request.getParameter("Param2"));
+				boolean estado = negCuenta.borrar(Integer.parseInt(request.getParameter("Param2")));
 				
 				request.setAttribute("Exito", estado);				
 				request.setAttribute("ListaCuentasFiltradas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("dniCliente"))));

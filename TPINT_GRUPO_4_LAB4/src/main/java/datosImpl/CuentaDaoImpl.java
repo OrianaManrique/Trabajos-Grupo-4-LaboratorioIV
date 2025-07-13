@@ -29,7 +29,7 @@ public class CuentaDaoImpl implements CuentaDao {
 
 			while (rs.next()) {
 				Cuenta cuenta = new Cuenta();
-				cuenta.setNroCuenta_cuenta(rs.getString("nroCuenta_Cuenta"));
+				cuenta.setNroCuenta_cuenta(rs.getInt("nroCuenta_Cuenta"));
 				cuenta.setDni_Cliente(rs.getInt("dnicliente_cuenta"));
 				cuenta.setFechaCreacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
 				cuenta.setCbu_cuenta(rs.getString("cbu_cuenta"));
@@ -53,7 +53,7 @@ public class CuentaDaoImpl implements CuentaDao {
 	}
 
 	@Override
-	public boolean borrar(String NroCuenta_Cuenta) {
+	public boolean borrar(int NroCuenta_Cuenta) {
 
 		boolean estado = false;
 
@@ -120,7 +120,7 @@ public class CuentaDaoImpl implements CuentaDao {
 
 			while (rs.next()) {
 				Cuenta cuenta = new Cuenta();
-				cuenta.setNroCuenta_cuenta(rs.getString("nroCuenta_cuenta"));
+				cuenta.setNroCuenta_cuenta(rs.getInt("nroCuenta_cuenta"));
 				cuenta.setDni_Cliente(rs.getInt("dnicliente_cuenta"));
 				cuenta.setFechaCreacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
 				cuenta.setCbu_cuenta(rs.getString("cbu_cuenta"));
@@ -164,7 +164,7 @@ public class CuentaDaoImpl implements CuentaDao {
 	}
 
 	@Override
-	public Cuenta Obtenercuenta(String NroCuenta_Cuenta) {
+	public Cuenta Obtenercuenta(int NroCuenta_Cuenta) {
 		Cuenta cuenta = null;
 		TipoCuenta tipo = null;
 
@@ -182,7 +182,7 @@ public class CuentaDaoImpl implements CuentaDao {
 			if (rs.next()) {
 				cuenta = new Cuenta();
 
-				cuenta.setNroCuenta_cuenta(rs.getString("nroCuenta_cuenta"));
+				cuenta.setNroCuenta_cuenta(rs.getInt("nroCuenta_cuenta"));
 				cuenta.setDni_Cliente(rs.getInt("dnicliente_cuenta"));
 				cuenta.setFechaCreacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
 				cuenta.setCbu_cuenta(rs.getString("cbu_cuenta"));

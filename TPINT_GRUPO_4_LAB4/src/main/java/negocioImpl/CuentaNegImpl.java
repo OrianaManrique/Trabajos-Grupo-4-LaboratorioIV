@@ -18,7 +18,7 @@ public class CuentaNegImpl implements CuentaNeg{
 	}
 
 	@Override
-	public boolean borrar(String NroCuenta_Cuenta) {
+	public boolean borrar(int NroCuenta_Cuenta) {
 		return cuentaDao.borrar(NroCuenta_Cuenta);
 	}
 
@@ -36,7 +36,7 @@ public class CuentaNegImpl implements CuentaNeg{
 	}
 
 	@Override
-	public Cuenta Obtenercuenta(String NroCuenta_Cuenta) {
+	public Cuenta Obtenercuenta(int NroCuenta_Cuenta) {
 		return cuentaDao.Obtenercuenta(NroCuenta_Cuenta);
 	}
 }
