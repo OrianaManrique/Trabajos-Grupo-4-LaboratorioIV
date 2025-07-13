@@ -151,7 +151,7 @@ public class CuentaDaoImpl implements CuentaDao {
 		conexion.open();
 
 		String consulta = "CALL AgregarCuenta(" + cuenta.getDni_Cliente() + ", '" + cuenta.getCbu_cuenta() + "', "
-				+ cuenta.getTipo_cuenta() + ");";
+				+ cuenta.getTipo_cuenta().getId_tipoCuenta() + ");";
 
 		try {
 			estado = conexion.execute(consulta);

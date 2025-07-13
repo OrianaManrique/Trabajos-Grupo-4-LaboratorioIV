@@ -30,7 +30,7 @@ public class Tipo_CuentaDaoImpl implements Tipo_CuentaDao{
 				TipoCuenta tipo = new TipoCuenta();
 				
 				tipo.setId_tipoCuenta(rs.getInt("id_tipoCuenta"));
-				tipo.setDescripcion_tipoCuenta(rs.getString("Descripcion_tipoCuenta"));
+				tipo.setDescripcion_tipoCuenta(rs.getString("descripcion_tipoCuenta"));
 
 				lista.add(tipo);
 			}
