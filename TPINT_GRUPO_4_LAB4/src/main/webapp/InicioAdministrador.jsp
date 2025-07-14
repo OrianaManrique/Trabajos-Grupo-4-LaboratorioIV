@@ -98,7 +98,7 @@ Usuario logueado - Cuenta Banco
 <p>ABML Cuentas</p>
 <br/>
 <a href = "ServletCuentas?Param=CargarAgregarCuenta" > Agregar Cuenta </a> <br/>
-<a href = "ServletCuentas?Param=ListarCuentas" > Modificar Cuentas </a> <br/>
+<a href = "ServletCuentas?Param=ListarCuentasModificar" > Modificar Cuentas </a> <br/>
 <a href = "ServletCuentas?Param=ListarEliminar" > Eliminar Cuentas </a> <br/>
 <a href = "ServletCuentas?Param=ListarCuentas" > Listar Cuentas </a> <br/>
 

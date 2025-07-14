@@ -1,4 +1,5 @@
 package presentacion.controller;
+
 import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
@@ -30,27 +31,34 @@ public class ServletCuentas extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		if (request.getParameter("Param") != null && request.getParameter("Param2")==null) {
+		if (request.getParameter("Param") != null && request.getParameter("Param2") == null) {
 
 			String operacion = request.getParameter("Param").toString();
 
 			switch (operacion) {
 			case "ListarCuentas": {
-				
-				request.setAttribute("Lista", negCuenta.obtenerCuentas());		
+
+				request.setAttribute("Lista", negCuenta.obtenerCuentas());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListarCuenta.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}
-			case "ListarEliminar":{			
-				
+			case "ListarCuentasModificar": {
+
 				request.setAttribute("Lista", negCuenta.obtenerCuentas());
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/EliminarCuenta.jsp");
-				dispatcher.forward(request, response);			
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
+				dispatcher.forward(request, response);
 				break;
 			}
-			case "CargarAgregarCuenta": {	
-				
+			case "ListarEliminar": {
+
+				request.setAttribute("Lista", negCuenta.obtenerCuentas());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/EliminarCuenta.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
+			case "CargarAgregarCuenta": {
+
 				request.setAttribute("NroCuenta", negCuenta.proximoNroCuenta());
 				request.setAttribute("CBU", negCuenta.ObtenerCBU());
 				request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
@@ -58,11 +66,10 @@ public class ServletCuentas extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-		
+
 			default:
 				break;
 			}
-
 
 		}
 
@@ -71,13 +78,13 @@ public class ServletCuentas extends HttpServlet {
 			String operacion = request.getParameter("Param").toString();
 
 			switch (operacion) {
-			case "CargarModificarCuenta":{		
-								
-          		Cuenta cuentaEditar = negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("Param2")));
-          		int TipoSeleccionado = cuentaEditar.getTipo_cuenta().getId_tipoCuenta();
-          		
-          		System.out.println(TipoSeleccionado);
-          		
+			case "CargarModificarCuenta": {
+
+				Cuenta cuentaEditar = negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("Param2")));
+				int TipoSeleccionado = cuentaEditar.getTipo_cuenta().getId_tipoCuenta();
+
+				System.out.println(TipoSeleccionado);
+
 				request.setAttribute("CuentaEditar", cuentaEditar);
 				request.setAttribute("TipoSeleccionado", TipoSeleccionado);
 				request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
@@ -85,14 +92,14 @@ public class ServletCuentas extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			case "EliminarCuenta":{	
-						
+			case "EliminarCuenta": {
+
 				boolean estado = negCuenta.borrar(Integer.parseInt(request.getParameter("Param2")));
-				
-				request.setAttribute("Exito", estado);				
+
+				request.setAttribute("Exito", estado);
 				request.setAttribute("Lista", negCuenta.obtenerCuentas());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/EliminarCuenta.jsp");
-				dispatcher.forward(request, response);			
+				dispatcher.forward(request, response);
 				break;
 			}
 			default:
@@ -103,7 +110,7 @@ public class ServletCuentas extends HttpServlet {
 
 		}
 	}
-     
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -113,55 +120,56 @@ public class ServletCuentas extends HttpServlet {
 
 			switch (operacion) {
 			case "Asignar": {
-				
+
 				Cuenta cuenta = new Cuenta();
 
 				cuenta.setCbu_cuenta(request.getParameter("txtCBU"));
 				cuenta.setDni_Cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
-				
+
 				TipoCuenta tipo = new TipoCuenta();
-				
+
 				tipo.setId_tipoCuenta(Integer.parseInt(request.getParameter("ddlTipoCuenta")));
-				
+
 				cuenta.setTipo_cuenta(tipo);
-				
+
 				request.setAttribute("Exito", negCuenta.agregarCuenta(cuenta));
 				RequestDispatcher requestdispatcher = request.getRequestDispatcher("/AgregarCuenta.jsp");
 				requestdispatcher.forward(request, response);
 				break;
 			}
-			case "Modificar":{
-						
+			case "Modificar": {
+
 				Cuenta cuenta = new Cuenta();
-				
+
 				cuenta.setCbu_cuenta(request.getParameter("txtCBU"));
 				cuenta.setDni_Cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
 				cuenta.setSaldo_cuenta(Float.parseFloat(request.getParameter("txtSaldo")));
-				
-				String fecha = request.getParameter("txtFechaActual");
-                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                formato.setLenient(false);
-                Date fechacreacion = null;
 
-                try {
-                	fechacreacion = new Date(formato.parse(fecha).getTime());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-				
+				String fecha = request.getParameter("txtFechaActual");
+				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+				formato.setLenient(false);
+				Date fechacreacion = null;
+
+				try {
+					fechacreacion = new Date(formato.parse(fecha).getTime());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+
 				cuenta.setFechaCreacion_cuenta(fechacreacion);
-				
+
 				TipoCuenta tipo = new TipoCuenta();
-				
-				tipo.setId_tipoCuenta(Integer.parseInt(request.getParameter("ddlTipoCuenta")));		
-				cuenta.setTipo_cuenta(tipo);			
-				
-				request.setAttribute("Exito", negCuenta.modificarCuenta(cuenta));;
+
+				tipo.setId_tipoCuenta(Integer.parseInt(request.getParameter("ddlTipoCuenta")));
+				cuenta.setTipo_cuenta(tipo);
+
+				request.setAttribute("Exito", negCuenta.modificarCuenta(cuenta));
+				;
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/InicioAdministrador.jsp");
-				dispatcher.forward(request, response);			
+				dispatcher.forward(request, response);
 				break;
-			}				
-			    default:
+			}
+			default:
 				break;
 			}
 		}
