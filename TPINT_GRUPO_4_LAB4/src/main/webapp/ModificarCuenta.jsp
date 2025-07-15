@@ -95,6 +95,8 @@ body {
   .oculto {
     display: none;
   }
+  
+  
 </style>
 
 </head>
@@ -109,6 +111,9 @@ body {
 
 <% 
 String visibilidad = "";
+String Editable = "";
+String BloquearColor = "white";
+
 
 ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();
 if (request.getAttribute("Lista") != null) {
@@ -116,10 +121,19 @@ if (request.getAttribute("Lista") != null) {
 	
 }
 
-if (request.getAttribute("Visibilidad") != null) {
-	visibilidad = (String)request.getAttribute("Visibilidad");
+if (request.getAttribute("Lista") != null) {
+	ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("Lista");
+	
 }
 
+if (request.getAttribute("bloquearColor") != null) {
+	BloquearColor = (String)request.getAttribute("bloquearColor");
+}
+
+
+if (request.getAttribute("Editable") != null) {
+	Editable = (String)request.getAttribute("Editable");
+}
 
 %>
 
@@ -140,18 +154,17 @@ if (request.getAttribute("Visibilidad") != null) {
 		<tbody>
 		<%
 			for (Cuenta cuentaCliente : ListaCuentas) {
-				String ver = "ReadOnly";
 		%>
 			<tr>
 				<td contenteditable="true"><%= cuentaCliente.getNroCuenta_cuenta() %></td>
 				<td><%= cuentaCliente.getDni_Cliente() %></td>
 				<td><%= cuentaCliente.getFechaCreacion_cuenta() %></td>
-				<td><%= cuentaCliente.getCbu_cuenta() %></td>
-				<td><%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta() %></td>
-				<td><%= cuentaCliente.getSaldo_cuenta() %></td>
+				<td><input type="text" id="txtCbu" Style="background-color:<%=BloquearColor%>" value=<%= cuentaCliente.getCbu_cuenta()%> <%=Editable%>></td>
+				<td><input type="text" id="txtTipoCuenta" Style="background-color:<%=BloquearColor%>"value=<%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta() %> <%=Editable%>></td>
+				<td><input type="number" id="txtSaldo" Style="background-color:<%=BloquearColor%>" value=<%= cuentaCliente.getSaldo_cuenta() %> <%=Editable%>></td>
 				
-				<td><a href = "ServletCuentas?Param=ModificarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%> class= <%=visibilidad%>" > Modificar </a> <br/>
-				    <a href = "ServletCuentas?Param=ModificarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%> class= <%=visibilidad%>" > Guardar </a>
+				<td><a href = "ServletCuentas?Param=ModificarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%>" class= <%=visibilidad%> > Modificar </a> <br/>
+				    <a href = "ServletCuentas?Param=ModificarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%>" class= <%=visibilidad%> > Guardar </a>
 			
 				</td>
 			</tr>

@@ -46,6 +46,9 @@ public class ServletCuentas extends HttpServlet {
 			case "ListarCuentasModificar": {
 
 				request.setAttribute("Lista", negCuenta.obtenerCuentas());
+				request.setAttribute("Editable", "ReadOnly");
+				request.setAttribute("bloquearColor", "lightgray");
+				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
 				dispatcher.forward(request, response);
 				break;
@@ -87,6 +90,7 @@ public class ServletCuentas extends HttpServlet {
 				//request.setAttribute("TipoSeleccionado", TipoSeleccionado);
 				//request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
 				
+				request.setAttribute("Editable", "");
 				request.setAttribute("Lista", negCuenta.obtenerCuentas());
 				request.setAttribute("Visibilidad", visibilidad);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
