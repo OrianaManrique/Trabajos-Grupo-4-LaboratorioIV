@@ -1,25 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<%@page import="entidad.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="entidad.*"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Listar Cuenta</title>
-
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-	
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8"
-	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#table_id').DataTable();
-	});
-</script>
+<title>Modificar Cuenta</title>
+</head>
 
 <style>
 body {
@@ -39,141 +27,202 @@ body {
 	letter-spacing: 1px;
 }
 
-  .ContenedorVentana {
-    background-color: #4A217C;
-    width: 900px;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 20px;
-  }
+.ContenedorVentana {
+	background-color: #4A217C;
+	width: 700px;
+	height: 450px;
+	border-radius: 8px;
+}
 
-  .ContenedorColumna {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 40px;
-  }
+.ContenedorTitulo {
+	background-color: #E5E5E5;
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
+	border-radius: 8px;
+}
 
-  .ContenedorColumna input {
-    padding: 15px;
-    border-radius: 15px;
-    border: none;
-    font-size: 20px;
-    width: 60%;
-  }
+.ContenedorColumna {
+	display: flex;
+	flex-direction: column;
+	margin-top: 15px;
+	margin-left: 90px;
+	gap: 10px;
+}
 
-  .ContenedorColumna input{
-    padding: 15px 30px;
-    border-radius: 15px;
-    border: none;
-    font-size: 20px;
-    background-color: #DCDCDC;
-    font-weight: bold;
-    cursor: pointer;
-  }
+.ContenedorBoton {
+	margin: 0 auto;
+	width: 260px;
+	height: 100px;
+}
 
-  table {
-    background-color: #E5E5E5;
-    width: 100%;
-    border-collapse: collapse;
-    /*padding: 20px;*/
-    font-size: 18px;
-    border-radius: 5px;
-  }
+.btnModificar {
+	width: 260px;
+	height: 30%;
+}
 
-  th {
-    color: black;
-    padding: 10px;
-    text-align: left;
-  }
+.FormularioUsuario {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	margin-right: 12%;
+}
 
-  td {
-    padding: 10px;
-    font-weight: bold;
-  }
-  
-  .oculto {
-    display: none;
-  }
-  
-  
+.FormularioUsuario input {
+	border-radius: 8px;
+}
+
+input::placeholder {
+	font-size: 13px;
+	text-align: center;
+}
+
+.inputBloqueado {
+	color: grey;
+}
+
+.inputFechaActual {
+	width: 157px;
+}
+
+.inputddlTipoCuenta {
+	width: 166px;
+}
+
+.ContenedorControles {
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+.form-columns {
+	display: flex;
+	gap: 40px;
+}
+
+.form-columna {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.form-columna2 {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-top: 20px;
+}
+
+.lblinput {
+	color: white;
+}
 </style>
+  
+  
+<%
+    Cuenta cuenta = new Cuenta();
+    int TipoSeleccionado = 0;
 
-</head>
+    if (request.getAttribute("CuentaEditar") != null) {
+    	cuenta = (Cuenta) request.getAttribute("CuentaEditar");
+       }
+
+    ArrayList<TipoCuenta> ListaTipoCuentas = new ArrayList<TipoCuenta>();
+    if (request.getAttribute("Tipos") != null) {
+    	ListaTipoCuentas = (ArrayList<TipoCuenta>) request.getAttribute("Tipos");
+    }
+
+
+    if (request.getAttribute("TipoSeleccionado") != null) {
+    	TipoSeleccionado = (int)request.getAttribute("TipoSeleccionado");
+       }
+    %>
+
 <body>
 
 <div class="header">Usuario logueado - Cuenta Banco</div>
-
-<a href="InicioLogin.jsp"> Inicio </a>
-<br/>
-<br/>
-
-
-<% 
-String visibilidad = "";
-String Editable = "";
-String BloquearColor = "white";
-
-
-ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();
-if (request.getAttribute("Lista") != null) {
-	ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("Lista");
 	
-}
+	<form action="ServletCuentas?Param=Modificar" method="post">
 
-if (request.getAttribute("Lista") != null) {
-	ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("Lista");
-	
-}
+	<a href="InicioLogin.jsp"> Inicio </a>
 
-if (request.getAttribute("bloquearColor") != null) {
-	BloquearColor = (String)request.getAttribute("bloquearColor");
-}
+	<div class="ContenedorVentana">
+		<div class="ContenedorTitulo">
+			<h2>
+				<strong style="color: #5F1AB4">MODIFICAR CUENTA</strong>
+			</h2>
+		</div>
 
+		<br /> <br />
 
-if (request.getAttribute("Editable") != null) {
-	Editable = (String)request.getAttribute("Editable");
-}
+		<div class="ContenedorControles">
 
-%>
+			<div class="form-columns">
 
-<form>
+				<div class="form-columna">
 
-<table id="table_id" class="display" >
-		<thead>
-			<tr>
-				<th>Numero de cuenta</th>
-				<th>Dni</th>
-				<th>Fecha de creación</th>
-				<th>CBU</th>
-				<th>Tipo de cunta</th>
-				<th>Saldo</th>
-				<th>	</th>
-			</tr>
-		</thead>
-		<tbody>
-		<%
-			for (Cuenta cuentaCliente : ListaCuentas) {
-		%>
-			<tr>
-				<td contenteditable="true"><%= cuentaCliente.getNroCuenta_cuenta() %></td>
-				<td><%= cuentaCliente.getDni_Cliente() %></td>
-				<td><%= cuentaCliente.getFechaCreacion_cuenta() %></td>
-				<td><input type="text" id="txtCbu" Style="background-color:<%=BloquearColor%>" value=<%= cuentaCliente.getCbu_cuenta()%> <%=Editable%>></td>
-				<td><input type="text" id="txtTipoCuenta" Style="background-color:<%=BloquearColor%>"value=<%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta() %> <%=Editable%>></td>
-				<td><input type="number" id="txtSaldo" Style="background-color:<%=BloquearColor%>" value=<%= cuentaCliente.getSaldo_cuenta() %> <%=Editable%>></td>
+					    <label class="lblinput"> Numero de Cuenta - Bloqueado</label> 
+					    <input class="inputBloqueado" value="<%=cuenta.getNroCuenta_cuenta()%>" type="text" id="txtNumeroCuenta" name="txtNumeroCuenta" readonly>
+					    <label class="lblinput"> CBU </label> 
+					    <input value="<%=cuenta.getCbu_cuenta()%>" type="text" id="txtCBU" name="txtCBU"> 
+						<label class="lblinput">Saldo </label> 
+						<input value="<%=cuenta.getSaldo_cuenta()%>" type="text" id="txtSaldo" name="txtSaldo" placeholder="$10.000">
+
+				</div>
+
+				<br /> <br />
+
+				<div class="form-columna2">			
 				
-				<td><a href = "ServletCuentas?Param=ModificarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%>" class= <%=visibilidad%> > Modificar </a> <br/>
-				    <a href = "ServletCuentas?Param=ModificarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%>" class= <%=visibilidad%> > Guardar </a>
-			
-				</td>
-			</tr>
-			<%
-			}
-			%>
-		</tbody>
-	</table>
-  
-  </form>
-  </body>
-  </html>
+                    <label class="lblinput"> Dni cliente - Bloqueado</label> 
+					<input class="inputBloqueado" type="text" id="txtDniCliente"
+						name="txtDniCliente" value="<%=cuenta.getDni_Cliente()%>" readonly>
+                    
+                    <label class="lblinput"> Fecha Creación </label> 
+					<input  type="date" value="<%=cuenta.getFechaCreacion_cuenta()%>"  id="txtFechaActual" name="txtFechaActual"> 
+						 
+						 
+						 <label class="lblinput"> Tipo de cuenta </label>
+						 
+						<select 	id="ddlTipoCuenta" name="ddlTipoCuenta" style="width: 177px;">                                        
+						<option value="">Seleccione un tipo...</option>					
+						<%
+											for (TipoCuenta tipo : ListaTipoCuentas) {
+											%>
+                             <option value="<%= tipo.getId_tipoCuenta() %>" <%= (tipo.getId_tipoCuenta() == TipoSeleccionado) ? "selected" : "" %>>     
+                             <%= tipo.getDescripcion_tipoCuenta() %>      
+                             </option>		
+                             <%
+						}
+						%>
+
+					</select>
+
+				</div>
+
+				<br /> <br />
+
+			</div>
+
+		</div>
+
+		<br /> <br />
+
+
+
+		<div class="ContenedorBoton">
+			<br /> <br /> <input type="submit" style="color: #5F1AB4"
+				class="btnModificar" name="btnModificar" value="Modificar" />
+		</div>
+
+	</div>
+	
+</form>
+
+</body>
+</html>
