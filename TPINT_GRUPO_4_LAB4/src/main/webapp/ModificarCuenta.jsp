@@ -91,6 +91,10 @@ body {
     padding: 10px;
     font-weight: bold;
   }
+  
+  .oculto {
+    display: none;
+  }
 </style>
 
 </head>
@@ -104,6 +108,7 @@ body {
 
 
 <% 
+String visibilidad = "";
 
 ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();
 if (request.getAttribute("Lista") != null) {
@@ -111,12 +116,16 @@ if (request.getAttribute("Lista") != null) {
 	
 }
 
+if (request.getAttribute("Visibilidad") != null) {
+	visibilidad = (String)request.getAttribute("Visibilidad");
+}
+
 
 %>
 
 <form>
 
-<table id="table_id" class="display">
+<table id="table_id" class="display" >
 		<thead>
 			<tr>
 				<th>Numero de cuenta</th>
@@ -131,15 +140,20 @@ if (request.getAttribute("Lista") != null) {
 		<tbody>
 		<%
 			for (Cuenta cuentaCliente : ListaCuentas) {
+				String ver = "ReadOnly";
 		%>
 			<tr>
-				<td><%= cuentaCliente.getNroCuenta_cuenta() %></td>
+				<td contenteditable="true"><%= cuentaCliente.getNroCuenta_cuenta() %></td>
 				<td><%= cuentaCliente.getDni_Cliente() %></td>
 				<td><%= cuentaCliente.getFechaCreacion_cuenta() %></td>
 				<td><%= cuentaCliente.getCbu_cuenta() %></td>
 				<td><%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta() %></td>
 				<td><%= cuentaCliente.getSaldo_cuenta() %></td>
-				<td><a href = "ServletCuentas?Param=CargarModificarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%>" > Modificar </a> <br/></td>
+				
+				<td><a href = "ServletCuentas?Param=ModificarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%> class= <%=visibilidad%>" > Modificar </a> <br/>
+				    <a href = "ServletCuentas?Param=ModificarCuenta&Param2=<%=cuentaCliente.getNroCuenta_cuenta()%> class= <%=visibilidad%>" > Guardar </a>
+			
+				</td>
 			</tr>
 			<%
 			}

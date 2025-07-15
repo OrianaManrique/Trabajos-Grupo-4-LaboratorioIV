@@ -78,16 +78,17 @@ public class ServletCuentas extends HttpServlet {
 			String operacion = request.getParameter("Param").toString();
 
 			switch (operacion) {
-			case "CargarModificarCuenta": {
+			case "ModificarCuenta": {
+				String visibilidad = "oculto";
+				//Cuenta cuentaEditar = negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("Param2")));
+				//int TipoSeleccionado = cuentaEditar.getTipo_cuenta().getId_tipoCuenta();
 
-				Cuenta cuentaEditar = negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("Param2")));
-				int TipoSeleccionado = cuentaEditar.getTipo_cuenta().getId_tipoCuenta();
-
-				System.out.println(TipoSeleccionado);
-
-				request.setAttribute("CuentaEditar", cuentaEditar);
-				request.setAttribute("TipoSeleccionado", TipoSeleccionado);
-				request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
+				//request.setAttribute("CuentaEditar", cuentaEditar);
+				//request.setAttribute("TipoSeleccionado", TipoSeleccionado);
+				//request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
+				
+				request.setAttribute("Lista", negCuenta.obtenerCuentas());
+				request.setAttribute("Visibilidad", visibilidad);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
 				dispatcher.forward(request, response);
 				break;
