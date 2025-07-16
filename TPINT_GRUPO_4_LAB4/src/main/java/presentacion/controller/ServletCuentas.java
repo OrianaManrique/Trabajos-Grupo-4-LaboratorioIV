@@ -193,7 +193,7 @@ public class ServletCuentas extends HttpServlet {
 			}
 			
 			case "BuscarCuentasModificar":{
-				
+							
 				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda"))));
 				
 				request.setAttribute("Cliente", clienteNeg.obtenerCliente(Integer.parseInt(request.getParameter("txtBusqueda"))));

@@ -107,12 +107,13 @@ form {
 	font-size: 16px;
 	cursor: pointer;
 }
+
 </style>
 
 
 <body>
 	<%
-	String nombreCliente = "Oriana Manrique";
+	String visibilidad = "display: none;";
 	int dniCliente = 41200035;
 	int NroCuenta = 11001;
 	float Saldo = 10000;
@@ -129,7 +130,7 @@ form {
 	
 	if (request.getAttribute("Cliente") != null) {
 		cliente = (Cliente) request.getAttribute("Cliente");
-		
+		visibilidad = "";
 	}
 	
 	
@@ -151,7 +152,7 @@ form {
 
 				<thead>
 					<tr>
-						<th colspan="4"><%=cliente.getNombre_cliente()%> - <%=cliente.getDni_cliente()%></th>
+						<th style="<%=visibilidad%>" colspan="4"><%=cliente.getNombre_cliente()%> - <%=cliente.getDni_cliente()%></th>
 					</tr>
 					<tr>
 						<th style="width: 25%">NUMERO CUENTA</th>
@@ -164,9 +165,8 @@ form {
 					for (Cuenta cuentaCliente : ListaCuentas) {
 				%>
 					<tr>
-						<td><p><%=cuentaCliente.getNroCuenta_cuenta()%></p></td>
-						
-						<td><p><%=cuentaCliente.getTipo_cuenta().getId_tipoCuenta()%></p></td>
+						<td><p><%=cuentaCliente.getNroCuenta_cuenta()%></p></td>					
+						<td><p><%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta()%></p></td>
 						<td><a href="ServletCuenta?Param=SeleccionModificar"> Seleccionar </a> <br /></td>
 					</tr>
 					<%
