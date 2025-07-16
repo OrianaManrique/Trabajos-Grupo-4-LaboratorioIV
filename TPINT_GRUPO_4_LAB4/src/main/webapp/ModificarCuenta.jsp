@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="entidad.*"%>
+<%@ page import="entidad.*"%>
 <!DOCTYPE html>
 <html>
 <head>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+	crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>Modificar Cuenta</title>
 </head>
-
 <style>
 body {
 	font-family: 'Segoe UI', sans-serif;
@@ -27,202 +30,187 @@ body {
 	letter-spacing: 1px;
 }
 
-.ContenedorVentana {
-	background-color: #4A217C;
-	width: 700px;
-	height: 450px;
-	border-radius: 8px;
-}
-
-.ContenedorTitulo {
-	background-color: #E5E5E5;
-	width: 300px;
-	margin: 0 auto;
+form {
 	text-align: center;
-	border-radius: 8px;
-}
-
-.ContenedorColumna {
-	display: flex;
-	flex-direction: column;
-	margin-top: 15px;
-	margin-left: 90px;
-	gap: 10px;
-}
-
-.ContenedorBoton {
-	margin: 0 auto;
-	width: 260px;
-	height: 100px;
-}
-
-.btnModificar {
-	width: 260px;
-	height: 30%;
-}
-
-.FormularioUsuario {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
-	margin-right: 12%;
-}
-
-.FormularioUsuario input {
-	border-radius: 8px;
-}
-
-input::placeholder {
-	font-size: 13px;
-	text-align: center;
-}
-
-.inputBloqueado {
-	color: grey;
-}
-
-.inputFechaActual {
-	width: 157px;
-}
-
-.inputddlTipoCuenta {
-	width: 166px;
-}
-
-.ContenedorControles {
-	display: flex;
-	justify-content: space-around;
-	align-items: flex-start;
-	gap: 20px;
-}
-
-.form-columns {
-	display: flex;
-	gap: 40px;
-}
-
-.form-columna {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-}
-
-.form-columna2 {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
 	margin-top: 20px;
 }
 
-.lblinput {
+.table-container {
+	width: 95%;
+	margin: auto;
+	margin-top: 20px;
+	overflow-x: auto;
+	font-size: 20px;
+}
+
+.table-container2 {
+	width: 95%;
+	margin: auto;
+	margin-top: 40px;
+	overflow-x: auto;
+	font-size: 20px;
+}
+
+/* Estilos de la tabla */
+.movements-table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+	font-size: 20px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.movements-table th {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.movements-table thead {
+	background: linear-gradient(to right, #602A80, #4C0026);
 	color: white;
 }
+
+.movements-table th, .movements-table td {
+	padding: 12px;
+	border: 20px solid #ddd;
+}
+
+.movements-table2 {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+	font-size: 20px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.movements-table2 thead {
+	background: linear-gradient(to right, #03c57e, #1eac04);
+	color: white;
+}
+
+.movements-table2 th, .movements-table2 td {
+	padding: 12px;
+	border: 1px solid black;
+}
+
+/* gris claro */
+.alternarfilas {
+	background-color: #f9f9f9;
+}
+
+.mov-positivo {
+	color: #1ca51c;
+	font-weight: bold;
+}
+
+.mov-negativo {
+	color: #e6324b;
+	font-weight: bold;
+}
+
+.info-icon {
+	color: #44107a;
+	font-weight: bold;
+	font-size: 16px;
+	cursor: pointer;
+}
 </style>
-  
-  
-<%
-    Cuenta cuenta = new Cuenta();
-    int TipoSeleccionado = 0;
 
-    if (request.getAttribute("CuentaEditar") != null) {
-    	cuenta = (Cuenta) request.getAttribute("CuentaEditar");
-       }
-
-    ArrayList<TipoCuenta> ListaTipoCuentas = new ArrayList<TipoCuenta>();
-    if (request.getAttribute("Tipos") != null) {
-    	ListaTipoCuentas = (ArrayList<TipoCuenta>) request.getAttribute("Tipos");
-    }
-
-
-    if (request.getAttribute("TipoSeleccionado") != null) {
-    	TipoSeleccionado = (int)request.getAttribute("TipoSeleccionado");
-       }
-    %>
 
 <body>
+	<%
+	String nombreCliente = "Oriana Manrique";
+	int dniCliente = 41200035;
+	int NroCuenta = 11001;
+	float Saldo = 10000;
+	String Fecha = "2/7/2077";
+	String CBU = "1234567891123456789123";
+	TipoCuenta tipoCuenta = new TipoCuenta();
+	%>
 
-<div class="header">Usuario logueado - Cuenta Banco</div>
-	
-	<form action="ServletCuentas?Param=Modificar" method="post">
 
-	<a href="InicioLogin.jsp"> Inicio </a>
+	<div class="header">Usuario logueado - Cuenta Banco</div>
 
-	<div class="ContenedorVentana">
-		<div class="ContenedorTitulo">
-			<h2>
-				<strong style="color: #5F1AB4">MODIFICAR CUENTA</strong>
-			</h2>
+	<form action="ServletCuentas?Param=GuardarModificacion" method="post">
+		<input style="width: 25%" type="search" name="txtBusqueda"
+			placeholder="Ingrese un Dni..." />
+		<button class="btn btn-outline-success" type="submit">Buscar</button>
+
+		<div class="table-container">
+			<table class="movements-table">
+
+				<thead>
+					<tr>
+						<th colspan="4"><%=nombreCliente%> - <%=dniCliente%></th>
+					</tr>
+					<tr>
+						<th style="width: 25%">NUMERO CUENTA</th>
+						<th style="width: 50%;">TIPO</th>
+						<th style="width: 25%">ACCIÓN</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><p><%=NroCuenta%></p></td>
+						<td><p><%=tipoCuenta.getDescripcion_tipoCuenta()%></p></td>
+						<td><a href="ServletClientes?Param="> Seleccionar </a> <br /></td>
+					</tr>
+					<tr>
+						<td><p><%=NroCuenta%></p></td>
+						<td><p><%=tipoCuenta.getDescripcion_tipoCuenta()%> </p></td>
+						<td><a href="ServletClientes?Param="> Seleccionar </a> <br /></td>
+					</tr>
+					<tr>
+						<td><p><%=NroCuenta%></p></td>
+						<td><p><%=tipoCuenta.getDescripcion_tipoCuenta()%></p></td>
+						<td><a href="ServletClientes?Param="> Seleccionar </a> <br /></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
-		<br /> <br />
+		<div class="table-container2">
+			<table class="movements-table2">
+				<thead>
+					<tr>
+						<th>NUMERO CUENTA</th>
+						<th>DNI CLIENTE</th>
+						<th>CBU</th>
+						<th>TIPO</th>
+						<th>SALDO</th>
+						<th>FECHA DE CREACIÓN</th>
+						<th>ACCION</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th><p><%=NroCuenta%></p></th>
+						<th><p><%=dniCliente%></p></th>
+						<th><p>
+								<input type="text" value="<%=CBU%>">
+							</p></th>
+						<th><select id="miDesplegable">
+								<option value="1">Caja de ahorro</option>
+								<option value="2">Cuenta Corriente</option>
+						</select></th>
+						<th><p>
+								<input type="number" value="<%=Saldo%>">
+							</p></th>
+						<th><p><%=Fecha%></p></th>
+						<th><input class="btn btn-success" type="submit"
+							value="GUARDAR"></th>
+					</tr>
+				</tbody>
+			</table>
 
-		<div class="ContenedorControles">
-
-			<div class="form-columns">
-
-				<div class="form-columna">
-
-					    <label class="lblinput"> Numero de Cuenta - Bloqueado</label> 
-					    <input class="inputBloqueado" value="<%=cuenta.getNroCuenta_cuenta()%>" type="text" id="txtNumeroCuenta" name="txtNumeroCuenta" readonly>
-					    <label class="lblinput"> CBU </label> 
-					    <input value="<%=cuenta.getCbu_cuenta()%>" type="text" id="txtCBU" name="txtCBU"> 
-						<label class="lblinput">Saldo </label> 
-						<input value="<%=cuenta.getSaldo_cuenta()%>" type="text" id="txtSaldo" name="txtSaldo" placeholder="$10.000">
-
-				</div>
-
-				<br /> <br />
-
-				<div class="form-columna2">			
-				
-                    <label class="lblinput"> Dni cliente - Bloqueado</label> 
-					<input class="inputBloqueado" type="text" id="txtDniCliente"
-						name="txtDniCliente" value="<%=cuenta.getDni_Cliente()%>" readonly>
-                    
-                    <label class="lblinput"> Fecha Creación </label> 
-					<input  type="date" value="<%=cuenta.getFechaCreacion_cuenta()%>"  id="txtFechaActual" name="txtFechaActual"> 
-						 
-						 
-						 <label class="lblinput"> Tipo de cuenta </label>
-						 
-						<select 	id="ddlTipoCuenta" name="ddlTipoCuenta" style="width: 177px;">                                        
-						<option value="">Seleccione un tipo...</option>					
-						<%
-											for (TipoCuenta tipo : ListaTipoCuentas) {
-											%>
-                             <option value="<%= tipo.getId_tipoCuenta() %>" <%= (tipo.getId_tipoCuenta() == TipoSeleccionado) ? "selected" : "" %>>     
-                             <%= tipo.getDescripcion_tipoCuenta() %>      
-                             </option>		
-                             <%
-						}
-						%>
-
-					</select>
-
-				</div>
-
-				<br /> <br />
-
-			</div>
+			<br /> <br /> <label id="lblMensajeExito"
+				style="visibility: visible; Color: green">EXITO ! SE
+				MODIFICO LA CUENTA</label> <br /> <br /> <label id="lblMensajeError"
+				style="visibility: visible; Color: red">ERROR ! NO SE PUDO
+				MODIFICAR LA CUENTA</label>
 
 		</div>
 
-		<br /> <br />
-
-
-
-		<div class="ContenedorBoton">
-			<br /> <br /> <input type="submit" style="color: #5F1AB4"
-				class="btnModificar" name="btnModificar" value="Modificar" />
-		</div>
-
-	</div>
-	
-</form>
-
+	</form>
 </body>
 </html>

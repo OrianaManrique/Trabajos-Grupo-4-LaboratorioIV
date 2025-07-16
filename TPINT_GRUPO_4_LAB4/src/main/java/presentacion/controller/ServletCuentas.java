@@ -43,7 +43,7 @@ public class ServletCuentas extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			case "ListarCuentasModificar": {
+			case "CargarModificar": {
 
 				request.setAttribute("Lista", negCuenta.obtenerCuentas());
 				request.setAttribute("Editable", "ReadOnly");

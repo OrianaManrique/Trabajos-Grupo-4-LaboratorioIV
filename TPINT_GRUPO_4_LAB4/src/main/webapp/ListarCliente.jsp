@@ -126,7 +126,6 @@ td {
 				<th>Apellido</th>
 				<th>Cuil</th>
 				<th>Correo</th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -139,9 +138,6 @@ td {
 				<td><%=cliente.getApellido_cliente()%></td>
 				<td><%=cliente.getCuil_cliente()%></td>
 				<td><%=cliente.getCorreo_electronico_cliente()%></td>
-				<td><a
-					href="ServletClientes?Param=CargarModificarCliente&Param2=<%=cliente.getDni_cliente()%>" class="hyperlinkModificar">
-						Modificar </a> 
 			</tr>
 			<%
 			}

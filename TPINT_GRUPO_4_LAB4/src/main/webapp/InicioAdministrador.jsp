@@ -88,7 +88,7 @@ Usuario logueado - Cuenta Banco
 <br/>
 
 <a href = "ServletClientes?Param=CargarAgregarCliente" > Agregar Cliente </a> <br/>
-<a href = "ServletClientes?Param=ListarClientes" > Modificar Clientes </a> <br/>
+<a href = "ModificarCliente.jsp" > Modificar Clientes </a> <br/>
 <a href = "ServletClientes?Param=ListarEliminarCliente" > Eliminar Clientes </a> <br/>
 <a href = "ServletClientes?Param=ListarClientes" > Listar Clientes </a> <br/>
 
@@ -98,7 +98,7 @@ Usuario logueado - Cuenta Banco
 <p>ABML Cuentas</p>
 <br/>
 <a href = "ServletCuentas?Param=CargarAgregarCuenta" > Agregar Cuenta </a> <br/>
-<a href = "ServletCuentas?Param=ListarCuentasModificar" > Modificar Cuentas </a> <br/>
+<a href = "ModificarCuenta.jsp" > Modificar Cuentas </a> <br/>
 <a href = "ServletCuentas?Param=ListarEliminar" > Eliminar Cuentas </a> <br/>
 <a href = "ServletCuentas?Param=ListarCuentas" > Listar Cuentas </a> <br/>
 
