@@ -194,16 +194,7 @@ public class ServletCuentas extends HttpServlet {
 			
 			case "BuscarCuentasModificar":{
 				
-				TipoCuenta tipo = new TipoCuenta();
-
-				tipo.setId_tipoCuenta(Integer.parseInt(request.getParameter("ddlTipoCuenta")));
-				tipoCuentaNeg.obtenerDescripcionPorId(tipo.getId_tipoCuenta());
-				
-				ArrayList<Cuenta> lista = new ArrayList<Cuenta>();
-				
-				lista = negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda")));
-				
-				request.setAttribute("ListaCuentas", lista);
+				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda"))));
 				
 				request.setAttribute("Cliente", clienteNeg.obtenerCliente(Integer.parseInt(request.getParameter("txtBusqueda"))));
 				
