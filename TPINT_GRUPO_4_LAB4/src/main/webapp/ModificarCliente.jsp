@@ -11,11 +11,13 @@
 </head>
 <style>
 
-body {
+body, html{
 	font-family: 'Segoe UI', sans-serif;
 	margin: 0;
 	padding: 0;
 	background: #E0E0E0;
+	background: linear-gradient(to top, #bc9fd6, #44107a);
+	height: 100vh;
 }
 
 .header {
@@ -29,16 +31,16 @@ body {
 }
 
 .balance-container {
-	display: flex;
-	justify-content: center;
-	gap: 40px;
-	margin: 30px 0;
-	flex-wrap: wrap;
+    display: flex;
+    justify-content: center; 
+    margin: 0 auto; 
+    width: 500px; 
+    margin-top: 20px; 
 }
 
 .balance-box {
 	/*background: linear-gradient(to right, #602A80, #4C0026);*/
-	background: linear-gradient(to right, #A178C1, #A14C6F); ,
+	/*background: linear-gradient(to right, #A178C1, #A14C6F); ,*/
 	color: white;
 	padding: 25px 35px;
 	border-radius: 12px;
@@ -94,7 +96,7 @@ p {
 	display: flex;
 	margin: 0;
 	padding: 0;
-	gap: 10px;
+	gap: 100px;
 	justify-content: center;
 }
 
@@ -138,20 +140,27 @@ p {
 	}
 	%>
 	
-	
-
-	<form action="ServletClientes" method="post">
-
+	 
 		<div class="header">Usuario logueado - Cuenta Banco</div>
 
-		<a href="InicioLogin.jsp"> Inicio </a>
+
 
 		<div class="balance-container">
-			<div class="balance-box">
+		
+		<form action="ServletCuentas" method="post"> 
+			
 				<p>
-					<strong>MODIFICAR CLIENTE</strong> <br /> <br /> <br />
+					<strong Style="Color:white">   MODIFICAR CLIENTE  </strong> <br /> 
 				</p>
-
+				
+		  	<input style="width: 70%" type="search" name="txtBusqueda"
+			placeholder="Ingrese un Dni..." /> <button type="button">Buscar</button> <br /> <br /> <br />
+		</form>
+		
+		</div>
+					
+      <form action="ServletClientes" method="post">
+      
 				<div class="ContenedorColumna">
 				
                  
@@ -236,9 +245,6 @@ p {
 					<input type="submit" style="color: #5F1AB4" class="btnModificar"
 						name="btnModificar" value="ACEPTAR" />
 				</div>
-
-			</div>
-		</div>
 	</form>
 
 
