@@ -42,5 +42,30 @@ public class Tipo_CuentaDaoImpl implements Tipo_CuentaDao{
 		}
 		return lista;
 	}
+	
+	public String obtenerDescripcionPorId(int id) {
+	
+		conexion = new Conexion();
+		conexion.open();
+		TipoCuenta tipo = new TipoCuenta();
+
+		String consulta = ("select descripcion_tipoCuenta AS Descripcion from tipocuentas where id_tipoCuenta = "+id+";");
+
+		try {
+			ResultSet rs = conexion.query(consulta);
+
+			if (rs.next()) {
+				tipo.setDescripcion_tipoCuenta(rs.getString("Descripcion"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+		
+		return tipo.getDescripcion_tipoCuenta();
+	}
+	
 
 }

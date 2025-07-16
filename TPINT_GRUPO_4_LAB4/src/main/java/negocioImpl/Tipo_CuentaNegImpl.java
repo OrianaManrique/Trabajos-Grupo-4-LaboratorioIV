@@ -19,5 +19,8 @@ public class Tipo_CuentaNegImpl implements Tipo_CuentaNeg{
 	public ArrayList<TipoCuenta> obtenerTiposCuentas() {
 		return  tipoDao.obtenerTiposCuentas();
 	}
-
+	
+	public String obtenerDescripcionPorId(int id) {
+		return  tipoDao.obtenerDescripcionPorId(id);
+	}
 }

@@ -125,7 +125,7 @@ public class CuentaDaoImpl implements CuentaDao {
 
 				TipoCuenta tipo = new TipoCuenta();
 
-				tipo.setId_tipoCuenta(rs.getInt("id_tipoCuenta"));
+				tipo.setId_tipoCuenta(rs.getInt("idtipo_cuenta"));
 				tipo.setDescripcion_tipoCuenta(rs.getString("descripcion_tipoCuenta"));
 				cuenta.setTipo_cuenta(tipo);
 				cuenta.setSaldo_cuenta(rs.getFloat("saldo_cuenta"));

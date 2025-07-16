@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -192,7 +194,17 @@ public class ServletCuentas extends HttpServlet {
 			
 			case "BuscarCuentasModificar":{
 				
-				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda"))));
+				TipoCuenta tipo = new TipoCuenta();
+
+				tipo.setId_tipoCuenta(Integer.parseInt(request.getParameter("ddlTipoCuenta")));
+				tipoCuentaNeg.obtenerDescripcionPorId(tipo.getId_tipoCuenta());
+				
+				ArrayList<Cuenta> lista = new ArrayList<Cuenta>();
+				
+				lista = negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda")));
+				
+				request.setAttribute("ListaCuentas", lista);
+				
 				request.setAttribute("Cliente", clienteNeg.obtenerCliente(Integer.parseInt(request.getParameter("txtBusqueda"))));
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");

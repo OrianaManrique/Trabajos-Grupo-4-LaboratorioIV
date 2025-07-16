@@ -141,8 +141,8 @@ form {
 	<form action="ServletCuentas?Param=BuscarCuentasModificar"
 		method="post">
 		<input style="width: 25%; margin-top: 20px;" type="search"
-			name="txtBusqueda" placeholder="Ingrese un Dni..." /> <input
-			class="btn btn-outline-success" name="BuscarCuentasDni" type="submit">Buscar
+			name="txtBusqueda" placeholder="Ingrese un Dni..." /> 
+			<input class="btn btn-outline-success" name="BuscarCuentasDni" type="submit">
 	</form>
 
 	<form action="ServletCuentas?Param=GuardarModificacionCuenta">
@@ -165,7 +165,8 @@ form {
 				%>
 					<tr>
 						<td><p><%=cuentaCliente.getNroCuenta_cuenta()%></p></td>
-						<td><p><%=tipoCuenta.getDescripcion_tipoCuenta()%></p></td>
+						
+						<td><p><%=cuentaCliente.getTipo_cuenta().getId_tipoCuenta()%></p></td>
 						<td><a href="ServletCuenta?Param=SeleccionModificar"> Seleccionar </a> <br /></td>
 					</tr>
 					<%

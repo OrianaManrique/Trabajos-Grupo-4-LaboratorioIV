@@ -7,5 +7,5 @@ import entidad.TipoCuenta;
 public interface Tipo_CuentaDao {
 	
 	public ArrayList<TipoCuenta> obtenerTiposCuentas();
-
+	public String obtenerDescripcionPorId(int id);
 }

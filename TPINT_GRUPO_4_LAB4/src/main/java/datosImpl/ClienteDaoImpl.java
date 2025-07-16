@@ -52,9 +52,7 @@ public class ClienteDaoImpl implements ClienteDao {
 		conexion = new Conexion();
 		conexion.open();
 
-		/* agregar filtro de estado=1 */
-		String consulta = "select * \r\n" + " from clientes\r\n"
-				+ "		where dni_cliente = " + dni +"and estado_cliente = 1";
+		String consulta = "select * from clientes where dni_cliente = "+dni+" and estado_cliente = 1;";
 
 		try {
 			ResultSet rs = conexion.query(consulta);
