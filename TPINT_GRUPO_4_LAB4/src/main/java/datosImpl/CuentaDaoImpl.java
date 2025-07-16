@@ -171,9 +171,9 @@ public class CuentaDaoImpl implements CuentaDao {
 			conexion.open();
 
 			String consulta = "SELECT c.nroCuenta_cuenta, c.dnicliente_cuenta, c.fecha_creacion_cuenta, "
-					+ "c.cbu_cuenta, c.id_tipoCuenta, tc.descripcion_tipoCuenta, c.saldo_cuenta " + "FROM Cuentas c "
-					+ "LEFT JOIN tipocuentas tc ON c.id_tipoCuenta = tc.id_tipoCuenta "
-					+ "WHERE c.estado_cuenta = 1 AND c.nroCuenta_cuenta = '" + NroCuenta_Cuenta + "'";
+					+ "c.cbu_cuenta, c.idtipo_cuenta, tc.descripcion_tipoCuenta, c.saldo_cuenta " + "FROM Cuentas c "
+					+ "LEFT JOIN tipocuentas tc ON c.idtipo_cuenta = tc.id_tipoCuenta "
+					+ "WHERE c.estado_cuenta = 1 AND c.nroCuenta_cuenta = " + NroCuenta_Cuenta + ";";
 
 			ResultSet rs = conexion.query(consulta);
 

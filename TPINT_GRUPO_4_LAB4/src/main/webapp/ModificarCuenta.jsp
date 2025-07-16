@@ -171,7 +171,7 @@ form {
 					<tr>
 						<td><p><%=cuentaCliente.getNroCuenta_cuenta()%></p></td>					
 						<td><p><%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta()%></p></td>
-						<td><a href="ServletCuenta?Param=SeleccionModificar&Cuenta=<%=cuentaCliente.getNroCuenta_cuenta()%>"> Seleccionar </a> <br /></td>
+						<td><a href="ServletCuenta?Param=SeleccionModificar&NumeroCuenta=<%=cuentaCliente.getNroCuenta_cuenta()%>"> Seleccionar </a> <br /></td>
 					</tr>
 					<%
 					}

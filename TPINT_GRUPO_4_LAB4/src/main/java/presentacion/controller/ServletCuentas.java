@@ -52,7 +52,7 @@ public class ServletCuentas extends HttpServlet {
 			}
 			case "SeleccionModificar": {
 				
-				request.setAttribute("Cuenta", negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("Cuenta"))));
+				request.setAttribute("Cuenta", negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("NumeroCuenta"))));
 				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda"))));
 				request.setAttribute("Cliente", clienteNeg.obtenerCliente(Integer.parseInt(request.getParameter("txtBusqueda"))));
 				
