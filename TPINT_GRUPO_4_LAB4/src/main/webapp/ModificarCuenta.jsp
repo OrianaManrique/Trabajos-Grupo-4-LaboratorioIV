@@ -121,6 +121,7 @@ form {
 	String CBU = "1234567891123456789123";
 	TipoCuenta tipoCuenta = new TipoCuenta();
 	Cliente cliente = new Cliente();
+	Cuenta cuenta = new Cuenta();
 	
 	ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();
 	if (request.getAttribute("ListaCuentas") != null) {
@@ -133,6 +134,9 @@ form {
 		visibilidad = "";
 	}
 	
+	if (request.getAttribute("Cuenta") != null) {
+		cuenta = (Cuenta) request.getAttribute("Cuenta");
+	}
 	
 	%>
 
@@ -167,7 +171,7 @@ form {
 					<tr>
 						<td><p><%=cuentaCliente.getNroCuenta_cuenta()%></p></td>					
 						<td><p><%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta()%></p></td>
-						<td><a href="ServletCuenta?Param=SeleccionModificar"> Seleccionar </a> <br /></td>
+						<td><a href="ServletCuenta?Param=SeleccionModificar&Cuenta=<%=cuentaCliente.getNroCuenta_cuenta()%>"> Seleccionar </a> <br /></td>
 					</tr>
 					<%
 					}
@@ -191,19 +195,19 @@ form {
 				</thead>
 				<tbody>
 					<tr>
-						<th><p><%=NroCuenta%></p></th>
-						<th><p><%=dniCliente%></p></th>
+						<th><p><%=cuenta.getNroCuenta_cuenta()%></p></th>
+						<th><p><%=cuenta.getDni_Cliente()%></p></th>
 						<th><p>
-								<input type="text" value="<%=CBU%>">
+								<input type="text" value="<%=cuenta.getCbu_cuenta()%>">
 							</p></th>
 						<th><select id="miDesplegable">
 								<option value="1">Caja de ahorro</option>
 								<option value="2">Cuenta Corriente</option>
 						</select></th>
 						<th><p>
-								<input type="number" value="<%=Saldo%>">
+								<input type="number" value="<%=cuenta.getSaldo_cuenta()%>">
 							</p></th>
-						<th><p><%=Fecha%></p></th>
+						<th><p><%=cuenta.getFechaCreacion_cuenta()%></p></th>
 						<th><input class="btn btn-success" type="submit"
 							value="GUARDAR"></th>
 					</tr>

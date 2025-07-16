@@ -50,21 +50,11 @@ public class ServletCuentas extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			case "CargarModificar": {
-
-				request.setAttribute("Lista", negCuenta.obtenerCuentas());
-				request.setAttribute("Editable", "ReadOnly");
-				request.setAttribute("bloquearColor", "lightgray");
-				
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
-				dispatcher.forward(request, response);
-				break;
-			}
 			case "SeleccionModificar": {
-
-				request.setAttribute("Lista", negCuenta.obtenerCuentas());
-				request.setAttribute("Editable", "ReadOnly");
-				request.setAttribute("bloquearColor", "lightgray");
+				
+				request.setAttribute("Cuenta", negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("Cuenta"))));
+				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda"))));
+				request.setAttribute("Cliente", clienteNeg.obtenerCliente(Integer.parseInt(request.getParameter("txtBusqueda"))));
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
 				dispatcher.forward(request, response);
@@ -98,22 +88,6 @@ public class ServletCuentas extends HttpServlet {
 			String operacion = request.getParameter("Param").toString();
 
 			switch (operacion) {
-			case "ModificarCuenta": {
-				String visibilidad = "oculto";
-				//Cuenta cuentaEditar = negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("Param2")));
-				//int TipoSeleccionado = cuentaEditar.getTipo_cuenta().getId_tipoCuenta();
-
-				//request.setAttribute("CuentaEditar", cuentaEditar);
-				//request.setAttribute("TipoSeleccionado", TipoSeleccionado);
-				//request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
-				
-				request.setAttribute("Editable", "");
-				request.setAttribute("Lista", negCuenta.obtenerCuentas());
-				request.setAttribute("Visibilidad", visibilidad);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
-				dispatcher.forward(request, response);
-				break;
-			}
 			case "EliminarCuenta": {
 
 				boolean estado = negCuenta.borrar(Integer.parseInt(request.getParameter("Param2")));
