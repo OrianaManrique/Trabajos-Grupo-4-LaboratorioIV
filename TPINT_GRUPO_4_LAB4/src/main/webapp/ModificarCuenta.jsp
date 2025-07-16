@@ -171,7 +171,7 @@ form {
 					<tr>
 						<td><p><%=cuentaCliente.getNroCuenta_cuenta()%></p></td>					
 						<td><p><%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta()%></p></td>
-						<td><a href="ServletCuenta?Param=SeleccionModificar&NumeroCuenta=<%=cuentaCliente.getNroCuenta_cuenta()%>"> Seleccionar </a> <br /></td>
+						<td><a href="ServletCuentas?Param=SeleccionModificar&NumeroCuenta=<%=cuentaCliente.getNroCuenta_cuenta()%>"> Seleccionar </a> <br /></td>
 					</tr>
 					<%
 					}
@@ -205,7 +205,7 @@ form {
 								<option value="2">Cuenta Corriente</option>
 						</select></th>
 						<th><p>
-								<input type="number" value="<%=cuenta.getSaldo_cuenta()%>">
+								<input type="number" value="1">
 							</p></th>
 						<th><p><%=cuenta.getFechaCreacion_cuenta()%></p></th>
 						<th><input class="btn btn-success" type="submit"
