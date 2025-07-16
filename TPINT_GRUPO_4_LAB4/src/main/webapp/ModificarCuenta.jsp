@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="entidad.*"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,14 +40,6 @@ form {
 	width: 95%;
 	margin: auto;
 	margin-top: 20px;
-	overflow-x: auto;
-	font-size: 20px;
-}
-
-.table-container2 {
-	width: 95%;
-	margin: auto;
-	margin-top: 40px;
 	overflow-x: auto;
 	font-size: 20px;
 }
@@ -126,22 +119,39 @@ form {
 	String Fecha = "2/7/2077";
 	String CBU = "1234567891123456789123";
 	TipoCuenta tipoCuenta = new TipoCuenta();
+	Cliente cliente = new Cliente();
+	
+	ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();
+	if (request.getAttribute("ListaCuentas") != null) {
+		ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("ListaCuentas");
+		
+	}
+	
+	if (request.getAttribute("Cliente") != null) {
+		cliente = (Cliente) request.getAttribute("Cliente");
+		
+	}
+	
+	
 	%>
 
 
 	<div class="header">Usuario logueado - Cuenta Banco</div>
 
-	<form action="ServletCuentas?Param=GuardarModificacion" method="post">
-		<input style="width: 25%" type="search" name="txtBusqueda"
-			placeholder="Ingrese un Dni..." />
-		<button class="btn btn-outline-success" type="submit">Buscar</button>
+	<form action="ServletCuentas?Param=BuscarCuentasModificar"
+		method="post">
+		<input style="width: 25%; margin-top: 20px;" type="search"
+			name="txtBusqueda" placeholder="Ingrese un Dni..." /> <input
+			class="btn btn-outline-success" name="BuscarCuentasDni" type="submit">Buscar
+	</form>
 
+	<form action="ServletCuentas?Param=GuardarModificacionCuenta">
 		<div class="table-container">
 			<table class="movements-table">
 
 				<thead>
 					<tr>
-						<th colspan="4"><%=nombreCliente%> - <%=dniCliente%></th>
+						<th colspan="4"><%=cliente.getNombre_cliente()%> - <%=cliente.getDni_cliente()%></th>
 					</tr>
 					<tr>
 						<th style="width: 25%">NUMERO CUENTA</th>
@@ -150,26 +160,22 @@ form {
 					</tr>
 				</thead>
 				<tbody>
+					<%
+					for (Cuenta cuentaCliente : ListaCuentas) {
+				%>
 					<tr>
-						<td><p><%=NroCuenta%></p></td>
+						<td><p><%=cuentaCliente.getNroCuenta_cuenta()%></p></td>
 						<td><p><%=tipoCuenta.getDescripcion_tipoCuenta()%></p></td>
-						<td><a href="ServletClientes?Param="> Seleccionar </a> <br /></td>
+						<td><a href="ServletCuenta?Param=SeleccionModificar"> Seleccionar </a> <br /></td>
 					</tr>
-					<tr>
-						<td><p><%=NroCuenta%></p></td>
-						<td><p><%=tipoCuenta.getDescripcion_tipoCuenta()%> </p></td>
-						<td><a href="ServletClientes?Param="> Seleccionar </a> <br /></td>
-					</tr>
-					<tr>
-						<td><p><%=NroCuenta%></p></td>
-						<td><p><%=tipoCuenta.getDescripcion_tipoCuenta()%></p></td>
-						<td><a href="ServletClientes?Param="> Seleccionar </a> <br /></td>
-					</tr>
+					<%
+					}
+					%>
 				</tbody>
 			</table>
 		</div>
 
-		<div class="table-container2">
+		<div class="table-container">
 			<table class="movements-table2">
 				<thead>
 					<tr>

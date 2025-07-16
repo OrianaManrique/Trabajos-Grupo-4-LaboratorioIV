@@ -10,12 +10,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import entidad.Cliente;
 import entidad.Cuenta;
 import entidad.TipoCuenta;
 import negocio.CuentaNeg;
 import negocioImpl.CuentaNegImpl;
 import negocio.Tipo_CuentaNeg;
 import negocioImpl.Tipo_CuentaNegImpl;
+import negocio.ClienteNeg;
+import negocioImpl.ClienteNegImpl;
 
 @WebServlet("/ServletCuentas")
 public class ServletCuentas extends HttpServlet {
@@ -23,6 +27,7 @@ public class ServletCuentas extends HttpServlet {
 
 	CuentaNeg negCuenta = new CuentaNegImpl();
 	Tipo_CuentaNeg tipoCuentaNeg = new Tipo_CuentaNegImpl();
+	ClienteNeg clienteNeg = new ClienteNegImpl();
 
 	public ServletCuentas() {
 		super();
@@ -44,6 +49,16 @@ public class ServletCuentas extends HttpServlet {
 				break;
 			}
 			case "CargarModificar": {
+
+				request.setAttribute("Lista", negCuenta.obtenerCuentas());
+				request.setAttribute("Editable", "ReadOnly");
+				request.setAttribute("bloquearColor", "lightgray");
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
+			case "SeleccionModificar": {
 
 				request.setAttribute("Lista", negCuenta.obtenerCuentas());
 				request.setAttribute("Editable", "ReadOnly");
@@ -118,7 +133,7 @@ public class ServletCuentas extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		if (request.getParameter("Param") != null) {
 
 			String operacion = request.getParameter("Param").toString();
@@ -174,9 +189,22 @@ public class ServletCuentas extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
+			
+			case "BuscarCuentasModificar":{
+				
+				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda"))));
+				request.setAttribute("Cliente", clienteNeg.obtenerCliente(Integer.parseInt(request.getParameter("txtBusqueda"))));
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
+				dispatcher.forward(request, response);
+				
+			}
+			
 			default:
 				break;
 			}
 		}
+		
+		
 	}
 }
