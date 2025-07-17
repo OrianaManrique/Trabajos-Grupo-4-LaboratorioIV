@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import datos.TipoCuentaDao;
 import entidad.TipoCuenta;
 
-public class Tipo_CuentaDaoImpl implements TipoCuentaDao{
+public class TipoCuentaDaoImpl implements TipoCuentaDao{
 	
 	Conexion conexion;
 
-	public Tipo_CuentaDaoImpl() {
+	public TipoCuentaDaoImpl() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -19,7 +19,6 @@ public class Tipo_CuentaDaoImpl implements TipoCuentaDao{
 		conexion.open();
 
 		String consulta = ("SELECT id_tipoCuenta, descripcion_tipoCuenta FROM tipocuentas;");
-
 		ArrayList<TipoCuenta> lista = new ArrayList<TipoCuenta>();
 
 		try {

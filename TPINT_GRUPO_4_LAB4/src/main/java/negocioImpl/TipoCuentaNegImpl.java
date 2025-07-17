@@ -1,17 +1,16 @@
 package negocioImpl;
 
 import java.util.ArrayList;
-
-import datos.Tipo_CuentaDao;
-import datosImpl.Tipo_CuentaDaoImpl;
+import datos.TipoCuentaDao;
+import datosImpl.TipoCuentaDaoImpl;
 import entidad.TipoCuenta;
-import negocio.Tipo_CuentaNeg;
+import negocio.TipoCuentaNeg;
 
-public class Tipo_CuentaNegImpl implements Tipo_CuentaNeg{
+public class TipoCuentaNegImpl implements TipoCuentaNeg{
 	
-	Tipo_CuentaDao tipoDao = new Tipo_CuentaDaoImpl();
+	private TipoCuentaDao tipoDao = new TipoCuentaDaoImpl();
 
-	public Tipo_CuentaNegImpl() {
+	public TipoCuentaNegImpl() {
 		// TODO Auto-generated constructor stub
 	}
 

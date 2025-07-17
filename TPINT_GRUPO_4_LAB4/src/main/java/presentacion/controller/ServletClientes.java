@@ -158,6 +158,17 @@ public class ServletClientes extends HttpServlet {
 				requestdispatcher.forward(request, response);
 				break;
 			}
+			case "BuscarClienteModificar":{
+				
+				request.setAttribute("Cliente", negCli.obtenerCliente(Integer.parseInt(request.getParameter("txtBusquedaModificarCliente"))));
+				request.setAttribute("DniBusquedaModificarCliente", (Integer.parseInt(request.getParameter("txtBusquedaModificarCliente"))));
+				request.setAttribute("listaProvincias", negprov.listarProvincias());
+				request.setAttribute("listaLocalidades", negloc.listarLocalidades());
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCliente.jsp");
+				dispatcher.forward(request, response);
+				
+			}
 			case "ConfirmarClienteyUsuario": {
 
 				boolean estado = false;

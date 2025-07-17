@@ -69,6 +69,8 @@ public class ClienteDaoImpl implements ClienteDao {
 				cliente.setProvincia(provincia);
 				cliente.setLocalidad(localidad);
 				cliente.setNacionalidad_cliente(rs.getString("nacionalidad_cliente"));
+				cliente.setUsuario_cliente(rs.getString("usuario_cliente"));
+				cliente.setContraseña_cliente(rs.getString("contrasena_cliente"));
 				cliente.setCorreo_electronico_cliente(rs.getString("correo_electronico_cliente"));
 				cliente.setDireccion_cliente(rs.getString("direccion_cliente"));
 				cliente.setTelefono_cliente(rs.getString("telefono_cliente"));

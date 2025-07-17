@@ -108,6 +108,7 @@ form {
 	cursor: pointer;
 }
 
+
 </style>
 
 
@@ -145,17 +146,19 @@ form {
 	
 	%>
 
-
 	<div class="header">Usuario logueado - Cuenta Banco</div>
 
 	<form action="ServletCuentas?Param=BuscarCuentasModificar"
 		method="post">
+		
+		 <p style="Color: purple; font-weight: bold; font-size: 50px"> MODIFICAR CUENTA</p>
+		 
 		<input style="width: 25%; margin-top: 20px;" type="search"
 			name="txtBusqueda" placeholder="Ingrese un Dni..." /> 
 			<input class="btn btn-outline-success" name="BuscarCuentasDni" type="submit">
 	</form>
 
-	<form action="ServletCuentas?Param=GuardarModificacionCuenta&dnibusqueda=<%=DniBusqueda%>" method="post">
+	<form action="ServletCuentas?Param=GuardarModificacionCuenta&dnibusqueda=<%=DniBusqueda%>"  method="post">
 		<div class="table-container">
 			<table class="movements-table">
 
@@ -165,14 +168,14 @@ form {
 					</tr>
 					<tr>
 						<th style="width: 25%">NUMERO CUENTA</th>
-						<th style="width: 50%;">TIPO</th>
+						<th style="width: 50%">TIPO</th>
 						<th style="width: 25%">ACCIÓN</th>
 					</tr>
 				</thead>
 				<tbody>
 					<%
 					for (Cuenta cuentaCliente : ListaCuentas) {
-				%>
+				    %>
 					<tr>
 						<td><p><%=cuentaCliente.getNroCuenta_cuenta()%></p></td>					
 						<td><p><%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta()%></p></td>
@@ -221,12 +224,34 @@ form {
 				</tbody>
 			</table>
 
-			<br /> <br /> <label id="lblMensajeExito"
-				style="visibility: hidden; Color: green">EXITO ! SE
-				MODIFICO LA CUENTA</label> <br /> <br /> <label id="lblMensajeError"
-				style="visibility: hidden; Color: red">ERROR ! NO SE PUDO
-				MODIFICAR LA CUENTA</label>
-
+			<br /> <br />
+			    
+			    <%  
+			      
+			    if(request.getAttribute("Exito")!=null){
+			    	
+			    	if(((Boolean)request.getAttribute("Exito"))==true){
+			    		
+			    		%>		    		
+			    		
+			    		<p><label id="lblMensajeExito"	style="Color: green; font-weight: bold; font-size: 20px"> ¡SE MODIFICO LA CUENTA CON ÉXITO!</label></p>
+			    				
+			    		<%
+			    		
+			    	}else{
+			    		
+			    		
+                        %>		    		
+			    		
+			    		<label id="lblMensajeError"	style="Color: red; font-weight: bold; font-size: 20px">NO SE HA PODIDO MODIFICAR LA CUENTA</label>
+			    				
+			    		<%
+			    		
+			    	}
+			    }
+			    
+			    %>
+			    
 		</div>
 
 	</form>

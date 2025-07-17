@@ -1,23 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="entidad.*"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="entidad.*"%>
-
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"> 
 <meta charset="UTF-8">
+	
 <title>Modificar Cliente</title>
 </head>
-<style>
 
-body, html{
+<style>
+body {
 	font-family: 'Segoe UI', sans-serif;
 	margin: 0;
 	padding: 0;
 	background: #E0E0E0;
-	background: linear-gradient(to top, #bc9fd6, #44107a);
-	height: 100vh;
 }
 
 .header {
@@ -30,223 +29,226 @@ body, html{
 	letter-spacing: 1px;
 }
 
-.balance-container {
-    display: flex;
-    justify-content: center; 
-    margin: 0 auto; 
-    width: 500px; 
-    margin-top: 20px; 
-}
-
-.balance-box {
-	/*background: linear-gradient(to right, #602A80, #4C0026);*/
-	/*background: linear-gradient(to right, #A178C1, #A14C6F); ,*/
-	color: white;
-	padding: 25px 35px;
-	border-radius: 12px;
-	font-size: 26px;
-	font-weight: bold;
+form {
 	text-align: center;
-	box-shadow: 0 4px 10px rgba(204, 0, 143, 0.3);
-	min-width: 200px;
+	margin-top: 20px;
 }
 
-.boton-submit {
-	color: black;
-	background-color: #BDBDBD;
-	border: none;
-	padding: 10px 20px;
-	cursor: pointer;
-	font-weight: bold;
-	border-radius: 8px;
+.table-container {
+	width: 95%;
+	margin: auto;
+	margin-top: 20px;
+	overflow-x: auto;
+	font-size: 20px;
 }
 
-.subtitulo {
+/* Estilos de la tabla */
+.movements-table {
+	width: 100%;
+	border-collapse: collapse;
 	text-align: center;
 	font-size: 20px;
-	color: #44107a;
-	margin-bottom: 20px;
-	margin-top: 20px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.movements-table th {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.movements-table thead {
+	background: linear-gradient(to right, #602A80, #4C0026);
+	color: white;
+}
+
+.movements-table th, .movements-table td {
+	padding: 12px;
+	border: 20px solid #ddd;
+}
+
+.movements-table2 {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+	font-size: 20px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.movements-table2 thead {
+	background: linear-gradient(to right, #03c57e, #1eac04,  #03c57e , #03c57e, #1eac04,  #03c57e);
+	color: white;
+}
+
+.movements-table2 th, .movements-table2 td {
+	padding: 12px;
+	border: 1px solid black;
+}
+
+/* gris claro */
+.alternarfilas {
+	background-color: #f9f9f9;
+}
+
+.mov-positivo {
+	color: #1ca51c;
 	font-weight: bold;
 }
 
-p {
-	font-size: 22px;
-	text-align:;
+.mov-negativo {
+	color: #e6324b;
+	font-weight: bold;
 }
 
-.ContenedorTitulo {
-	background-color: #E5E5E5;
-	width: 260px;
-	margin: 0 auto;
-	text-align: center;
-	border-radius: 8px;
+.info-icon {
+	color: #44107a;
+	font-weight: bold;
+	font-size: 16px;
+	cursor: pointer;
 }
 
-.ContenedorBoton {
-	margin: 0 auto;
-	width: 260px;
-}
 
-.btnAgregar {
-	width: 180px;
-}
-
-.ContenedorColumna {
-	display: flex;
-	margin: 0;
-	padding: 0;
-	gap: 100px;
-	justify-content: center;
-}
-
-.FormularioAgregarCLiente input {
-	border-radius: 8px;
-}
-
-.inputFechaNac {
-	width: 167px;
-}
-
-.inputNacionalidad {
-	width: 167px;
-}
-
-.inputDireccion {
-	width: 167px;
-}
 </style>
 
+
 <body>
-    
 	<%
+	String visibilidadTablaCuentas = "display: none;";
+	//String visibilidadTablaModificar = "display: none;";
+	String visibilidadTablaModificar = "";
 	
 	Cliente cliente = new Cliente();
+	Cuenta cuenta = new Cuenta();
+	int DniBusqueda=0;
+	
+	if (request.getAttribute("Cliente") != null) {
+		cliente = (Cliente) request.getAttribute("Cliente");
+		visibilidadTablaCuentas = "";
+	}
+	
+	if (request.getAttribute("DniBusqueda") != null) {
+		DniBusqueda = (int)request.getAttribute("DniBusqueda");
+	}
 	
 	ArrayList<Provincia> ListaProvincias = new ArrayList<Provincia>();
 	if (request.getAttribute("listaProvincias") != null) {
 		ListaProvincias = (ArrayList<Provincia>) request.getAttribute("listaProvincias");
 	}
-	
+
 	ArrayList<Localidad> ListaLocalidades = new ArrayList<Localidad>();
 	if (request.getAttribute("listaLocalidades") != null) {
 		ListaLocalidades = (ArrayList<Localidad>) request.getAttribute("listaLocalidades");
 	}
 	
-	if (request.getAttribute("Cliente") != null) {
-		
-		cliente = (Cliente)request.getAttribute("Cliente");
-		
-	}
 	%>
-	
-	 
-		<div class="header">Usuario logueado - Cuenta Banco</div>
 
+	<div class="header">Usuario logueado - Cuenta Banco</div>
+    
+	<form action="ServletClientes?Param=BuscarClienteModificar"	method="post">
+		    
+    <p style="Color: purple; font-weight: bold; font-size: 50px"> MODIFICAR CLIENTE</p>
+    
+		<input style="width: 30%; margin-top: 20px;" type="search" name="txtBusquedaModificarCliente" placeholder="Ingrese un Dni..." /> 
+			<input class="btn btn-outline-success" name="BuscarClienteDni" type="submit">
+	</form>
 
+	<form action="ServletCuentas?Param=GuardarModificacion"  method="post">
 
-		<div class="balance-container">
-		
-		<form action="ServletCuentas" method="post"> 
+		<div class="table-container">
+			<table class="movements-table2">
+				<thead>
+					<tr>
+						<th>DNI</th>
+						<th>NOMBRE</th>
+						<th>APELLIDO</th>
+						<th>FECHA DE NACIMIENTO</th>
+						<th>CUIL</th>
+						<th>SEXO</th>
+						<th>NACIONALIDAD</th>		
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="<%=visibilidadTablaCuentas%>">
+						<th><p><%=cliente.getDni_cliente()%></p>				
+						<th><p><%=cliente.getNombre_cliente()%></p>
+						<th><p><%=cliente.getApellido_cliente()%></p>
+						<th><p><%=cliente.getFecha_nacimiento_cliente()%></p>
+						<th><p><%=cliente.getCuil_cliente()%></p>
+						<th><select id="ddlSexo" name="ddlSexo">
+								<option value="">Seleccione su sexo...</option>
+						        <option value="F">Femenino</option>
+						        <option value="M">Masculino</option>
+						        <option value="O">Otro/s</option>
+						</select></th>
+						<th><p><%=cliente.getNacionalidad_cliente()%></p>
+					</tr>
+				</tbody>		
+				
+			</table>
 			
-				<p>
-					<strong Style="Color:white">   MODIFICAR CLIENTE  </strong> <br /> 
-				</p>
-				
-		  	<input style="width: 70%" type="search" name="txtBusqueda"
-			placeholder="Ingrese un Dni..." /> <button type="button">Buscar</button> <br /> <br /> <br />
-		</form>
-		
-		</div>
-					
-      <form action="ServletClientes" method="post">
-      
-				<div class="ContenedorColumna">
-				
-                 
-					<input type="text" id="txtDniCliente" name="txtDniCliente"
-						value="<%=cliente.getDni_cliente()%>" readonly> <select id="txtProvincia"
-						name="txtProvincia" onchange="actualizarLocalidades()" style="width: 177px;">
-                        
-                        <option value="">Seleccione su Provincia...</option>                                                  
-                        
+			<table class="movements-table2">
+				<thead>
+					<tr>
+						<th>DIRECCIÓN</th>
+						<th>PROVINCIA</th>
+						<th>LOCALIDAD</th>
+						<th>CORREO</th>
+						<th>TELÉFONO</th>
+						<th>USUARIO</th>
+						<th>CONTRASEÑA</th>			
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="<%=visibilidadTablaCuentas%>">
+						<th><p><%=cliente.getDireccion_cliente()%></p>
+						
+						<th><p><select id="txtProvincia" name="txtProvincia" onchange="actualizarLocalidades()" style="width: 177px;" required>
+						
+						<option value="">Seleccione su Provincia...</option>
+
 						<%
 						String idProvinciaSeleccionada = "";
-						
+
 						for (Provincia p : ListaProvincias) {
 						%>
 						<option value="<%=p.getId_provincia()%>"><%=p.getDescripcion_provincia()%></option>
-						
+
 						<%
 						}
 						%>
 
 					</select> 
 					
+					</p></th>
 					
-					<select id="txtLocalidad" name="txtLocalidad"
-						style="width: 177px;" required>
+					<th><p>	<select id="txtLocalidad" name="txtLocalidad" style="width: 177px;" required>
+				    	<option value="">Seleccione su Localidad...</option>
+					</select>						
+						<th><p><%=cliente.getCorreo_electronico_cliente()%></p></th>
+						<th><p><%=cliente.getTelefono_cliente()%></p></th>
+						<th><p><%=cliente.getUsuario_cliente()%></p></th>
+						<th><p><%=cliente.getContraseña_cliente()%></p></th>
 
-						<option value="">Seleccione su Localidad...</option>
-					</select>
+					</tr>
+				</tbody>
+				
+										
+				
+			</table>
+			
+			<br /> <br />
+                 
+              <div class="d-grid gap-2 col-6 mx-auto">
+              <input class="btn btn-primary btn-lg btn btn-success" type="submit" value="GUARDAR">
+              </div>
+			
 
-				</div>
+			<br /> <br />
+		
+			    
+		</div>
 
-				<br /> <br />
-
-				<div class="ContenedorColumna">
-
-					<input type="text" id="txtCuil" name="txtCuil"
-						placeholder="Ingrese su Cuil..." value="<%=cliente.getCuil_cliente()%>" > <input
-						class="inputNacionalidad" type="text" id="txtNacionalidad"
-						name="txtNacionalidad" placeholder="Ingrese su Nacionalidad..." value="<%=cliente.getNacionalidad_cliente()%>">
-
-
-					<select id="ddlSexo"  name="tiposexo" style="width: 177px;">
-
-						<option value="">Seleccione su sexo...</option>
-						<option value="F">Femenino</option>
-						<option value="M">Masculino</option>
-						<option value="O">Otro/s</option>
-
-					</select>
-
-				</div>
-
-				<br /> <br />
-
-				<div class="ContenedorColumna">
-
-					<input type="text" id="txtNombre" name="txtNombre"
-						placeholder="Ingrese su Nombre..." value="<%=cliente.getNombre_cliente()%>"> <input
-						class="inputFechaNac" type="date" id="txtFechaNacimiento"
-						name="txtFechaNacimiento" value="<%=cliente.getFecha_nacimiento_cliente()%>"> <input type="text"
-						id="txtCorreo" name="txtCorreo" value="<%=cliente.getCorreo_electronico_cliente()%>" placeholder="Ingrese su Correo...">
-
-				</div>
-
-				<br /> <br />
-
-				<div class="ContenedorColumna">
-
-					<input type="text" id="txtApellido" name="txtApellido"
-						value="<%=cliente.getApellido_cliente()%>" placeholder="Ingrese su Apellido..."> <input
-						class="inputDireccion" value="<%=cliente.getDireccion_cliente()%>" type="text" id="txtDireccion"
-						name="txtDireccion" placeholder="Ingrese su Dirección...">
-					<input type="text" id="txtTelefono" name="txtTelefono"
-						placeholder="Ingrese su Teléfono..." value="<%=cliente.getTelefono_cliente()%>">
-
-				</div>
-
-				<br /> <br />
-
-
-				<div class="ContenedorBoton">
-					<input type="submit" style="color: #5F1AB4" class="btnModificar"
-						name="btnModificar" value="ACEPTAR" />
-				</div>
 	</form>
-
+</body>
 
 <script>
 
@@ -286,13 +288,11 @@ if (ultimaLocalidad?.id === "") {
         } else {   	
             var option = document.createElement("option");
             option.value = "";
-            option.textContent = "Esta provincia no tiene localidades cargadas";
+            option.textContent = "Seleccione una Provincia...";
             selectLocalidad.appendChild(option);
         }
 
     }
     
 </script>
-
-</body>
 </html>
