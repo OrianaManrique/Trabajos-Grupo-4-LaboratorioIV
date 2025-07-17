@@ -134,43 +134,30 @@ public class ServletCuentas extends HttpServlet {
 				requestdispatcher.forward(request, response);
 				break;
 			}
-			case "Modificar": {
+			case "GuardarModificacionCuenta": {
 
 				Cuenta cuenta = new Cuenta();
-
-				cuenta.setCbu_cuenta(request.getParameter("txtCBU"));
-				cuenta.setDni_Cliente(Integer.parseInt(request.getParameter("txtDniCliente")));
-				cuenta.setSaldo_cuenta(Float.parseFloat(request.getParameter("txtSaldo")));
-
-				String fecha = request.getParameter("txtFechaActual");
-				SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-				formato.setLenient(false);
-				Date fechacreacion = null;
-
-				try {
-					fechacreacion = new Date(formato.parse(fecha).getTime());
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-
-				cuenta.setFechaCreacion_cuenta(fechacreacion);
-
 				TipoCuenta tipo = new TipoCuenta();
-
+				
+				cuenta.setNroCuenta_cuenta(Integer.parseInt(request.getParameter("nroCuenta")));
+				cuenta.setCbu_cuenta(request.getParameter("txtCBU"));
+				cuenta.setSaldo_cuenta(Float.parseFloat(request.getParameter("txtSaldo")));			
 				tipo.setId_tipoCuenta(Integer.parseInt(request.getParameter("ddlTipoCuenta")));
 				cuenta.setTipo_cuenta(tipo);
+				
+				System.out.println(cuenta.toString());
 
 				request.setAttribute("Exito", negCuenta.modificarCuenta(cuenta));
-				;
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/InicioAdministrador.jsp");
+				request.setAttribute("DniBusqueda", (Integer.parseInt(request.getParameter("dnibusqueda"))));
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}
 			
 			case "BuscarCuentasModificar":{
 							
-				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda"))));
-				
+				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda"))));			
 				request.setAttribute("Cliente", clienteNeg.obtenerCliente(Integer.parseInt(request.getParameter("txtBusqueda"))));
 				request.setAttribute("DniBusqueda", (Integer.parseInt(request.getParameter("txtBusqueda"))));
 				

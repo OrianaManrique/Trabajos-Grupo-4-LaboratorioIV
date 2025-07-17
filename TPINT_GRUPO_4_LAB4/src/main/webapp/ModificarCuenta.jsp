@@ -155,7 +155,7 @@ form {
 			<input class="btn btn-outline-success" name="BuscarCuentasDni" type="submit">
 	</form>
 
-	<form action="ServletCuentas?Param=GuardarModificacionCuenta">
+	<form action="ServletCuentas?Param=GuardarModificacionCuenta&dnibusqueda=<%=DniBusqueda%>" method="post">
 		<div class="table-container">
 			<table class="movements-table">
 
@@ -191,27 +191,30 @@ form {
 					<tr>
 						<th>NUMERO CUENTA</th>
 						<th>DNI CLIENTE</th>
+						<th>FECHA DE CREACIÓN</th>
 						<th>CBU</th>
 						<th>TIPO</th>
 						<th>SALDO</th>
-						<th>FECHA DE CREACIÓN</th>
 						<th>ACCION</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr style="<%=visibilidadTablaModificar%>">
-						<th ><p><%=cuenta.getNroCuenta_cuenta()%></p></th>
+						<th><p><%=cuenta.getNroCuenta_cuenta()%></p>
+						<input type="hidden" name="nroCuenta" value="<%=cuenta.getNroCuenta_cuenta()%>">					
+						</th>
+						
 						<th><p><%=cuenta.getDni_Cliente()%></p></th>
+						<th><p><%=cuenta.getFechaCreacion_cuenta()%></p></th>
 						<th><p>
-								<input type="text" value="<%=cuenta.getCbu_cuenta()%>">
+								<input type="text" name="txtCBU" value="<%=cuenta.getCbu_cuenta()%>">
 							</p></th>
-						<th><select id="miDesplegable">
+						<th><select id="ddlTipoCuenta" name="ddlTipoCuenta">
 								<option value="1">Caja de ahorro</option>
 								<option value="2">Cuenta Corriente</option>
 						</select></th>
-						<th><p>	<input type="number" value="<%=cuenta.getSaldo_cuenta()%>">
+						<th><p>	<input type="number" name="txtSaldo" value="<%=cuenta.getSaldo_cuenta()%>">
 							</p></th>
-						<th><p><%=cuenta.getFechaCreacion_cuenta()%></p></th>
 						<th><input class="btn btn-success" type="submit"
 							value="GUARDAR"></th>
 					</tr>
