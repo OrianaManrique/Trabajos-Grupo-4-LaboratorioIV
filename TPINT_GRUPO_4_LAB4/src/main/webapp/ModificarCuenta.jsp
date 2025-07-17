@@ -113,7 +113,8 @@ form {
 
 <body>
 	<%
-	String visibilidad = "display: none;";
+	String visibilidadTablaCuentas = "display: none;";
+	String visibilidadTablaModificar = "display: none;";
 	int DniBusqueda=0;
 	TipoCuenta tipoCuenta = new TipoCuenta();
 	Cliente cliente = new Cliente();
@@ -126,11 +127,12 @@ form {
 	
 	if (request.getAttribute("Cliente") != null) {
 		cliente = (Cliente) request.getAttribute("Cliente");
-		visibilidad = "";
+		visibilidadTablaCuentas = "";
 	}
 	
 	if (request.getAttribute("Cuenta") != null) {
 		cuenta = (Cuenta) request.getAttribute("Cuenta");
+		visibilidadTablaModificar = "";
 	}else{
 		//SI SACAS ESTA DECLARACION EXPLOTA TODO
 		cuenta.setSaldo_cuenta(1f);
@@ -159,7 +161,7 @@ form {
 
 				<thead>
 					<tr>
-						<th style="<%=visibilidad%>" colspan="4"><%=cliente.getNombre_cliente()%> - <%=cliente.getDni_cliente()%></th>
+						<th style="<%=visibilidadTablaCuentas%>" colspan="4"><%=cliente.getNombre_cliente()%> - <%=cliente.getDni_cliente()%></th>
 					</tr>
 					<tr>
 						<th style="width: 25%">NUMERO CUENTA</th>
@@ -197,7 +199,7 @@ form {
 					</tr>
 				</thead>
 				<tbody>
-					<tr style="<%=visibilidad%>">
+					<tr style="<%=visibilidadTablaModificar%>">
 						<th ><p><%=cuenta.getNroCuenta_cuenta()%></p></th>
 						<th><p><%=cuenta.getDni_Cliente()%></p></th>
 						<th><p>
