@@ -54,6 +54,7 @@ form {
 .movements-table th {
 	text-align: center;
 	vertical-align: middle;
+	width: 13%;
 }
 
 .movements-table thead {
@@ -82,6 +83,7 @@ form {
 .movements-table2 th, .movements-table2 td {
 	padding: 12px;
 	border: 1px solid black;
+	width: 13%;
 }
 
 /* gris claro */
@@ -168,18 +170,19 @@ form {
 				</thead>
 				<tbody>
 					<tr style="<%=visibilidadTablaCuentas%>">
-						<th><p><%=cliente.getDni_cliente()%></p>				
-						<th><p><%=cliente.getNombre_cliente()%></p>
-						<th><p><%=cliente.getApellido_cliente()%></p>
-						<th><p><%=cliente.getFecha_nacimiento_cliente()%></p>
-						<th><p><%=cliente.getCuil_cliente()%></p>
+						<th><p><%=cliente.getDni_cliente()%></p></th>			
+						<th><p><input type="text" name="txtNombre" value="<%=cliente.getNombre_cliente()%>"></p></th>
+						<th><p><input type="text" name="txtApellido" value="<%=cliente.getApellido_cliente()%>"></p>  </th>
+						<th><p><input type="date" name="txtNacimiento" value="<%=cliente.getFecha_nacimiento_cliente()%>"></p>  </th>
+						<th><p><%=cliente.getCuil_cliente()%></p>  </th>
+						
 						<th><select id="ddlSexo" name="ddlSexo">
 								<option value="">Seleccione su sexo...</option>
 						        <option value="F">Femenino</option>
 						        <option value="M">Masculino</option>
 						        <option value="O">Otro/s</option>
 						</select></th>
-						<th><p><%=cliente.getNacionalidad_cliente()%></p>
+						<th><p><input type="text" name="txtNacimiento" value="<%=cliente.getNacionalidad_cliente()%>"></p>
 					</tr>
 				</tbody>		
 				
@@ -199,7 +202,7 @@ form {
 				</thead>
 				<tbody>
 					<tr style="<%=visibilidadTablaCuentas%>">
-						<th><p><%=cliente.getDireccion_cliente()%></p>
+						<th><p><input type="text" name="txtDireccion" value="<%=cliente.getDireccion_cliente()%>"></p>
 						
 						<th><p><select id="txtProvincia" name="txtProvincia" onchange="actualizarLocalidades()" style="width: 177px;" required>
 						
@@ -223,10 +226,10 @@ form {
 					<th><p>	<select id="txtLocalidad" name="txtLocalidad" style="width: 177px;" required>
 				    	<option value="">Seleccione su Localidad...</option>
 					</select>						
-						<th><p><%=cliente.getCorreo_electronico_cliente()%></p></th>
-						<th><p><%=cliente.getTelefono_cliente()%></p></th>
+						<th><p><input type="email" name="txtCorreo" value="<%=cliente.getCorreo_electronico_cliente()%>"></p></th>
+						<th><p><input type="text" name="txtTelefono" value="<%=cliente.getTelefono_cliente()%>"></p></th>
 						<th><p><%=cliente.getUsuario_cliente()%></p></th>
-						<th><p><%=cliente.getContraseña_cliente()%></p></th>
+						<th><p><input type="text" name="txtTelefono" value="<%=cliente.getContraseña_cliente()%>"></p></th>
 
 					</tr>
 				</tbody>
@@ -295,4 +298,5 @@ if (ultimaLocalidad?.id === "") {
     }
     
 </script>
+
 </html>
