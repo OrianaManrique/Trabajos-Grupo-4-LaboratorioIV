@@ -1,9 +1,6 @@
 package datosImpl;
 
 import java.sql.ResultSet;
-
-import entidad.Cuenta;
-import entidad.TipoCuenta;
 import entidad.Usuario;
 
 public class UsuarioDaoImpl {
