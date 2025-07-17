@@ -53,8 +53,9 @@ public class ServletCuentas extends HttpServlet {
 			case "SeleccionModificar": {
 				
 				request.setAttribute("Cuenta", negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("NumeroCuenta"))));
-				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda"))));
-				request.setAttribute("Cliente", clienteNeg.obtenerCliente(Integer.parseInt(request.getParameter("txtBusqueda"))));
+				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("dnibusqueda"))));
+				request.setAttribute("Cliente", clienteNeg.obtenerCliente(Integer.parseInt(request.getParameter("dnibusqueda"))));
+				request.setAttribute("DniBusqueda", (Integer.parseInt(request.getParameter("dnibusqueda"))));
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
 				dispatcher.forward(request, response);
@@ -171,6 +172,7 @@ public class ServletCuentas extends HttpServlet {
 				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda"))));
 				
 				request.setAttribute("Cliente", clienteNeg.obtenerCliente(Integer.parseInt(request.getParameter("txtBusqueda"))));
+				request.setAttribute("DniBusqueda", (Integer.parseInt(request.getParameter("txtBusqueda"))));
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
 				dispatcher.forward(request, response);

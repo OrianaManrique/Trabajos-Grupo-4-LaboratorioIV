@@ -170,11 +170,9 @@ public class CuentaDaoImpl implements CuentaDao {
 			conexion = new Conexion();
 			conexion.open();
 
-			String consulta = "SELECT c.nroCuenta_cuenta AS NumeroCuenta, c.dnicliente_cuenta AS DniCliente, \r\n"
-					+ "c.fecha_creacion_cuenta AS FechaCreacion, c.cbu_cuenta AS CBU, c.idtipo_cuenta AS TipoCuenta, \r\n"
-					+ "tc.descripcion_tipoCuenta AS DescripcionCuenta, c.saldo_cuenta AS SaldoCuenta\r\n"
-					+ "FROM Cuentas c \r\n"
-					+ "LEFT JOIN tipocuentas tc ON c.idtipo_cuenta = tc.id_tipoCuenta\r\n"
+			String consulta = "SELECT c.nroCuenta_cuenta, c.dnicliente_cuenta, c.fecha_creacion_cuenta, "
+					+ "c.cbu_cuenta, c.idtipo_cuenta, tc.descripcion_tipoCuenta, c.saldo_cuenta " + "FROM Cuentas c "
+					+ "LEFT JOIN tipocuentas tc ON c.idtipo_cuenta = tc.id_tipoCuenta "
 					+ "WHERE c.estado_cuenta = 1 AND c.nroCuenta_cuenta = " + NroCuenta_Cuenta + ";";
 
 			ResultSet rs = conexion.query(consulta);
@@ -182,18 +180,18 @@ public class CuentaDaoImpl implements CuentaDao {
 			if (rs.next()) {
 				cuenta = new Cuenta();
 
-				cuenta.setNroCuenta_cuenta(rs.getInt("NumeroCuenta"));
-				cuenta.setDni_Cliente(rs.getInt("DniCliente"));
-				cuenta.setFechaCreacion_cuenta(rs.getDate("FechaCreacion"));
-				cuenta.setCbu_cuenta(rs.getString("CBU"));
+				cuenta.setNroCuenta_cuenta(rs.getInt("nroCuenta_cuenta"));
+				cuenta.setDni_Cliente(rs.getInt("dnicliente_cuenta"));
+				cuenta.setFechaCreacion_cuenta(rs.getDate("fecha_creacion_cuenta"));
+				cuenta.setCbu_cuenta(rs.getString("cbu_cuenta"));
 
 				tipo = new TipoCuenta();
 
-				tipo.setId_tipoCuenta(rs.getInt("TipoCuenta"));
-				tipo.setDescripcion_tipoCuenta(rs.getString("DescripcionCuenta"));
+				tipo.setId_tipoCuenta(rs.getInt("idtipo_cuenta"));
+				tipo.setDescripcion_tipoCuenta(rs.getString("descripcion_tipoCuenta"));
 				cuenta.setTipo_cuenta(tipo);
 
-				cuenta.setSaldo_cuenta(rs.getFloat("SaldoCuenta"));
+				cuenta.setSaldo_cuenta(rs.getFloat("saldo_cuenta"));
 
 			}
 

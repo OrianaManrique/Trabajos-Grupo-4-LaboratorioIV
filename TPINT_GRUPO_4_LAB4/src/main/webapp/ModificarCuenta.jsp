@@ -114,19 +114,14 @@ form {
 <body>
 	<%
 	String visibilidad = "display: none;";
-	int dniCliente = 41200035;
-	int NroCuenta = 11001;
-	float Saldo = 10000;
-	String Fecha = "2/7/2077";
-	String CBU = "1234567891123456789123";
+	int DniBusqueda=0;
 	TipoCuenta tipoCuenta = new TipoCuenta();
 	Cliente cliente = new Cliente();
 	Cuenta cuenta = new Cuenta();
 	
 	ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();
 	if (request.getAttribute("ListaCuentas") != null) {
-		ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("ListaCuentas");
-		
+		ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("ListaCuentas");	
 	}
 	
 	if (request.getAttribute("Cliente") != null) {
@@ -136,7 +131,15 @@ form {
 	
 	if (request.getAttribute("Cuenta") != null) {
 		cuenta = (Cuenta) request.getAttribute("Cuenta");
+	}else{
+		//SI SACAS ESTA DECLARACION EXPLOTA TODO
+		cuenta.setSaldo_cuenta(1f);
 	}
+	
+	if (request.getAttribute("DniBusqueda") != null) {
+		DniBusqueda = (int)request.getAttribute("DniBusqueda");
+	}
+
 	
 	%>
 
@@ -171,7 +174,7 @@ form {
 					<tr>
 						<td><p><%=cuentaCliente.getNroCuenta_cuenta()%></p></td>					
 						<td><p><%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta()%></p></td>
-						<td><a href="ServletCuentas?Param=SeleccionModificar&NumeroCuenta=<%=cuentaCliente.getNroCuenta_cuenta()%>"> Seleccionar </a> <br /></td>
+						<td><a href="ServletCuentas?Param=SeleccionModificar&NumeroCuenta=<%=cuentaCliente.getNroCuenta_cuenta()%>&dnibusqueda=<%=DniBusqueda%>"> Seleccionar </a> <br /></td>
 					</tr>
 					<%
 					}
@@ -194,8 +197,8 @@ form {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th><p><%=cuenta.getNroCuenta_cuenta()%></p></th>
+					<tr style="<%=visibilidad%>">
+						<th ><p><%=cuenta.getNroCuenta_cuenta()%></p></th>
 						<th><p><%=cuenta.getDni_Cliente()%></p></th>
 						<th><p>
 								<input type="text" value="<%=cuenta.getCbu_cuenta()%>">
@@ -204,8 +207,7 @@ form {
 								<option value="1">Caja de ahorro</option>
 								<option value="2">Cuenta Corriente</option>
 						</select></th>
-						<th><p>
-								<input type="number" value="1">
+						<th><p>	<input type="number" value="<%=cuenta.getSaldo_cuenta()%>">
 							</p></th>
 						<th><p><%=cuenta.getFechaCreacion_cuenta()%></p></th>
 						<th><input class="btn btn-success" type="submit"
@@ -215,9 +217,9 @@ form {
 			</table>
 
 			<br /> <br /> <label id="lblMensajeExito"
-				style="visibility: visible; Color: green">EXITO ! SE
+				style="visibility: hidden; Color: green">EXITO ! SE
 				MODIFICO LA CUENTA</label> <br /> <br /> <label id="lblMensajeError"
-				style="visibility: visible; Color: red">ERROR ! NO SE PUDO
+				style="visibility: hidden; Color: red">ERROR ! NO SE PUDO
 				MODIFICAR LA CUENTA</label>
 
 		</div>
