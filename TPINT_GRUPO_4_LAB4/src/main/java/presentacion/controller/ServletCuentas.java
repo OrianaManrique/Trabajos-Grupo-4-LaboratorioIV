@@ -144,8 +144,6 @@ public class ServletCuentas extends HttpServlet {
 				cuenta.setSaldo_cuenta(Float.parseFloat(request.getParameter("txtSaldo")));			
 				tipo.setId_tipoCuenta(Integer.parseInt(request.getParameter("ddlTipoCuenta")));
 				cuenta.setTipo_cuenta(tipo);
-				
-				System.out.println(cuenta.toString());
 
 				request.setAttribute("Exito", negCuenta.modificarCuenta(cuenta));
 				request.setAttribute("DniBusqueda", (Integer.parseInt(request.getParameter("dnibusqueda"))));

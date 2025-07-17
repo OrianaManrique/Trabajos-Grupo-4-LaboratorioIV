@@ -1,10 +1,10 @@
 package datosImpl;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import datos.Tipo_CuentaDao;
+import datos.TipoCuentaDao;
 import entidad.TipoCuenta;
 
-public class Tipo_CuentaDaoImpl implements Tipo_CuentaDao{
+public class Tipo_CuentaDaoImpl implements TipoCuentaDao{
 	
 	Conexion conexion;
 
