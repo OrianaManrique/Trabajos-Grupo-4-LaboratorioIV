@@ -66,30 +66,6 @@ public class ServletClientes extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			default:
-				break;
-			}
-
-			return;
-
-		}
-
-		if (request.getParameter("Param") != null && request.getParameter("Param2") != null) {
-
-			String operacion = request.getParameter("Param").toString();
-
-			switch (operacion) {
-			case "CargarModificarCliente": {
-
-				int dniCliente = Integer.parseInt(request.getParameter("Param2"));
-				request.setAttribute("DniClienteEditar", dniCliente);
-				request.setAttribute("Cliente", negCli.obtenerCliente(dniCliente));
-				request.setAttribute("listaLocalidades", negloc.listarLocalidades());
-				request.setAttribute("listaProvincias", negprov.listarProvincias());
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCliente.jsp");
-				dispatcher.forward(request, response);
-				break;
-			}
 			case "EliminarCliente": {
 
 				boolean estado = negCli.borrar(Integer.parseInt(request.getParameter("Param2")));
@@ -258,13 +234,6 @@ public class ServletClientes extends HttpServlet {
 			return;
 
 		}
-
-		if (request.getParameter("btnModificar") != null) {
-
-
-
-		}
-
 	}
 
 }
