@@ -169,6 +169,7 @@ public class ServletClientes extends HttpServlet {
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCliente.jsp");
 				dispatcher.forward(request, response);
+				break;
 				
 			}
 			case "GuardarModificacionCliente": {
@@ -176,6 +177,7 @@ public class ServletClientes extends HttpServlet {
 				Cliente cliente = new Cliente();
 				Localidad localidad = new Localidad();
 				Provincia provincia = new Provincia();
+				
 				
 				System.out.println(request.getParameter("DniBusquedaModificarCliente"));            
 				System.out.println(request.getParameter("txtNombre"));
@@ -189,7 +191,7 @@ public class ServletClientes extends HttpServlet {
 				System.out.println(request.getParameter("txtDireccion"));
 				System.out.println(request.getParameter("txtTelefono"));
 				System.out.println(request.getParameter("txtcontra"));
-				
+
 				cliente.setNombre_cliente(request.getParameter("txtNombre"));
 				cliente.setApellido_cliente(request.getParameter("txtApellido"));
 				cliente.setSexo_cliente(request.getParameter("ddlSexo"));
@@ -213,21 +215,9 @@ public class ServletClientes extends HttpServlet {
 				cliente.setCorreo_electronico_cliente(request.getParameter("txtCorreo"));
 				cliente.setDireccion_cliente(request.getParameter("txtDireccion"));
 				cliente.setTelefono_cliente(request.getParameter("txtTelefono"));
-				cliente.setContraseña_cliente(request.getParameter("txtContra"));
+				cliente.setContraseña_cliente(request.getParameter("txtContra"));		
 				
-				
-				System.out.println(request.getParameter("DniBusquedaModificarCliente"));            
-				System.out.println(request.getParameter("txtNombre"));
-				System.out.println(request.getParameter("txtApellido"));
-				System.out.println(request.getParameter("ddlSexo"));
-				System.out.println(request.getParameter("ddlProvincia"));
-				System.out.println(request.getParameter("ddlLocalidad"));
-				System.out.println(request.getParameter("txtNacimiento"));
-				System.out.println(request.getParameter("txtNacionalidad"));
-				System.out.println(request.getParameter("txtCorreo"));
-				System.out.println(request.getParameter("txtDireccion"));
-				System.out.println(request.getParameter("txtTelefono"));
-				System.out.println(request.getParameter("txtcontra"));
+				System.out.println(cliente.toString());
 
 				request.setAttribute("Exito", negCli.editar(cliente));
 				request.setAttribute("Cliente", negCli.obtenerCliente(Integer.parseInt(request.getParameter("DniBusquedaModificarCliente"))));
@@ -237,7 +227,7 @@ public class ServletClientes extends HttpServlet {
 				
 				RequestDispatcher requestdispatcher = request.getRequestDispatcher("/ModificarCliente.jsp");
 				requestdispatcher.forward(request, response);
-				return;
+				break;
 			}
 			case "ConfirmarClienteyUsuario": {
 

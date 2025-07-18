@@ -149,18 +149,18 @@ public class ClienteDaoImpl implements ClienteDao {
 	    conexion.open();
 
 	    String query = "UPDATE clientes SET nombre_cliente='" + cliente.getNombre_cliente() + "', "
-	    	    + "apellido_cliente='" + cliente.getApellido_cliente() + "', "
-	    	    + "sexo_cliente='" + cliente.getSexo_cliente() + "', "
-	    	    + "nacionalidad_cliente='" + cliente.getNacionalidad_cliente() + "', "
-	    	    + "fecha_nacimiento_cliente='" + cliente.getFecha_nacimiento_cliente() + "', "
-	    	    + "direccion_cliente='" + cliente.getDireccion_cliente() + "', "
-	    	    + "id_localidad_cliente='" + cliente.getLocalidad().getId_localidad() + "', "
-	    	    + "id_provincia_cliente='" + cliente.getProvincia().getId_provincia() + "', "
-	    	    + "correo_electronico_cliente='" + cliente.getCorreo_electronico_cliente() + "', "
-	    	    + "telefono_cliente='" + cliente.getTelefono_cliente() + "', "
-	    	    + "contrasena_cliente='" + cliente.getContraseña_cliente() + "' "
-	    	    + "WHERE dni_cliente='" + cliente.getDni_cliente() + "'"
-	    	    + " AND estado_cliente=1";
+                + "apellido_cliente='" + cliente.getApellido_cliente() + "', "
+                + "sexo_cliente='" + cliente.getSexo_cliente() + "', "
+                + "nacionalidad_cliente='" + cliente.getNacionalidad_cliente() + "', "
+                + "fecha_nacimiento_cliente='" + cliente.getFecha_nacimiento_cliente() + "', "
+                + "direccion_cliente='" + cliente.getDireccion_cliente() + "', "
+                + "id_localidad_cliente= " + cliente.getLocalidad().getId_localidad() + ", "
+                + "id_provincia_cliente= " + cliente.getProvincia().getId_provincia() + ", "
+                + "correo_electronico_cliente='" + cliente.getCorreo_electronico_cliente() + "', "
+                + "telefono_cliente='" + cliente.getTelefono_cliente() + "', "
+                + "contrasena_cliente='" + cliente.getContraseña_cliente() + "' "
+                + "WHERE dni_cliente= " + cliente.getDni_cliente()
+                + " AND estado_cliente=1;";
 
 	    try {
 	        estado = conexion.execute(query);
