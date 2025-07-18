@@ -117,6 +117,7 @@ form {
 	String visibilidadTablaCuentas = "display: none;";
 	String visibilidadTablaModificar = "display: none;";
 	int DniBusqueda=0;
+	int TipoSeleccionado=0;
 	TipoCuenta tipoCuenta = new TipoCuenta();
 	Cliente cliente = new Cliente();
 	Cuenta cuenta = new Cuenta();
@@ -134,6 +135,7 @@ form {
 	if (request.getAttribute("Cuenta") != null) {
 		cuenta = (Cuenta) request.getAttribute("Cuenta");
 		visibilidadTablaModificar = "";
+		TipoSeleccionado = cuenta.getTipo_cuenta().getId_tipoCuenta();
 	}else{
 		//SI SACAS ESTA DECLARACION EXPLOTA TODO
 		cuenta.setSaldo_cuenta(1f);

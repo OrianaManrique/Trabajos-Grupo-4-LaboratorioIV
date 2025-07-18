@@ -121,10 +121,17 @@ form {
 	Cliente cliente = new Cliente();
 	Cuenta cuenta = new Cuenta();
 	int DniBusqueda=0;
+    String sexoSeleccionado = "";
+    int ProvinciaSeleccionada = 0;
+    int localidadSeleccionada = 0;
+    
 	
 	if (request.getAttribute("Cliente") != null) {
 		cliente = (Cliente) request.getAttribute("Cliente");
 		visibilidadTablaCuentas = "";
+        sexoSeleccionado = cliente.getSexo_cliente();
+        ProvinciaSeleccionada = cliente.getProvincia().getId_provincia();
+        localidadSeleccionada = cliente.getLocalidad().getId_localidad();
 	}
 	
 	if (request.getAttribute("DniBusqueda") != null) {
@@ -182,10 +189,10 @@ form {
 						<th><p><%=cliente.getCuil_cliente()%></p>  </th>
 						
 						<th><select id="ddlSexo" name="ddlSexo">
-								<option value="">Seleccione su sexo...</option>
-						        <option value="F">Femenino</option>
-						        <option value="M">Masculino</option>
-						        <option value="O">Otro/s</option>
+							 <option value="">Seleccione su sexo...</option>
+                             <option value="F" <%= "F".equals(sexoSeleccionado) ? "selected" : "" %>>Femenino</option>
+                             <option value="M" <%= "M".equals(sexoSeleccionado) ? "selected" : "" %>>Masculino</option>
+                             <option value="O" <%= "O".equals(sexoSeleccionado) ? "selected" : "" %>>Otro/s</option>
 						</select></th>
 						<th><p><input type="text" name="txtNacionalidad" value="<%=cliente.getNacionalidad_cliente()%>"></p>
 					</tr>
@@ -205,7 +212,6 @@ form {
 						<th>CONTRASEÑA</th>			
 					</tr>
 				</thead>
-				<tbody>
 					<tr style="<%=visibilidadTablaCuentas%>">
 						<th><p><input type="text" name="txtDireccion" value="<%=cliente.getDireccion_cliente()%>"></p>
 						
@@ -218,8 +224,7 @@ form {
 
 						for (Provincia p : ListaProvincias) {
 						%>
-						<option value="<%=p.getId_provincia()%>"><%=p.getDescripcion_provincia()%></option>
-
+                          <option value="<%=p.getId_provincia()%>" <%= p.getId_provincia() == ProvinciaSeleccionada ? "selected" : "" %>> <%= p.getDescripcion_provincia() %></option>
 						<%
 						}
 						%>
@@ -245,12 +250,36 @@ form {
 			
 			<br /> <br />
                  
-              <div class="d-grid gap-2 col-6 mx-auto">
-              <input class="btn btn-primary btn-lg btn btn-success" type="submit" value="GUARDAR">
-              </div>
+              <input class="btn btn-success btn btn-primary btn-lg" type="submit" value="GUARDAR">
 			
 
 			<br /> <br />
+			
+			<%  
+			      
+			    if(request.getAttribute("Exito")!=null){
+			    	
+			    	if(((Boolean)request.getAttribute("Exito"))==true){
+			    		
+			    		%>		    		
+			    		
+			    		<p><label id="lblMensajeExitoCliente"	style="Color: green; font-weight: bold; font-size: 20px"> ¡SE MODIFICO EL CLIENTE CON ÉXITO!</label></p>
+			    				
+			    		<%
+			    		
+			    	}else{
+			    		
+			    		
+                        %>		    		
+			    		
+			    		<label id="lblMensajeErrorCliente"	style="Color: red; font-weight: bold; font-size: 20px">NO SE HA PODIDO MODIFICAR EL CLIENTE</label>
+			    				
+			    		<%
+			    		
+			    	}
+			    }
+			    
+			    %>
 		
 			    
 		</div>
@@ -260,48 +289,49 @@ form {
 <script>
 
 const localidades = [
-    <%for (Localidad l : ListaLocalidades) {%>
+    <% for (Localidad l : ListaLocalidades) { %>
         {
-            id: "<%=l.getId_localidad()%>",
-            Descripcion: "<%=l.getDescripcion_localidad()%>",
-            idProvincia: "<%=l.getIdProvincia()%>"
+            id: "<%= l.getId_localidad() %>",
+            descripcion: "<%= l.getDescripcion_localidad() %>",
+            idProvincia: "<%= l.getIdProvincia() %>"
         },
-    <%}%>
-];   
-  
-const ultimaLocalidad = localidades.at(-1);
+    <% } %>
+];
 
-if (ultimaLocalidad?.id === "") {
-    localidades.pop();
+const localidadSeleccionada = "<%= localidadSeleccionada %>";
+
+function actualizarLocalidades() {
+    var idProvincia = document.getElementById("ddlProvincia").value;
+    var selectLocalidad = document.getElementById("ddlLocalidad");
+
+    selectLocalidad.innerHTML = '<option value="">Seleccione su Localidad...</option>';
+
+    var localidadesFiltradas = localidades.filter(function(localidad) {
+        return String(localidad.idProvincia).trim() === String(idProvincia).trim();
+    });
+
+    localidadesFiltradas.forEach(function(localidad) {
+        var option = document.createElement("option");
+        option.value = localidad.id;
+        option.textContent = localidad.descripcion;
+        if (localidad.id === localidadSeleccionada) {
+            option.selected = true;
+        }
+        selectLocalidad.appendChild(option);
+    });
+
+    if (localidadesFiltradas.length === 0) {
+        var option = document.createElement("option");
+        option.value = "";
+        option.textContent = "Seleccione una Provincia...";
+        selectLocalidad.appendChild(option);
+    }
 }
 
-    function actualizarLocalidades() {
-        var idProvincia = document.getElementById("ddlProvincia").value;
-        var selectLocalidad = document.getElementById("ddlLocalidad");
-
-        selectLocalidad.innerHTML = '<option value="">Seleccione su Localidad...</option>';
-
-        var localidadesFiltradas = localidades.filter(function(localidad) {
-            return localidad.idProvincia === idProvincia;
-        });
-
-        if (localidadesFiltradas.length > 0) {
-            localidadesFiltradas.forEach(function(localidad) {
-                var option = document.createElement("option");
-                option.value = localidad.id;
-                option.textContent = localidad.Descripcion;
-                selectLocalidad.appendChild(option);
-            });
-        } else {   	
-            var option = document.createElement("option");
-            option.value = "";
-            option.textContent = "Seleccione una Provincia...";
-            selectLocalidad.appendChild(option);
-        }
-
-    }
-
-  </script>
+window.onload = function() {
+    actualizarLocalidades();
+};
+</script>
 </body>
 
 </html>

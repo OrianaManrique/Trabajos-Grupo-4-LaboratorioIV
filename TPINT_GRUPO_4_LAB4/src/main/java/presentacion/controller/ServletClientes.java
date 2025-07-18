@@ -180,8 +180,6 @@ public class ServletClientes extends HttpServlet {
 				cliente.setTelefono_cliente(request.getParameter("txtTelefono"));
 				cliente.setContraseña_cliente(request.getParameter("txtcontra"));
 				cliente.setEstado(1);
-				
-				System.out.println(cliente.toString());
 
 				request.setAttribute("Exito", negCli.editar(cliente));
 				request.setAttribute("Cliente", negCli.obtenerCliente(Integer.parseInt(request.getParameter("DniBusquedaModificarCliente"))));
