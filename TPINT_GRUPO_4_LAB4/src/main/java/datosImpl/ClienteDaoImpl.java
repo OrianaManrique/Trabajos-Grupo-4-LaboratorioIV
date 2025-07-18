@@ -149,7 +149,6 @@ public class ClienteDaoImpl implements ClienteDao {
 	    conexion.open();
 
 	    String query = "UPDATE clientes SET nombre_cliente='" + cliente.getNombre_cliente() + "', "
-	    	    + "cuil_cliente='" + cliente.getCuil_cliente() + "', "
 	    	    + "apellido_cliente='" + cliente.getApellido_cliente() + "', "
 	    	    + "sexo_cliente='" + cliente.getSexo_cliente() + "', "
 	    	    + "nacionalidad_cliente='" + cliente.getNacionalidad_cliente() + "', "
@@ -159,9 +158,9 @@ public class ClienteDaoImpl implements ClienteDao {
 	    	    + "id_provincia_cliente='" + cliente.getProvincia().getId_provincia() + "', "
 	    	    + "correo_electronico_cliente='" + cliente.getCorreo_electronico_cliente() + "', "
 	    	    + "telefono_cliente='" + cliente.getTelefono_cliente() + "', "
-	    	    + "usuario_cliente='" + cliente.getUsuario_cliente() + "', "
-	    	    + "contraseña_cliente='" + cliente.getContraseña_cliente() + "' "
-	    	    + "WHERE dni_cliente='" + cliente.getDni_cliente() + "'";
+	    	    + "contrasena_cliente='" + cliente.getContraseña_cliente() + "' "
+	    	    + "WHERE dni_cliente='" + cliente.getDni_cliente() + "'"
+	    	    + " AND estado_cliente=1";
 
 	    try {
 	        estado = conexion.execute(query);

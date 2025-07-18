@@ -141,7 +141,12 @@ form {
 		ListaLocalidades = (ArrayList<Localidad>) request.getAttribute("listaLocalidades");
 	}
 	
-	%>
+	int DniBusquedaModificarCliente=0;
+	if (request.getAttribute("DniBusquedaModificarCliente") != null) {
+		DniBusquedaModificarCliente = (int)request.getAttribute("DniBusquedaModificarCliente");
+	}
+	
+	%> 
 
 	<div class="header">Usuario logueado - Cuenta Banco</div>
     
@@ -153,7 +158,7 @@ form {
 			<input class="btn btn-outline-success" name="BuscarClienteDni" type="submit">
 	</form>
 
-	<form action="ServletCuentas?Param=GuardarModificacion"  method="post">
+	<form action="ServletClientes?Param=GuardarModificacionCliente&DniBusquedaModificarCliente=<%=DniBusquedaModificarCliente%>"  method="post">
 
 		<div class="table-container">
 			<table class="movements-table2">
@@ -171,8 +176,8 @@ form {
 				<tbody>
 					<tr style="<%=visibilidadTablaCuentas%>">
 						<th><p><%=cliente.getDni_cliente()%></p></th>			
-						<th><p><input type="text" name="txtNombre" value="<%=cliente.getNombre_cliente()%>"></p></th>
-						<th><p><input type="text" name="txtApellido" value="<%=cliente.getApellido_cliente()%>"></p>  </th>
+						<th><p><input type="text"  name="txtNombre" value="<%=cliente.getNombre_cliente()%>"></p></th>
+						<th><p><input type="text"  name="txtApellido" value="<%=cliente.getApellido_cliente()%>"></p>  </th>
 						<th><p><input type="date" name="txtNacimiento" value="<%=cliente.getFecha_nacimiento_cliente()%>"></p>  </th>
 						<th><p><%=cliente.getCuil_cliente()%></p>  </th>
 						
@@ -182,7 +187,7 @@ form {
 						        <option value="M">Masculino</option>
 						        <option value="O">Otro/s</option>
 						</select></th>
-						<th><p><input type="text" name="txtNacimiento" value="<%=cliente.getNacionalidad_cliente()%>"></p>
+						<th><p><input type="text" name="txtNacionalidad" value="<%=cliente.getNacionalidad_cliente()%>"></p>
 					</tr>
 				</tbody>		
 				
@@ -229,7 +234,7 @@ form {
 						<th><p><input type="email" name="txtCorreo" value="<%=cliente.getCorreo_electronico_cliente()%>"></p></th>
 						<th><p><input type="text" name="txtTelefono" value="<%=cliente.getTelefono_cliente()%>"></p></th>
 						<th><p><%=cliente.getUsuario_cliente()%></p></th>
-						<th><p><input type="text" name="txtTelefono" value="<%=cliente.getContraseña_cliente()%>"></p></th>
+						<th><p><input type="text" name="txtcontra" value="<%=cliente.getContraseña_cliente()%>"></p></th>
 
 					</tr>
 				</tbody>
@@ -251,7 +256,6 @@ form {
 		</div>
 
 	</form>
-</body>
 
 <script>
 
@@ -296,7 +300,8 @@ if (ultimaLocalidad?.id === "") {
         }
 
     }
-    
-</script>
+
+  </script>
+</body>
 
 </html>
