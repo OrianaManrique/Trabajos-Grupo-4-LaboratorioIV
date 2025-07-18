@@ -153,21 +153,8 @@ public class ServletClientes extends HttpServlet {
 				Cliente cliente = new Cliente();
 				Localidad localidad = new Localidad();
 				Provincia provincia = new Provincia();
-				
-				
-				System.out.println(request.getParameter("DniBusquedaModificarCliente"));            
-				System.out.println(request.getParameter("txtNombre"));
-				System.out.println(request.getParameter("txtApellido"));
-				System.out.println(request.getParameter("ddlSexo"));
-				System.out.println(request.getParameter("ddlProvincia"));
-				System.out.println(request.getParameter("ddlLocalidad"));
-				System.out.println(request.getParameter("txtNacimiento"));
-				System.out.println(request.getParameter("txtNacionalidad"));
-				System.out.println(request.getParameter("txtCorreo"));
-				System.out.println(request.getParameter("txtDireccion"));
-				System.out.println(request.getParameter("txtTelefono"));
-				System.out.println(request.getParameter("txtcontra"));
 
+			    cliente.setDni_cliente((Integer.parseInt(request.getParameter("DniBusquedaModificarCliente"))));
 				cliente.setNombre_cliente(request.getParameter("txtNombre"));
 				cliente.setApellido_cliente(request.getParameter("txtApellido"));
 				cliente.setSexo_cliente(request.getParameter("ddlSexo"));
@@ -191,7 +178,8 @@ public class ServletClientes extends HttpServlet {
 				cliente.setCorreo_electronico_cliente(request.getParameter("txtCorreo"));
 				cliente.setDireccion_cliente(request.getParameter("txtDireccion"));
 				cliente.setTelefono_cliente(request.getParameter("txtTelefono"));
-				cliente.setContraseña_cliente(request.getParameter("txtContra"));		
+				cliente.setContraseña_cliente(request.getParameter("txtcontra"));
+				cliente.setEstado(1);
 				
 				System.out.println(cliente.toString());
 
