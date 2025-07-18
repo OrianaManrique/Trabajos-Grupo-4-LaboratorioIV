@@ -127,6 +127,11 @@ form {
 		ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("ListaCuentas");	
 	}
 	
+	ArrayList<TipoCuenta> ListaTipoCuentas = new ArrayList<TipoCuenta>();
+	if (request.getAttribute("ListaTipoCuentas") != null) {
+		ListaTipoCuentas = (ArrayList<TipoCuenta>) request.getAttribute("ListaTipoCuentas");	
+	}
+	
 	if (request.getAttribute("Cliente") != null) {
 		cliente = (Cliente) request.getAttribute("Cliente");
 		visibilidadTablaCuentas = "";
@@ -180,7 +185,7 @@ form {
 				    %>
 					<tr>
 						<td><p><%=cuentaCliente.getNroCuenta_cuenta()%></p></td>					
-						<td><p><%= cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta()%></p></td>
+						<td><p><%=cuentaCliente.getTipo_cuenta().getDescripcion_tipoCuenta()%></p></td>
 						<td><a href="ServletCuentas?Param=SeleccionModificar&NumeroCuenta=<%=cuentaCliente.getNroCuenta_cuenta()%>&dnibusqueda=<%=DniBusqueda%>"> Seleccionar </a> <br /></td>
 					</tr>
 					<%
@@ -211,17 +216,20 @@ form {
 						
 						<th><p><%=cuenta.getDni_Cliente()%></p></th>
 						<th><p><%=cuenta.getFechaCreacion_cuenta()%></p></th>
-						<th><p>
-								<input type="text" name="txtCBU" value="<%=cuenta.getCbu_cuenta()%>">
-							</p></th>
+						<th><p>	<input type="text" name="txtCBU" value="<%=cuenta.getCbu_cuenta()%>"></p></th>
 						<th><select id="ddlTipoCuenta" name="ddlTipoCuenta">
-								<option value="1">Caja de ahorro</option>
-								<option value="2">Cuenta Corriente</option>
-						</select></th>
-						<th><p>	<input type="number" name="txtSaldo" value="<%=cuenta.getSaldo_cuenta()%>">
-							</p></th>
-						<th><input class="btn btn-success" type="submit"
-							value="GUARDAR"></th>
+						<option value="">Seleccione El tipo...</option>
+					     <%
+					     for (TipoCuenta tipocuenta : ListaTipoCuentas) {
+				         %>				
+						 <option value="<%=tipocuenta.getId_tipoCuenta()%>" <%=tipocuenta.getId_tipoCuenta() == TipoSeleccionado ? "selected" : "" %>> <%= tipocuenta.getDescripcion_tipoCuenta()%></option>											     			
+						<%
+					     }
+					    %>    
+					     </select></th>
+					     
+						<th><p>	<input type="number" name="txtSaldo" value="<%=cuenta.getSaldo_cuenta()%>">	</p></th>
+						<th><input class="btn btn-success" type="submit" value="GUARDAR"></th>
 					</tr>
 				</tbody>
 			</table>

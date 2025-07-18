@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import entidad.Cuenta;
+import java.util.ArrayList;
 import entidad.TipoCuenta;
 import negocio.CuentaNeg;
 import negocioImpl.CuentaNegImpl;
@@ -44,8 +45,16 @@ public class ServletCuentas extends HttpServlet {
 				break;
 			}
 			case "SeleccionModificar": {
+							
+				ArrayList <TipoCuenta> lista  = new ArrayList <TipoCuenta>();
 				
 				request.setAttribute("Cuenta", negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("NumeroCuenta"))));
+				request.setAttribute("ListaTipoCuentas", tipoCuentaNeg.obtenerTiposCuentas());
+				
+				for (TipoCuenta tipocuenta : lista) {
+					
+					System.out.println(tipocuenta.toString());
+				}
 				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("dnibusqueda"))));
 				request.setAttribute("Cliente", clienteNeg.obtenerCliente(Integer.parseInt(request.getParameter("dnibusqueda"))));
 				request.setAttribute("DniBusqueda", (Integer.parseInt(request.getParameter("dnibusqueda"))));
@@ -147,10 +156,10 @@ public class ServletCuentas extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			
 			case "BuscarCuentasModificar":{
+
 							
-				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda"))));			
+				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(Integer.parseInt(request.getParameter("txtBusqueda"))));	
 				request.setAttribute("Cliente", clienteNeg.obtenerCliente(Integer.parseInt(request.getParameter("txtBusqueda"))));
 				request.setAttribute("DniBusqueda", (Integer.parseInt(request.getParameter("txtBusqueda"))));
 				
