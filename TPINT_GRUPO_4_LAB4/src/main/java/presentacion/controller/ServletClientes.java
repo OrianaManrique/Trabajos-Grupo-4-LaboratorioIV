@@ -177,13 +177,12 @@ public class ServletClientes extends HttpServlet {
 				Localidad localidad = new Localidad();
 				Provincia provincia = new Provincia();
 				
-				System.out.println(request.getParameter("DniBusquedaModificarCliente"));
-                 
+				System.out.println(request.getParameter("DniBusquedaModificarCliente"));            
 				System.out.println(request.getParameter("txtNombre"));
 				System.out.println(request.getParameter("txtApellido"));
 				System.out.println(request.getParameter("ddlSexo"));
-				System.out.println(request.getParameter("txtProvincia"));
-				System.out.println(request.getParameter("txtLocalidad"));
+				System.out.println(request.getParameter("ddlProvincia"));
+				System.out.println(request.getParameter("ddlLocalidad"));
 				System.out.println(request.getParameter("txtNacimiento"));
 				System.out.println(request.getParameter("txtNacionalidad"));
 				System.out.println(request.getParameter("txtCorreo"));
@@ -194,8 +193,8 @@ public class ServletClientes extends HttpServlet {
 				cliente.setNombre_cliente(request.getParameter("txtNombre"));
 				cliente.setApellido_cliente(request.getParameter("txtApellido"));
 				cliente.setSexo_cliente(request.getParameter("ddlSexo"));
-				provincia.setId_provincia(Integer.parseInt(request.getParameter("txtProvincia")));
-				localidad.setId_localidad(Integer.parseInt(request.getParameter("txtLocalidad")));
+				provincia.setId_provincia(Integer.parseInt(request.getParameter("ddlProvincia")));
+				localidad.setId_localidad(Integer.parseInt(request.getParameter("ddlLocalidad")));
 				cliente.setProvincia(provincia);
 				cliente.setLocalidad(localidad);
 				String fecha = request.getParameter("txtNacimiento");
@@ -208,13 +207,27 @@ public class ServletClientes extends HttpServlet {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-
+                
 				cliente.setFecha_nacimiento_cliente(fechanacimiento);
 				cliente.setNacionalidad_cliente(request.getParameter("txtNacionalidad"));
 				cliente.setCorreo_electronico_cliente(request.getParameter("txtCorreo"));
 				cliente.setDireccion_cliente(request.getParameter("txtDireccion"));
 				cliente.setTelefono_cliente(request.getParameter("txtTelefono"));
 				cliente.setContraseña_cliente(request.getParameter("txtContra"));
+				
+				
+				System.out.println(request.getParameter("DniBusquedaModificarCliente"));            
+				System.out.println(request.getParameter("txtNombre"));
+				System.out.println(request.getParameter("txtApellido"));
+				System.out.println(request.getParameter("ddlSexo"));
+				System.out.println(request.getParameter("ddlProvincia"));
+				System.out.println(request.getParameter("ddlLocalidad"));
+				System.out.println(request.getParameter("txtNacimiento"));
+				System.out.println(request.getParameter("txtNacionalidad"));
+				System.out.println(request.getParameter("txtCorreo"));
+				System.out.println(request.getParameter("txtDireccion"));
+				System.out.println(request.getParameter("txtTelefono"));
+				System.out.println(request.getParameter("txtcontra"));
 
 				request.setAttribute("Exito", negCli.editar(cliente));
 				request.setAttribute("Cliente", negCli.obtenerCliente(Integer.parseInt(request.getParameter("DniBusquedaModificarCliente"))));

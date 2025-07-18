@@ -209,7 +209,7 @@ form {
 					<tr style="<%=visibilidadTablaCuentas%>">
 						<th><p><input type="text" name="txtDireccion" value="<%=cliente.getDireccion_cliente()%>"></p>
 						
-						<th><p><select id="txtProvincia" name="txtProvincia" onchange="actualizarLocalidades()" style="width: 177px;" required>
+						<th><p><select id="ddlProvincia" name="ddlProvincia" onchange="actualizarLocalidades()" style="width: 177px;" required>
 						
 						<option value="">Seleccione su Provincia...</option>
 
@@ -228,7 +228,7 @@ form {
 					
 					</p></th>
 					
-					<th><p>	<select id="txtLocalidad" name="txtLocalidad" style="width: 177px;" required>
+					<th><p>	<select id="ddlLocalidad" name="ddlLocalidad" style="width: 177px;" required>
 				    	<option value="">Seleccione su Localidad...</option>
 					</select>						
 						<th><p><input type="email" name="txtCorreo" value="<%=cliente.getCorreo_electronico_cliente()%>"></p></th>
@@ -276,8 +276,8 @@ if (ultimaLocalidad?.id === "") {
 }
 
     function actualizarLocalidades() {
-        var idProvincia = document.getElementById("txtProvincia").value;
-        var selectLocalidad = document.getElementById("txtLocalidad");
+        var idProvincia = document.getElementById("ddlProvincia").value;
+        var selectLocalidad = document.getElementById("ddlLocalidad");
 
         selectLocalidad.innerHTML = '<option value="">Seleccione su Localidad...</option>';
 
