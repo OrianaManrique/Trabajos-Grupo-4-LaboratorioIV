@@ -19,7 +19,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 		String consulta = "SELECT usuario_US AS Usuario, contrasena_US AS Clave, tipo_US AS TipoUsuario, dnicliente_US AS DniCliente,\r\n"
 				+ "dniadmin_US AS DniAdministrador, nombre_US AS Nombre, apellido_US AS Apellido\r\n"
-				+ "FROM usuarios WHERE estado_US = 1 AND usuario_US = '"+usuario_log+"' AND contrasena_US = "+clave_log+";";
+				+ "FROM usuarios WHERE estado_US = 1 AND usuario_US = '"+usuario_log+"' AND contrasena_US = '"+clave_log+"';";
 
 		
 			ResultSet rs = conexion.query(consulta);
