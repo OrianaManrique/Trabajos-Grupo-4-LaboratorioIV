@@ -3,15 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"><meta charset="UTF-8">
 <title>InicioAdministrador</title>
 </head>
 <style>
 
-body {
+body{
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
+ 
     background: #E0E0E0;
 }
 .header {
@@ -25,16 +26,22 @@ body {
 }
 
 .balance-container {
-    display: flex;
+     /*display: flex;
+    background-color: transparent;
     justify-content: center;
     gap: 40px;
     margin: 30px 0;
-    flex-wrap: wrap;
+    flex-wrap: wrap;*/
+    
+    display: flex;
+    justify-content: center;    
+    align-items: center;        
+    height: 50vh;              
+    gap: 40px; 
 }
 
 .balance-box {
-    /*background: linear-gradient(to right, #602A80, #4C0026);*/
-    background: linear-gradient(to right, #A178C1, #A14C6F);, 
+    background: linear-gradient(to right, #602A80, #4C0026);
     color: white;
     padding: 25px 35px;
     border-radius: 12px;
@@ -65,8 +72,8 @@ body {
 }
 
 p {
-      font-size: 16px;
-      text-align:;
+     font-size: 25px;
+     text-align:;
 
   }
 
@@ -74,49 +81,45 @@ p {
 
 <body>
 
-<form>
 
 <div class="header">
 Usuario logueado - Cuenta Banco
 </div>
 
-
 <div class = "balance-container">
 
 <div class = "balance-box">
-<p>ABML Clientes</p>
+<p>ABML CLIENTES</p>
 <br/>
 
-<a href = "ServletClientes?Param=CargarAgregarCliente" > Agregar Cliente </a> <br/>
-<a href = "ModificarCliente.jsp" > Modificar Clientes </a> <br/>
-<a href = "ServletClientes?Param=ListarEliminarCliente" > Eliminar Clientes </a> <br/>
-<a href = "ServletClientes?Param=ListarClientes" > Listar Clientes </a> <br/>
+<a class="link-light link-offset-2 link-underline link-underline-opacity-0 link-opacity-50-hover" href = "ServletClientes?Param=CargarAgregarCliente" > Agregar Cliente </a> <br/>
+<a class="link-light link-offset-2 link-underline link-underline-opacity-0 link-opacity-50-hover" href = "ModificarCliente.jsp" > Modificar Clientes </a> <br/>
+<a class="link-light link-offset-2 link-underline link-underline-opacity-0 link-opacity-50-hover" href = "ServletClientes?Param=ListarEliminarCliente" > Eliminar Clientes </a> <br/>
+<a class="link-light link-offset-2 link-underline link-underline-opacity-0 link-opacity-50-hover" href = "ServletClientes?Param=ListarClientes" > Listar Clientes </a> <br/>
 
 </div>
 
 <div class = "balance-box">
-<p>ABML Cuentas</p>
+<p>ABML CUENTAS</p>
 <br/>
-<a href = "ServletCuentas?Param=CargarAgregarCuenta" > Agregar Cuenta </a> <br/>
-<a href = "ModificarCuenta.jsp" > Modificar Cuentas </a> <br/>
-<a href = "ServletCuentas?Param=ListarEliminar" > Eliminar Cuentas </a> <br/>
-<a href = "ServletCuentas?Param=ListarCuentas" > Listar Cuentas </a> <br/>
+<a class="link-light link-offset-2 link-underline link-underline-opacity-0 link-opacity-50-hover" href = "ServletCuentas?Param=CargarAgregarCuenta" > Agregar Cuenta </a> <br/>
+<a class="link-light link-offset-2 link-underline link-underline-opacity-0 link-opacity-50-hover" href = "ModificarCuenta.jsp" > Modificar Cuentas </a> <br/>
+<a class="link-light link-offset-2 link-underline link-underline-opacity-0 link-opacity-50-hover" href = "ServletCuentas?Param=ListarEliminar" > Eliminar Cuentas </a> <br/>
+<a class="link-light link-offset-2 link-underline link-underline-opacity-0 link-opacity-50-hover" href = "ServletCuentas?Param=ListarCuentas" > Listar Cuentas </a> <br/>
 
 </div>
 
 <div class = "balance-box">
 
-<p>Otros</p>
+<p>OTROS</p>
 <br/>
-<a href = "AutorizarPrestamo.jsp" > Autorizar Prestamo </a> <br/>
-<a href = "Reportes.jsp" > Reportes </a> <br/>
+<a class="link-light link-offset-2 link-underline link-underline-opacity-0 link-opacity-50-hover" href = "AutorizarPrestamo.jsp" > Autorizar Prestamo </a> <br/>
+<a class="link-light link-offset-2 link-underline link-underline-opacity-0 link-opacity-50-hover" href = "Reportes.jsp" > Reportes </a> <br/>
 
 
 </div>
 
 </div>
-
-</form>
 
 </body>
 </html>
