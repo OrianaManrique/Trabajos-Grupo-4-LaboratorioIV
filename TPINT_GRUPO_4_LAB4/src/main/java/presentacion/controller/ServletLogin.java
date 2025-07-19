@@ -35,10 +35,10 @@ public class ServletLogin extends HttpServlet {
 
 			request.getSession().setAttribute("usuarioLogueado", usuario_logueado);
 			
-			if (usuario_logueado.getTipo_us() == "A") {
+			if (usuario_logueado.getTipo_us().equals("A")){
 			RequestDispatcher rd = request.getRequestDispatcher("/InicioAdministrador.jsp");
 			rd.forward(request, response);
-			} else if (usuario_logueado.getTipo_us() == "C"){
+			} else {
 			RequestDispatcher rd = request.getRequestDispatcher("/CuentaCliente.jsp");
 			rd.forward(request, response);
 			}

@@ -32,7 +32,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				usuario.setUsuario_us(rs.getString("Usuario"));
 				usuario.setContraseña_us(rs.getString("Clave"));
 				
-				if (usuario.getTipo_us() == "A") {
+				if (usuario.getTipo_us().equals("A")){
 					usuario.setDni_us(rs.getInt("DniAdministrador"));
 				}else {
 					usuario.setDni_us(rs.getInt("DniCliente"));
