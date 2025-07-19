@@ -76,12 +76,6 @@ body {
 
 <body>
 
-<%
-if(session.getAttribute("usuarioLogueado") != null){
-	
-}
-%>	
-
 	<div class="login-container">
 		<h2>Iniciar Sesión</h2>
 		<div >
