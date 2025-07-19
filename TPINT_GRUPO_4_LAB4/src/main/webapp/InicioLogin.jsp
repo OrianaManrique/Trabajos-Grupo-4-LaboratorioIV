@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import = "entidad.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,18 +76,22 @@ body {
 
 <body>
 
+<%
+if(session.getAttribute("usuarioLogueado") != null){
+	
+}
+%>	
+
 	<div class="login-container">
 		<h2>Iniciar Sesión</h2>
 		<div >
 			<form action="ServletLogin?Param=Ingresar" method ="post">
 				<input type="text" name="usuario" placeholder="Usuario" required>
 				<input type="password" name="clave" placeholder="Contraseña" required>
-				<input type="submit" value="Ingresar">
-			</form>
+				<input type="submit" value="Ingresar" name = "Ingresar">
+				
+				</form>
 		</div>
-		<% if (request.getAttribute("error") != null) { %>
-			<p style="color:red;"><%= request.getAttribute("error") %></p>
-		<% } %>
 	</div>
 
 </body>

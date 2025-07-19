@@ -1,13 +1,14 @@
 package datosImpl;
 
 import java.sql.ResultSet;
+
+import datos.UsuarioDao;
 import entidad.Usuario;
 
-public class UsuarioDaoImpl {
+public class UsuarioDaoImpl implements UsuarioDao {
 
 	private Conexion conexion;
 	
-	//terminar 17/07 17:27
 	public Usuario obtenerUsuario(String usuario_log, String clave_log) {
 		
 		Usuario usuario = null;
@@ -26,10 +27,20 @@ public class UsuarioDaoImpl {
 			if (rs.next()) {
 				
 				usuario= new Usuario();
-
+				
+				usuario.setTipo_us(rs.getString("TipoUsuario"));
 				usuario.setUsuario_us(rs.getString("Usuario"));
 				usuario.setContraseña_us(rs.getString("Clave"));
-				usuario.setTipo_us(rs.getString("TipoUsuario"));
+				
+				if (usuario.getTipo_us() == "A") {
+					usuario.setDni_us(rs.getInt("DniAdministrador"));
+				}else {
+					usuario.setDni_us(rs.getInt("DniCliente"));
+				}
+				
+				usuario.setNombre_us(rs.getString("Nombre"));
+				usuario.setApellido_us(rs.getString("Apellido"));
+				
 
 			}
 		} catch (Exception e) {
