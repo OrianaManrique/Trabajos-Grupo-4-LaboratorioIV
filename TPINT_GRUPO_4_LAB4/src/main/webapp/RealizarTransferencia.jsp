@@ -2,6 +2,9 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="entidad.*"%>
+<%@page import="java.util.Date"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -209,20 +212,6 @@ if (request.getAttribute("ListaCuentas") != null) {
               <option value="Varios">Varios</option>
             </select>
 	      </td>
-        </tr>
-      </tbody>
-    </table>
-    
-    
-        <table class="movements-table">
-      <thead>
-        <tr>
-          <th>FECHA</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td> 2/7/1998 </td>
         </tr>
       </tbody>
     </table>

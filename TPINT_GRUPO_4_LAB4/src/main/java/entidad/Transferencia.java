@@ -9,6 +9,8 @@ public class Transferencia {
 	private Cuenta cbuReceptor_transferencia;
 	private float monto_transferencia;
 	private Date fecha_transferencia;
+	
+	public Transferencia() {}
 		
 	public Transferencia(int id, Cuenta cbu_emisor, Cuenta cbu_receptor,
 			float monto_transferencia, Date fecha) {
@@ -25,6 +27,23 @@ public class Transferencia {
 	public void setId_transferencia(int id_transferencia) {
 		this.id_transferencia = id_transferencia;
 	}
+	
+	public Cuenta getCbuEmisor_transferencia() {
+		return cbuEmisor_transferencia;
+	}
+
+	public void setCbuEmisor_transferencia(Cuenta cbuEmisor_transferencia) {
+		this.cbuEmisor_transferencia = cbuEmisor_transferencia;
+	}
+
+	public Cuenta getCbuReceptor_transferencia() {
+		return cbuReceptor_transferencia;
+	}
+
+	public void setCbuReceptor_transferencia(Cuenta cbuReceptor_transferencia) {
+		this.cbuReceptor_transferencia = cbuReceptor_transferencia;
+	}
+
 	public Cuenta getCbu_emisor_transferencia() {
 		return cbuEmisor_transferencia;
 	}
