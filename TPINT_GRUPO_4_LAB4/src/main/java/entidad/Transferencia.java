@@ -10,12 +10,12 @@ public class Transferencia {
 	private float monto_transferencia;
 	private Date fecha_transferencia;
 		
-	public Transferencia(int id, String cbu_emisor, String cbu_receptor,
+	public Transferencia(int id, Cuenta cbu_emisor, Cuenta cbu_receptor,
 			float monto_transferencia, Date fecha) {
 
 		this.id_transferencia = id;
-		this.cbuEmisor_transferencia.setCbu_cuenta(cbu_emisor);
-		this.cbuReceptor_transferencia.setCbu_cuenta(cbu_receptor);
+		this.cbuEmisor_transferencia = cbu_emisor;
+		this.cbuReceptor_transferencia = cbu_receptor;
 		this.monto_transferencia = monto_transferencia;
 		this.fecha_transferencia = fecha;
 	}
