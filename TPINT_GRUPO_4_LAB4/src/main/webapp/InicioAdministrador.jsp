@@ -98,7 +98,7 @@ if(session.getAttribute("usuarioLogueado") != null){
 	<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador
 	</div>
 }
- %>
+
 
 <div class = "balance-container">
 

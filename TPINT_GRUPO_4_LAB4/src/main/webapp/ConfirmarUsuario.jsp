@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import= "entidad.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +17,16 @@
     padding: 0;
   }
   
+  .header {
+	background: linear-gradient(to right, #602A80, #4C0026);
+	color: white;
+	padding: 20px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	letter-spacing: 1px;
+}
+
   .ContenedorVentana{
   background-color: #4A217C; 
   width: 500px; 
@@ -92,6 +104,23 @@
 
 </head>
 <body>
+
+<%
+
+Usuario usuario = new Usuario();
+
+if(session.getAttribute("usuarioLogueado") != null){
+
+    usuario = (Usuario)session.getAttribute("usuarioLogueado");
+
+//}else {
+//    response.sendRedirect("InicioLogin.jsp");
+}
+ %>
+
+<div class="header">
+<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador
+</div>
        
     <%
         String dni_cliente = null;
@@ -103,8 +132,6 @@
 		}
 	%>
 
-   <a href="InicioLogin.jsp"> Inicio </a>
-   
    <div class="ContenedorVentana" >
         <div class="ContenedorTitulo">
            <h2>

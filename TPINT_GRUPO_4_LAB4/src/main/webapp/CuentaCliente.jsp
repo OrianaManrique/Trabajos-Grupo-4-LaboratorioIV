@@ -119,9 +119,11 @@ p {
 Usuario usuario = new Usuario();
 
 if(session.getAttribute("usuarioLogueado") != null){
-	
-	usuario = (Usuario)session.getAttribute("usuarioLogueado");
-	
+
+    usuario = (Usuario)session.getAttribute("usuarioLogueado");
+
+//}else {
+//    response.sendRedirect("InicioLogin.jsp");
 }
  %>
 

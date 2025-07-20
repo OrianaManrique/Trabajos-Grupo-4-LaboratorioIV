@@ -116,11 +116,23 @@ p {
 
 <body>
 
+<% 
+Usuario usuario = new Usuario();
+
+if(session.getAttribute("usuarioLogueado") != null){
+
+    usuario = (Usuario)session.getAttribute("usuarioLogueado");
+
+//}else {
+//    response.sendRedirect("InicioLogin.jsp");
+}
+ %>
+
 	<form method="post">
-
-		<div class="header">USUARIO LOGUEADO - CUENTA: xxxxxxxx</div>
-
-		<a href="InicioLogin.jsp"> Inicio </a>
+	
+	<div class="header">
+    <%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Cliente
+    </div>
 
 		<div class="balance-container">
 			<div class="balance-box">
