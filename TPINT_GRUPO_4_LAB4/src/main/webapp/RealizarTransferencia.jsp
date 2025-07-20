@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="entidad.*"%>
-
 
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"rel="stylesheet"> 
+<meta charset="UTF-8">
 <meta charset="UTF-8">
 <title>Realizar transferencia</title>
 </head>
@@ -27,43 +29,45 @@ body {
     font-size: 20px;
     letter-spacing: 1px;
 }
-  .ContenedorVentana{
-  background-color: #4A217C; 
-  width: 600px;
-  height: 500px;
-  padding-top: 5px;
-  border-radius: 8px;
-  text-align: center;
-  } 
-  
-  .ContenedorTitulo {
-  background-color: #E5E5E5; 
-  width: 300px; 
-  margin: 0 auto;
-  text-align: center;
-  border-radius: 8px;
-  }
-  
-  .ContenedorColumna { 
-  display: flex;
-  flex-direction: column;
-  margin-top: 15px;
-  margin-left: 90px;
-  gap:10px;
-  }
-  
-  .ContenedorBoton {
-  margin: 0 auto;
-  width: 260px; 
-  height: 100px; 
-  }
+
+.subtitulo {
+    text-align: center;
+    font-size: 20px;
+    color: #44107a;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.table-container {
+    justify-content: center;
+    width: 40%;
+    margin-left: 36%;
+    font-size: 20px;
+    align-items: center;
+}
+
+/* Estilos de la tabla */
+.movements-table {
+    width: 70%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.movements-table thead {
+    /*background-color: #bc9fd6;*/
+    background: linear-gradient(to right, #bc9fd6, #44107a);
+    color: white;
+}
+
+.movements-table th,
+.movements-table td {
+    padding: 12px;
+    border: 1px solid #bc9fd6;
+}
     
-  .btnTransferir {
-  width: 260px; 
-  height: 30%;
-  font-weight: bold;
-  }
-  
   .form-columna input{
   width: 93%;
   padding: 10px;
@@ -78,13 +82,6 @@ body {
   input::placeholder {
   font-size: 13px;
   text-align: center;
-  }
-  
-  .ContenedorControles{
-    display: flex; 
-    justify-content: space-around; 
-    align-items: flex-start; 
-    gap: 20px;
   }
   
   .form-columns {
@@ -103,11 +100,25 @@ body {
   color: white;
   }
   
+  input,
+  select,
+  textarea{
+  text-align: center;
+  }
+  
+  .ContenedorBoton{   
+     display: flex; 
+     justify-content: center;
+     margin-top: 20px;
+     margin-right: 251px;
+  }
+  
 </style>
 
 <body>
 
 <% 
+
 Usuario usuario = new Usuario();
 
 if(session.getAttribute("usuarioLogueado") != null){
@@ -117,44 +128,111 @@ if(session.getAttribute("usuarioLogueado") != null){
 //}else {
 //    response.sendRedirect("InicioLogin.jsp");
 }
- %>	
+
+ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();
+if (request.getAttribute("ListaCuentas") != null) {
+	ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("ListaCuentas");
+}
+
+%>	
  
-<div class="header"> <%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Cliente </div>
+<div class="header"> <%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Cliente </div>  
+   <form>
+     <div class ="subtitulo"> TRANSFERENCIAS </div>
+     <div class="table-container">
+    <table class="movements-table">
+      <thead>
+        <tr>
+          <th>CUENTA ORIGEN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>   
+            <select  class="form-select form-select-lg mb-3" id="ddlCuentas" name="ddlCuentas">          
+              <option value="">Seleccione una cuenta</option>
+              <%
+					for (Cuenta c : ListaCuentas) {
+					%> 
+					<option value="<%=c.getCbu_cuenta()%>" >CTA N° - <%=c.getNroCuenta_cuenta() %></option>
+					<%
+				   }
+			    %>
+            </select>
+	      </td>
+        </tr>
+      </tbody>
+    </table>
     
-   <a class="btnInicio" href="InicioLogin.jsp"> Inicio </a>
-   
-   <div class="ContenedorVentana" >
-        <div class="ContenedorTitulo">
-           <h2>
-			<strong style="color:#5F1AB4 ">REALIZAR TRANSFERENCIA</strong>
-		   </h2>
-        </div>
-               
-		<br/> <br/>
-	   
-	  <div class="ContenedorControles">
-	  <form class="form-columns">
-	  <div class="form-columna"> 
-	     	  	   
-	    <label class="lblinput">¿A QUIEN LE VAS A TRANSFERIR? </label>
-	    <input class="inputCBU" type="text" id="txtCBU" name="txtCBU" placeholder="CBU" > 
-		<label class="lblinput"> IMPORTE </label>  
-		<input class="inputImporte" type="text" id="txtImporte" name="txtImporte" placeholder="$">
-		<label class="lblinput"> MOTIVO </label>
-		<input class="inputMotivo" type="text" id="txtMotivo" name="txtMotivo" placeholder="Ej: Alquiler" > 	
-					   	   
-	   </div>
-	   <br/> <br/>
-	   </form>
-	   	 </div>
-		<br/> <br/>
-		<div class="ContenedorBoton"> 
-		
-		 <input type="submit" class="btnTransferir" name="btnAsignar" value="TRANSFERIR"/>
-		</div>
-		
-			
-	</div>		         
+     <table class="movements-table">
+      <thead>
+        <tr>
+          <th>DESTINO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input class="form-control" type="text" id="txtCBUdestino" name="txtCBUdestino" placeholder="Ingrese el CBU a transferir..."required> </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <table class="movements-table">
+      <thead>
+        <tr>
+          <th>MONTO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input  class="form-control" type="number" max="99999999" id="txtMonto" name="txtMonto" placeholder="$$$" required></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <table class="movements-table">
+      <thead>
+        <tr>
+          <th>MOTIVO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>   
+            <select  class="form-select form-select-lg mb-3" id="ddlCuentas" name="ddlCuentas">
+              <option value="">Seleccione un motivo</option>
+              <option value="Haberes">Haberes</option>
+              <option value="Facturas">Facturas</option>
+              <option value="Expensas">Expensas</option>
+              <option value="Préstamos">Préstamos</option>
+              <option value="Seguros">Seguros</option>
+              <option value="Varios">Varios</option>
+            </select>
+	      </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    
+        <table class="movements-table">
+      <thead>
+        <tr>
+          <th>FECHA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td> 2/7/1998 </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="ContenedorBoton">
+       <input class="btn btn-success btn-primary btn-lg" type="submit" value="ACEPTAR">
+    </div>
+    
+  </div>
+ </form>	         
          
 </body>
 </html>

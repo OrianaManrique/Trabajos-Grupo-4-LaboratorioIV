@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import entidad.Cuenta;
 import java.util.ArrayList;
 import entidad.TipoCuenta;
+import entidad.Usuario;
 import negocio.CuentaNeg;
 import negocioImpl.CuentaNegImpl;
 import negocioImpl.TipoCuentaNegImpl;
@@ -76,6 +77,14 @@ public class ServletCuentas extends HttpServlet {
 				request.setAttribute("CBU", negCuenta.ObtenerCBU());
 				request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCuenta.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
+			case "CargarCuentasTransferencias": {
+    			
+				Usuario UsuarioLogeado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
+				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogeado.getDni_us()));
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/RealizarTransferencia.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}

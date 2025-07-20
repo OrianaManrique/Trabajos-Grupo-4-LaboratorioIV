@@ -145,7 +145,7 @@ if(session.getAttribute("usuarioLogueado") != null){
   <div class="table-container">
     <a href="HistorialMovimientos.jsp"> Movimientos </a> 
     <br/>
-    <a href="RealizarTransferencia.jsp"> Nueva Transferencia </a>
+    <a href="ServletCuentas?Param=CargarCuentasTransferencias"> Nueva Transferencia </a>
     <br/>
     <a href="PedirPrestamo.jsp"> Solicitar Préstamo </a>
     <br/>
