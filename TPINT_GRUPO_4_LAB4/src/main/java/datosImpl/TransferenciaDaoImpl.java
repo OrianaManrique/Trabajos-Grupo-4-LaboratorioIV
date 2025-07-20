@@ -17,7 +17,7 @@ public class TransferenciaDaoImpl implements TransferenciaDao{
 
 		conexion.open();
 
-		String query = "CALL AltaCompletaCliente('" +transferencia.getCbu_emisor_transferencia()+"', '"+transferencia.getCbu_receptor_transferencia()+"', "+transferencia.getMonto_transferencia()+");";
+		String query = "CALL AltaTransferencia('" +transferencia.getCbu_emisor_transferencia()+"', '"+transferencia.getCbu_receptor_transferencia()+"', "+transferencia.getMonto_transferencia()+");";
 
 		try {
 			estado = conexion.execute(query);
