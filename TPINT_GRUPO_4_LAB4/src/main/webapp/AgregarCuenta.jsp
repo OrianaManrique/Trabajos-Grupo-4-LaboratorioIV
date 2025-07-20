@@ -183,8 +183,21 @@
 			CBU = (String)request.getAttribute("CBU");
 		}
 	%>
+<%
+
+Usuario usuario = new Usuario();
+
+if(session.getAttribute("usuarioLogueado") != null){
+
+    usuario = (Usuario)session.getAttribute("usuarioLogueado");
+
+//}else {
+//	response.sendRedirect("InicioLogin.jsp");
+}
+ %>
+
 <div class="header">
-Usuario logueado - Cuenta Banco
+<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador
 </div>
 
    <a href="InicioLogin.jsp"> Inicio </a>

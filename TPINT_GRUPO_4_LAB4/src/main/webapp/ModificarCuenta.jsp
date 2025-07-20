@@ -153,7 +153,22 @@ form {
 	
 	%>
 
-	<div class="header">Usuario logueado - Cuenta Banco</div>
+	<%
+
+Usuario usuario = new Usuario();
+
+if(session.getAttribute("usuarioLogueado") != null){
+
+    usuario = (Usuario)session.getAttribute("usuarioLogueado");
+
+//}else {
+//	response.sendRedirect("InicioLogin.jsp");
+}
+ %>
+
+<div class="header">
+<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador
+</div>
 
 	<form action="ServletCuentas?Param=BuscarCuentasModificar"
 		method="post">
