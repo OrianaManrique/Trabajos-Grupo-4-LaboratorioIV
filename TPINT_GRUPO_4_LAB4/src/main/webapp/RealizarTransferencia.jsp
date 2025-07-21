@@ -115,6 +115,19 @@ input, select, textarea {
 	margin-top: 20px;
 	margin-right: 251px;
 }
+
+.btn-siguiente {
+            margin-top: 30px;
+            background: linear-gradient(to right, #bc9fd6, #44107a);
+            color: white;
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+
 </style>
 
 <body>
@@ -223,7 +236,7 @@ input, select, textarea {
 			</table>
 
 			<div class="ContenedorBoton">
-				<input class="btn btn-success btn-primary btn-lg" type="submit"
+				<input class="btn-siguiente" type="submit"
 					value="ACEPTAR">
 			</div>
 			<%
