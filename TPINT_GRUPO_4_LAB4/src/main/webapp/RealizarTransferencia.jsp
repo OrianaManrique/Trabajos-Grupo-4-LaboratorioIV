@@ -138,9 +138,11 @@ if (request.getAttribute("ListaCuentas") != null) {
 }
 
 %>	
+
  
 <div class="header"> <%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Cliente </div>  
-   <form>
+
+   <form action="ServletCuentas?Param=ConfirmarTransferencia" method="post">
      <div class ="subtitulo"> TRANSFERENCIAS </div>
      <div class="table-container">
     <table class="movements-table">
@@ -202,12 +204,12 @@ if (request.getAttribute("ListaCuentas") != null) {
       <tbody>
         <tr>
           <td>   
-            <select  class="form-select form-select-lg mb-3" id="ddlCuentas" name="ddlCuentas">
+            <select  class="form-select form-select-lg mb-3" id="ddlMotivo" name="ddlMotivo">
               <option value="">Seleccione un motivo</option>
               <option value="Haberes">Haberes</option>
               <option value="Facturas">Facturas</option>
               <option value="Expensas">Expensas</option>
-              <option value="Préstamos">Préstamos</option>
+              <option value="Prestamos">Préstamos</option>
               <option value="Seguros">Seguros</option>
               <option value="Varios">Varios</option>
             </select>

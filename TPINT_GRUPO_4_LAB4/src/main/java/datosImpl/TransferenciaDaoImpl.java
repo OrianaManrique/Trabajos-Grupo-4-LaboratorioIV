@@ -15,9 +15,11 @@ public class TransferenciaDaoImpl implements TransferenciaDao{
 		
 		boolean estado = true;
 
+		conexion = new Conexion();
 		conexion.open();
 
-		String query = "CALL AltaTransferencia('" +transferencia.getCbu_emisor_transferencia()+"', '"+transferencia.getCbu_receptor_transferencia()+"', "+transferencia.getMonto_transferencia()+");";
+		String query = "CALL AltaTransferencia('" +transferencia.getCbu_emisor_transferencia().getCbu_cuenta()+"', '"
+		+transferencia.getCbu_receptor_transferencia().getCbu_cuenta()+"', "+transferencia.getMonto_transferencia()+" ,'"+ transferencia.getMotivo()+"')";
 
 		try {
 			estado = conexion.execute(query);
@@ -39,20 +41,22 @@ public class TransferenciaDaoImpl implements TransferenciaDao{
 		conexion = new Conexion();
 		conexion.open();
 
-		String consulta = "select id_transferencia AS id, cbu_emisor_transferencia AS emisor, cbu_receptor_transferencia AS receptor, monto_transferencia AS monto, fecha_transferencia AS fecha "
+		String consulta = "select id_transferencia AS Id, cbu_emisor_transferencia AS Emisor, cbu_receptor_transferencia AS Receptor, monto_transferencia AS Monto, "
+				          + "fecha_transferencia AS Fecha, motivo_transferencia AS Motivo "
 				          +"from transferencias where id_transferencia ="+ id + ";";
 
 		try {
 			ResultSet rs = conexion.query(consulta);
 			if (rs.next()) {
 				
-				transferencia.setId_transferencia(rs.getInt("id"));
-				cuentaEmisor.setCbu_cuenta(rs.getString("emisor"));
-				cuentaReceptor.setCbu_cuenta(rs.getString("receptor"));
+				transferencia.setId_transferencia(rs.getInt("Id"));
+				cuentaEmisor.setCbu_cuenta(rs.getString("Emisor"));
+				cuentaReceptor.setCbu_cuenta(rs.getString("Receptor"));
 				transferencia.setCbuEmisor_transferencia(cuentaEmisor);
 				transferencia.setCbuReceptor_transferencia(cuentaReceptor);
-				transferencia.setMonto_transferencia(rs.getFloat("monto"));
-				transferencia.setFecha_transferencia(rs.getDate("fecha"));
+				transferencia.setMonto_transferencia(rs.getFloat("Monto"));
+				transferencia.setMotivo(rs.getString("Motivo"));
+				transferencia.setFecha_transferencia(rs.getDate("Fecha"));
 				
 			}
 		} catch (Exception e) {
@@ -72,7 +76,8 @@ public class TransferenciaDaoImpl implements TransferenciaDao{
 		Cuenta cuentaEmisor = new Cuenta();
 		Cuenta cuentaReceptor = new Cuenta();
 
-		String consulta = "select id_transferencia AS id, cbu_emisor_transferencia AS emisor, cbu_receptor_transferencia AS receptor, monto_transferencia AS monto, fecha_transferencia AS fecha "
+		String consulta = "select id_transferencia AS Id, cbu_emisor_transferencia AS Emisor, cbu_receptor_transferencia AS Receptor, monto_transferencia AS Monto, "
+				  + "fecha_transferencia AS Fecha, motivo_transferencia AS Motivo "
 		          +"from transferencias;";
 
 		ArrayList<Transferencia> lista = new ArrayList<Transferencia>();
@@ -82,13 +87,14 @@ public class TransferenciaDaoImpl implements TransferenciaDao{
 
 			while (rs.next()) {
 				
-				transferencia.setId_transferencia(rs.getInt("id"));
-				cuentaEmisor.setCbu_cuenta(rs.getString("emisor"));
-				cuentaReceptor.setCbu_cuenta(rs.getString("receptor"));
+				transferencia.setId_transferencia(rs.getInt("Id"));
+				cuentaEmisor.setCbu_cuenta(rs.getString("Emisor"));
+				cuentaReceptor.setCbu_cuenta(rs.getString("Receptor"));
 				transferencia.setCbuEmisor_transferencia(cuentaEmisor);
 				transferencia.setCbuReceptor_transferencia(cuentaReceptor);
-				transferencia.setMonto_transferencia(rs.getFloat("monto"));
-				transferencia.setFecha_transferencia(rs.getDate("fecha"));
+				transferencia.setMonto_transferencia(rs.getFloat("Monto"));
+				transferencia.setMotivo(rs.getString("Motivo"));
+				transferencia.setFecha_transferencia(rs.getDate("Fecha"));
 
 				lista.add(transferencia);
 			}

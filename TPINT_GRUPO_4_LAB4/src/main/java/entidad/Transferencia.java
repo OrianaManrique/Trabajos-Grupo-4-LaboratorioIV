@@ -9,17 +9,26 @@ public class Transferencia {
 	private Cuenta cbuReceptor_transferencia;
 	private float monto_transferencia;
 	private Date fecha_transferencia;
+	private String motivo;
 	
 	public Transferencia() {}
 		
 	public Transferencia(int id, Cuenta cbu_emisor, Cuenta cbu_receptor,
-			float monto_transferencia, Date fecha) {
+			float monto_transferencia, Date fecha, String motivo) {
 
 		this.id_transferencia = id;
 		this.cbuEmisor_transferencia = cbu_emisor;
 		this.cbuReceptor_transferencia = cbu_receptor;
 		this.monto_transferencia = monto_transferencia;
 		this.fecha_transferencia = fecha;
+		this.motivo = motivo;
+	}
+	
+	public String getMotivo() {
+		return motivo;
+	}
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
 	}
 	public int getId_transferencia() {
 		return id_transferencia;
@@ -62,11 +71,13 @@ public class Transferencia {
 	public void setFecha_transferencia(Date fecha_transferencia) {
 		this.fecha_transferencia = fecha_transferencia;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Transferencia [id_transferencia=" + id_transferencia + ", cbu_emisor_transferencia="
-				+ cbuEmisor_transferencia + ", cbu_receptor_transferencia=" + cbuReceptor_transferencia
-				+ ", monto_transferencia=" + monto_transferencia + ", fecha_transferencia=" + fecha_transferencia + "]";
+		return "Transferencia [id_transferencia=" + id_transferencia + ", cbuEmisor_transferencia="
+				+ cbuEmisor_transferencia + ", cbuReceptor_transferencia=" + cbuReceptor_transferencia
+				+ ", monto_transferencia=" + monto_transferencia + ", fecha_transferencia=" + fecha_transferencia
+				+ ", motivo=" + motivo + "]";
 	}
+	
 }
