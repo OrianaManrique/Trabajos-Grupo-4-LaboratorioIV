@@ -13,7 +13,7 @@ public class TransferenciaDaoImpl implements TransferenciaDao{
 	@Override
 	public boolean AgregarTransferencia(Transferencia transferencia) {
 		
-		boolean estado = true;
+		boolean estado = false;
 
 		conexion = new Conexion();
 		conexion.open();
