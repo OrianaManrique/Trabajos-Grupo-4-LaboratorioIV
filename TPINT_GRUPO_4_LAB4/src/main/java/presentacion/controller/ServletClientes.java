@@ -16,6 +16,7 @@ import entidad.Cuenta;
 import entidad.Localidad;
 import entidad.Provincia;
 import entidad.TipoCuenta;
+import entidad.Usuario;
 import negocio.ClienteNeg;
 import negocio.LocalidadNeg;
 import negocioImpl.ClienteNegImpl;
@@ -66,6 +67,21 @@ public class ServletClientes extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
+			case "CargarDatosCliente": {
+                
+				Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
+				Cliente clienteLogueado = negCli.obtenerCliente(UsuarioLogueado.getDni_us());
+				
+				request.setAttribute("ClienteLogueado", clienteLogueado);
+				request.setAttribute("listaLocalidades", negloc.listarLocalidades());			
+				
+				request.setAttribute("Provincia", negprov.obtenerDescripcionPorId(((clienteLogueado.getProvincia().getId_provincia()))));
+				request.setAttribute("Localidad", negloc.obtenerDescripcionPorId(((clienteLogueado.getLocalidad().getId_localidad()))));
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/DatosCliente.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}		
 			case "EliminarCliente": {
 
 				boolean estado = negCli.borrar(Integer.parseInt(request.getParameter("Param2")));

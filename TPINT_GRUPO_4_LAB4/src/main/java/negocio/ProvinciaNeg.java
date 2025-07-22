@@ -5,5 +5,6 @@ import entidad.Provincia;
 public interface ProvinciaNeg {
 	
 	public ArrayList<Provincia> listarProvincias();
+	public String obtenerDescripcionPorId(int id);
 
 }

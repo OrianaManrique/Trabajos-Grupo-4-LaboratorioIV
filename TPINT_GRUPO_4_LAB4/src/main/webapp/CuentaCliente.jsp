@@ -148,7 +148,7 @@ if(session.getAttribute("usuarioLogueado") != null){
     <br/>
     <a href="PagosPrestamo.jsp"> Pago de Préstamos </a>
     <br/>
-    <a href="DatosCliente.jsp"> Mi cuenta </a>
+    <a href="ServletClientes?Param=CargarDatosCliente"> Mi cuenta </a>
 
   </div>
 

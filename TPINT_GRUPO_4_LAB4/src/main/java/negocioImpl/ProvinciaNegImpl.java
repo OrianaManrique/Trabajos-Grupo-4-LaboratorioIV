@@ -13,5 +13,9 @@ public class ProvinciaNegImpl implements ProvinciaNeg {
 	public ArrayList<Provincia> listarProvincias() {
 		return provDao.listarProvincias();
 	}
+
+	public String obtenerDescripcionPorId(int id){
+		return provDao.obtenerDescripcionPorId(id);
+	}	
 	
 }

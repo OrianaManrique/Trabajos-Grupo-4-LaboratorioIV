@@ -42,4 +42,30 @@ public class LocalidadDaoImpl implements LocalidadDao {
 		return list;
 	}
 
+	@Override
+	public String obtenerDescripcionPorId(int id) {
+		
+		 Conexion conexion= new Conexion();
+		 conexion.open();
+		 
+		Localidad localidad = new Localidad();
+
+		String consulta = ("SELECT descripcion_localidad AS Descripcion from localidades WHERE id_localidad = "+id+";");
+
+		try {
+			ResultSet rs = conexion.query(consulta);
+
+			if (rs.next()) {
+				localidad.setDescripcion_localidad(rs.getString("Descripcion"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+		
+		return localidad.getDescripcion_localidad();
+	}
+
 }

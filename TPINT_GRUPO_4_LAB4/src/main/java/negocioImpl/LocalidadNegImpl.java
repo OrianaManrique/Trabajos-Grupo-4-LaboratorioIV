@@ -7,11 +7,16 @@ import negocio.LocalidadNeg;
 
 public class LocalidadNegImpl implements LocalidadNeg{
     
-	private LocalidadDao provDao = new LocalidadDaoImpl();
+	private LocalidadDao LocDao = new LocalidadDaoImpl();
 	
 	@Override
 	public ArrayList<Localidad> listarLocalidades() {
-		return provDao.listaLocalidad();
+		return LocDao.listaLocalidad();
+	}
+
+	@Override
+	public String obtenerDescripcionPorId(int id) {
+		return LocDao.obtenerDescripcionPorId(id);
 	}
 
 }

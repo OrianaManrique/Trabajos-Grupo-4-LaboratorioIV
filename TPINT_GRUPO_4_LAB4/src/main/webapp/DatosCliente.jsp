@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="entidad.Usuario"%>
+<%@ page import="entidad.*"%>
 
 <!DOCTYPE html>
 <html>
@@ -59,6 +60,9 @@ body {
 <%
 
 Usuario usuario = new Usuario();
+Cliente cliente = new Cliente();
+String Localidad= "";
+String Provincia= "";
 
 if(session.getAttribute("usuarioLogueado") != null){
 
@@ -67,6 +71,19 @@ if(session.getAttribute("usuarioLogueado") != null){
 //}else {
 //    response.sendRedirect("InicioLogin.jsp");
 }
+
+if (request.getAttribute("ClienteLogueado") != null) {
+	cliente = (Cliente) request.getAttribute("ClienteLogueado");   
+}
+
+if (request.getAttribute("Provincia") != null) {
+	Provincia = (String) request.getAttribute("Provincia");   
+}
+
+if (request.getAttribute("Localidad") != null) {
+	Localidad = (String) request.getAttribute("Localidad");   
+}
+
  %>
 
 <div class="header">
@@ -77,12 +94,18 @@ if(session.getAttribute("usuarioLogueado") != null){
 	<div class="card-datos">
 		<h2>Datos Personales</h2>
 
-		<div class="dato">Nombre <span style= "float: right; color: black; font-weight: normal">Oriana</span></div>
-		<div class="dato">Apellido <span style= "float: right; color: black; font-weight: normal">Manrique</span></div>
-		<div class="dato">DNI <span style= "float: right; color: black; font-weight: normal">41200035</span></div>
-		<div class="dato">Email <span style= "float: right; color: black; font-weight: normal">oriana@hotmail.com</span></div>
-		<div class="dato">Teléfono <span style= "float: right; color: black; font-weight: normal">1164507877</span></div>
-		<div class="dato">Dirección <span style= "float: right; color: black; font-weight: normal">Lavalleja 2804</span></div>
+		<div class="dato">Nombre <span style= "float: right; color: black; font-weight: normal"><%=cliente.getNombre_cliente()%></span></div>
+		<div class="dato">Apellido <span style= "float: right; color: black; font-weight: normal"><%=cliente.getApellido_cliente()%></span></div>
+		<div class="dato">Cuil <span style= "float: right; color: black; font-weight: normal"><%=cliente.getCuil_cliente()%></span></div>
+		<div class="dato">Sexo <span style= "float: right; color: black; font-weight: normal"><%=cliente.getSexo_cliente()%></span></div>
+		<div class="dato">Fecha de nacimiento <span style= "float: right; color: black; font-weight: normal"><%=cliente.getFecha_nacimiento_cliente()%></span></div>
+		<div class="dato">Nacionalidad <span style= "float: right; color: black; font-weight: normal"><%=cliente.getNacionalidad_cliente()%></span></div>
+		
+		<div class="dato">Provincia <span style= "float: right; color: black; font-weight: normal"><%=Provincia%></span></div>
+		<div class="dato">Localidad <span style= "float: right; color: black; font-weight: normal"><%=Localidad%></span></div>
+		
+		<div class="dato">Usuario <span style= "float: right; color: black; font-weight: normal"><%=cliente.getUsuario_cliente()%></span></div>
+		<div class="dato">Contraseña <span style= "float: right; color: black; font-weight: normal"><%=cliente.getContraseña_cliente()%></span></div>
 	</div>
 </div>
 
