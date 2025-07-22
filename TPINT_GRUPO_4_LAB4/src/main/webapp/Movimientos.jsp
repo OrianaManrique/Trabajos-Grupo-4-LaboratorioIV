@@ -185,7 +185,7 @@ p {
 					for (Movimiento listaMovimiento : ListaMovimientos) {
 				    %>
 					<tr>
-						<td><p><%=listaMovimiento.getNroCuenta_movimiento()%></p></td>					
+						<td><p><%=listaMovimiento.getNroCuenta_movimiento().getNroCuenta_cuenta()%></p></td>					
 						<td><p><%=listaMovimiento.getFecha_movimiento()%></p></td>
 						<td><p><%=listaMovimiento.getDetalle_movimiento()%></p></td>
 						<td><p><%=listaMovimiento.getId_tipoMovimiento().getDescripcion_tipomovimiento()%></p></td>
