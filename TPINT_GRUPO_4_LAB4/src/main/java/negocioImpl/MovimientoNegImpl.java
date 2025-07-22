@@ -16,9 +16,12 @@ public class MovimientoNegImpl implements MovimientoNeg{
 	}
 
 	@Override
-	public ArrayList<Movimiento> obtenerMovimientos() {
+	public ArrayList<Movimiento> obtenerMovimientosCuenta(int NCuenta) {
 		
-		return movDao.obtenerMovimientos();
+		return movDao.obtenerMovimientosCuenta(NCuenta);
 	}
 
+	public ArrayList<Movimiento> obtenerMovimientosPorCliente(int dni){
+		return movDao.obtenerMovimientosPorCliente(dni);
+	}
 }

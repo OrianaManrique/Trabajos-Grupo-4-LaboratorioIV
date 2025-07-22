@@ -16,13 +16,55 @@ public class MovimientoDaoImpl implements MovimientoDao{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArrayList<Movimiento> obtenerMovimientos(){
+	public ArrayList<Movimiento> obtenerMovimientosCuenta(int NCuenta){
 		conexion = new Conexion();
 		conexion.open();
 		
 		String consulta = ("SELECT nroCuenta_movimiento AS NroCuenta, fecha_movimiento AS Fecha, detalle_movimiento AS Detalle, \r\n"
 				+ "importe_movimiento AS Importe, Mov.id_tipoMovimiento AS TipoMovimiento, TipoMov.descripcion_tipoMovimiento AS DescripcionTipoMovimiento\r\n"
-				+ "FROM movimientos Mov INNER JOIN tipomovimientos TipoMov ON Mov.id_tipoMovimiento = TipoMov.id_tipoMovimiento;");
+				+ "FROM movimientos Mov INNER JOIN tipomovimientos TipoMov ON Mov.id_tipoMovimiento = TipoMov.id_tipoMovimiento WHERE nroCuenta_movimiento = "+NCuenta+";");
+
+		ArrayList<Movimiento> lista = new ArrayList<Movimiento>();
+
+		try {
+			ResultSet rs = conexion.query(consulta);
+
+			while (rs.next()) {
+				
+				Movimiento movimiento = new Movimiento();
+				Cuenta cuenta = new Cuenta();
+				TipoMovimiento tipoMov = new TipoMovimiento();
+				
+				cuenta.setNroCuenta_cuenta(rs.getInt("NroCuenta"));
+				tipoMov.setId_tipomovimiento(rs.getInt("TipoMovimiento"));
+				tipoMov.setDescripcion_tipomovimiento(rs.getString("DescripcionTipoMovimiento"));
+				
+				movimiento.setNroCuenta_movimiento(cuenta);
+				movimiento.setFecha_movimiento(rs.getDate("Fecha"));
+				movimiento.setDetalle_movimiento(rs.getString("Detalle"));
+				movimiento.setImporte_movimiento(rs.getFloat("Importe"));
+				movimiento.setId_tipoMovimiento(tipoMov);
+				
+				lista.add(movimiento);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+		return lista;
+	}
+	
+	public ArrayList<Movimiento> obtenerMovimientosPorCliente(int dni){
+		
+		conexion = new Conexion();
+		conexion.open();
+		
+		String consulta = ("SELECT nroCuenta_movimiento AS NroCuenta, fecha_movimiento AS Fecha, detalle_movimiento AS Detalle, \r\n"
+				+ "importe_movimiento AS Importe, Mov.id_tipoMovimiento AS TipoMovimiento, TipoMov.descripcion_tipoMovimiento AS DescripcionTipoMovimiento\r\n"
+				+ "FROM movimientos Mov INNER JOIN tipomovimientos TipoMov ON Mov.id_tipoMovimiento = TipoMov.id_tipoMovimiento\r\n"
+				+ "INNER JOIN cuentas cue ON cue.dnicliente_cuenta = "+dni+";");
 
 		ArrayList<Movimiento> lista = new ArrayList<Movimiento>();
 
@@ -56,3 +98,4 @@ public class MovimientoDaoImpl implements MovimientoDao{
 		return lista;
 	}
 }
+
