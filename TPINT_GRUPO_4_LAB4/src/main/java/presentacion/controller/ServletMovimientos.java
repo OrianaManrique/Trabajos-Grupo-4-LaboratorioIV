@@ -76,7 +76,9 @@ public class ServletMovimientos extends HttpServlet {
 				request.setAttribute("ListaMovimientos",
 						movNeg.obtenerMovimientosCuenta(Integer.parseInt(request.getParameter("ddlCuentas"))));
 			}
-
+			
+			
+			request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogueado.getDni_us()));
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/Movimientos.jsp");
 			dispatcher.forward(request, response);
 			
