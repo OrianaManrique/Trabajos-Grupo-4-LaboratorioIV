@@ -182,6 +182,12 @@ input[type=number] {
 	float ValorCuotas=0;
 	float BaseTotal=0;
 	float Total=0;
+	float BCuota1=0;
+	float BCuota3=0;
+	float BCuota6=0;
+	float BCuota9=0;
+	float BCuota12=0;
+	
 	float Cuota1=0;
 	float Cuota3=0;
 	float Cuota6=0;
@@ -219,15 +225,21 @@ input[type=number] {
 		BaseTotal = (float)request.getAttribute("Total");
 		Total = Math.round(BaseTotal * 100)/100f;
 		
-		Cuota1=(Recibis/1)*1.0f;
-		Cuota3=(Recibis/3)*1.1f;
-		Cuota6=(Recibis/6)*1.2f;
-		Cuota9=(Recibis/9)*1.3f;
-		Cuota12=(Recibis/12)*1.4f;
+		BCuota1=(Recibis*1.0f)/1;
+		BCuota3=(Recibis*1.1f)/3;
+		BCuota6=(Recibis*1.2f)/6;
+		BCuota9=(Recibis*1.3f)/9;
+		BCuota12=(Recibis*1.4f)/12;
+		
+	    Cuota1= Math.round(BCuota1 * 100)/100f;
+		Cuota3= Math.round(BCuota3 * 100)/100f;
+		Cuota6= Math.round(BCuota6 * 100)/100f;
+		Cuota9= Math.round(BCuota9 * 100)/100f;
+		Cuota12= Math.round(BCuota12 * 100)/100f;
 	}
 		
 	%>
-	<div class="header"> <%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%>	- Cliente </div>
+	<div class="header"><%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%>	- Cliente </div>
 
 <form action="ServletMovimientos?Param=CalcularPrestamo" method="post">
 
@@ -319,10 +331,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			const cantCuotas = parseInt(this.value);
 			const valorCuota = cuotas[cantCuotas];
 			const total = (valorCuota * cantCuotas).toFixed(2);
-
-			document.querySelector('.resumen .item:nth-child(3) span').innerHTML = "$" + total;
+            
 			document.querySelector('.resumen .item:nth-child(1) span').innerHTML = "$" + total;
 			document.querySelector('.resumen .item:nth-child(2) span').innerHTML = cantCuotas + "x $" + valorCuota.toFixed(2);
+			document.querySelector('.resumen .item:nth-child(3) span').innerHTML = "$" + total;
+
 		});
 	});
 });
