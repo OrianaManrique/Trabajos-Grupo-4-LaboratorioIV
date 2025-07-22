@@ -29,44 +29,21 @@ public class ServletMovimientos extends HttpServlet {
 				float interes = 0;
 				float total = 0;
 				float ValorCuotas = 0;
+				float Total=0;
+				float Cuota1=0;
+				float Cuota3=0;
+				float Cuota6=0;
+				float Cuota9=0;
+				float Cuota12=0;
+				
 				float Recibis = Float.parseFloat(request.getParameter("txtMonto"));
-				int cuotas = Integer.parseInt(request.getParameter("cuotas"));
 				
-				switch (cuotas) {
-				case 1: {
-                    interes = 1.0f;
-					break;
-				}
-				case 3: {
-					interes = 1.1f;
-					break;
-				}
-				case 6: {
-					interes = 1.2f;
-					break;
-				}
-				case 9: {
-					interes = 1.3f;
-					break;
-				}
-				case 12: {
-					interes = 1.4f;
-					break;
-				}
-			   }
-
-				
-				total = Recibis*interes;
-				ValorCuotas = total/cuotas;
-					
 				System.out.println(Recibis);
-				System.out.println(cuotas);
 				System.out.println(total);
 				System.out.println(ValorCuotas);
 			
 				request.setAttribute("VisibilidadDatos", "display: inline;");
 				request.setAttribute("Recibis", Recibis);
-				request.setAttribute("Cuotas", cuotas);
 				request.setAttribute("ValorCuotas", ValorCuotas);
 				request.setAttribute("Total", total);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/PedirPrestamo.jsp");

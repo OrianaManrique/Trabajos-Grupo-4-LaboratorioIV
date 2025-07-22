@@ -25,7 +25,7 @@ body {
 	color: white;
 	padding: 15px;
 	text-align: center;
-	font-weight: bold;
+	font-weight: bold; 
 	font-size: 20px;
 	letter-spacing: 1px;
 }

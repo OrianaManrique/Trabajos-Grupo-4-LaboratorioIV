@@ -213,17 +213,17 @@ input[type=number] {
 	if (request.getAttribute("ValorCuotas") != null) {
 		BaseValorCuotas = (float)request.getAttribute("ValorCuotas");
 		ValorCuotas = Math.round(BaseValorCuotas * 100)/100f;
-		Total=0;
-		Cuota1=0;
-		Cuota3=0;
-		Cuota6=0;
-		Cuota9=0;
-		Cuota12=0;
 	}
 	
 	if (request.getAttribute("Total") != null) {
 		BaseTotal = (float)request.getAttribute("Total");
 		Total = Math.round(BaseTotal * 100)/100f;
+		
+		Cuota1=(Recibis/1)*1.0f;
+		Cuota3=(Recibis/3)*1.1f;
+		Cuota6=(Recibis/6)*1.2f;
+		Cuota9=(Recibis/9)*1.3f;
+		Cuota12=(Recibis/12)*1.4f;
 	}
 		
 	%>
@@ -241,33 +241,33 @@ input[type=number] {
 			<div class="Contenedor-cuotas">
 			
 				<div class="opcion" >
-					<input type="radio" name="cuotas" value="1" id="cuota1" required> <label
+					<input type="radio" name="cuotas" value="1" id="cuota1"> <label
 						for="cuota1" class="contenido-opcion"> <span
-						class="texto-cuota">1 cuota</span> <span class="monto-cuota">$<%=ValorCuotas%></span>
+						class="texto-cuota">1 cuota</span> <span class="monto-cuota">$<%=Cuota1%></span>
 					</label>
 				</div>
 				<div class="opcion">
-					<input type="radio" name="cuotas" value="3" id="cuota3" required> <label
+					<input type="radio" name="cuotas" value="3" id="cuota3"> <label
 						for="cuota3" class="contenido-opcion"> <span
-						class="texto-cuota">3 cuotas</span> <span class="monto-cuota">$<%=ValorCuotas%></span>
+						class="texto-cuota">3 cuotas</span> <span class="monto-cuota">$<%=Cuota3%></span>
 					</label>
 				</div>
 				<div class="opcion">
-					<input type="radio" name="cuotas" value="6" id="cuota6" required> <label
+					<input type="radio" name="cuotas" value="6" id="cuota6"> <label
 						for="cuota6" class="contenido-opcion"> <span
-						class="texto-cuota">6 cuotas</span> <span class="monto-cuota">$<%=ValorCuotas%></span>
+						class="texto-cuota">6 cuotas</span> <span class="monto-cuota">$<%=Cuota6%></span>
 					</label>
 				</div>
 				<div class="opcion">
-					<input type="radio" name="cuotas" value="9" id="cuota9" required> <label
+					<input type="radio" name="cuotas" value="9" id="cuota9"> <label
 						for="cuota9" class="contenido-opcion"> <span
-						class="texto-cuota">9 cuotas</span> <span class="monto-cuota">$<%=ValorCuotas%></span>
+						class="texto-cuota">9 cuotas</span> <span class="monto-cuota">$<%=Cuota9%></span>
 					</label>
 				</div>
 				<div class="opcion">
-					<input type="radio" name="cuotas" value="12" id="cuota12" required>
+					<input type="radio" name="cuotas" value="12" id="cuota12">
 					<label for="cuota12" class="contenido-opcion"> <span
-						class="texto-cuota">12 cuotas</span> <span class="monto-cuota">$<%=ValorCuotas%></span>
+						class="texto-cuota">12 cuotas</span> <span class="monto-cuota">$<%=Cuota12%></span>
 					</label>
 				</div>
 			</div>
@@ -281,7 +281,7 @@ input[type=number] {
 					Recibís <span style="<%=VisibilidadDatos%>"><%=Recibis%></span>
 				</div>
 				<div class="item">
-					Pagás <span style="<%=VisibilidadDatos%>"> <%=Cuotas%>x $<%=ValorCuotas%></span>
+					Pagás <span style="<%=VisibilidadDatos%>"><%=Cuotas%>x $<%=ValorCuotas%></span>
 				</div>
 				<div class="item"
 					style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px;">
@@ -300,4 +300,31 @@ input[type=number] {
 </form>
 
 </body>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+	
+	const recibis = <%=Recibis%>;
+	const cuotas = {
+		1: <%=Cuota1%>,
+		3: <%=Cuota3%>,
+		6: <%=Cuota6%>,
+		9: <%=Cuota9%>,
+		12: <%=Cuota12%>
+	};
+
+	document.querySelectorAll('input[name="cuotas"]').forEach(function(radio) {
+		radio.addEventListener('change', function() {
+			const cantCuotas = parseInt(this.value);
+			const valorCuota = cuotas[cantCuotas];
+			const total = (valorCuota * cantCuotas).toFixed(2);
+
+			document.querySelector('.resumen .item:nth-child(3) span').innerHTML = "$" + total;
+			document.querySelector('.resumen .item:nth-child(1) span').innerHTML = "$" + total;
+			document.querySelector('.resumen .item:nth-child(2) span').innerHTML = cantCuotas + "x $" + valorCuota.toFixed(2);
+		});
+	});
+});
+</script>
 </html>
