@@ -121,6 +121,8 @@ p {
 	<%
 	
 	Usuario usuario = new Usuario();
+	String ColorDetalle = "";
+	
 
 	if (session.getAttribute("usuarioLogueado") != null) {
 
@@ -183,20 +185,26 @@ p {
 				</thead>
 				<tbody>
 					<%
-					
-					for (Movimiento listaMovimiento : ListaMovimientos) {
-						
-				    %>
-					<tr>
-						<td><p><%=listaMovimiento.getNroCuenta_movimiento().getNroCuenta_cuenta()%></p></td>					
-						<td><p><%=listaMovimiento.getFecha_movimiento()%></p></td>
-						<td><p><%=listaMovimiento.getDetalle_movimiento()%></p></td>
-						<td><p><%=listaMovimiento.getId_tipoMovimiento().getDescripcion_tipomovimiento()%></p></td>
-						<td><p><%=listaMovimiento.getImporte_movimiento()%></p></td>
-					</tr>
-					<%
-					}
-					%>
+                    for (Movimiento listaMovimiento : ListaMovimientos) {
+
+                        if(listaMovimiento.getDetalle_movimiento().equals("Ingreso")){
+
+                            ColorDetalle = "green";
+                        }else{
+
+                            ColorDetalle = "red";
+                        }
+                    %>
+                    <tr>
+                        <td><p><%=listaMovimiento.getNroCuenta_movimiento().getNroCuenta_cuenta()%></p></td>
+                        <td><p><%=listaMovimiento.getFecha_movimiento()%></p></td>
+                        <td><p><%=listaMovimiento.getDetalle_movimiento()%></p></td>
+                        <td><p><%=listaMovimiento.getId_tipoMovimiento().getDescripcion_tipomovimiento()%></p></td>
+                        <td><p style="Color:<%=ColorDetalle%>"><%=listaMovimiento.getImporte_movimiento()%></p></td>
+                    </tr>
+                    <%
+                    }
+                    %>
 				</tbody>
 			</table>
 		</div>
