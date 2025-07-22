@@ -10,7 +10,6 @@
 <title>PedirPrestamo</title>
 </head>
 <style>
-
 body {
 	background-color: white;
 	font-family: 'Segoe UI', sans-serif;
@@ -141,18 +140,18 @@ input[type="radio"] {
 	display: none;
 }
 
-input[type="radio"]:checked + label {
+input[type="radio"]:checked+label {
 	background-color: #f1e8ff;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 input[type=number] {
-  -moz-appearance: textfield;
+	-moz-appearance: textfield;
 }
 
 .contenido-opcion {
@@ -167,7 +166,6 @@ input[type=number] {
 	border-radius: 0;
 	background: none;
 }
-
 </style>
 </head>
 <body>
@@ -175,17 +173,16 @@ input[type=number] {
 	<%
 	Usuario usuario = new Usuario();
 	String VisibilidadDatos = "display: none;";
-	
+
 	float Recibis = 0;
-	int Cuotas=0;
-	float ValorCuotas=0;
-	float Total=0;
-	float Cuota1=0;
-	float Cuota3=0;
-	float Cuota6=0;
-	float Cuota9=0;
-	float Cuota12=0;
-	
+	int Cuotas = 0;
+	float ValorCuotas = 0;
+	float Total = 0;
+	float Cuota1 = 0;
+	float Cuota3 = 0;
+	float Cuota6 = 0;
+	float Cuota9 = 0;
+	float Cuota12 = 0;
 
 	if (session.getAttribute("usuarioLogueado") != null) {
 
@@ -194,133 +191,136 @@ input[type=number] {
 		//}else {
 		//    response.sendRedirect("InicioLogin.jsp");
 	}
-	
+
 	if (request.getAttribute("VisibilidadDatos") != null) {
-		VisibilidadDatos = (String)request.getAttribute("VisibilidadDatos");
+		VisibilidadDatos = (String) request.getAttribute("VisibilidadDatos");
 	}
-	
+
 	if (request.getAttribute("Recibis") != null) {
-		Recibis = Math.round((float)request.getAttribute("Recibis") * 100)/100f;
+		Recibis = Math.round((float) request.getAttribute("Recibis") * 100) / 100f;
 	}
-	
+
 	if (request.getAttribute("Cuotas") != null) {
-		Cuotas = (int)request.getAttribute("Cuotas");
+		Cuotas = (int) request.getAttribute("Cuotas");
 	}
-	
+
 	if (request.getAttribute("ValorCuotas") != null) {
-		ValorCuotas = Math.round((float)request.getAttribute("ValorCuotas") * 100)/100f;
+		ValorCuotas = Math.round((float) request.getAttribute("ValorCuotas") * 100) / 100f;
 	}
-	
+
 	if (request.getAttribute("Total") != null) {
-		Total = Math.round((float)request.getAttribute("Total") * 100)/100f;
-		
-	    Cuota1= Math.round(((Recibis*1.0f)/1) * 100)/100f;
-		Cuota3= Math.round(((Recibis*1.1f)/3) * 100)/100f;
-		Cuota6= Math.round(((Recibis*1.2f)/6) * 100)/100f;
-		Cuota9= Math.round(((Recibis*1.3f)/9) * 100)/100f;
-		Cuota12= Math.round(((Recibis*1.4f)/12) * 100)/100f;
+		Total = Math.round((float) request.getAttribute("Total") * 100) / 100f;
+
+		Cuota1 = Math.round(((Recibis * 1.1f) / 1) * 100) / 100f;
+		Cuota3 = Math.round(((Recibis * 1.2f) / 3) * 100) / 100f;
+		Cuota6 = Math.round(((Recibis * 1.3f) / 6) * 100) / 100f;
+		Cuota9 = Math.round(((Recibis * 1.4f) / 9) * 100) / 100f;
+		Cuota12 = Math.round(((Recibis * 1.5f) / 12) * 100) / 100f;
 	}
-		
 	%>
-	<div class="header"><%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%>	- Cliente </div>
+	<div class="header"><%=usuario.getNombre_us()%>
+		<%=usuario.getApellido_us()%>
+		- Cliente
+	</div>
 
-<form action="ServletMovimientos?Param=CalcularPrestamo" method="post">
+	<form action="ServletMovimientos?Param=CalcularPrestamo" method="post">
 
-	<div class="container">
-		<div class="panel-izquierdo">
+		<div class="container">
+			<div class="panel-izquierdo">
 
-			<div class="monto">
-				Monto $  <input class="monto" type="number" id="txtMonto" name="txtMonto" required> <input type="submit" class="btn-siguiente" value="Calcular">
-			</div>
-
-			<div class="Contenedor-cuotas">
-			
-				<div class="opcion" >
-					<input type="radio" name="cuotas" value="1" id="cuota1"> <label
-						for="cuota1" class="contenido-opcion"> <span
-						class="texto-cuota">1 cuota</span> <span class="monto-cuota">$<%=Cuota1%></span>
-					</label>
-				</div>
-				<div class="opcion">
-					<input type="radio" name="cuotas" value="3" id="cuota3"> <label
-						for="cuota3" class="contenido-opcion"> <span
-						class="texto-cuota">3 cuotas</span> <span class="monto-cuota">$<%=Cuota3%></span>
-					</label>
-				</div>
-				<div class="opcion">
-					<input type="radio" name="cuotas" value="6" id="cuota6"> <label
-						for="cuota6" class="contenido-opcion"> <span
-						class="texto-cuota">6 cuotas</span> <span class="monto-cuota">$<%=Cuota6%></span>
-					</label>
-				</div>
-				<div class="opcion">
-					<input type="radio" name="cuotas" value="9" id="cuota9"> <label
-						for="cuota9" class="contenido-opcion"> <span
-						class="texto-cuota">9 cuotas</span> <span class="monto-cuota">$<%=Cuota9%></span>
-					</label>
-				</div>
-				<div class="opcion">
-					<input type="radio" name="cuotas" value="12" id="cuota12">
-					<label for="cuota12" class="contenido-opcion"> <span
-						class="texto-cuota">12 cuotas</span> <span class="monto-cuota">$<%=Cuota12%></span>
-					</label>
-				</div>
-			</div>
-
-		</div>
-
-		<div class="panel-derecho">
-			<div class="resumen">
-				<h3>Datos de tu Préstamo</h3>
-				<div class="item">
-					Recibís <span style="<%=VisibilidadDatos%>"><%=Recibis%></span>
-				</div>
-				<div class="item">
-					Pagás <span style="<%=VisibilidadDatos%>"><%=Cuotas%>x $<%=ValorCuotas%></span>
-				</div>
-				<div class="item"
-					style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px;">
-					En total pagás <span style="<%=VisibilidadDatos%>"> $<%=Total%></span>
+				<div class="monto">
+					Monto $ <input class="monto" type="number" id="txtMonto"
+						name="txtMonto" required> <input type="submit"
+						class="btn-siguiente" value="Calcular">
 				</div>
 
 				<div class="Contenedor-cuotas">
-					<input type="button" class="btn-siguiente" value="Siguiente">
+
+					<div class="opcion">
+						<input type="radio" name="cuotas" value="1" id="cuota1"> <label
+							for="cuota1" class="contenido-opcion"> <span
+							class="texto-cuota">1 cuota</span> <span class="monto-cuota">$<%=Cuota1%></span>
+						</label>
+					</div>
+					<div class="opcion">
+						<input type="radio" name="cuotas" value="3" id="cuota3"> <label
+							for="cuota3" class="contenido-opcion"> <span
+							class="texto-cuota">3 cuotas</span> <span class="monto-cuota">$<%=Cuota3%></span>
+						</label>
+					</div>
+					<div class="opcion">
+						<input type="radio" name="cuotas" value="6" id="cuota6"> <label
+							for="cuota6" class="contenido-opcion"> <span
+							class="texto-cuota">6 cuotas</span> <span class="monto-cuota">$<%=Cuota6%></span>
+						</label>
+					</div>
+					<div class="opcion">
+						<input type="radio" name="cuotas" value="9" id="cuota9"> <label
+							for="cuota9" class="contenido-opcion"> <span
+							class="texto-cuota">9 cuotas</span> <span class="monto-cuota">$<%=Cuota9%></span>
+						</label>
+					</div>
+					<div class="opcion">
+						<input type="radio" name="cuotas" value="12" id="cuota12">
+						<label for="cuota12" class="contenido-opcion"> <span
+							class="texto-cuota">12 cuotas</span> <span class="monto-cuota">$<%=Cuota12%></span>
+						</label>
+					</div>
 				</div>
-				
-				
+
+			</div>
+
+			<div class="panel-derecho">
+				<div class="resumen">
+					<h3>Datos de tu Préstamo</h3>
+					<div class="item">
+						Recibís <span id="spanRecibis" style="<%=VisibilidadDatos%>"><%=Recibis%></span>
+					</div>
+					<div class="item">
+						Pagás <span id="spanPagas" style="<%=VisibilidadDatos%>"><%=Cuotas%>x
+							$<%=ValorCuotas%></span>
+					</div>
+					<div class="item" style="">
+						En total pagás <span id="spanTotal" style="<%=VisibilidadDatos%>">
+							$<%=Total%></span>
+					</div>
+
+					<div class="Contenedor-cuotas">
+						<input type="button" class="btn-siguiente" value="Siguiente">
+					</div>
+
+
+				</div>
 			</div>
 		</div>
-	</div>
-	
-</form>
+
+	</form>
 
 </body>
 
 <script>
-
 document.addEventListener('DOMContentLoaded', function() {
-	
-	const recibis = <%=Recibis%>;
-	const cuotas = {
-		1: <%=Cuota1%>,
-		3: <%=Cuota3%>,
-		6: <%=Cuota6%>,
-		9: <%=Cuota9%>,
-		12: <%=Cuota12%>
-	};
 
-	document.querySelectorAll('input[name="cuotas"]').forEach(function(radio) {
-		radio.addEventListener('change', function() {
-			const cantCuotas = parseInt(this.value);
-			const valorCuota = cuotas[cantCuotas];
-			const total = (valorCuota * cantCuotas).toFixed(2);
-            
-			document.querySelector('.resumen .item:nth-child(1) span').innerHTML = "$" + total;
-			document.querySelector('.resumen .item:nth-child(2) span').innerHTML = cantCuotas + "x $" + valorCuota.toFixed(2);
-			document.querySelector('.resumen .item:nth-child(3) span').innerHTML = "$" + total;
+    const recibis = <%=Recibis%>;
+    const cuotas = {
+        1: <%=Cuota1%>,
+        3: <%=Cuota3%>,
+        6: <%=Cuota6%>,
+        9: <%=Cuota9%>,
+        12: <%=Cuota12%>
+    };
 
-		});
-	});
-});
+    document.querySelectorAll('input[name="cuotas"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            const cantCuotas = parseInt(this.value);
+            const valorCuota = cuotas[cantCuotas];
+            const totalaPagar = (valorCuota * cantCuotas).toFixed(2);
+
+            document.getElementById('spanPagas').innerHTML = cantCuotas + "x $" + valorCuota.toFixed(2);
+            document.getElementById('spanRecibis').innerHTML = "$" + recibis;
+            document.getElementById('spanTotal').innerHTML = "$" + totalaPagar;
+        });
+    });
+});													
 </script>
 </html>
