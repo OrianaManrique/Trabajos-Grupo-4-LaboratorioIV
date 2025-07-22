@@ -133,6 +133,11 @@ p {
 	if (request.getAttribute("ListaCuentas") != null) {
 		ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("ListaCuentas");
 	}
+	
+	ArrayList<Movimiento> ListaMovimientos = new ArrayList<Movimiento>();
+	if (request.getAttribute("ListaMovimientos") != null) {
+		ListaMovimientos = (ArrayList<Movimiento>) request.getAttribute("ListaMovimientos");
+	}
 	%>
 	
 	
@@ -143,12 +148,12 @@ p {
 		- Cliente
 	</div>
 
-	<form>
+	<form action="ServletMovimientos?Param=ActualizarTablaMovimientos" method="get">
 		<div class="subtitulo">HISTORIAL DE MOVIMIENTOS</div>
 		
 		<br /> 
 		<div style="width: 250px; margin: auto;">
-		      <select class="form-select form-select-lg mb-3" id="ddlCuentas" name="ddlCuentas">
+		      <select class="form-select form-select-lg mb-3" id="ddlCuentas" name="ddlCuentas" onchange="this.form.submit()">
 				<option value="">Seleccione una cuenta</option>
 					<%
 					for (Cuenta c : ListaCuentas) {
@@ -176,13 +181,19 @@ p {
 					</tr>
 				</thead>
 				<tbody>
+					<%
+					for (Movimiento listaMovimiento : ListaMovimientos) {
+				    %>
 					<tr>
-						<td><p>00/00/2025 00:00:00</p></td>
-						<td><p></p></td>
-						<td><p></p></td>
-						<td><p></p></td>
-						<td class="mov-positivo"><p>$ 0,01</p></td>
+						<td><p><%=listaMovimiento.getNroCuenta_movimiento()%></p></td>					
+						<td><p><%=listaMovimiento.getFecha_movimiento()%></p></td>
+						<td><p><%=listaMovimiento.getDetalle_movimiento()%></p></td>
+						<td><p><%=listaMovimiento.getId_tipoMovimiento().getDescripcion_tipomovimiento()%></p></td>
+						<td><p><%=listaMovimiento.getImporte_movimiento()%></p></td>
 					</tr>
+					<%
+					}
+					%>
 				</tbody>
 			</table>
 		</div>

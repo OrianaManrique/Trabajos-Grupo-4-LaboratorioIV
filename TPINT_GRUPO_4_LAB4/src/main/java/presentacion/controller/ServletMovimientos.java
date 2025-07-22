@@ -16,6 +16,8 @@ import negocioImpl.CuentaNegImpl;
 import negocioImpl.TransferenciaNegImpl;
 import negocio.PrestamoNeg;
 import negocioImpl.PrestamoNegImpl;
+import negocio.MovimientoNeg;
+import negocioImpl.MovimientoNegImpl;
 
 @WebServlet("/ServletMovimientos")
 public class ServletMovimientos extends HttpServlet {
@@ -23,7 +25,7 @@ public class ServletMovimientos extends HttpServlet {
 	CuentaNeg negCuenta = new CuentaNegImpl();
 	TransferenciaNeg trNeg = new TransferenciaNegImpl();
 	PrestamoNeg PresNeg = new PrestamoNegImpl();
-	
+	MovimientoNeg movNeg = new MovimientoNegImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -48,7 +50,7 @@ public class ServletMovimientos extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			
+
 			case "CargarCuentasMovimientos": {
 
 				Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
@@ -57,8 +59,27 @@ public class ServletMovimientos extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
+
 			default:
 				break;
+			}
+
+			if (request.getParameter("ddlCuentas") != null) {
+
+				Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
+
+				if (request.getParameter("ddlCuentas").equals("TodasCuentas")) {
+					request.setAttribute("ListaMovimientos",
+							movNeg.obtenerMovimientosPorCliente(UsuarioLogueado.getDni_us()));
+				} else {
+					request.setAttribute("ListaMovimientos",
+							movNeg.obtenerMovimientosCuenta(Integer.parseInt(request.getParameter("ddlCuentas"))));
+				}
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/Movimientos.jsp");
+				dispatcher.forward(request, response);
+				
+				return;
 			}
 
 		}
@@ -74,7 +95,7 @@ public class ServletMovimientos extends HttpServlet {
 			case "CalcularPrestamo": {
 
 				float Recibis = Float.parseFloat(request.getParameter("txtMonto"));
-                
+
 				Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
 				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogueado.getDni_us()));
 				request.setAttribute("VisibilidadDatos", "display: inline;");
@@ -107,8 +128,7 @@ public class ServletMovimientos extends HttpServlet {
 				break;
 			}
 			case "SolicitarPrestamo": {
-                				
-              			
+
 				Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
 				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogueado.getDni_us()));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/SolicitarPrestamo.jsp");
