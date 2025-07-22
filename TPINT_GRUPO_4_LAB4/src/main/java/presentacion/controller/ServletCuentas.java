@@ -10,14 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import entidad.Cuenta;
 import java.util.ArrayList;
 import entidad.TipoCuenta;
-import entidad.Transferencia;
-import entidad.Usuario;
 import negocio.CuentaNeg;
 import negocioImpl.CuentaNegImpl;
 import negocioImpl.TipoCuentaNegImpl;
-import negocioImpl.TransferenciaNegImpl;
 import negocio.TipoCuentaNeg;
-import negocio.TransferenciaNeg;
 import negocio.ClienteNeg;
 import negocioImpl.ClienteNegImpl;
 
@@ -28,7 +24,6 @@ public class ServletCuentas extends HttpServlet {
 	CuentaNeg negCuenta = new CuentaNegImpl();
 	TipoCuentaNeg tipoCuentaNeg = new TipoCuentaNegImpl();
 	ClienteNeg clienteNeg = new ClienteNegImpl();
-	TransferenciaNeg trNeg = new TransferenciaNegImpl();
 
 	public ServletCuentas() {
 		super();
@@ -81,14 +76,6 @@ public class ServletCuentas extends HttpServlet {
 				request.setAttribute("CBU", negCuenta.ObtenerCBU());
 				request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCuenta.jsp");
-				dispatcher.forward(request, response);
-				break;
-			}
-			case "CargarCuentasTransferencias": {
-    			
-				Usuario UsuarioLogeado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
-				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogeado.getDni_us()));
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/RealizarTransferencia.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}
@@ -179,29 +166,6 @@ public class ServletCuentas extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCuenta.jsp");
 				dispatcher.forward(request, response);
 				
-			}
-            case "ConfirmarTransferencia": {
-    			
-            	Transferencia transferencia = new Transferencia();
-            	Cuenta cuentaEmisor = new Cuenta();
-            	Cuenta cuentaReceptor = new Cuenta();
-
-				
-				cuentaEmisor.setCbu_cuenta(request.getParameter("ddlCuentas"));
-				cuentaReceptor.setCbu_cuenta(request.getParameter("txtCBUdestino"));
-							
-				transferencia.setCbuEmisor_transferencia(cuentaEmisor);
-				transferencia.setCbuReceptor_transferencia(cuentaReceptor);
-				transferencia.setMonto_transferencia(Integer.parseInt( request.getParameter("txtMonto")));
-				transferencia.setMotivo(request.getParameter("ddlMotivo"));	
-				
-				Usuario UsuarioLogeado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
-				request.setAttribute("Exito", trNeg.AgregarTransferencia(transferencia));
-				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogeado.getDni_us()));
-				
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/RealizarTransferencia.jsp");
-				dispatcher.forward(request, response);
-				break;
 			}
 			
 			default:

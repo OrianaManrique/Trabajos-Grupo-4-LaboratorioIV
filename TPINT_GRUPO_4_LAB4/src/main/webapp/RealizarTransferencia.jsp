@@ -156,7 +156,7 @@ input, select, textarea {
 		- Cliente
 	</div>
 
-	<form action="ServletCuentas?Param=ConfirmarTransferencia"
+	<form action="ServletMovimientos?Param=ConfirmarTransferencia"
 		method="post">
 		<div class="subtitulo">TRANSFERENCIAS</div>
 		<div class="table-container">
