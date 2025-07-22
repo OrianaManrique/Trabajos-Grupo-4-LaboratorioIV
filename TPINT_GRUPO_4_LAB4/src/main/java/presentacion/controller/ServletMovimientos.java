@@ -66,17 +66,18 @@ public class ServletMovimientos extends HttpServlet {
 
 		}
 		if (request.getParameter("ddlCuentas") != null) {
-
+		
+			
 			Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
 
 			if (request.getParameter("ddlCuentas").equals("TodasCuentas")) {
+				
 				request.setAttribute("ListaMovimientos",
 						movNeg.obtenerMovimientosPorCliente(UsuarioLogueado.getDni_us()));
 			} else {
 				request.setAttribute("ListaMovimientos",
 						movNeg.obtenerMovimientosCuenta(Integer.parseInt(request.getParameter("ddlCuentas"))));
 			}
-			
 			
 			request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogueado.getDni_us()));
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/Movimientos.jsp");

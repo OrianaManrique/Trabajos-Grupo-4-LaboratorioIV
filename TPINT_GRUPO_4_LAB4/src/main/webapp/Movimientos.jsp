@@ -119,6 +119,7 @@ p {
 <body>
 
 	<%
+	
 	Usuario usuario = new Usuario();
 
 	if (session.getAttribute("usuarioLogueado") != null) {
@@ -182,7 +183,9 @@ p {
 				</thead>
 				<tbody>
 					<%
+					
 					for (Movimiento listaMovimiento : ListaMovimientos) {
+						
 				    %>
 					<tr>
 						<td><p><%=listaMovimiento.getNroCuenta_movimiento().getNroCuenta_cuenta()%></p></td>					
