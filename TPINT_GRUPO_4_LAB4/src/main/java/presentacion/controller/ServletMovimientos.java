@@ -20,15 +20,17 @@ public class ServletMovimientos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	CuentaNeg negCuenta = new CuentaNegImpl();
 	TransferenciaNeg trNeg = new TransferenciaNegImpl();
+	
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		if (request.getParameter("Param") != null) {
 
 			String operacion = request.getParameter("Param").toString();
 
 			switch (operacion) {
 			case "CargarCuentasTransferencias": {
-    			
+
 				Usuario UsuarioLogeado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
 				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogeado.getDni_us()));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/RealizarTransferencia.jsp");
@@ -42,55 +44,53 @@ public class ServletMovimientos extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		if (request.getParameter("Param") != null) {
 
 			String operacion = request.getParameter("Param").toString();
 
 			switch (operacion) {
-			case "CalcularPrestamo": {		
-				
-				float interes = 0;
-				float total = 0;
-				float ValorCuotas = 0;
-				float Total=0;
-				float Cuota1=0;
-				float Cuota3=0;
-				float Cuota6=0;
-				float Cuota9=0;
-				float Cuota12=0;
-				
+			case "CalcularPrestamo": {
+
 				float Recibis = Float.parseFloat(request.getParameter("txtMonto"));
-			
+
 				request.setAttribute("VisibilidadDatos", "display: inline;");
 				request.setAttribute("Recibis", Recibis);
-				request.setAttribute("ValorCuotas", ValorCuotas);
-				request.setAttribute("Total", total);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/PedirPrestamo.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/SolicitarPrestamo.jsp");
 				dispatcher.forward(request, response);
 				break;
 
 			}
-            case "ConfirmarTransferencia": {
-    			
-            	Transferencia transferencia = new Transferencia();
-            	Cuenta cuentaEmisor = new Cuenta();
-            	Cuenta cuentaReceptor = new Cuenta();
+			case "ConfirmarTransferencia": {
 
-				
+				Transferencia transferencia = new Transferencia();
+				Cuenta cuentaEmisor = new Cuenta();
+				Cuenta cuentaReceptor = new Cuenta();
+
 				cuentaEmisor.setCbu_cuenta(request.getParameter("ddlCuentas"));
 				cuentaReceptor.setCbu_cuenta(request.getParameter("txtCBUdestino"));
-							
+
 				transferencia.setCbuEmisor_transferencia(cuentaEmisor);
 				transferencia.setCbuReceptor_transferencia(cuentaReceptor);
-				transferencia.setMonto_transferencia(Integer.parseInt( request.getParameter("txtMonto")));
-				transferencia.setMotivo(request.getParameter("ddlMotivo"));	
-				
+				transferencia.setMonto_transferencia(Integer.parseInt(request.getParameter("txtMonto")));
+				transferencia.setMotivo(request.getParameter("ddlMotivo"));
+
 				Usuario UsuarioLogeado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
 				request.setAttribute("Exito", trNeg.AgregarTransferencia(transferencia));
 				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogeado.getDni_us()));
-				
+
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/RealizarTransferencia.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
+			case "SolicitarPrestamo": {
+                
+				
+                 
+				
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/SolicitarPrestamo.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}

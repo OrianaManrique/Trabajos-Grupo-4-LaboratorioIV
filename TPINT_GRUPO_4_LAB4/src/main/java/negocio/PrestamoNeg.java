@@ -1,0 +1,11 @@
+package negocio;
+
+import java.util.ArrayList;
+import entidad.Prestamo;
+
+public interface PrestamoNeg {
+	
+	public boolean SolicitarPrestamo(Prestamo prestamo);
+	public ArrayList<Prestamo> obtenerPrestamos();
+
+}

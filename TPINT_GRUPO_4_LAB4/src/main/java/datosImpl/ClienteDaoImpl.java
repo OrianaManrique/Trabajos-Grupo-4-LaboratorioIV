@@ -14,7 +14,7 @@ public class ClienteDaoImpl implements ClienteDao {
 	@Override
 	public boolean insertar(Cliente cliente) {
 
-		boolean estado = true;
+		boolean estado = false;
 
 		Localidad localidad = new Localidad();
 		Provincia provincia = new Provincia();
@@ -143,7 +143,7 @@ public class ClienteDaoImpl implements ClienteDao {
 
 	@Override
 	public boolean editar(Cliente cliente) {
-	    boolean estado = true;
+	    boolean estado = false;
 
 	    conexion = new Conexion();
 	    conexion.open();

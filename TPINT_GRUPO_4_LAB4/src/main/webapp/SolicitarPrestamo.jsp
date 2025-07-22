@@ -194,6 +194,8 @@ input[type=number] {
 	float Cuota6 = 0;
 	float Cuota9 = 0;
 	float Cuota12 = 0;
+	
+
 
 	if (session.getAttribute("usuarioLogueado") != null) {
 
@@ -209,25 +211,20 @@ input[type=number] {
 
 	if (request.getAttribute("Recibis") != null) {
 		Recibis = Math.round((float) request.getAttribute("Recibis") * 100) / 100f;
-	}
-
-	if (request.getAttribute("Cuotas") != null) {
-		Cuotas = (int) request.getAttribute("Cuotas");
-	}
-
-	if (request.getAttribute("ValorCuotas") != null) {
-		ValorCuotas = Math.round((float) request.getAttribute("ValorCuotas") * 100) / 100f;
-	}
-
-	if (request.getAttribute("Total") != null) {
-		Total = Math.round((float) request.getAttribute("Total") * 100) / 100f;
-
+		
 		Cuota1 = Math.round(((Recibis * 1.1f) / 1) * 100) / 100f;
 		Cuota3 = Math.round(((Recibis * 1.2f) / 3) * 100) / 100f;
 		Cuota6 = Math.round(((Recibis * 1.3f) / 6) * 100) / 100f;
 		Cuota9 = Math.round(((Recibis * 1.4f) / 9) * 100) / 100f;
 		Cuota12 = Math.round(((Recibis * 1.5f) / 12) * 100) / 100f;
 	}
+
+	if (request.getAttribute("Cuotas") != null) {
+		Cuotas = (int) request.getAttribute("Cuotas");
+	}
+	
+	
+
 	%>
 	<div class="header"><%=usuario.getNombre_us()%>
 		<%=usuario.getApellido_us()%>
@@ -236,17 +233,21 @@ input[type=number] {
 
 	<form action="ServletMovimientos?Param=CalcularPrestamo" method="post">
 
-<div class="subtitulo">SOLICITAR PRÉSTAMO</div>
+ <div class="subtitulo">SOLICITAR PRÉSTAMO</div>
 
+	   <div class="monto">
+			Monto $ <input class="monto" type="number" id="txtMonto"
+			name="txtMonto" required> <input type="submit"
+			class="btn-siguiente" name="btnCalcular" value="Calcular">
+		</div>	
+ 
+	</form>
+	
+		<form action="ServletMovimientos?Param=SolicitarPrestamo" method="post">
+		
 		<div class="container">
 			<div class="panel-izquierdo">
-
-				<div class="monto">
-					Monto $ <input class="monto" type="number" id="txtMonto"
-						name="txtMonto" required> <input type="submit"
-						class="btn-siguiente" value="Calcular">
-				</div>
-
+			
 				<div class="Contenedor-cuotas">
 
 					<div class="opcion">
@@ -299,15 +300,16 @@ input[type=number] {
 					</div>
 
 					<div class="Contenedor-cuotas">
-						<input type="button" class="btn-siguiente" value="Siguiente">
+						<input type="button" name="btnAceptarPrestamo" class="btn-siguiente" value="ACEPTAR PRESTAMO">
 					</div>
 
 
 				</div>
 			</div>
-		</div>
-
+		</div>		
+		
 	</form>
+
 
 </body>
 

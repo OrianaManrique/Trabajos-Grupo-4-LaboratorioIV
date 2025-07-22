@@ -81,7 +81,7 @@ public class CuentaDaoImpl implements CuentaDao {
 	@Override
 	public boolean modificarCuenta(Cuenta cuenta) {
 
-		boolean estado = true;
+		boolean estado = false;
 
 		conexion = new Conexion();
 		conexion.open();
@@ -144,7 +144,7 @@ public class CuentaDaoImpl implements CuentaDao {
 
 	public Boolean agregarCuenta(Cuenta cuenta) {
 
-		boolean estado = true;
+		boolean estado = false;
 
 		conexion = new Conexion();
 		conexion.open();
