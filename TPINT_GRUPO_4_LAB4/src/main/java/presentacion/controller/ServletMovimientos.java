@@ -64,24 +64,23 @@ public class ServletMovimientos extends HttpServlet {
 				break;
 			}
 
-			if (request.getParameter("ddlCuentas") != null) {
+		}
+		if (request.getParameter("ddlCuentas") != null) {
 
-				Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
+			Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
 
-				if (request.getParameter("ddlCuentas").equals("TodasCuentas")) {
-					request.setAttribute("ListaMovimientos",
-							movNeg.obtenerMovimientosPorCliente(UsuarioLogueado.getDni_us()));
-				} else {
-					request.setAttribute("ListaMovimientos",
-							movNeg.obtenerMovimientosCuenta(Integer.parseInt(request.getParameter("ddlCuentas"))));
-				}
-
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/Movimientos.jsp");
-				dispatcher.forward(request, response);
-				
-				return;
+			if (request.getParameter("ddlCuentas").equals("TodasCuentas")) {
+				request.setAttribute("ListaMovimientos",
+						movNeg.obtenerMovimientosPorCliente(UsuarioLogueado.getDni_us()));
+			} else {
+				request.setAttribute("ListaMovimientos",
+						movNeg.obtenerMovimientosCuenta(Integer.parseInt(request.getParameter("ddlCuentas"))));
 			}
 
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/Movimientos.jsp");
+			dispatcher.forward(request, response);
+			
+			return;
 		}
 	}
 
