@@ -175,19 +175,11 @@ input[type=number] {
 	<%
 	Usuario usuario = new Usuario();
 	String VisibilidadDatos = "display: none;";
-	float BaseRecibis=0;
+	
 	float Recibis = 0;
 	int Cuotas=0;
-	float BaseValorCuotas=0;
 	float ValorCuotas=0;
-	float BaseTotal=0;
 	float Total=0;
-	float BCuota1=0;
-	float BCuota3=0;
-	float BCuota6=0;
-	float BCuota9=0;
-	float BCuota12=0;
-	
 	float Cuota1=0;
 	float Cuota3=0;
 	float Cuota6=0;
@@ -208,8 +200,7 @@ input[type=number] {
 	}
 	
 	if (request.getAttribute("Recibis") != null) {
-		BaseRecibis = (float)request.getAttribute("Recibis");
-		Recibis = Math.round(BaseRecibis * 100)/100f;
+		Recibis = Math.round((float)request.getAttribute("Recibis") * 100)/100f;
 	}
 	
 	if (request.getAttribute("Cuotas") != null) {
@@ -217,25 +208,17 @@ input[type=number] {
 	}
 	
 	if (request.getAttribute("ValorCuotas") != null) {
-		BaseValorCuotas = (float)request.getAttribute("ValorCuotas");
-		ValorCuotas = Math.round(BaseValorCuotas * 100)/100f;
+		ValorCuotas = Math.round((float)request.getAttribute("ValorCuotas") * 100)/100f;
 	}
 	
 	if (request.getAttribute("Total") != null) {
-		BaseTotal = (float)request.getAttribute("Total");
-		Total = Math.round(BaseTotal * 100)/100f;
+		Total = Math.round((float)request.getAttribute("Total") * 100)/100f;
 		
-		BCuota1=(Recibis*1.0f)/1;
-		BCuota3=(Recibis*1.1f)/3;
-		BCuota6=(Recibis*1.2f)/6;
-		BCuota9=(Recibis*1.3f)/9;
-		BCuota12=(Recibis*1.4f)/12;
-		
-	    Cuota1= Math.round(BCuota1 * 100)/100f;
-		Cuota3= Math.round(BCuota3 * 100)/100f;
-		Cuota6= Math.round(BCuota6 * 100)/100f;
-		Cuota9= Math.round(BCuota9 * 100)/100f;
-		Cuota12= Math.round(BCuota12 * 100)/100f;
+	    Cuota1= Math.round(((Recibis*1.0f)/1) * 100)/100f;
+		Cuota3= Math.round(((Recibis*1.1f)/3) * 100)/100f;
+		Cuota6= Math.round(((Recibis*1.2f)/6) * 100)/100f;
+		Cuota9= Math.round(((Recibis*1.3f)/9) * 100)/100f;
+		Cuota12= Math.round(((Recibis*1.4f)/12) * 100)/100f;
 	}
 		
 	%>
