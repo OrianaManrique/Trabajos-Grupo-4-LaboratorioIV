@@ -31,7 +31,7 @@ body {
 .container {
 	display: flex;
 	justify-content: space-around;
-	padding: 40px;
+	padding: 10px;
 }
 
 .panel-izquierdo, .panel-derecho {
@@ -42,12 +42,12 @@ body {
 }
 
 .panel-izquierdo {
-	width: 60%;
+	width: 70%;
 	font-family: 'Segoe UI', sans-serif;
 }
 
 .panel-derecho {
-	width: 30%;
+	width: 50%;
 	font-family: 'Segoe UI', sans-serif;
 }
 
@@ -57,6 +57,7 @@ body {
 	text-align: center;
 	margin-bottom: 10px;
 	color: #44107a;
+	font-family: 'Segoe UI', sans-serif;
 }
 
 .monto-sub {
@@ -102,12 +103,12 @@ body {
 }
 
 .resumen {
-	font-size: 16px;
+	font-size: 20px;
 	color: #333;
 }
 
 .resumen h3 {
-	font-size: 18px;
+	font-size: 22px;
 	color: #44107a;
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 10px;
@@ -117,6 +118,7 @@ body {
 .resumen .item {
 	margin-bottom: 10px;
 	font-family: 'Segoe UI', sans-serif;
+	font-size: 20px;
 }
 
 .resumen .item span {
@@ -165,6 +167,15 @@ input[type=number] {
 	border: none;
 	border-radius: 0;
 	background: none;
+}
+
+.subtitulo {
+	text-align: center;
+	font-size: 35px;
+	color: #44107a;
+	margin-bottom: 0px;
+	margin-top: 30px;
+	font-weight: bold;
 }
 </style>
 </head>
@@ -224,6 +235,8 @@ input[type=number] {
 	</div>
 
 	<form action="ServletMovimientos?Param=CalcularPrestamo" method="post">
+
+<div class="subtitulo">SOLICITAR PRÉSTAMO</div>
 
 		<div class="container">
 			<div class="panel-izquierdo">
