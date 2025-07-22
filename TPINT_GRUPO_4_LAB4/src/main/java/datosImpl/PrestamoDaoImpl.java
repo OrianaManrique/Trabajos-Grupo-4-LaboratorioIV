@@ -1,6 +1,9 @@
 package datosImpl;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import datos.PrestamoDao;
+import entidad.Cliente;
+import entidad.Cuenta;
 import entidad.Prestamo;
 
 public class PrestamoDaoImpl implements PrestamoDao {
@@ -36,8 +39,49 @@ public class PrestamoDaoImpl implements PrestamoDao {
 
 	@Override
 	public ArrayList<Prestamo> obtenerPrestamos() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		conexion = new Conexion();
+		conexion.open();
+		
+		String consulta = ("Select id_prestamo AS Id , dnicliente_prestamo AS Dni , nroCuenta_prestamo AS NroCuenta , importe_a_pagar_prestamo AS ImportePagar , importe_solicitado_prestamo AS ImporteSolicitado  "
+				          + "plazo_de_pago_prestamo AS Plazo, cuotas_prestamo AS Cuotas, fecha_creacion_prestamo AS Fecha, montoMensual_prestamo AS Monto "
+				          + "condicion_prestamo AS Condicion FROM prestamos WHERE estado_prestamo=1");
+
+		ArrayList<Prestamo> lista = new ArrayList<Prestamo>();
+
+		try {
+			ResultSet rs = conexion.query(consulta);
+
+			while (rs.next()) {
+				
+				Prestamo prestamo = new Prestamo();
+				prestamo.setId_prestamo(rs.getInt("Id"));
+				
+				Cliente cliente = new Cliente();
+				cliente.setDni_cliente(rs.getInt("Dni"));
+				prestamo.setDniCliente_prestamo(cliente);
+				
+				Cuenta cuenta = new Cuenta();
+				cuenta.setNroCuenta_cuenta(rs.getInt("NroCuenta"));
+				prestamo.setNroCuenta_prestamo(cuenta);
+				
+				prestamo.setImporteApagar_prestamo(rs.getFloat("ImportePagar"));
+				prestamo.setImporteSolicitado_prestamo(rs.getFloat("ImporteSolicitado"));
+				prestamo.setPlazoDePago_prestamo(rs.getInt("Plazo"));
+				prestamo.setCuotas_prestamo(rs.getInt("Cuotas"));
+				prestamo.setFechaCreacion_prestamo(rs.getDate("Fecha"));
+				prestamo.setMontoMensual_prestamo(rs.getFloat("Monto"));
+				prestamo.setCondicion_prestamo(rs.getString("Condicion"));
+				
+				lista.add(prestamo);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+		return lista;
 	}
 
 }

@@ -2,15 +2,22 @@
 	pageEncoding="UTF-8"%>
 
 <%@page import="entidad.*"%>
+<%@page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
 <html>
 <head>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <meta charset="UTF-8">
+
 <title>PedirPrestamo</title>
 </head>
 <style>
+
 body {
+	/* background-color: #ebebeb; */
 	background-color: white;
 	font-family: 'Segoe UI', sans-serif;
 	margin: 0;
@@ -31,7 +38,7 @@ body {
 .container {
 	display: flex;
 	justify-content: space-around;
-	padding: 10px;
+	padding: 10px;  
 }
 
 .panel-izquierdo, .panel-derecho {
@@ -173,7 +180,7 @@ input[type=number] {
 	text-align: center;
 	font-size: 35px;
 	color: #44107a;
-	margin-bottom: 0px;
+	margin-bottom: 10px;
 	margin-top: 30px;
 	font-weight: bold;
 }
@@ -195,8 +202,6 @@ input[type=number] {
 	float Cuota9 = 0;
 	float Cuota12 = 0;
 	
-
-
 	if (session.getAttribute("usuarioLogueado") != null) {
 
 		usuario = (Usuario) session.getAttribute("usuarioLogueado");
@@ -218,6 +223,11 @@ input[type=number] {
 		Cuota9 = Math.round(((Recibis * 1.4f) / 9) * 100) / 100f;
 		Cuota12 = Math.round(((Recibis * 1.5f) / 12) * 100) / 100f;
 	}
+	
+	ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();
+	if (request.getAttribute("ListaCuentas") != null) {
+		ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("ListaCuentas");
+	}
 
 	if (request.getAttribute("Cuotas") != null) {
 		Cuotas = (int) request.getAttribute("Cuotas");
@@ -230,7 +240,7 @@ input[type=number] {
 		<%=usuario.getApellido_us()%>
 		- Cliente
 	</div>
-
+  
 	<form action="ServletMovimientos?Param=CalcularPrestamo" method="post">
 
  <div class="subtitulo">SOLICITAR PRÉSTAMO</div>
@@ -294,13 +304,29 @@ input[type=number] {
 						Pagás <span id="spanPagas" style="<%=VisibilidadDatos%>"><%=Cuotas%>x
 							$<%=ValorCuotas%></span>
 					</div>
-					<div class="item" style="">
+					<div class="item">
 						En total pagás <span id="spanTotal" style="<%=VisibilidadDatos%>">
 							$<%=Total%></span>
 					</div>
+					
+					<br>
+					
+					<h3>Seleccione su cuenta</h3>
+					
+					<select class="form-select form-select-lg mb-3"	 id="ddlCuentas" name="ddlCuentas">
+								<option value="">Seleccione una cuenta</option>
+								<%
+								for (Cuenta c : ListaCuentas) {
+								%>
+								<option value="<%=c.getCbu_cuenta()%>">CTA N° -	<%=c.getNroCuenta_cuenta()%></option>
+								<%
+								}
+								%>
+						</select>
+					
 
 					<div class="Contenedor-cuotas">
-						<input type="button" name="btnAceptarPrestamo" class="btn-siguiente" value="ACEPTAR PRESTAMO">
+						<input type="submit" name="btnAceptarPrestamo" class="btn-siguiente" value="CONFIRMAR SOLICITUD">
 					</div>
 
 

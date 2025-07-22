@@ -3,8 +3,6 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="entidad.*"%>
-<%@page import="java.util.Date"%>
-<%@ page import="java.text.SimpleDateFormat"%>
 
 
 <!DOCTYPE html>

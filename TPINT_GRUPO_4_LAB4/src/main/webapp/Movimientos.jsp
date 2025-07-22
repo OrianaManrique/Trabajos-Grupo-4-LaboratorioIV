@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="entidad.*"%>
+<%@page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>HistorialMovimientos</title>
 </head>
+
 <style>
 body {
 	background-color: white;
@@ -51,10 +54,10 @@ body {
 
 .subtitulo {
 	text-align: center;
-	font-size: 20px;
+	font-size: 30px;
 	color: #44107a;
 	margin-bottom: 20px;
-	margin-top: 20px;
+	margin-top: 40px;
 	font-weight: bold;
 }
 
@@ -125,8 +128,15 @@ p {
 		//}else {
 		//    response.sendRedirect("InicioLogin.jsp");
 	}
+	
+	ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();
+	if (request.getAttribute("ListaCuentas") != null) {
+		ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("ListaCuentas");
+	}
 	%>
-
+	
+	
+	
 	<div class="header">
 		<%=usuario.getNombre_us()%>
 		<%=usuario.getApellido_us()%>
@@ -134,18 +144,23 @@ p {
 	</div>
 
 	<form>
-		<div class="subtitulo">Historial de Movimientos</div>
+		<div class="subtitulo">HISTORIAL DE MOVIMIENTOS</div>
 		
 		<br /> 
-		<select id="ddlCuentas" name="ddlCuentas">
-			<option value="">Seleccione una cuenta</option>
-			<option value=""
-				>CTA N° -</option>
-			<option value=""
-				>CTA N° -</option>
-			<option value=""
-				>Todas las cuentas</option>
-		</select>
+		<div style="width: 250px; margin: auto;">
+		      <select class="form-select form-select-lg mb-3" id="ddlCuentas" name="ddlCuentas">
+				<option value="">Seleccione una cuenta</option>
+					<%
+					for (Cuenta c : ListaCuentas) {
+					%>
+					<option value="<%=c.getNroCuenta_cuenta()%>">CTA N° -
+					<%=c.getNroCuenta_cuenta()%></option>
+					<%
+					}
+					%>
+				<option value="TodasCuentas">Todas las cuentas</option>
+			</select>
+		</div>
 		<br/>
 		<br/>
 		<br/>

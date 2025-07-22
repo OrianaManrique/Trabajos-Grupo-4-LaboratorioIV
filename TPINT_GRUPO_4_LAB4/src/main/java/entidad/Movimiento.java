@@ -11,6 +11,8 @@ public class Movimiento {
 	private float importe_movimiento;
 	private TipoMovimiento id_tipoMovimiento;
 	
+	public Movimiento(){}
+	
 	public Movimiento(int id_movimiento, Cuenta nroCuenta_movimiento, Date fecha_movimiento, String detalle_movimiento,
 			float importe_movimiento, TipoMovimiento id_tipoMovimiento) {
 		super();
@@ -21,6 +23,8 @@ public class Movimiento {
 		this.importe_movimiento = importe_movimiento;
 		this.id_tipoMovimiento = id_tipoMovimiento;
 	}
+
+	
 
 	public int getId_movimiento() {
 		return id_movimiento;
