@@ -37,10 +37,6 @@ public class ServletMovimientos extends HttpServlet {
 				float Cuota12=0;
 				
 				float Recibis = Float.parseFloat(request.getParameter("txtMonto"));
-				
-				System.out.println(Recibis);
-				System.out.println(total);
-				System.out.println(ValorCuotas);
 			
 				request.setAttribute("VisibilidadDatos", "display: inline;");
 				request.setAttribute("Recibis", Recibis);
