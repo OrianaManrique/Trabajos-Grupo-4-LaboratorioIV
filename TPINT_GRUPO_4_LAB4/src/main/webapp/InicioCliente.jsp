@@ -139,9 +139,10 @@ if(request.getAttribute("CuentaSeleccionada")!= null){
 
  %>
 
-<div class="header">
-<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Cliente
-</div>
+
+<div class="header"> <%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Cliente </div>
+
+<form action="ServletCuentas"  method="get">
   		<div style="width: 250px; margin: auto;">
 		      <select class="form-select form-select-lg mb-3" id="ddlCuentasInicioCliente" name="ddlCuentasInicioCliente" onchange="this.form.submit()">
 				<option value="">Seleccione una cuenta</option>
@@ -155,7 +156,7 @@ if(request.getAttribute("CuentaSeleccionada")!= null){
 					%>
 			</select>
 		</div>
-		
+</form>		
   <div class="balance-container">
     <div class="balance-box">
       $<%=Saldo%>

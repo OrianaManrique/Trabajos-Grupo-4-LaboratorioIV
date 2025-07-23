@@ -46,7 +46,7 @@ public class ServletCuentas extends HttpServlet {
 				Cliente clienteLogueado = clienteNeg.obtenerCliente(UsuarioLogueado.getDni_us());
 				
 				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(clienteLogueado.getDni_cliente()));			
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/CuentaCliente.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/InicioCliente.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}
@@ -97,15 +97,19 @@ public class ServletCuentas extends HttpServlet {
 				break;
 			}
 			
-			if (request.getParameter("ddlCuentasInicioCliente") != null) {
-				
-				request.setAttribute("CuentaSeleccionada", negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("ddlCuentasMovimientos"))));		
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/CuentaCliente.jsp");
-				dispatcher.forward(request, response);
-				
-				return;
-			}
-
+		}
+		
+		if (request.getParameter("ddlCuentasInicioCliente") != null) {
+			
+			Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
+			Cliente clienteLogueado = clienteNeg.obtenerCliente(UsuarioLogueado.getDni_us());
+			
+			request.setAttribute("CuentaSeleccionada", negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("ddlCuentasInicioCliente"))));
+			request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(clienteLogueado.getDni_cliente()));	
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/InicioCliente.jsp");
+			dispatcher.forward(request, response);
+			
+			return;
 		}
 
 		if (request.getParameter("Param2") != null && request.getParameter("Param") != null) {
