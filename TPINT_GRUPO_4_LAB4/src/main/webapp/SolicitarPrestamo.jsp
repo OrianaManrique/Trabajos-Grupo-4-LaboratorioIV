@@ -309,6 +309,12 @@ input[type=number] {
 							$<%=Total%></span>
 					</div>
 					
+					
+					<input type="hidden" id="recibis" name="recibis" value="<%=Recibis%>">
+					<input type="hidden" id="total" name="total" value="<%=Total%>">
+					<input type="hidden" id="cuotas" name="cuotas" value="<%=Cuotas%>">
+					<input type="hidden" id="ValorCuotas" name="ValorCuotas" value="<%=ValorCuotas%>">
+					
 					<br>
 					
 					<h3>Seleccione su cuenta</h3>
@@ -318,7 +324,7 @@ input[type=number] {
 								<%
 								for (Cuenta c : ListaCuentas) {
 								%>
-								<option value="<%=c.getCbu_cuenta()%>">CTA N° -	<%=c.getNroCuenta_cuenta()%></option>
+								<option value="<%=c.getNroCuenta_cuenta()%>">CTA N° -	<%=c.getNroCuenta_cuenta()%></option>
 								<%
 								}
 								%>
@@ -328,11 +334,41 @@ input[type=number] {
 					<div class="Contenedor-cuotas">
 						<input type="submit" name="btnAceptarPrestamo" class="btn-siguiente" value="CONFIRMAR SOLICITUD">
 					</div>
+					
+					<br>
+					<br>
+               <%  
+			      
+			    if(request.getAttribute("Exito")!=null){
+			    	
+			    	if(((Boolean)request.getAttribute("Exito"))==true){
+			    		
+			    		%>		    		
+			    		
+			    		<p style="text-align: center;" ><label id="lblMensajeExito"	style="Color: green;  font-weight: bold; font-size: 20px"> ¡PRÉSTAMO SOLICITADO ÉXITO!</label></p>
+			    				
+			    		<%
+			    		
+			    	}else{
+			    		
+			    		
+                        %>		    		
+			    		
+			    		<label id="lblMensajeError"	style="Color: red;  text-align: center; font-weight: bold; font-size: 20px">NO SE HA PODIDO SOLICITAR EL PRÉSTAMO</label>
+			    				
+			    		<%
+			    		
+			    	}
+			    }
+			    
+			    %>	
 
 
 				</div>
 			</div>
-		</div>		
+		</div>
+		
+	
 		
 	</form>
 
@@ -360,6 +396,13 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('spanPagas').innerHTML = cantCuotas + "x $" + valorCuota.toFixed(2);
             document.getElementById('spanRecibis').innerHTML = "$" + recibis;
             document.getElementById('spanTotal').innerHTML = "$" + totalaPagar;
+            
+            
+            document.getElementById('recibis').value = recibis;
+            document.getElementById('total').value = totalaPagar;
+            document.getElementById('cuotas').value = cantCuotas;
+            document.getElementById('ValorCuotas').value = valorCuota;
+            
         });
     });
 });													

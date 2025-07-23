@@ -102,5 +102,15 @@ public class Prestamo {
 	public void setEstado_prestamo(int estado_prestamo) {
 		this.estado_prestamo = estado_prestamo;
 	}
+
+	@Override
+	public String toString() {
+		return "Prestamo [id_prestamo=" + id_prestamo + ", dniCliente_prestamo=" + dniCliente_prestamo
+				+ ", nroCuenta_prestamo=" + nroCuenta_prestamo + ", importeApagar_prestamo=" + importeApagar_prestamo
+				+ ", importeSolicitado_prestamo=" + importeSolicitado_prestamo + ", plazoDePago_prestamo="
+				+ plazoDePago_prestamo + ", cuotas_prestamo=" + cuotas_prestamo + ", fechaCreacion_prestamo="
+				+ fechaCreacion_prestamo + ", montoMensual_prestamo=" + montoMensual_prestamo + ", condicion_prestamo="
+				+ condicion_prestamo + ", estado_prestamo=" + estado_prestamo + "]";
+	}
 			
 }

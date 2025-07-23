@@ -1,13 +1,16 @@
 package presentacion.controller;
 
 import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import entidad.Cliente;
 import entidad.Cuenta;
+import entidad.Prestamo;
 import entidad.Transferencia;
 import entidad.Usuario;
 import negocio.CuentaNeg;
@@ -18,6 +21,8 @@ import negocio.PrestamoNeg;
 import negocioImpl.PrestamoNegImpl;
 import negocio.MovimientoNeg;
 import negocioImpl.MovimientoNegImpl;
+import negocioImpl.ClienteNegImpl;
+import negocio.ClienteNeg;
 
 @WebServlet("/ServletMovimientos")
 public class ServletMovimientos extends HttpServlet {
@@ -26,6 +31,7 @@ public class ServletMovimientos extends HttpServlet {
 	TransferenciaNeg trNeg = new TransferenciaNegImpl();
 	PrestamoNeg PresNeg = new PrestamoNegImpl();
 	MovimientoNeg movNeg = new MovimientoNegImpl();
+	ClienteNeg negCliente = new ClienteNegImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -65,18 +71,18 @@ public class ServletMovimientos extends HttpServlet {
 			}
 
 		}
-		if (request.getParameter("ddlCuentas") != null) {
+		if (request.getParameter("ddlCuentasMovimientos") != null) {
 		
 			
 			Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
 
-			if (request.getParameter("ddlCuentas").equals("TodasCuentas")) {
+			if (request.getParameter("ddlCuentasMovimientos").equals("TodasCuentas")) {
 				
 				request.setAttribute("ListaMovimientos",
 						movNeg.obtenerMovimientosPorCliente(UsuarioLogueado.getDni_us()));
 			} else {
 				request.setAttribute("ListaMovimientos",
-						movNeg.obtenerMovimientosCuenta(Integer.parseInt(request.getParameter("ddlCuentas"))));
+						movNeg.obtenerMovimientosCuenta(Integer.parseInt(request.getParameter("ddlCuentasMovimientos"))));
 			}
 			
 			request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogueado.getDni_us()));
@@ -130,8 +136,24 @@ public class ServletMovimientos extends HttpServlet {
 				break;
 			}
 			case "SolicitarPrestamo": {
+				Prestamo prestamo = new Prestamo();
+				Cliente cliente = new Cliente();
+				Cuenta cuenta = new Cuenta();
 
 				Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
+				cliente = negCliente.obtenerCliente(UsuarioLogueado.getDni_us());
+				cuenta = negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("ddlCuentas")));			
+				
+				prestamo.setDniCliente_prestamo(cliente);
+				prestamo.setNroCuenta_prestamo(cuenta);
+				               
+				prestamo.setImporteSolicitado_prestamo(Float.parseFloat(request.getParameter("recibis")));
+				prestamo.setImporteApagar_prestamo(Float.parseFloat(request.getParameter("total")));	
+				prestamo.setPlazoDePago_prestamo(Integer.parseInt(request.getParameter("cuotas")));
+				prestamo.setCuotas_prestamo(Integer.parseInt(request.getParameter("cuotas")));
+				prestamo.setMontoMensual_prestamo(Float.parseFloat(request.getParameter("ValorCuotas")));	
+
+				request.setAttribute("Exito", PresNeg.SolicitarPrestamo(prestamo));
 				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogueado.getDni_us()));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/SolicitarPrestamo.jsp");
 				dispatcher.forward(request, response);

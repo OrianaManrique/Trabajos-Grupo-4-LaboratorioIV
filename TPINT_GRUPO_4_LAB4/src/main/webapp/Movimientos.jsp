@@ -156,7 +156,7 @@ p {
 		
 		<br /> 
 		<div style="width: 250px; margin: auto;">
-		      <select class="form-select form-select-lg mb-3" id="ddlCuentas" name="ddlCuentas" onchange="this.form.submit()">
+		      <select class="form-select form-select-lg mb-3" id="ddlCuentasMovimientos" name="ddlCuentas" onchange="this.form.submit()">
 				<option value="">Seleccione una cuenta</option>
 					<%
 					for (Cuenta c : ListaCuentas) {
