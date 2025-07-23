@@ -65,7 +65,7 @@ public class Cuenta {
 		this.tipoCuenta_cuenta = tipo_cuenta;
 	}
 
-	public double getSaldo_cuenta() {
+	public Float getSaldo_cuenta() {
 		return saldo_cuenta;
 	}
 

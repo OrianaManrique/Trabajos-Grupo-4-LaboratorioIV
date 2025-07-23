@@ -7,9 +7,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import entidad.Cliente;
 import entidad.Cuenta;
 import java.util.ArrayList;
 import entidad.TipoCuenta;
+import entidad.Usuario;
 import negocio.CuentaNeg;
 import negocioImpl.CuentaNegImpl;
 import negocioImpl.TipoCuentaNegImpl;
@@ -37,6 +40,16 @@ public class ServletCuentas extends HttpServlet {
 			String operacion = request.getParameter("Param").toString();
 
 			switch (operacion) {
+			case "CargarInicioCliente": {
+		        
+				Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
+				Cliente clienteLogueado = clienteNeg.obtenerCliente(UsuarioLogueado.getDni_us());
+				
+				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(clienteLogueado.getDni_cliente()));			
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/CuentaCliente.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
 			case "ListarCuentas": {
 
 				request.setAttribute("Lista", negCuenta.obtenerCuentas());
@@ -82,6 +95,15 @@ public class ServletCuentas extends HttpServlet {
 
 			default:
 				break;
+			}
+			
+			if (request.getParameter("ddlCuentasInicioCliente") != null) {
+				
+				request.setAttribute("CuentaSeleccionada", negCuenta.Obtenercuenta(Integer.parseInt(request.getParameter("ddlCuentasMovimientos"))));		
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/CuentaCliente.jsp");
+				dispatcher.forward(request, response);
+				
+				return;
 			}
 
 		}

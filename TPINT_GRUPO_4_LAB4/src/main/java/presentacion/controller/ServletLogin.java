@@ -24,7 +24,7 @@ public class ServletLogin extends HttpServlet {
 			throws ServletException, IOException {
 		
 		if (request.getParameter("Param") != null) {
-			
+		
 			UsuarioNeg usuarioNeg = new UsuarioNegImpl();
 			Usuario usuario_logueado;
 			
@@ -39,8 +39,7 @@ public class ServletLogin extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/InicioAdministrador.jsp");
 			rd.forward(request, response);
 			} else {
-			RequestDispatcher rd = request.getRequestDispatcher("/CuentaCliente.jsp");
-			rd.forward(request, response);
+		    response.sendRedirect("ServletCuentas?Param=CargarInicioCliente");
 			}
 		}
 	}

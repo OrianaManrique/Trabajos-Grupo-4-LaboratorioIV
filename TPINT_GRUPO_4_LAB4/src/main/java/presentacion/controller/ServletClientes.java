@@ -52,7 +52,7 @@ public class ServletClientes extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/AgregarCliente.jsp");
 				dispatcher.forward(request, response);
 				break;
-			}
+			}			
 			case "ListarClientes": {
 				// Cargo el form
 				request.setAttribute("Lista", negCli.obtenerClientes());

@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "entidad.*" %>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>CuentaCliente</title>
 </head>
@@ -114,6 +116,8 @@ p {
 <%
 
 Usuario usuario = new Usuario();
+Cuenta cuenta = new Cuenta();
+Float Saldo = 0f;
 
 if(session.getAttribute("usuarioLogueado") != null){
 
@@ -122,20 +126,39 @@ if(session.getAttribute("usuarioLogueado") != null){
 //}else {
 //    response.sendRedirect("InicioLogin.jsp");
 }
+
+ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();
+if (request.getAttribute("ListaCuentas") != null) {
+	ListaCuentas = (ArrayList<Cuenta>) request.getAttribute("ListaCuentas");
+}
+
+if(request.getAttribute("CuentaSeleccionada")!= null){
+	cuenta = (Cuenta) request.getAttribute("CuentaSeleccionada");
+	Saldo = cuenta.getSaldo_cuenta();	
+}
  %>
 
 <div class="header">
 <%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Cliente
 </div>
-
+  		<div style="width: 250px; margin: auto;">
+		      <select class="form-select form-select-lg mb-3" id="ddlCuentasInicioCliente" name="ddlCuentasInicioCliente" onchange="this.form.submit()">
+				<option value="">Seleccione una cuenta</option>
+					<%
+					for (Cuenta c : ListaCuentas) {
+					%>
+					<option value="<%=c.getNroCuenta_cuenta()%>">CTA N° -
+					<%=c.getNroCuenta_cuenta()%></option>
+					<%
+					}
+					%>
+			</select>
+		</div>
+		
   <div class="balance-container">
     <div class="balance-box">
-      $ 0,00
+      $<%=Saldo%>
       <p>Disponible en pesos argentinos</p>
-    </div>
-    <div class="balance-box">
-      U$S 0,00
-      <p>Disponible en dólares</p>
     </div>
   </div>
 
