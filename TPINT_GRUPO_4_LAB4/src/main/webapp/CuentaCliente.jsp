@@ -136,6 +136,7 @@ if(request.getAttribute("CuentaSeleccionada")!= null){
 	cuenta = (Cuenta) request.getAttribute("CuentaSeleccionada");
 	Saldo = cuenta.getSaldo_cuenta();	
 }
+
  %>
 
 <div class="header">
