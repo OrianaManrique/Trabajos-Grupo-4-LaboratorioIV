@@ -156,7 +156,7 @@ p {
 		
 		<br /> 
 		<div style="width: 250px; margin: auto;">
-		      <select class="form-select form-select-lg mb-3" id="ddlCuentasMovimientos" name="ddlCuentas" onchange="this.form.submit()">
+		      <select class="form-select form-select-lg mb-3" id="ddlCuentasMovimientos" name="ddlCuentasMovimientos" onchange="this.form.submit()">
 				<option value="">Seleccione una cuenta</option>
 					<%
 					for (Cuenta c : ListaCuentas) {
@@ -187,7 +187,7 @@ p {
 					<%
                     for (Movimiento listaMovimiento : ListaMovimientos) {
 
-                        if(listaMovimiento.getDetalle_movimiento().equals("Ingreso")){
+                        if(listaMovimiento.getDetalle_movimiento().equals("Ingreso de dinero")){
 
                             ColorDetalle = "green";
                         }else{

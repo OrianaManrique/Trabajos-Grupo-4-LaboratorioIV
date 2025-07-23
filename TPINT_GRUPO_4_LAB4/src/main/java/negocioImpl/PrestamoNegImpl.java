@@ -20,8 +20,8 @@ public class PrestamoNegImpl implements PrestamoNeg {
 	}
 
 	@Override
-	public boolean AutorizarRechazarPrestamo(Prestamo prestamo) {
-		return presDao.AutorizarRechazarPrestamo(prestamo);
+	public boolean AutorizarRechazarPrestamo(Prestamo prestamo, String CambioCondicion) {
+		return presDao.AutorizarRechazarPrestamo(prestamo, CambioCondicion);
 	}
 
 }

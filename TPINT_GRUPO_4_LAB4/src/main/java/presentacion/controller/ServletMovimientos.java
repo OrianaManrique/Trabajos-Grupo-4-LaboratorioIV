@@ -71,18 +71,6 @@ public class ServletMovimientos extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
-			case "Autorizar-RechazarPrestamo": {
-                
-				if(request.getParameter("condicion")!=null) {
-					
-					
-				}
-				
-				request.setAttribute("ListaPrestamos", PresNeg.obtenerPrestamos());
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/AutorizarPrestamo.jsp");
-				dispatcher.forward(request, response);
-				break;
-			}
 
 			default:
 				break;
@@ -174,6 +162,23 @@ public class ServletMovimientos extends HttpServlet {
 				request.setAttribute("Exito", PresNeg.SolicitarPrestamo(prestamo));
 				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogueado.getDni_us()));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/SolicitarPrestamo.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
+			case "Autorizar-RechazarPrestamo": {
+	             
+				Prestamo prestamo = new Prestamo();
+				Cuenta cuenta = new Cuenta();
+				
+				cuenta.setNroCuenta_cuenta(Integer.parseInt(request.getParameter("NumeroCuenta_Prestamo")));
+				
+				prestamo.setId_prestamo(Integer.parseInt(request.getParameter("Id_Prestamo")));
+				prestamo.setNroCuenta_prestamo(cuenta);
+				prestamo.setImporteSolicitado_prestamo(Float.parseFloat(request.getParameter("ImporteSolicitado_Prestamo")));
+					
+				PresNeg.AutorizarRechazarPrestamo(prestamo, request.getParameter("Condicion"));
+				request.setAttribute("ListaPrestamos", PresNeg.obtenerPrestamos());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/AutorizarPrestamo.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}

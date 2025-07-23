@@ -133,7 +133,7 @@ if (request.getAttribute("ListaPrestamos") != null) {
 	</p>
 
 
-	<form>
+
 
       <table id="table_id" class="display">
 		<thead>
@@ -151,10 +151,12 @@ if (request.getAttribute("ListaPrestamos") != null) {
 			</tr>
 		</thead>
 		<tbody>
+		
 		<%
 			for (Prestamo prestamo : ListaPrestamos) {
 		%>
 			<tr>
+				
 				<td><%= prestamo.getDniCliente_prestamo().getDni_cliente()%></td>
 				<td><%= prestamo.getNroCuenta_prestamo().getNroCuenta_cuenta() %></td>
 				<td><%= prestamo.getImporteSolicitado_prestamo() %></td>
@@ -164,17 +166,31 @@ if (request.getAttribute("ListaPrestamos") != null) {
 				<td><%= prestamo.getFechaCreacion_prestamo() %></td>
 				<td><%= prestamo.getMontoMensual_prestamo() %></td>
 				<td><%= prestamo.getCondicion_prestamo()%></td>
-				<td> 
-				  <a  class="link-success link-opacity-50-hover link-offset-2 link-underline link-underline-opacity-0"  href = "ServletMovimientos?Param=Autorizar-RechazarPrestamo&Condicion=A"> Autorizar </a>
-				  <a  class="link-danger link-opacity-50-hover link-offset-2 link-underline link-underline-opacity-0" href = "ServletMovimientos?Param=Autorizar-RechazarPrestamo&Condicion=R"> Rechazar </a> 						
-				</td>		
+						
+				<td>	
+				
+				 <form action="ServletMovimientos?Param=Autorizar-RechazarPrestamo" method="post">
+				 
+				 <input type="hidden" id="Id_Prestamo" name="Id_Prestamo" value="<%=prestamo.getId_prestamo()%>">				 
+				 <input type="hidden" id="DniCliente_Prestamo" name="DniCliente_Prestamo" value="<%=prestamo.getDniCliente_prestamo().getDni_cliente()%>">
+				 <input type="hidden" id="NumeroCuenta_Prestamo" name="NumeroCuenta_Prestamo" value="<%=prestamo.getNroCuenta_prestamo().getNroCuenta_cuenta()%>">
+				 <input type="hidden" id="ImporteSolicitado_Prestamo" name="ImporteSolicitado_Prestamo" value="<%=prestamo.getImporteSolicitado_prestamo() %>">
+		    				
+				 <button type="submit" name="Condicion" value="A" class="btn btn-success btn-sm">Autorizar</button>
+				 <button type="submit" name="Condicion" value="R" class="btn btn-danger btn-sm">Rechazar</button>
+				  
+			     </form>	
+			    </td>
+							
 			</tr>
+				
+										
 			<%
 			}
 			%>
 		</tbody>
 	</table>
 
-	</form>
+	
 </body>
 </html>

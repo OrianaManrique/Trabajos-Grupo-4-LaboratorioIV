@@ -84,12 +84,26 @@ public class PrestamoDaoImpl implements PrestamoDao {
 		return lista;
 	}
 	
-	public boolean AutorizarRechazarPrestamo(Prestamo prestamo){
+	public boolean AutorizarRechazarPrestamo(Prestamo prestamo, String CambioCondicion){
 		
 		boolean estado = false;
-		
 
-		
+		conexion = new Conexion();
+		conexion.open();
+
+		String query = "CALL AutorizarRechazarPrestamo("
+			    + prestamo.getId_prestamo() + ", "
+			    + prestamo.getNroCuenta_prestamo().getNroCuenta_cuenta() + ", "
+			    + prestamo.getImporteSolicitado_prestamo() + ", '"
+			    + CambioCondicion + "');";
+
+		try {
+			estado = conexion.execute(query);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
 		return estado;
 	}
 
