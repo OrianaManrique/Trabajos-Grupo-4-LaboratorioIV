@@ -12,7 +12,7 @@
 	rel="stylesheet">
 <meta charset="UTF-8">
 
-<title>PedirPrestamo</title>
+<title>Solicitar Préstamo</title>
 </head>
 <style>
 

@@ -43,8 +43,8 @@ public class PrestamoDaoImpl implements PrestamoDao {
 		conexion = new Conexion();
 		conexion.open();
 		
-		String consulta = ("Select id_prestamo AS Id , dnicliente_prestamo AS Dni , nroCuenta_prestamo AS NroCuenta , importe_a_pagar_prestamo AS ImportePagar , importe_solicitado_prestamo AS ImporteSolicitado  "
-				          + "plazo_de_pago_prestamo AS Plazo, cuotas_prestamo AS Cuotas, fecha_creacion_prestamo AS Fecha, montoMensual_prestamo AS Monto "
+		String consulta = ("Select id_prestamo AS Id , dnicliente_prestamo AS Dni , nroCuenta_prestamo AS NroCuenta , importe_a_pagar_prestamo AS ImportePagar , importe_solicitado_prestamo AS ImporteSolicitado,  "
+				          + "plazo_de_pago_prestamo AS Plazo, cuotas_prestamo AS Cuotas, fecha_creacion_prestamo AS Fecha, montoMensual_prestamo AS Monto, "
 				          + "condicion_prestamo AS Condicion FROM prestamos WHERE estado_prestamo=1");
 
 		ArrayList<Prestamo> lista = new ArrayList<Prestamo>();
@@ -82,6 +82,15 @@ public class PrestamoDaoImpl implements PrestamoDao {
 			conexion.close();
 		}
 		return lista;
+	}
+	
+	public boolean AutorizarRechazarPrestamo(Prestamo prestamo){
+		
+		boolean estado = false;
+		
+
+		
+		return estado;
 	}
 
 }

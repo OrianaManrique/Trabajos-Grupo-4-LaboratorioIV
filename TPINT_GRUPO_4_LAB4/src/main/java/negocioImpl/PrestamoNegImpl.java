@@ -19,4 +19,9 @@ public class PrestamoNegImpl implements PrestamoNeg {
 		return presDao.obtenerPrestamos();
 	}
 
+	@Override
+	public boolean AutorizarRechazarPrestamo(Prestamo prestamo) {
+		return presDao.AutorizarRechazarPrestamo(prestamo);
+	}
+
 }

@@ -1,7 +1,6 @@
 package presentacion.controller;
 
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -62,6 +61,25 @@ public class ServletMovimientos extends HttpServlet {
 				Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
 				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogueado.getDni_us()));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/Movimientos.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}		
+			case "CargarAutorizarPrestamos": {
+
+				request.setAttribute("ListaPrestamos", PresNeg.obtenerPrestamos());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/AutorizarPrestamo.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
+			case "Autorizar-RechazarPrestamo": {
+                
+				if(request.getParameter("condicion")!=null) {
+					
+					
+				}
+				
+				request.setAttribute("ListaPrestamos", PresNeg.obtenerPrestamos());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/AutorizarPrestamo.jsp");
 				dispatcher.forward(request, response);
 				break;
 			}
