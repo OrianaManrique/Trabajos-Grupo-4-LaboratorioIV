@@ -263,7 +263,7 @@ public class CuentaDaoImpl implements CuentaDao {
 
 	@Override
 	public int ContarCuentas(int dni_cliente) {
-		int cantidad = -1;
+		int cantidad = 0;
 
 		try {
 			conexion = new Conexion();
