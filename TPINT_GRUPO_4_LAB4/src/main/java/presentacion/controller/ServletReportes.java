@@ -42,6 +42,16 @@ public class ServletReportes extends HttpServlet {
 			return;
 		}
 		
+      if (request.getParameter("ddlMes1") != null && request.getParameter("ddlMes2") !=null) {
+			
+			request.setAttribute("importe1", PresNeg.TotalImportePrestamosPorMes(Integer.parseInt(request.getParameter("ddlMes1"))));
+			request.setAttribute("importe2", PresNeg.TotalImportePrestamosPorMes(Integer.parseInt(request.getParameter("ddlMes2"))));
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/ReporteImporte.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

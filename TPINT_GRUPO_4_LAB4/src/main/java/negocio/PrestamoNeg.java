@@ -12,4 +12,5 @@ public interface PrestamoNeg {
 	public boolean PagarPrestamoCompleto(int id);
 	public boolean AutorizarRechazarPrestamo(Prestamo prestamo, String CambioCondicion);
 	public int ContarPrestamosPorMes(int mes, String condicion);
+	public Float TotalImportePrestamosPorMes(int mes);
 }

@@ -261,4 +261,31 @@ public class CuentaDaoImpl implements CuentaDao {
         
 	}
 
+	@Override
+	public int ContarCuentas(int dni_cliente) {
+		int cantidad = -1;
+
+		try {
+			conexion = new Conexion();
+			conexion.open();
+
+			String consulta = "SELECT dnicliente_cuenta AS Cliente, COUNT(*) AS Cantidad  FROM cuentas WHERE dnicliente_cuenta = 12345678 AND estado_cuenta = 1 GROUP BY dnicliente_cuenta;";
+
+			ResultSet rs = conexion.query(consulta);
+
+			if (rs.next()) {
+
+				cantidad = rs.getInt("Cantidad");
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+
+		return cantidad;
+	}
+
 }

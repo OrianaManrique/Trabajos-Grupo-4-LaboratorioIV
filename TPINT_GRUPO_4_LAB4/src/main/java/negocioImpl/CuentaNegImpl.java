@@ -47,4 +47,9 @@ public class CuentaNegImpl implements CuentaNeg{
 	public String ObtenerCBU() {
 		return cuentaDao.ObtenerCBU();
 	}
+
+	@Override
+	public int ContarCuentas(int dni_cliente) {
+		return cuentaDao.ContarCuentas(dni_cliente);
+	}
 }

@@ -42,5 +42,9 @@ public class PrestamoNegImpl implements PrestamoNeg {
 	public boolean PagarPrestamoCompleto(int id) {
 		return presDao.PagarPrestamoCompleto(id);
 	}
+	
+	public Float TotalImportePrestamosPorMes(int mes) {
+		return presDao.TotalImportePrestamosPorMes(mes);
+	}
 		
 }

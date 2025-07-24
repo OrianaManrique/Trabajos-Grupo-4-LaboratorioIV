@@ -12,5 +12,6 @@ public interface CuentaDao {
 	public Boolean agregarCuenta(Cuenta cuenta);
 	public int proximoNroCuenta();
 	public String ObtenerCBU();
+	public int ContarCuentas(int dni_cliente);
 
 }

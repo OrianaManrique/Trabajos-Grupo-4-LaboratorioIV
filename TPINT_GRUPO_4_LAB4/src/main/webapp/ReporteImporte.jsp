@@ -108,6 +108,8 @@ p {
 Usuario usuario = new Usuario();
 int aprobados = 0;
 int rechazados = 0;
+Float importe1 = 0f;
+Float importe2 = 0f;
 
 if(session.getAttribute("usuarioLogueado") != null){
 
@@ -125,6 +127,14 @@ if (request.getAttribute("rechazados") != null) {
 	rechazados = (int)request.getAttribute("rechazados");
 }
 
+if (request.getAttribute("importe1") != null) {
+	importe1 = (Float)request.getAttribute("importe1");
+}
+
+if (request.getAttribute("importe2") != null) {
+	importe2 = (Float)request.getAttribute("importe2");
+}
+
  %>
 
 <div class="header">
@@ -133,70 +143,63 @@ if (request.getAttribute("rechazados") != null) {
 
 <form action="ServletReportes?Param=ReporteMensual" method="get">
 
-<div class="subtitulo">REPORTES</div>
+  <div class="subtitulo">REPORTES</div>
 
-<div class="container mt-4">
-  <h3>Reporte: Comparativo mensual importe de préstamos aprobados.</h3>
-  <br/>
-  <br/>
-  <p>Seleccione mes a comparar</p><br/>
-				
-					<select class="form-select form-select-lg mb-3; width: 200px" id="ddlMes" name="ddlMes" onchange="this.form.submit()">
-								<option value="">Seleccione un mes</option>
-								<%
-								for (int i=1; i<=12; i++ ) {
-								%>
-								<option value="<%=i%>"><%=i%></option>
-								<%
-								}
-								%>
-						</select>
-<br/>
-  <div class="mb-4">
-    <label>
-      <i class="bi bi-currency-dollar"></i>
-      Importe (<%=aprobados%>%)
-    </label>
-    <div class="progress">
-      <div class="progress-bar bg-success barra-grande progress-bar-striped progress-bar-animated"
-           role="progressbar"
-           style="width: <%= aprobados %>%;">
-        <%= aprobados %> %
+  <div class="container mt-4">
+    <h3>Reporte: Comparativo mensual importe de préstamos aprobados.</h3>
+    <br/>
+    <p>Seleccione mes a comparar</p><br/>
+
+    <select class="form-select form-select-lg mb-3" id="ddlMes1" name="ddlMes1">
+      <option value="">Seleccione un mes</option>
+      <% for (int i = 1; i <= 12; i++) { %>
+        <option value="<%= i %>"><%= i %></option>
+      <% } %>
+    </select>
+
+    <div class="mb-4">
+      <label>
+        <i class="bi bi-currency-dollar"></i>
+        Importe (<%=importe1%>)
+      </label>
+      <div class="progress">
+        <div class="progress-bar bg-success barra-grande progress-bar-striped progress-bar-animated"
+             role="progressbar"
+             style="width: <%=importe1%>%"
+             aria-valuemin="0"
+             aria-valuemax="100">
+          <%= importe1 %> %
+        </div>
+      </div>
+    </div>
+
+    <p>Seleccione mes a comparar</p><br/>
+
+    <select class="form-select form-select-lg mb-3" id="ddlMes2" name="ddlMes2" onchange="this.form.submit()">
+      <option value="">Seleccione un mes</option>
+      <% for (int i = 1; i <= 12; i++) { %>
+        <option value="<%= i %>"><%= i %></option>
+      <% } %>
+    </select>
+
+    <div class="mb-4">
+      <label>
+        <i class="bi bi-currency-dollar"></i>
+        Importe (<%=importe2%>)
+      </label>
+      <div class="progress">
+        <div class="progress-bar bg-success barra-grande progress-bar-striped progress-bar-animated"
+             role="progressbar"
+             style="width: <%=importe2%>%"
+             aria-valuenow="<%=importe2%>"
+             aria-valuemin="0"
+             aria-valuemax="100">
+          <%= importe2 %> %
+        </div>
       </div>
     </div>
   </div>
 
-
-<p>Seleccione mes a comparar</p><br/>
-				
-					<select class="form-select form-select-lg mb-3; width: 200px" id="ddlMes" name="ddlMes" onchange="this.form.submit()">
-								<option value="">Seleccione un mes</option>
-								<%
-								for (int i=1; i<=12; i++ ) {
-								%>
-								<option value="<%=i%>"><%=i%></option>
-								<%
-								}
-								%>
-						</select>
-
-
-<div class="mb-4">
-    <label>
-      <i class="bi bi-currency-dollar"></i>
-      Importe (<%=aprobados%>%)
-    </label>
-    <div class="progress">
-      <div class="progress-bar bg-success barra-grande progress-bar-striped progress-bar-animated"
-           role="progressbar"
-           style="width: <%= aprobados %>%;">
-        <%= aprobados %> %
-      </div>
-    </div>
-  </div>
-</div>
 </form>
-
-
 </body>
 </html>

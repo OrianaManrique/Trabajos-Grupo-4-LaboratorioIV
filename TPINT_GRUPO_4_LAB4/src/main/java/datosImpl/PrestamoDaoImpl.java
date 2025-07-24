@@ -251,4 +251,29 @@ public class PrestamoDaoImpl implements PrestamoDao {
 		}
 		return estado;
 	}
+	
+public Float TotalImportePrestamosPorMes(int mes) {
+		
+		conexion = new Conexion();
+		conexion.open();
+		float importeTotal = 0f;
+		
+		String consulta = ("CALL TotalImportePrestamosPorMes("+mes+");");
+
+		try {
+			ResultSet rs = conexion.query(consulta);
+
+			if(rs.next()) {
+				
+				importeTotal = rs.getFloat("TotalAprobado");
+				
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+		return importeTotal;
+	}
 }

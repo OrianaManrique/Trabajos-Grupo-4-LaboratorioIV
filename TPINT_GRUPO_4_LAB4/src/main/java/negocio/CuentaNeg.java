@@ -12,4 +12,6 @@ public interface CuentaNeg {
 	public ArrayList<Cuenta> obtenerCuentasxDni(int dni_cliente);	
 	public int proximoNroCuenta();
 	public String ObtenerCBU();
+	public int ContarCuentas(int dni_cliente);
+	
 }
