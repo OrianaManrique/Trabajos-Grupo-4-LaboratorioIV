@@ -102,11 +102,15 @@ p {
 
 </style>
 <body>
+
 <%
 
 Usuario usuario = new Usuario();
-int aprobados = 0;
-int rechazados = 0;
+int aprobadosint = 0;
+int rechazadosint = 0;
+Float aprobados = 0f;
+Float rechazados = 0f;
+int total = 0;
 
 if(session.getAttribute("usuarioLogueado") != null){
 
@@ -117,12 +121,19 @@ if(session.getAttribute("usuarioLogueado") != null){
 }
 
 if (request.getAttribute("aprobados") != null) {
-	aprobados = (int)request.getAttribute("aprobados");
+	aprobadosint = (int)request.getAttribute("aprobados");
 }
 
 if (request.getAttribute("rechazados") != null) {
-	rechazados = (int)request.getAttribute("rechazados");
+	rechazadosint = (int)request.getAttribute("rechazados");
 }
+
+if (request.getAttribute("total") != null) {
+	total = (int)request.getAttribute("total");
+}
+
+aprobados = Math.round((aprobados*100/total)* 100) / 100f;
+rechazados = Math.round((rechazados*100/total)* 100) / 100f;
 
  %>
 
