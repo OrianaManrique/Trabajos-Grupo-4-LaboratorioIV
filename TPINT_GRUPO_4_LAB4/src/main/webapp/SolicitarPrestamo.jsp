@@ -319,7 +319,7 @@ input[type=number] {
 					
 					<h3>Seleccione su cuenta</h3>
 					
-					<select class="form-select form-select-lg mb-3"	 id="ddlCuentas" name="ddlCuentas">
+					<select class="form-select form-select-lg mb-3"	 id="ddlCuentas" name="ddlCuentas" required>
 								<option value="">Seleccione una cuenta</option>
 								<%
 								for (Cuenta c : ListaCuentas) {

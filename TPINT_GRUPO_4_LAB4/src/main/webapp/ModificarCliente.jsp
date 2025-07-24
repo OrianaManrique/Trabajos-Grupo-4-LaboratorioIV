@@ -176,7 +176,7 @@ if(session.getAttribute("usuarioLogueado") != null){
 		    
     <p style="Color: purple; font-weight: bold; font-size: 50px"> MODIFICAR CLIENTE</p>
     
-		<input style="width: 30%; margin-top: 20px;" type="search" name="txtBusquedaModificarCliente" placeholder="Ingrese un Dni..." /> 
+		<input style="width: 30%; margin-top: 20px;" type="search" name="txtBusquedaModificarCliente" placeholder="Ingrese un Dni..." required/> 
 			<input class="btn btn-outline-success" name="BuscarClienteDni" type="submit">
 	</form>
 

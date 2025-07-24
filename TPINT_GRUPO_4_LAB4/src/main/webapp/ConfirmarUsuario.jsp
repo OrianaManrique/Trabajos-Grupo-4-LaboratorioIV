@@ -149,9 +149,9 @@ if(session.getAttribute("usuarioLogueado") != null){
 	    
 	    <input class="inputUsuario" type="text" id="txtUsuarioCliente" name="txtUsuarioCliente" value="<%=dni_cliente%>" readonly > <br/> 
 						
-		<input class="inputPassword" type="password" id="txtContra" name="txtContra" placeholder="Ingrese una contraseña..."> <br/> 
+		<input class="inputPassword" type="password" id="txtContra" name="txtContra" placeholder="Ingrese una contraseña..." required> <br/> 
 		
-		<input class="inputPassword" type="password" id="txtContra" name="txtContra" placeholder="repita la contraseña...">  <br/> <br/>
+		<input class="inputPassword" type="password" id="txtContra" name="txtContra" placeholder="repita la contraseña..."  required>  <br/> <br/>
 	      				
 		<div class="ContenedorBoton">
 		 <input type="submit" style="color:#5F1AB4 " class="btnConfirmarUsuario" name="btnConfirmarUsuario" value="CONFIRMAR"/>

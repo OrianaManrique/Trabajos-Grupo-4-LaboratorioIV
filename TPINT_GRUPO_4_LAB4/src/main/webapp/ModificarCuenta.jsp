@@ -174,8 +174,8 @@ if(session.getAttribute("usuarioLogueado") != null){
 		 <p style="Color: purple; font-weight: bold; font-size: 50px"> MODIFICAR CUENTA</p>
 		 
 		<input style="width: 25%; margin-top: 20px;" type="search"
-			name="txtBusqueda" placeholder="Ingrese un Dni..." /> 
-			<input class="btn btn-outline-success" name="BuscarCuentasDni" type="submit">
+			name="txtBusqueda" placeholder="Ingrese un Dni..." required /> 
+			<input class="btn btn-outline-success" name="BuscarCuentasDni" type="submit" >
 	</form>
 
 	<form action="ServletCuentas?Param=GuardarModificacionCuenta&dnibusqueda=<%=DniBusqueda%>"  method="post">

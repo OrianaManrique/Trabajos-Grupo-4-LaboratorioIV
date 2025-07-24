@@ -163,8 +163,8 @@ input, select, textarea {
 				<tbody>
 					<tr>
 						<td><select class="form-select form-select-lg mb-3"
-							id="ddlCuentas" name="ddlCuentas">
-								<option value="">Seleccione una cuenta</option>
+							id="ddlCuentas" name="ddlCuentas" required>
+								<option value="" >Seleccione una cuenta</option >
 								<%
 								for (Cuenta c : ListaCuentas) {
 								%>

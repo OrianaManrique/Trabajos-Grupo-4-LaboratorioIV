@@ -212,7 +212,7 @@ if(session.getAttribute("usuarioLogueado") != null){
 	     	  	   
 	    <label class="lblinput">Numero de Cuenta </label>  
 	    
-	    <input class="inputBloqueado" type="text" id="txtNumeroCuenta" name="txtNumeroCuenta" value= <%=nroCuenta%> ReadOnly> 
+	    <input class="inputBloqueado" type="text" id="txtNumeroCuenta" name="txtNumeroCuenta" value= <%=nroCuenta%> ReadOnly > 
 		
 		<label class="lblinput"> CBU </label>  
 				
@@ -225,17 +225,17 @@ if(session.getAttribute("usuarioLogueado") != null){
 	   </div>
 	   <div class="form-columna"> 
 	   
-	    <input class="inputSegundaColumna" type="text" id="txtDniCliente" name="txtDniCliente" placeholder="Ingrese el dni del cliente...">
+	    <input class="inputSegundaColumna" type="text" id="txtDniCliente" name="txtDniCliente" placeholder="Ingrese el dni del cliente..." required>
 	     	  	   		
 		<input class="inputSegundaColumna" type="date" id="txtFechaActual" value = <%=fechaActual%> name="txtFechaActual" ReadOnly>
 		
-		<select class="inputSegundaColumna" id="ddlTipoCuenta" name="ddlTipoCuenta" style="display: flex;">
+		<select class="inputSegundaColumna" id="ddlTipoCuenta" name="ddlTipoCuenta" style="display: flex;" required >
 
-                <option value="">Seleccione un tipo...</option>
+                <option value="" >Seleccione un tipo...</option >
 				<%
 				for (TipoCuenta tipo : ListaTipoCuentas) {
 				%>
-						<option value="<%= tipo.getId_tipoCuenta() %>"><%= tipo.getDescripcion_tipoCuenta() %></option>
+						<option value="<%= tipo.getId_tipoCuenta() %>" ><%= tipo.getDescripcion_tipoCuenta() %></option >
 						<%
 						}
 						%>
