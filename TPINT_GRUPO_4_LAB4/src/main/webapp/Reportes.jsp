@@ -157,7 +157,7 @@ if (request.getAttribute("rechazados") != null) {
       Aprobados (<%=aprobados%>%)
     </label>
     <div class="progress">
-      <div class="progress-bar bg-success barra-grande 
+      <div class="progress-bar bg-success barra-grande progress-bar-striped progress-bar-animated"
            role="progressbar"
            style="width: <%= aprobados %>%;">
         <%= aprobados %> %
