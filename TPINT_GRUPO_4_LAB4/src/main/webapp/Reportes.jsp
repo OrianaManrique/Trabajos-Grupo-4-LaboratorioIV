@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Reportes</title>
 </head>
@@ -27,7 +29,7 @@ body {
 
 .subtitulo {
     text-align: center;
-    font-size: 20px;
+    font-size: 35px;
     color: #44107a;
     margin-bottom: 20px;
     margin-top: 20px;
@@ -36,7 +38,7 @@ body {
 
 p {
 
-      font-size: 16px;
+      font-size: 20px;
       text-align: center;
 
     }
@@ -84,13 +86,27 @@ p {
 
     tr:hover {
       background-color: #eee4ff;
-    }   
+    }  
+    
+     .barra-grande {
+    height: 100px; 
+    font-size: 1.1rem;
+  }
+  
+  h3{
+  
+ font-size: 25px;
+ text-align: center;
+  
+  }
 
 </style>
 <body>
 <%
 
 Usuario usuario = new Usuario();
+int aprobados = 0;
+int rechazados = 0;
 
 if(session.getAttribute("usuarioLogueado") != null){
 
@@ -99,6 +115,18 @@ if(session.getAttribute("usuarioLogueado") != null){
 //}else {
 //	response.sendRedirect("InicioLogin.jsp");
 }
+
+if (request.getAttribute("aprobados") != null) {
+	aprobados = (int)request.getAttribute("aprobados");
+}
+
+if (request.getAttribute("rechazados") != null) {
+	rechazados = (int)request.getAttribute("rechazados");
+}
+
+//request.setAttribute("aprobados", 80);
+//request.setAttribute("rechazados", 20);
+
  %>
 
 <div class="header">
@@ -107,39 +135,52 @@ if(session.getAttribute("usuarioLogueado") != null){
 
 <form>
 
-<div class="subtitulo">Reportes</div>
+<div class="subtitulo">REPORTES</div>
 
-<div class="balance-container" >
+<div class="container mt-4">
+  <h3>Reporte: Comparativo mensual solicitudes de préstamos Aprobados y Rechazados.</h3>
+  <br/>
+  <br/>
+  <p>Seleccione mes a comparar</p><br/>
+				
+					<select class="form-select form-select-lg mb-3"	 id="ddlMes" name="ddlMes">
+								<option value="">Seleccione un mes</option>
+								<%
+								for (int i=1; i<=12; i++ ) {
+								%>
+								<option value="<%=i%>"><%=i%></option>
+								<%
+								}
+								%>
+						</select>
+<br/>
+  <div class="mb-4">
+    <label>
+      <i class="bi bi-check-circle-fill text-success"></i>
+      Aprobados (<%=aprobados%>%)
+    </label>
+    <div class="progress">
+      <div class="progress-bar bg-success barra-grande 
+           role="progressbar"
+           style="width: <%= aprobados %>%;">
+        <%= aprobados %> %
+      </div>
+    </div>
+  </div>
 
-<div class="balance-box" >
-
-
-<p>Filtrar</p>
-   
-   <br/>
-   <br/>
-	<table id="table_id" class="display">
-		<thead>
-			<tr>
-				<th>%</th>
-				<th>%</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>x</td>
-				<td>x</td>
-			</tr>
-		</tbody>
-	</table>
-  
-   <br/>
-   <br/>
-   
-   <input type="submit" value="Filtrar" name="btnFiltrar" />
-   
-</div>
-
+  <div class="mb-4">
+    <label>
+      <i class="bi bi-x-circle-fill text-danger"></i>
+      Rechazados (<%=rechazados%>%)
+    </label>
+    <div class="progress">
+      <div class="progress-bar bg-success barra-grande progress-bar-striped progress-bar-animated"
+           role="progressbar"
+           style="width: <%= rechazados %>%;">
+        <%= rechazados %> %
+      </div>
+    </div>
+  </div>
 </div>
 </form>
 
