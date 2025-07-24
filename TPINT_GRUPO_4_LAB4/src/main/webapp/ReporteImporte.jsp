@@ -6,6 +6,7 @@
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
 <meta charset="UTF-8">
 <title>Reportes</title>
 </head>
@@ -127,7 +128,7 @@ if (request.getAttribute("rechazados") != null) {
  %>
 
 <div class="header">
-<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador
+<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>
 </div>
 
 <form action="ServletReportes?Param=ReporteMensual" method="get">
@@ -153,7 +154,7 @@ if (request.getAttribute("rechazados") != null) {
 <br/>
   <div class="mb-4">
     <label>
-      <i class="bi bi-check-circle-fill text-success"></i>
+      <i class="bi bi-currency-dollar"></i>
       Importe (<%=aprobados%>%)
     </label>
     <div class="progress">
@@ -182,7 +183,7 @@ if (request.getAttribute("rechazados") != null) {
 
 <div class="mb-4">
     <label>
-      <i class="bi bi-check-circle-fill text-success"></i>
+      <i class="bi bi-currency-dollar"></i>
       Importe (<%=aprobados%>%)
     </label>
     <div class="progress">

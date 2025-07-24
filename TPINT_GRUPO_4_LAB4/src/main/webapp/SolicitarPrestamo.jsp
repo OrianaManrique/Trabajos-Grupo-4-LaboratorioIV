@@ -238,7 +238,7 @@ input[type=number] {
 	%>
 	<div class="header"><%=usuario.getNombre_us()%>
 		<%=usuario.getApellido_us()%>
-		- Cliente
+		- Cliente - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>
 	</div>
   
 	<form action="ServletMovimientos?Param=CalcularPrestamo" method="post">

@@ -140,7 +140,7 @@ if(request.getAttribute("CuentaSeleccionada")!= null){
  %>
 
 
-<div class="header"> <%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Cliente </div>
+<div class="header"> <%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Cliente </div> - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>
 
 <form action="ServletCuentas"  method="get">
   		<div style="width: 250px; margin: auto;">

@@ -127,7 +127,7 @@
 	%>
 
 
-	<div class="header"> <%= usuario.getNombre_us() %> <%= usuario.getApellido_us() %> - Cliente</div>
+	<div class="header"> <%= usuario.getNombre_us() %> <%= usuario.getApellido_us() %> - Cliente  - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a> </div>
 	
 
 	<div class="container">

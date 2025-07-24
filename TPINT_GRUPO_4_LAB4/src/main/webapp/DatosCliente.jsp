@@ -87,7 +87,7 @@ if (request.getAttribute("Localidad") != null) {
  %>
 
 <div class="header">
-<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Cliente
+<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Cliente - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>
 </div>
 
 <div class="container">

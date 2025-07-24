@@ -127,7 +127,7 @@ if (request.getAttribute("rechazados") != null) {
  %>
 
 <div class="header">
-<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador
+<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>
 </div>
 
 <form action="ServletReportes?Param=ReporteMensual" method="get">
@@ -171,7 +171,7 @@ if (request.getAttribute("rechazados") != null) {
       Rechazados (<%=rechazados%>%)
     </label>
     <div class="progress">
-      <div class="progress-bar bg-success barra-grande progress-bar-striped progress-bar-animated"
+      <div class="progress-bar bg-danger barra-grande progress-bar-striped progress-bar-animated"
            role="progressbar"
            style="width: <%= rechazados %>%;">
         <%= rechazados %> %

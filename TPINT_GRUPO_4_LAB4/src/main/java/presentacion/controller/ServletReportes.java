@@ -36,6 +36,7 @@ public class ServletReportes extends HttpServlet {
 			
 			request.setAttribute("aprobados", aprobados);
 			request.setAttribute("rechazados", rechazados);
+			request.setAttribute("total", (rechazados+aprobados));
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/ReporteCondicion.jsp");
 			dispatcher.forward(request, response);
 			return;
