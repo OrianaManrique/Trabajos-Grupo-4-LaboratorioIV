@@ -191,8 +191,8 @@ if(session.getAttribute("usuarioLogueado") != null){
 
     usuario = (Usuario)session.getAttribute("usuarioLogueado");
 
-//}else {
-//	response.sendRedirect("InicioLogin.jsp");
+}else {
+	response.sendRedirect("InicioLogin.jsp");
 }
  %>
 
@@ -200,7 +200,7 @@ if(session.getAttribute("usuarioLogueado") != null){
 <%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>
 </div>
 
-   <a href="InicioLogin.jsp"> Inicio </a>
+   <a href="InicioAdministrador.jsp"> Atrás </a>
    
    <form action="ServletCuentas?Param=Asignar" method="post">
    
@@ -246,6 +246,22 @@ if(session.getAttribute("usuarioLogueado") != null){
 		<div class="ContenedorBoton">
 		 <input type="submit" style="color:#5F1AB4 " name="btnAsignar" value="Asignar"/>
 		</div>
+		
+		<%
+	if (request.getAttribute("Exito") != null) {
+		Boolean exito = (Boolean) request.getAttribute("Exito");
+
+		if (exito != null && exito) {
+	%>
+	<p style="color: green;">¡Cuenta agregada con éxito!</p>
+	<%
+	} else {
+	%>
+	<p style="color: red;">ERROR - La cuenta no ha podido ser añadida.</p>
+	<%
+	}
+	}
+	%>	
 	   	 </div>
 	</div>	
 	</form>

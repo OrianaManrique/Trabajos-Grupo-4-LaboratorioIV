@@ -206,8 +206,8 @@ input[type=number] {
 
 		usuario = (Usuario) session.getAttribute("usuarioLogueado");
 
-		//}else {
-		//    response.sendRedirect("InicioLogin.jsp");
+		}else {
+		    response.sendRedirect("InicioLogin.jsp");
 	}
 
 	if (request.getAttribute("VisibilidadDatos") != null) {
@@ -240,6 +240,8 @@ input[type=number] {
 		<%=usuario.getApellido_us()%>
 		- Cliente - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>
 	</div>
+  
+  <a href="InicioCliente.jsp"> Atrás </a>
   
 	<form action="ServletMovimientos?Param=CalcularPrestamo" method="post">
 

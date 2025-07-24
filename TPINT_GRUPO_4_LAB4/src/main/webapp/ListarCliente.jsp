@@ -17,9 +17,13 @@
 	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#table_id').DataTable();
+$(document).ready(function() {
+	$('#table_id').DataTable({
+		language: {
+			search: "Filtrar clientes:"
+		}
 	});
+});
 </script>
 <style>
 body {
@@ -112,8 +116,8 @@ if(session.getAttribute("usuarioLogueado") != null){
 
     usuario = (Usuario)session.getAttribute("usuarioLogueado");
 
-//}else {
-//	response.sendRedirect("InicioLogin.jsp");
+}else {
+	response.sendRedirect("InicioLogin.jsp");
 }
  %>
 
@@ -121,7 +125,7 @@ if(session.getAttribute("usuarioLogueado") != null){
 <%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>
 </div>
 
-	<a href="InicioLogin.jsp"> Inicio </a>
+	<a href="InicioAdministrador.jsp"> Atrás </a>
 
 	<br />
 	<br />

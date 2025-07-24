@@ -4,6 +4,7 @@ import entidad.Cuenta;
 import datos.CuentaDao;
 import datosImpl.CuentaDaoImpl;
 import negocio.CuentaNeg;
+import exceptions.cuentaCliente;
 
 public class CuentaNegImpl implements CuentaNeg{
 	
@@ -28,6 +29,9 @@ public class CuentaNegImpl implements CuentaNeg{
 	}
 	
 	public Boolean agregarCuenta(Cuenta cuenta) {
+		
+		cuentaCliente.validarCantidadCuentas(cuenta.getDni_Cliente());
+		
 		return cuentaDao.agregarCuenta(cuenta);
 	}
 	

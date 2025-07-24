@@ -1,4 +1,5 @@
 package negocioImpl;
+import exceptions.mailCliente;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,10 @@ public class ClienteNegImpl implements ClienteNeg {
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean insertar(Cliente cliente) {
+	public boolean insertar (Cliente cliente) {
+		
+		mailCliente.validarMail(cliente.getCorreo_electronico_cliente()); 
+		
 		return cliDao.insertar(cliente);
 	}
 

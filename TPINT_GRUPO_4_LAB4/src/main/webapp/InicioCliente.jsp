@@ -123,8 +123,8 @@ if(session.getAttribute("usuarioLogueado") != null){
 
     usuario = (Usuario)session.getAttribute("usuarioLogueado");
 
-//}else {
-//    response.sendRedirect("InicioLogin.jsp");
+}else {
+    response.sendRedirect("InicioLogin.jsp");
 }
 
 ArrayList<Cuenta> ListaCuentas = new ArrayList<Cuenta>();

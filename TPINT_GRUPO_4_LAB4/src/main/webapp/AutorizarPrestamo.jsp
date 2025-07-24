@@ -110,8 +110,8 @@ if(session.getAttribute("usuarioLogueado") != null){
 
     usuario = (Usuario)session.getAttribute("usuarioLogueado");
 
-//}else {
-//	response.sendRedirect("InicioLogin.jsp");
+}else {
+	response.sendRedirect("InicioLogin.jsp");
 }
 
 ArrayList<Prestamo> ListaPrestamos = new ArrayList<Prestamo>();
@@ -124,7 +124,7 @@ if (request.getAttribute("ListaPrestamos") != null) {
 <%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>
 </div>
 
-	<a href="InicioLogin.jsp"> Inicio </a>
+	<a href="InicioAdministrador.jsp"> Atrás </a>
 	<br />
 	<br />
 
