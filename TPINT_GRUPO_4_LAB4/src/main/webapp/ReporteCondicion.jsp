@@ -171,7 +171,7 @@ if (request.getAttribute("rechazados") != null) {
       Rechazados (<%=rechazados%>%)
     </label>
     <div class="progress">
-      <div class="progress-bar bg-success barra-grande progress-bar-striped progress-bar-animated"
+      <div class="progress-bar bg-danger barra-grande progress-bar-striped progress-bar-animated"
            role="progressbar"
            style="width: <%= rechazados %>%;">
         <%= rechazados %> %
