@@ -132,8 +132,11 @@ if (request.getAttribute("total") != null) {
 	total = (int)request.getAttribute("total");
 }
 
-aprobados = Math.round((aprobados*100/total)* 100) / 100f;
-rechazados = Math.round((rechazados*100/total)* 100) / 100f;
+
+if (total != 0) {
+	aprobados = Math.round(((float)aprobadosint * 100 / total) * 100) / 100f;
+	rechazados = Math.round(((float)rechazadosint * 100 / total) * 100) / 100f;
+}
 
  %>
 
@@ -162,33 +165,40 @@ rechazados = Math.round((rechazados*100/total)* 100) / 100f;
 								%>
 						</select>
 <br/>
-  <div class="mb-4">
-    <label>
-      <i class="bi bi-check-circle-fill text-success"></i>
-      Aprobados (<%=aprobados%>%)
-    </label>
-    <div class="progress">
-      <div class="progress-bar bg-success barra-grande progress-bar-striped progress-bar-animated"
-           role="progressbar"
-           style="width: <%= aprobados %>%;">
-        <%= aprobados %> %
-      </div>
-    </div>
-  </div>
 
-  <div class="mb-4">
-    <label>
-      <i class="bi bi-x-circle-fill text-danger"></i>
-      Rechazados (<%=rechazados%>%)
-    </label>
-    <div class="progress">
-      <div class="progress-bar bg-danger barra-grande progress-bar-striped progress-bar-animated"
-           role="progressbar"
-           style="width: <%= rechazados %>%;">
-        <%= rechazados %> %
-      </div>
+<div class="mb-4">
+  <label>
+    <i class="bi bi-check-circle-fill text-success"></i>
+    Aprobados (<%= aprobados %> %)
+  </label>
+  <div class="progress">
+    <div class="progress-bar bg-success barra-grande progress-bar-striped progress-bar-animated"
+         role="progressbar"
+         style="width: <%= aprobados %>%;"
+         aria-valuenow="<%= aprobados %>"
+         aria-valuemin="0"
+         aria-valuemax="100">
+      <%= aprobados %> %
     </div>
   </div>
+</div>
+
+<div class="mb-4">
+  <label>
+    <i class="bi bi-x-circle-fill text-danger"></i>
+    Rechazados (<%= rechazados %> %)
+  </label>
+  <div class="progress">
+    <div class="progress-bar bg-danger barra-grande progress-bar-striped progress-bar-animated"
+         role="progressbar"
+         style="width: <%= rechazados %>%;"
+         aria-valuenow="<%= rechazados %>"
+         aria-valuemin="0"
+         aria-valuemax="100">
+      <%= rechazados %> %
+    </div>
+  </div>
+ </div>
 </div>
 </form>
 
