@@ -71,7 +71,7 @@ body {
 
 .login-container input[type="submit"] {
 	background-color: #d4d4d4;
-}
+
 </style>
 
 <body>

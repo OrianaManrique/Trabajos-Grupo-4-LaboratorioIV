@@ -16,13 +16,12 @@ public class CuotaDaoImpl implements CuotaDao {
 		conexion = new Conexion();
 		conexion.open();
 
-		String consulta = ("Select id_cuota, id_prestamo_cuota, monto_cuota, fechaPago_cuota \r\n"
-				+ "from cuotasprestamo inner join prestamos\r\n"
-				+ "on id_prestamo_cuota = "+ idPrestamo+"\r\n"
-				+ "where id_prestamo_cuota = 1\r\n"
-				+ "and estado_prestamo = 1\r\n"
-				+ "and condicion_prestamo = 'A';\r\n"
-				+ "");
+		String consulta = "SELECT cp.id_cuota AS IdCuota, cp.id_prestamo_cuota AS IdPrestamo, cp.monto_cuota AS Monto, cp.fechaPago_cuota AS Fecha " +
+                "FROM cuotasprestamo cp " +
+                "INNER JOIN prestamos p ON cp.id_prestamo_cuota = p.id_prestamo " +
+                "WHERE cp.id_prestamo_cuota = " + idPrestamo + " " +
+                "AND p.estado_prestamo = 1 " +
+                "AND p.condicion_prestamo = 'A'";
 
 		ArrayList<Cuota> lista = new ArrayList<Cuota>();
 
@@ -33,11 +32,11 @@ public class CuotaDaoImpl implements CuotaDao {
 				Cuota cuota = new Cuota();
 				Prestamo prestamo = new Prestamo();
 				
-				cuota.setId_Cuota(rs.getInt("id_cuota"));
-				prestamo.setId_prestamo(rs.getInt("id_prestamo_cuota"));
+				cuota.setId_Cuota(rs.getInt("IdCuota"));
+				prestamo.setId_prestamo(rs.getInt("IdPrestamo"));
 				cuota.setIdprestamo_cuota(prestamo);
-				cuota.setMonto_cuota((rs.getFloat("monto_cuota")));
-				cuota.setFechaPago_cuota(rs.getDate(("fechaPago_cuota")));;
+				cuota.setMonto_cuota((rs.getFloat("Monto")));
+				cuota.setFechaPago_cuota(rs.getDate(("Fecha")));;
 
 				lista.add(cuota);
 			}
@@ -75,6 +74,28 @@ public class CuotaDaoImpl implements CuotaDao {
 			conexion.close();
 		}
 		return CantidadCuotas;
+	}
+
+	@Override
+	public boolean PagarCuota(int idPrestamo, int NumeroCuenta) {
+		
+		boolean estado = false;
+		
+		conexion = new Conexion();
+		conexion.open();
+		
+				
+		String consulta = "CALL PagarCuota(" + idPrestamo +","+ NumeroCuenta +")";
+		
+		try {
+			estado = conexion.execute(consulta);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+		
+		return estado;
 	}
 
 }

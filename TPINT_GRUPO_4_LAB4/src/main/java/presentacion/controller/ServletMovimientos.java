@@ -210,10 +210,43 @@ public class ServletMovimientos extends HttpServlet {
 			}
 			case "PagarCuotaPrestamo": {
 				
+				String Opcion = request.getParameter("BotonCuotas");
 				
-				request.setAttribute("CuotasAnteriores", cuotaneg.obtenerCuotasporIdPrestamo(Integer.parseInt(request.getParameter("Id_Prestamo"))));
-			
-			break;	
+				if("PagarCuota".equals(Opcion)) {
+					
+					Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
+					
+					int idPrestamo = Integer.parseInt(request.getParameter("Id_PrestamoSeleccionado"));
+					int CuentaSeleccionada =  Integer.parseInt(request.getParameter("ddlCuentasPagoPrestamo"));
+					cuotaneg.PagarCuota(idPrestamo, CuentaSeleccionada);
+					
+					request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogueado.getDni_us()));
+					request.setAttribute("ListaPrestamos", PresNeg.obtenerPrestamosPorDni(UsuarioLogueado.getDni_us()));
+					request.setAttribute("PrestamoSeleccionado", PresNeg.obtenerPrestamoPorid(idPrestamo));
+					request.setAttribute("CantidadCuotasPagadas", cuotaneg.obtenerCantidadCuotasPagadas(idPrestamo));		
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/PagosPrestamo.jsp");
+					dispatcher.forward(request, response);
+					break;
+					
+					
+				}else if ("VerAnterioresCuotas".equals(Opcion)) {
+					
+					Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
+					
+					int idPrestamo = Integer.parseInt(request.getParameter("Id_PrestamoSeleccionado"));
+
+					request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogueado.getDni_us()));
+					request.setAttribute("ListaPrestamos", PresNeg.obtenerPrestamosPorDni(UsuarioLogueado.getDni_us()));
+					request.setAttribute("ListaCuotas", cuotaneg.obtenerCuotasporIdPrestamo(idPrestamo));
+	                
+					request.setAttribute("PrestamoSeleccionado", PresNeg.obtenerPrestamoPorid(idPrestamo));
+					request.setAttribute("CantidadCuotasPagadas", cuotaneg.obtenerCantidadCuotasPagadas(idPrestamo));		
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/PagosPrestamo.jsp");
+					dispatcher.forward(request, response);
+					break;
+					
+				}
+				
 			}
 			default:
 				break;

@@ -19,4 +19,9 @@ public class CuotaNegImpl implements CuotaNeg{
 		return Cudao.obtenerCantidadCuotasPagadas(idPrestamo);
 	}
 
+	@Override
+	public boolean PagarCuota(int idPrestamo, int NumeroCuenta) {
+		return Cudao.PagarCuota(idPrestamo, NumeroCuenta);
+	}
+
 }

@@ -66,7 +66,9 @@
 	Prestamo prestamoSeleccionado = new Prestamo();
 	Float Saldo = 0f;
 	int cantCuotas = -1;
-
+	String VisibilidadCuotas="display: none";
+	String VisibilidadDesplegable="display: none";
+	
 	if (session.getAttribute("usuarioLogueado") != null) {
 
 		usuario = (Usuario) session.getAttribute("usuarioLogueado");
@@ -93,8 +95,7 @@
 	ArrayList<Cuota> ListaCuotas = new ArrayList<Cuota>();
 	if (request.getAttribute("ListaCuotas") != null) {
 		ListaCuotas = (ArrayList<Cuota>) request.getAttribute("ListaCuotas");
-	}
-	
+	}	
 
 	if (request.getAttribute("PrestamoSeleccionado") != null) {
 		prestamoSeleccionado = (Prestamo)request.getAttribute("PrestamoSeleccionado");
@@ -102,12 +103,10 @@
 	
 	if (request.getAttribute("CantidadCuotasPagadas") != null) {
 		cantCuotas = (int)request.getAttribute("CantidadCuotasPagadas");
+		
+		VisibilidadCuotas = "display: table-cell";
+		VisibilidadDesplegable = "display: block";
 	}
-	
-	if (request.getAttribute("CuotasAnteriores") != null) {
-		ListaCuotas = (ArrayList<Cuota>)request.getAttribute("ListaCuotas");
-	}
-	
 	
 	%>
 
@@ -138,8 +137,7 @@
 		<%
 			for (Prestamo prestamo : ListaPrestamos) {
 		%>
-			
-			
+					
 			<tr>
 				
 				<td><%= prestamo.getNroCuenta_prestamo().getNroCuenta_cuenta() %></td>
@@ -176,6 +174,24 @@
 		<br>
 		
 		<div class="subtitulo">Pago de Cuotas</div>
+		<div style="font-size: 20px;" class="subtitulo">Cuenta a debitar</div>
+		
+	<form action="ServletMovimientos?Param=PagarCuotaPrestamo" method="post">
+	
+		<div style="width: 250px ; <%=VisibilidadDesplegable%>; margin: auto;">
+				<select class="form-select form-select-lg mb-3"
+					id="ddlCuentasPagoPrestamo" name="ddlCuentasPagoPrestamo">
+					<option value="">Seleccione una cuenta</option>
+					<%
+					for (Cuenta c : ListaCuentas) {
+					%>
+					<option value="<%=c.getNroCuenta_cuenta()%>">CTA N° -
+						<%=c.getNroCuenta_cuenta()%></option>
+					<%
+					}
+					%>
+				</select>
+		</div>
 		
 		<table class="table table-bordered table-hover">
 		<thead>
@@ -189,25 +205,27 @@
 		<tbody>
 
 			<tr>		
-				<td><%=prestamoSeleccionado.getMontoMensual_prestamo() %></td>
-				<td><%=LocalDate.now()%></td>
-				<td><%=cantCuotas+1%>/<%=prestamoSeleccionado.getCuotas_prestamo() %></td>
-				<td>	
+				<td style="<%=VisibilidadCuotas%>"><%=prestamoSeleccionado.getMontoMensual_prestamo() %></td>
+				<td style="<%=VisibilidadCuotas%>"><%=LocalDate.now()%></td>
+				<td style="<%=VisibilidadCuotas%>"><%=cantCuotas+1%>/<%=prestamoSeleccionado.getCuotas_prestamo() %></td>
+				<td style="<%=VisibilidadCuotas%>">	
 				
-				 <form action="ServletMovimientos?Param=PagarCuotaPrestamo" method="post">
+
 				 
-				 <input type="hidden" id="Id_Prestamo" name="Id_Prestamo" value="">				 
-		    				
-				<button type="submit" Value="PagarCuota" class="btn btn-pay">Pagar Cuota</button>
-				<button type="submit" Value="VerAnterioresCuotas" class="btn btn-pay">Cuotas Anteriores</button>
+				 <input type="hidden" id="Id_PrestamoSeleccionado" name="Id_PrestamoSeleccionado" value="<%=prestamoSeleccionado.getId_prestamo()%>">	
+				 			 		    				
+				<button type="submit" name="BotonCuotas" Value="PagarCuota" class="btn btn-pay">Pagar Cuota</button>
+				<button type="submit" name="BotonCuotas" Value="VerAnterioresCuotas" class="btn btn-pay">Cuotas Anteriores</button>
 			  
-			    </form>
+			    
 			    </td>
 							
 			</tr>
 
 		</tbody>
 		</table>
+		
+		</form>
 		
 		<br>
 		<br>
@@ -226,16 +244,14 @@
 			<%
 			for (Cuota cuotas : ListaCuotas) {
 		    %>
-			
-			
+					
 			<tr>
 			
 				<td><%= cuotas.getMonto_cuota()%></td>
 				<td><%= cuotas.getFechaPago_cuota()%></td>
 							
 			</tr>
-				
-										
+														
 			<%
 			}
 			%>
