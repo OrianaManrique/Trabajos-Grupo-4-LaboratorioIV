@@ -124,16 +124,13 @@ if (request.getAttribute("rechazados") != null) {
 	rechazados = (int)request.getAttribute("rechazados");
 }
 
-//request.setAttribute("aprobados", 80);
-//request.setAttribute("rechazados", 20);
-
  %>
 
 <div class="header">
 <%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador
 </div>
 
-<form>
+<form action="ServletReportes?Param=ReporteMensual" method="get">
 
 <div class="subtitulo">REPORTES</div>
 
@@ -143,7 +140,7 @@ if (request.getAttribute("rechazados") != null) {
   <br/>
   <p>Seleccione mes a comparar</p><br/>
 				
-					<select class="form-select form-select-lg mb-3"	 id="ddlMes" name="ddlMes">
+					<select class="form-select form-select-lg mb-3; width: 200px" id="ddlMes" name="ddlMes" onchange="this.form.submit()">
 								<option value="">Seleccione un mes</option>
 								<%
 								for (int i=1; i<=12; i++ ) {

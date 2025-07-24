@@ -203,4 +203,28 @@ public class PrestamoDaoImpl implements PrestamoDao {
 		return prestamo;
 	}
 
+	public int ContarPrestamosPorMes(int mes, String condicion) {
+		
+		conexion = new Conexion();
+		conexion.open();
+		int cantidadtotal = 0;
+		
+		String consulta = ("CALL ContarPrestamosPorMes("+mes+", '"+condicion+"');");
+
+		try {
+			ResultSet rs = conexion.query(consulta);
+
+			if(rs.next()) {
+				
+				cantidadtotal = rs.getInt("Cantidad");
+				
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+		return cantidadtotal;
+	}
 }

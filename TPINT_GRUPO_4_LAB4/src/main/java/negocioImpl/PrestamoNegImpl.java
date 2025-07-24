@@ -34,4 +34,7 @@ public class PrestamoNegImpl implements PrestamoNeg {
 		return presDao.obtenerPrestamoPorid(id);
 	}
 
+	public int ContarPrestamosPorMes(int mes, String condicion) {
+		return presDao.ContarPrestamosPorMes(mes, condicion);
+	}
 }
