@@ -211,6 +211,7 @@ public class ServletMovimientos extends HttpServlet {
 			case "PagarCuotaPrestamo": {
 				
 				String Opcion = request.getParameter("BotonCuotas");
+				boolean Pagado = false;
 				
 				if("PagarCuota".equals(Opcion)) {
 					
@@ -218,15 +219,30 @@ public class ServletMovimientos extends HttpServlet {
 					
 					int idPrestamo = Integer.parseInt(request.getParameter("Id_PrestamoSeleccionado"));
 					int CuentaSeleccionada =  Integer.parseInt(request.getParameter("ddlCuentasPagoPrestamo"));
-					cuotaneg.PagarCuota(idPrestamo, CuentaSeleccionada);
-					
+					Prestamo prestamoSeleccionado = PresNeg.obtenerPrestamoPorid(idPrestamo);
+									
 					request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogueado.getDni_us()));
+
+					request.setAttribute("PrestamoSeleccionado", prestamoSeleccionado);
+					request.setAttribute("CantidadCuotasPagadas", cuotaneg.obtenerCantidadCuotasPagadas(idPrestamo));
+					
+					
+					if(cuotaneg.obtenerCantidadCuotasPagadas(idPrestamo) == prestamoSeleccionado.getCuotas_prestamo()){
+						
+						PresNeg.AutorizarRechazarPrestamo(prestamoSeleccionado, "R");
+						Pagado = true;
+						
+					}else {
+						
+						cuotaneg.PagarCuota(idPrestamo, CuentaSeleccionada);
+					}
+					
 					request.setAttribute("ListaPrestamos", PresNeg.obtenerPrestamosPorDni(UsuarioLogueado.getDni_us()));
-					request.setAttribute("PrestamoSeleccionado", PresNeg.obtenerPrestamoPorid(idPrestamo));
-					request.setAttribute("CantidadCuotasPagadas", cuotaneg.obtenerCantidadCuotasPagadas(idPrestamo));		
+					request.setAttribute("EstadoPagoPrestamo", Pagado);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/PagosPrestamo.jsp");
 					dispatcher.forward(request, response);
 					break;
+					
 					
 					
 				}else if ("VerAnterioresCuotas".equals(Opcion)) {

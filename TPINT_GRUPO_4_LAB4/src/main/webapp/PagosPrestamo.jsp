@@ -68,6 +68,7 @@
 	int cantCuotas = -1;
 	String VisibilidadCuotas="display: none";
 	String VisibilidadDesplegable="display: none";
+	String VisibilidadPrestamoPagado="display: none";
 	
 	if (session.getAttribute("usuarioLogueado") != null) {
 
@@ -106,6 +107,21 @@
 		
 		VisibilidadCuotas = "display: table-cell";
 		VisibilidadDesplegable = "display: block";
+	}
+	
+	if (request.getAttribute("EstadoPagoPrestamo") != null) {
+		
+		if ((boolean)request.getAttribute("EstadoPagoPrestamo") == true) {
+		  
+			VisibilidadCuotas = "display: none";
+			VisibilidadDesplegable = "display: none";
+			VisibilidadPrestamoPagado = "display: block";
+		  
+		   }else{
+			   
+			VisibilidadPrestamoPagado = "display: none"; 
+		   }	
+	
 	}
 	
 	%>
@@ -224,6 +240,8 @@
 
 		</tbody>
 		</table>
+		
+          <div style="color: green; <%=VisibilidadPrestamoPagado%>" class="subtitulo">¡Felicidades, Prestamo Pagado!</div>
 		
 		</form>
 		
