@@ -28,7 +28,7 @@ public class PrestamoNegImpl implements PrestamoNeg {
 	public ArrayList<Prestamo> obtenerPrestamosPorDni(int dni) {
 		return presDao.obtenerPrestamosPorDni(dni);
 	}
-
+	
 	@Override
 	public Prestamo obtenerPrestamoPorid(int id) {
 		return presDao.obtenerPrestamoPorid(id);
@@ -37,4 +37,10 @@ public class PrestamoNegImpl implements PrestamoNeg {
 	public int ContarPrestamosPorMes(int mes, String condicion) {
 		return presDao.ContarPrestamosPorMes(mes, condicion);
 	}
+
+	@Override
+	public boolean PagarPrestamoCompleto(int id) {
+		return presDao.PagarPrestamoCompleto(id);
+	}
+		
 }

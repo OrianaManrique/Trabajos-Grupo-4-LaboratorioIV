@@ -227,4 +227,28 @@ public class PrestamoDaoImpl implements PrestamoDao {
 		}
 		return cantidadtotal;
 	}
+
+	@Override
+	public boolean PagarPrestamoCompleto(int id) {
+				
+		boolean estado = false;
+
+		try {
+			conexion = new Conexion();
+			conexion.open();
+			String query = ("UPDATE prestamos SET estado_prestamo=0 WHERE id_prestamo = "+ id);
+
+			int filasAfectadas = conexion.executeUpdate(query);
+
+			if (filasAfectadas > 0) {
+				estado = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+		return estado;
+	}
 }

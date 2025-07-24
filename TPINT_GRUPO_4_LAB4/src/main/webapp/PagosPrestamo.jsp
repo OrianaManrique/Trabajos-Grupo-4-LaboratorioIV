@@ -263,11 +263,9 @@
 			for (Cuota cuotas : ListaCuotas) {
 		    %>
 					
-			<tr>
-			
+			<tr>			
 				<td><%= cuotas.getMonto_cuota()%></td>
-				<td><%= cuotas.getFechaPago_cuota()%></td>
-							
+				<td><%= cuotas.getFechaPago_cuota()%></td>							
 			</tr>
 														
 			<%
