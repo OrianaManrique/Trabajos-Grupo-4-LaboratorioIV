@@ -24,4 +24,14 @@ public class PrestamoNegImpl implements PrestamoNeg {
 		return presDao.AutorizarRechazarPrestamo(prestamo, CambioCondicion);
 	}
 
+	@Override
+	public ArrayList<Prestamo> obtenerPrestamosPorDni(int dni) {
+		return presDao.obtenerPrestamosPorDni(dni);
+	}
+
+	@Override
+	public Prestamo obtenerPrestamoPorid(int id) {
+		return presDao.obtenerPrestamoPorid(id);
+	}
+
 }

@@ -50,4 +50,31 @@ public class CuotaDaoImpl implements CuotaDao {
 		return lista;
 	}
 
+	@Override
+	public int obtenerCantidadCuotasPagadas(int idPrestamo) {
+		
+		conexion = new Conexion();
+		conexion.open();
+		
+		int CantidadCuotas=-1;
+
+		String consulta = ("SELECT COUNT(*) AS total FROM cuotasprestamo WHERE id_prestamo_cuota ="+ idPrestamo);
+ 
+
+		try {
+			ResultSet rs = conexion.query(consulta);
+
+			if(rs.next()) {
+
+				CantidadCuotas = rs.getInt("total");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			conexion.close();
+		}
+		return CantidadCuotas;
+	}
+
 }

@@ -22,6 +22,8 @@ import negocio.MovimientoNeg;
 import negocioImpl.MovimientoNegImpl;
 import negocioImpl.ClienteNegImpl;
 import negocio.ClienteNeg;
+import negocio.CuotaNeg;
+import negocioImpl.CuotaNegImpl;
 
 @WebServlet("/ServletMovimientos")
 public class ServletMovimientos extends HttpServlet {
@@ -31,6 +33,7 @@ public class ServletMovimientos extends HttpServlet {
 	PrestamoNeg PresNeg = new PrestamoNegImpl();
 	MovimientoNeg movNeg = new MovimientoNegImpl();
 	ClienteNeg negCliente = new ClienteNegImpl();
+	CuotaNeg cuotaneg  = new CuotaNegImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -55,7 +58,15 @@ public class ServletMovimientos extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
+			case "CargarJSPPagoPrestamo": {
 
+				Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
+				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogueado.getDni_us()));
+				request.setAttribute("ListaPrestamos", PresNeg.obtenerPrestamosPorDni(UsuarioLogueado.getDni_us()));
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/PagosPrestamo.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
 			case "CargarCuentasMovimientos": {
 
 				Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
@@ -63,7 +74,8 @@ public class ServletMovimientos extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/Movimientos.jsp");
 				dispatcher.forward(request, response);
 				break;
-			}		
+			}
+					
 			case "CargarAutorizarPrestamos": {
 
 				request.setAttribute("ListaPrestamos", PresNeg.obtenerPrestamos());
@@ -182,7 +194,27 @@ public class ServletMovimientos extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}
+			case "SeleccionarPrestamoPagar": {
 
+				Usuario UsuarioLogueado = (Usuario) request.getSession().getAttribute("usuarioLogueado");
+				request.setAttribute("ListaCuentas", negCuenta.obtenerCuentasxDni(UsuarioLogueado.getDni_us()));
+				request.setAttribute("ListaPrestamos", PresNeg.obtenerPrestamosPorDni(UsuarioLogueado.getDni_us()));
+				
+				request.setAttribute("PrestamoSeleccionado", PresNeg.obtenerPrestamoPorid(Integer.parseInt(request.getParameter("Id_Prestamo"))));
+				request.setAttribute("CantidadCuotasPagadas", cuotaneg.obtenerCantidadCuotasPagadas(Integer.parseInt(request.getParameter("Id_Prestamo"))));
+				
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/PagosPrestamo.jsp");
+				dispatcher.forward(request, response);
+				break;
+			}
+			case "PagarCuotaPrestamo": {
+				
+				
+				request.setAttribute("CuotasAnteriores", cuotaneg.obtenerCuotasporIdPrestamo(Integer.parseInt(request.getParameter("Id_Prestamo"))));
+			
+			break;	
+			}
 			default:
 				break;
 			}

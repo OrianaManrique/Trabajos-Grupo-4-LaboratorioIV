@@ -171,7 +171,7 @@ if(request.getAttribute("CuentaSeleccionada")!= null){
     <br/>
     <a href="ServletMovimientos?Param=CargarJSPSolicitudPrestamo"> Solicitar Préstamo </a>
     <br/>
-    <a href="PagosPrestamo.jsp"> Pago de Préstamos </a>
+    <a href="ServletMovimientos?Param=CargarJSPPagoPrestamo"> Pago de Préstamos </a>
     <br/>
     <a href="ServletClientes?Param=CargarDatosCliente"> Mi cuenta </a>
 
