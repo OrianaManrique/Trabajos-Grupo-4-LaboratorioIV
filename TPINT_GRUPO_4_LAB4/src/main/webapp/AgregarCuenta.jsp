@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Confirmar Usuario</title>
+<title>Agregar Cuenta</title>
 </head>
 
  <style>

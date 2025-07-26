@@ -163,7 +163,7 @@ public class ServletCuentas extends HttpServlet {
 					request.setAttribute("NroCuenta", negCuenta.proximoNroCuenta());
 					request.setAttribute("CBU", negCuenta.ObtenerCBU());
 					request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
-					response.sendRedirect("AgregarCuentaServlet?Param=CargarAgregarCuenta");
+					response.sendRedirect("ServletCuentas?Param=CargarAgregarCuenta");
 
 					break;
 					

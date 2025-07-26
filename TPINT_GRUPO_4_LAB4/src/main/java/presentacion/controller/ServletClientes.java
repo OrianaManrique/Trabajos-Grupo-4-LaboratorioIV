@@ -82,6 +82,19 @@ public class ServletClientes extends HttpServlet {
 				dispatcher.forward(request, response);
 				break;
 			}		
+			default:
+				break;
+			}
+
+			return;
+
+		}
+		
+		if (request.getParameter("Param") != null && request.getParameter("Param2") != null) {
+
+			String operacion = request.getParameter("Param").toString();
+
+			switch (operacion) {
 			case "EliminarCliente": {
 
 				boolean estado = negCli.borrar(Integer.parseInt(request.getParameter("Param2")));
@@ -91,8 +104,7 @@ public class ServletClientes extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/EliminarCliente.jsp");
 				dispatcher.forward(request, response);
 				break;
-			}
-
+			}	
 			default:
 				break;
 			}
@@ -100,8 +112,9 @@ public class ServletClientes extends HttpServlet {
 			return;
 
 		}
-
+		
 	}
+		
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

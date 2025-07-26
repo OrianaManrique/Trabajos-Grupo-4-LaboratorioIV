@@ -68,7 +68,6 @@ body {
 	font-size: 20px;
 }
 
-/* Estilos de la tabla */
 .movements-table {
 	width: 100%;
 	border-collapse: collapse;
@@ -78,7 +77,6 @@ body {
 }
 
 .movements-table thead {
-	/*background-color: #bc9fd6;*/
 	background: linear-gradient(to right, #bc9fd6, #44107a);
 	color: white;
 }
@@ -88,7 +86,7 @@ body {
 	border: 1px solid #ddd;
 }
 
-/* gris claro */
+
 .alternarfilas {
 	background-color: #f9f9f9;
 }

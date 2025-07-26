@@ -229,7 +229,7 @@ if(session.getAttribute("usuarioLogueado") != null){
 						
 						<th><p><%=cuenta.getDni_Cliente()%></p></th>
 						<th><p><%=cuenta.getFechaCreacion_cuenta()%></p></th>
-						<th><p>	<input type="text" name="txtCBU" value="<%=cuenta.getCbu_cuenta()%>"></p></th>
+						<th><p><%=cuenta.getCbu_cuenta()%></p></th>
 						<th><select id="ddlTipoCuenta" name="ddlTipoCuenta">
 						<option value="">Seleccione El tipo...</option>
 					     <%
