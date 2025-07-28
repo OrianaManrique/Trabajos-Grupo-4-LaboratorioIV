@@ -207,7 +207,7 @@ public class CuentaDaoImpl implements CuentaDao {
 
 	public int proximoNroCuenta() {
 
-		int proxNum = 11001;
+		int proxNum = 11000;
 
 		try {
 			conexion = new Conexion();

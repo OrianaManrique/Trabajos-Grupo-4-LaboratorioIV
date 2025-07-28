@@ -1,6 +1,8 @@
 package negocioImpl;
+import exceptions.arrobaException;
+import exceptions.cuentaCliente;
 import exceptions.mailCliente;
-
+import exceptions.maximoCuentas;
 
 import java.util.ArrayList;
 
@@ -19,7 +21,14 @@ public class ClienteNegImpl implements ClienteNeg {
 
 	public boolean insertar (Cliente cliente) {
 		
-		//mailCliente.validarMail(cliente.getCorreo_electronico_cliente()); 
+		try
+		{
+			mailCliente.validarMail(cliente.getCorreo_electronico_cliente()); 
+		}
+		catch(arrobaException e)
+		{
+			e.printStackTrace();
+		}
 		
 		return cliDao.insertar(cliente);
 	}

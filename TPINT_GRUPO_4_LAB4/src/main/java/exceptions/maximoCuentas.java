@@ -2,6 +2,11 @@ package exceptions;
 
 public class maximoCuentas extends RuntimeException{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public maximoCuentas() {}
 	
 	public String getMessage() {

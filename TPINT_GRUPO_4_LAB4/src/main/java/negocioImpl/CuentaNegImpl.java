@@ -5,6 +5,7 @@ import datos.CuentaDao;
 import datosImpl.CuentaDaoImpl;
 import negocio.CuentaNeg;
 import exceptions.cuentaCliente;
+import exceptions.maximoCuentas;
 
 public class CuentaNegImpl implements CuentaNeg{
 	
@@ -30,9 +31,17 @@ public class CuentaNegImpl implements CuentaNeg{
 	
 	public Boolean agregarCuenta(Cuenta cuenta) {
 		
-		cuentaCliente.validarCantidadCuentas(cuenta.getDni_Cliente());
-		
-		return cuentaDao.agregarCuenta(cuenta);
+		try
+		{
+			cuentaCliente.validarCantidadCuentas(cuenta.getDni_Cliente());
+			return cuentaDao.agregarCuenta(cuenta);
+					
+		}
+		catch(maximoCuentas e)
+		{
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	public ArrayList<Cuenta> obtenerCuentasxDni(int dni_cliente) {

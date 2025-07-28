@@ -2,6 +2,11 @@ package exceptions;
 
 public class arrobaException extends RuntimeException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public arrobaException()
 	{}
 
