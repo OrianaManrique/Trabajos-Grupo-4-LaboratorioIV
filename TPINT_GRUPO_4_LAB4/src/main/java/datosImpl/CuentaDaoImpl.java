@@ -269,7 +269,7 @@ public class CuentaDaoImpl implements CuentaDao {
 			conexion = new Conexion();
 			conexion.open();
 
-			String consulta = "SELECT dnicliente_cuenta AS Cliente, COUNT(*) AS Cantidad  FROM cuentas WHERE dnicliente_cuenta = 12345678 AND estado_cuenta = 1 GROUP BY dnicliente_cuenta;";
+			String consulta = "SELECT dnicliente_cuenta AS Cliente, COUNT(*) AS Cantidad  FROM cuentas WHERE dnicliente_cuenta = "+dni_cliente+" AND estado_cuenta = 1 GROUP BY dnicliente_cuenta;";
 
 			ResultSet rs = conexion.query(consulta);
 

@@ -23,14 +23,16 @@ public class ClienteNegImpl implements ClienteNeg {
 		
 		try
 		{
-			mailCliente.validarMail(cliente.getCorreo_electronico_cliente()); 
+			mailCliente.validarMail(cliente.getCorreo_electronico_cliente());
+			return cliDao.insertar(cliente);
 		}
 		catch(arrobaException e)
 		{
 			e.printStackTrace();
+			return false;
 		}
 		
-		return cliDao.insertar(cliente);
+		
 	}
 
 	public Cliente obtenerCliente(int dni) {

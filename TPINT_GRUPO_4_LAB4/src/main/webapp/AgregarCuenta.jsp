@@ -225,11 +225,17 @@ if(session.getAttribute("usuarioLogueado") != null){
 	   </div>
 	   <div class="form-columna"> 
 	   
-	    <input class="inputSegundaColumna" type="text" id="txtDniCliente" name="txtDniCliente" placeholder="Ingrese el dni del cliente..." required>
+	    <label class="lblinput"> Dni </label>
+	   
+	    <input class="inputBloqueado" type="number" max= "99999999" id="txtDniCliente" name="txtDniCliente" placeholder="Ingrese el dni del cliente..." required>
+	     
+	    <label class="lblinput"> Fecha </label>
 	     	  	   		
-		<input class="inputSegundaColumna" type="date" id="txtFechaActual" value = <%=fechaActual%> name="txtFechaActual" ReadOnly>
+		<input class="inputBloqueado" type="date" id="txtFechaActual" value = <%=fechaActual%> name="txtFechaActual" ReadOnly>
 		
-		<select class="inputSegundaColumna" id="ddlTipoCuenta" name="ddlTipoCuenta" style="display: flex;" required >
+		<label class="lblinput"> Tipo de Cuenta </label>
+		
+		<select class="inputBloqueado" id="ddlTipoCuenta" name="ddlTipoCuenta" style="display: flex;" required >
 
                 <option value="" >Seleccione un tipo...</option >
 				<%
@@ -246,7 +252,7 @@ if(session.getAttribute("usuarioLogueado") != null){
 		<div class="ContenedorBoton">
 		 <input type="submit" style="color:#5F1AB4 " name="btnAsignar" value="Asignar"/>
 		</div>
-		
+		</div>
 		<%
 	if (request.getAttribute("Exito") != null) {
 		Boolean exito = (Boolean) request.getAttribute("Exito");
@@ -262,7 +268,7 @@ if(session.getAttribute("usuarioLogueado") != null){
 	}
 	}
 	%>	
-	   	 </div>
+	   	 
 	</div>	
 	</form>
 	   	         
