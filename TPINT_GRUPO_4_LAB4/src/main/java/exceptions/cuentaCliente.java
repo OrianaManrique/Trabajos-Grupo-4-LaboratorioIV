@@ -13,7 +13,7 @@ public class cuentaCliente {
 			CuentaDao cuentaDao = new CuentaDaoImpl();
 			cuentas = cuentaDao.ContarCuentas(dni);
 
-	        if (cuentas > 3) {
+	        if (cuentas >= 3) {
 	        	aprobacionCuentas = false;
 	        }
 	        
