@@ -144,7 +144,7 @@ p {
 	
 	
 	<div class="header"><%=usuario.getNombre_us()%>	<%=usuario.getApellido_us()%>	- Cliente - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>	</div>
-	<a href="InicioCliente.jsp"> Atrás </a>
+
 	<form action="ServletMovimientos?Param=ActualizarTablaMovimientos" method="get">
 		<div class="subtitulo">HISTORIAL DE MOVIMIENTOS</div>
 		

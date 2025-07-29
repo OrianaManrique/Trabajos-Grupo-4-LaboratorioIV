@@ -91,7 +91,6 @@ if(session.getAttribute("usuarioLogueado") != null){
 	</div>
 }
 
-<a href="InicioAdministrador.jsp"> Atrás </a>
 <div class = "balance-container">
 
 <div class = "balance-box">

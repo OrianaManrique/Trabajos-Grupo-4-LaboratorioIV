@@ -241,7 +241,6 @@ input[type=number] {
 		- Cliente - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>
 	</div>
   
-  <a href="InicioCliente.jsp"> Atrás </a>
   
 	<form action="ServletMovimientos?Param=CalcularPrestamo" method="post">
 
