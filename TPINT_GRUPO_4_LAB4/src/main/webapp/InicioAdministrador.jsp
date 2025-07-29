@@ -97,7 +97,7 @@ if(session.getAttribute("usuarioLogueado") != null){
 	<div class="header">
 	<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>
 	</div>
-}
+
 
 
 <div class = "balance-container">
