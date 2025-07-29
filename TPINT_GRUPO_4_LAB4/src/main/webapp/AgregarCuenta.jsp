@@ -11,6 +11,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Agregar Cuenta</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 </head>
 
  <style>
@@ -108,6 +111,15 @@
    
   .inputBloqueado{
    color: grey;
+  }
+  
+  .btn-pay {
+	background-color: #602A80;
+	color: white;
+  }
+
+  .btn-pay:hover {
+	background-color: #4C0026;
   }
   
   .inputFechaActual{
@@ -249,7 +261,9 @@ if(session.getAttribute("usuarioLogueado") != null){
 	   </div>
 
 		<div class="ContenedorBoton">
-		 <input type="submit" style="color:#5F1AB4 " name="btnAsignar" value="Asignar"/>
+		 
+		 <button type="submit" class="btn btn-pay" value="Asignar">Seleccionar</button>
+		 
 		</div>
 		</div>
 		<%

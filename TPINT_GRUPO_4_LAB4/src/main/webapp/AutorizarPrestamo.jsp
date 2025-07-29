@@ -164,8 +164,9 @@ if (request.getAttribute("ListaPrestamos") != null) {
 				<td><%= prestamo.getCuotas_prestamo() %></td>
 				<td><%= prestamo.getFechaCreacion_prestamo() %></td>
 				<td><%= prestamo.getMontoMensual_prestamo() %></td>
-				<td><%= prestamo.getCondicion_prestamo()%></td>
-						
+				<% if(prestamo.getCondicion_prestamo().equals("N")){%>
+				<td>Pendiente</td>
+				<%}%>		
 				<td>	
 				
 				 <form action="ServletMovimientos?Param=Autorizar-RechazarPrestamo" method="post">

@@ -224,9 +224,7 @@
 				<td style="<%=VisibilidadCuotas%>"><%=LocalDate.now()%></td>
 				<td style="<%=VisibilidadCuotas%>"><%=cantCuotas+1%>/<%=prestamoSeleccionado.getCuotas_prestamo() %></td>
 				<td style="<%=VisibilidadCuotas%>">	
-				
-
-				 
+								 
 				 <input type="hidden" id="Id_PrestamoSeleccionado" name="Id_PrestamoSeleccionado" value="<%=prestamoSeleccionado.getId_prestamo()%>">	
 				 			 		    				
 				<button type="submit" name="BotonCuotas" Value="PagarCuota" class="btn btn-pay">Pagar Cuota</button>
