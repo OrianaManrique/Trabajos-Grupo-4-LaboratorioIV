@@ -9,5 +9,5 @@ public interface ClienteNeg {
 	public boolean editar(Cliente articulo);
 	public boolean borrar(int dni);
 	public ArrayList<Cliente> obtenerClientes();
-	
+	public Boolean verificarClienteExiste(int dni);
 }

@@ -171,4 +171,28 @@ public class ClienteDaoImpl implements ClienteDao {
 	    }
 	    return estado;
 	}
+	
+	public Boolean verificarClienteExiste(int dni) {
+		boolean existe = false;
+	    Conexion conexion = new Conexion();
+	    conexion.open();
+
+	    String consulta = "SELECT dni_cliente AS Dni FROM clientes WHERE dni_cliente = "+dni+";";
+	    
+	    try {
+	    	
+	    	ResultSet rs = conexion.query(consulta);
+	    	
+	        if (rs != null && rs.next()) {
+	            existe = true;
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        conexion.close();
+	    }
+
+	    return existe;
+		
+	}
 }

@@ -9,5 +9,5 @@ public interface ClienteDao {
 	public boolean borrar(int dni);
 	public boolean editar(Cliente cliente);
 	public ArrayList<Cliente> obtenerClientes();
-	
+	public Boolean verificarClienteExiste(int dni);
 }

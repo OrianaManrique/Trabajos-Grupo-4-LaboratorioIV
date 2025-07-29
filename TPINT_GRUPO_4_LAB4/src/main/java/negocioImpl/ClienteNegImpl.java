@@ -53,4 +53,8 @@ public class ClienteNegImpl implements ClienteNeg {
 	public boolean editar(Cliente cliente) {
 		return cliDao.editar(cliente);
 	}
+	
+	public Boolean verificarClienteExiste(int dni) {
+		return cliDao.verificarClienteExiste(dni);
+	}
 }

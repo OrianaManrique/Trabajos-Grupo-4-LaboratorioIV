@@ -34,6 +34,7 @@ public class CuentaNegImpl implements CuentaNeg{
 		try
 		{
 			cuentaCliente.validarCantidadCuentas(cuenta.getDni_Cliente());
+			
 			return cuentaDao.agregarCuenta(cuenta);
 					
 		}

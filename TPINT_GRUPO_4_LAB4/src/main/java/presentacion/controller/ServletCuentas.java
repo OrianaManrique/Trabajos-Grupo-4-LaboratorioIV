@@ -159,7 +159,12 @@ public class ServletCuentas extends HttpServlet {
 					tipo.setId_tipoCuenta(Integer.parseInt(request.getParameter("ddlTipoCuenta")));
 					cuenta.setTipo_cuenta(tipo);
 
-					request.setAttribute("Exito", negCuenta.agregarCuenta(cuenta));
+					if(clienteNeg.verificarClienteExiste(DniCliente)) {
+						request.setAttribute("Exito", negCuenta.agregarCuenta(cuenta));
+					} else {
+						request.setAttribute("Exito", false);
+					}
+					
 					request.setAttribute("NroCuenta", negCuenta.proximoNroCuenta());
 					request.setAttribute("CBU", negCuenta.ObtenerCBU());
 					request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
