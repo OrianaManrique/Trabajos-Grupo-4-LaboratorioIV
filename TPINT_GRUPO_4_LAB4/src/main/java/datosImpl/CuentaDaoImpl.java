@@ -86,9 +86,8 @@ public class CuentaDaoImpl implements CuentaDao {
 		conexion = new Conexion();
 		conexion.open();
 
-		String consulta = "UPDATE cuentas SET " + "cbu_cuenta = '" + cuenta.getCbu_cuenta() + "', "
-				+ "idtipo_cuenta = " + cuenta.getTipo_cuenta().getId_tipoCuenta() + ", " + "saldo_cuenta = "
-				+ cuenta.getSaldo_cuenta() + " " + "WHERE nroCuenta_cuenta = " + cuenta.getNroCuenta_cuenta() + ";";
+		String consulta = "UPDATE cuentas SET " + "idtipo_cuenta = " + cuenta.getTipo_cuenta().getId_tipoCuenta() + ", " 
+		                + "saldo_cuenta = "+ cuenta.getSaldo_cuenta() + " " + "WHERE nroCuenta_cuenta = " + cuenta.getNroCuenta_cuenta() + ";";
 
 		try {
 			estado = conexion.execute(consulta);
