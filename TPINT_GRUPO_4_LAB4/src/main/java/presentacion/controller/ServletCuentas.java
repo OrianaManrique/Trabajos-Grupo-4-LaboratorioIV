@@ -149,7 +149,7 @@ public class ServletCuentas extends HttpServlet {
 				Cuenta cuenta = new Cuenta();
 				int DniCliente = Integer.parseInt(request.getParameter("txtDniCliente"));
 						
-				if(negCuenta.ContarCuentas(DniCliente)<3){
+				if(negCuenta.ContarCuentas(DniCliente)<3 && clienteNeg.verificarClienteExiste(DniCliente)==true){
 					
 					cuenta.setCbu_cuenta(request.getParameter("txtCBU"));
 					cuenta.setDni_Cliente(DniCliente);
@@ -159,22 +159,20 @@ public class ServletCuentas extends HttpServlet {
 					tipo.setId_tipoCuenta(Integer.parseInt(request.getParameter("ddlTipoCuenta")));
 					cuenta.setTipo_cuenta(tipo);
 
-					if(clienteNeg.verificarClienteExiste(DniCliente)) {
-						request.setAttribute("Exito", negCuenta.agregarCuenta(cuenta));
-					} else {
-						request.setAttribute("Exito", false);
-					}
-					
+				    request.setAttribute("Exito", negCuenta.agregarCuenta(cuenta));		
 					request.setAttribute("NroCuenta", negCuenta.proximoNroCuenta());
 					request.setAttribute("CBU", negCuenta.ObtenerCBU());
 					request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
-					response.sendRedirect("ServletCuentas?Param=CargarAgregarCuenta");
-
+					RequestDispatcher requestdispatcher = request.getRequestDispatcher("/AgregarCuenta.jsp");
+					requestdispatcher.forward(request, response);
 					break;
 					
 				}else {
 					
 					request.setAttribute("Exito", false);
+					request.setAttribute("NroCuenta", negCuenta.proximoNroCuenta());
+					request.setAttribute("CBU", negCuenta.ObtenerCBU());
+					request.setAttribute("Tipos", tipoCuentaNeg.obtenerTiposCuentas());
 					RequestDispatcher requestdispatcher = request.getRequestDispatcher("/AgregarCuenta.jsp");
 					requestdispatcher.forward(request, response);
 					break;

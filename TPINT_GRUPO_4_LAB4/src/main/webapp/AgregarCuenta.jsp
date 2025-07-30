@@ -270,11 +270,11 @@ if(session.getAttribute("usuarioLogueado") != null){
 	if (request.getAttribute("Exito") != null) {
 		Boolean exito = (Boolean) request.getAttribute("Exito");
 
-		if (exito != null && exito) {
+	if (exito == true) {
 	%>
 	<p style="color: green;">¡Cuenta agregada con éxito!</p>
 	<%
-	} else {
+	}else {
 	%>
 	<p style="color: red;">ERROR - La cuenta no ha podido ser añadida.</p>
 	<%
