@@ -32,15 +32,24 @@ public class ServletLogin extends HttpServlet {
 			String clave = request.getParameter("clave");
 			
 			usuario_logueado = usuarioNeg.obtenerUsuario(usuario, clave);
-
-			request.getSession().setAttribute("usuarioLogueado", usuario_logueado);
 			
-			if (usuario_logueado.getTipo_us().equals("A")){
-			RequestDispatcher rd = request.getRequestDispatcher("/InicioAdministrador.jsp");
-			rd.forward(request, response);
-			} else {
-		    response.sendRedirect("ServletCuentas?Param=CargarInicioCliente");
+			if(usuario_logueado!= null) {
+				
+				request.getSession().setAttribute("usuarioLogueado", usuario_logueado);
+				
+				if (usuario_logueado.getTipo_us().equals("A")){
+				RequestDispatcher rd = request.getRequestDispatcher("/InicioAdministrador.jsp");
+				rd.forward(request, response);
+				} else {
+			    response.sendRedirect("ServletCuentas?Param=CargarInicioCliente");
+				}
+				
+			}else {			
+				RequestDispatcher rd = request.getRequestDispatcher("/InicioLogin.jsp");
+				rd.forward(request, response);
 			}
+
+			
 		}
 	}
 }
