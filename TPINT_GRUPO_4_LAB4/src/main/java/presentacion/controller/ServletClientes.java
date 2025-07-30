@@ -167,14 +167,28 @@ public class ServletClientes extends HttpServlet {
 			}
 			case "BuscarClienteModificar":{
 				
-				request.setAttribute("Cliente", negCli.obtenerCliente(Integer.parseInt(request.getParameter("txtBusquedaModificarCliente"))));
-				request.setAttribute("DniBusquedaModificarCliente", (Integer.parseInt(request.getParameter("txtBusquedaModificarCliente"))));
-				request.setAttribute("listaProvincias", negprov.listarProvincias());
-				request.setAttribute("listaLocalidades", negloc.listarLocalidades());
+				int dniCliente = Integer.parseInt(request.getParameter("txtBusquedaModificarCliente"));
 				
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCliente.jsp");
-				dispatcher.forward(request, response);
-				break;
+				if(negCli.verificarClienteExiste(dniCliente)==true){
+									
+					request.setAttribute("Cliente", negCli.obtenerCliente(dniCliente));
+					request.setAttribute("DniBusquedaModificarCliente", (dniCliente));
+					request.setAttribute("listaProvincias", negprov.listarProvincias());
+					request.setAttribute("listaLocalidades", negloc.listarLocalidades());
+					
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCliente.jsp");
+					dispatcher.forward(request, response);
+					break;
+					
+				}else {
+					
+					request.setAttribute("listaProvincias", negprov.listarProvincias());
+					request.setAttribute("listaLocalidades", negloc.listarLocalidades());
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/ModificarCliente.jsp");
+					dispatcher.forward(request, response);
+					break;				
+				}
+				
 				
 			}
 			case "GuardarModificacionCliente": {

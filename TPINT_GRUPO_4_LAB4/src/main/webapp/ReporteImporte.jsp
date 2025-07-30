@@ -19,15 +19,18 @@ body {
 }
 
 .header {
-    background: linear-gradient(to right, #602A80, #4C0026);
+	background: linear-gradient(to right, #602A80, #4C0026);
     color: white;
     padding: 20px;
     text-align: center;
     font-weight: bold;
     font-size: 20px;
     letter-spacing: 1px;
+    display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
 }
-
 .subtitulo {
     text-align: center;
     font-size: 35px;
@@ -137,9 +140,15 @@ if (request.getAttribute("importe2") != null) {
 
  %>
 
-<div class="header">
-<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>
-</div>
+	<div class="header">
+	<a style="color: white;" href="InicioAdministrador.jsp">Inicio</a>
+
+	<span style="margin: 0 auto;">
+		<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador
+	</span>
+
+	<a style="color: white;" href="InicioLogin.jsp">Cerrar sesión</a>
+   </div>
 
 <form action="ServletReportes?Param=ReporteMensual" method="get">
 

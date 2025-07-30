@@ -16,14 +16,19 @@ body{
  
     background: #E0E0E0;
 }
+
 .header {
-    background: linear-gradient(to right, #602A80, #4C0026);
+	background: linear-gradient(to right, #602A80, #4C0026);
     color: white;
     padding: 20px;
     text-align: center;
     font-weight: bold;
     font-size: 20px;
     letter-spacing: 1px;
+    display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
 }
 
 .balance-container {
@@ -95,8 +100,14 @@ if(session.getAttribute("usuarioLogueado") != null){
 	 %>
 
 	<div class="header">
-	<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador - <a Style="color: white" href="InicioLogin.jsp"> Cerrar sesión </a>
-	</div>
+	<a style="color: white;" href="InicioAdministrador.jsp">Inicio</a>
+
+	<span style="margin: 0 auto;">
+		<%=usuario.getNombre_us()%> <%=usuario.getApellido_us()%> - Administrador
+	</span>
+
+	<a style="color: white;" href="InicioLogin.jsp">Cerrar sesión</a>
+   </div>
 
 
 
